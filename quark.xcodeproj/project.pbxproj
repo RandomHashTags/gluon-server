@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6753CF1A29145495008BD41C /* events.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1929145495008BD41C /* events.c */; };
+		6753CF1E291454CF008BD41C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1D291454CF008BD41C /* player.c */; };
+		6753CF22291454E4008BD41C /* world.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF21291454E4008BD41C /* world.c */; };
+		6753CF252914550B008BD41C /* location.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF242914550B008BD41C /* location.c */; };
+		6753CF2A2914556E008BD41C /* entity.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF292914556E008BD41C /* entity.c */; };
+		6753CF2F291456F3008BD41C /* itemstack.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF2E291456F3008BD41C /* itemstack.c */; };
+		6753CF322914572D008BD41C /* living_entity.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF312914572D008BD41C /* living_entity.c */; };
+		6753CF35291459A8008BD41C /* itemmeta.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF34291459A8008BD41C /* itemmeta.c */; };
+		6753CF39291468AA008BD41C /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF38291468AA008BD41C /* quark_server.c */; };
+		6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF3B29146B00008BD41C /* entity_equipment.c */; };
+		6753CF3F29146CC0008BD41C /* chunk.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF3E29146CC0008BD41C /* chunk.c */; };
+		6753CF4329146D06008BD41C /* block.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF4229146D06008BD41C /* block.c */; };
 		6799444329142C4200D8F796 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6799444229142C4200D8F796 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +35,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6753CF1829145495008BD41C /* events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = events.h; sourceTree = "<group>"; };
+		6753CF1929145495008BD41C /* events.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = events.c; sourceTree = "<group>"; };
+		6753CF1C291454CF008BD41C /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		6753CF1D291454CF008BD41C /* player.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
+		6753CF20291454E4008BD41C /* world.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = world.h; sourceTree = "<group>"; };
+		6753CF21291454E4008BD41C /* world.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = world.c; sourceTree = "<group>"; };
+		6753CF232914550B008BD41C /* location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = location.h; sourceTree = "<group>"; };
+		6753CF242914550B008BD41C /* location.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = location.c; sourceTree = "<group>"; };
+		6753CF282914556E008BD41C /* entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity.h; sourceTree = "<group>"; };
+		6753CF292914556E008BD41C /* entity.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = entity.c; sourceTree = "<group>"; };
+		6753CF2B29145603008BD41C /* entity_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_type.h; sourceTree = "<group>"; };
+		6753CF2D291456F3008BD41C /* itemstack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = itemstack.h; sourceTree = "<group>"; };
+		6753CF2E291456F3008BD41C /* itemstack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = itemstack.c; sourceTree = "<group>"; };
+		6753CF302914572D008BD41C /* living_entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = living_entity.h; sourceTree = "<group>"; };
+		6753CF312914572D008BD41C /* living_entity.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = living_entity.c; sourceTree = "<group>"; };
+		6753CF33291459A8008BD41C /* itemmeta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = itemmeta.h; sourceTree = "<group>"; };
+		6753CF34291459A8008BD41C /* itemmeta.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = itemmeta.c; sourceTree = "<group>"; };
+		6753CF37291468AA008BD41C /* quark_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_server.h; sourceTree = "<group>"; };
+		6753CF38291468AA008BD41C /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
+		6753CF3A29146B00008BD41C /* entity_equipment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_equipment.h; sourceTree = "<group>"; };
+		6753CF3B29146B00008BD41C /* entity_equipment.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = entity_equipment.c; sourceTree = "<group>"; };
+		6753CF3D29146CC0008BD41C /* chunk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chunk.h; sourceTree = "<group>"; };
+		6753CF3E29146CC0008BD41C /* chunk.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chunk.c; sourceTree = "<group>"; };
+		6753CF4129146D06008BD41C /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
+		6753CF4229146D06008BD41C /* block.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = block.c; sourceTree = "<group>"; };
+		6753CF44291470E9008BD41C /* gamemode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamemode.h; sourceTree = "<group>"; };
 		6799443F29142C4200D8F796 /* quark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quark; sourceTree = BUILT_PRODUCTS_DIR; };
 		6799444229142C4200D8F796 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
+		679944552914404B00D8F796 /* quark_managers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_managers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +78,74 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6753CF1B291454BE008BD41C /* player */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF1C291454CF008BD41C /* player.h */,
+				6753CF1D291454CF008BD41C /* player.c */,
+				6753CF44291470E9008BD41C /* gamemode.h */,
+			);
+			path = player;
+			sourceTree = "<group>";
+		};
+		6753CF1F291454D8008BD41C /* location */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF20291454E4008BD41C /* world.h */,
+				6753CF21291454E4008BD41C /* world.c */,
+				6753CF232914550B008BD41C /* location.h */,
+				6753CF242914550B008BD41C /* location.c */,
+				6753CF3D29146CC0008BD41C /* chunk.h */,
+				6753CF3E29146CC0008BD41C /* chunk.c */,
+			);
+			path = location;
+			sourceTree = "<group>";
+		};
+		6753CF2729145560008BD41C /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF1B291454BE008BD41C /* player */,
+				6753CF282914556E008BD41C /* entity.h */,
+				6753CF292914556E008BD41C /* entity.c */,
+				6753CF2B29145603008BD41C /* entity_type.h */,
+				6753CF302914572D008BD41C /* living_entity.h */,
+				6753CF312914572D008BD41C /* living_entity.c */,
+				6753CF3A29146B00008BD41C /* entity_equipment.h */,
+				6753CF3B29146B00008BD41C /* entity_equipment.c */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
+		6753CF2C291456DF008BD41C /* item */ = {
+			isa = PBXGroup;
+			children = (
+				679944512914376900D8F796 /* material.h */,
+				6753CF2D291456F3008BD41C /* itemstack.h */,
+				6753CF2E291456F3008BD41C /* itemstack.c */,
+				6753CF33291459A8008BD41C /* itemmeta.h */,
+				6753CF34291459A8008BD41C /* itemmeta.c */,
+			);
+			path = item;
+			sourceTree = "<group>";
+		};
+		6753CF362914689C008BD41C /* server */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF37291468AA008BD41C /* quark_server.h */,
+				6753CF38291468AA008BD41C /* quark_server.c */,
+			);
+			path = server;
+			sourceTree = "<group>";
+		};
+		6753CF4029146CFD008BD41C /* block */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF4129146D06008BD41C /* block.h */,
+				6753CF4229146D06008BD41C /* block.c */,
+			);
+			path = block;
+			sourceTree = "<group>";
+		};
 		6799443629142C4200D8F796 = {
 			isa = PBXGroup;
 			children = (
@@ -57,9 +165,41 @@
 		6799444129142C4200D8F796 /* quark */ = {
 			isa = PBXGroup;
 			children = (
+				6753CF362914689C008BD41C /* server */,
+				6799445829144B9100D8F796 /* util */,
+				6799445429143D1E00D8F796 /* events */,
+				67994452291439B200D8F796 /* managers */,
 				6799444229142C4200D8F796 /* main.c */,
 			);
 			path = quark;
+			sourceTree = "<group>";
+		};
+		67994452291439B200D8F796 /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				679944552914404B00D8F796 /* quark_managers.h */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
+		6799445429143D1E00D8F796 /* events */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF1829145495008BD41C /* events.h */,
+				6753CF1929145495008BD41C /* events.c */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		6799445829144B9100D8F796 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF4029146CFD008BD41C /* block */,
+				6753CF2C291456DF008BD41C /* item */,
+				6753CF2729145560008BD41C /* entity */,
+				6753CF1F291454D8008BD41C /* location */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +259,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */,
+				6753CF2A2914556E008BD41C /* entity.c in Sources */,
+				6753CF22291454E4008BD41C /* world.c in Sources */,
+				6753CF35291459A8008BD41C /* itemmeta.c in Sources */,
+				6753CF1A29145495008BD41C /* events.c in Sources */,
+				6753CF2F291456F3008BD41C /* itemstack.c in Sources */,
+				6753CF1E291454CF008BD41C /* player.c in Sources */,
+				6753CF322914572D008BD41C /* living_entity.c in Sources */,
+				6753CF39291468AA008BD41C /* quark_server.c in Sources */,
+				6753CF3F29146CC0008BD41C /* chunk.c in Sources */,
+				6753CF252914550B008BD41C /* location.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
+				6753CF4329146D06008BD41C /* block.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

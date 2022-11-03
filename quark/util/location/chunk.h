@@ -9,5 +9,12 @@
 #define chunk_h
 
 #include <stdio.h>
+#include "block.h"
+
+struct Chunk {
+    const int x;
+    const int z;
+    struct Block (*getBlockAt)(int x, int y, int z);
+};
 
 #endif /* chunk_h */

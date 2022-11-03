@@ -8,5 +8,11 @@
 #ifndef gamemode_h
 #define gamemode_h
 
+enum Gamemode {
+    ADVENTURE,
+    CREATIVE,
+    SPECTATOR,
+    SURVIVAL
+};
 
 #endif /* gamemode_h */

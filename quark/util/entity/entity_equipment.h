@@ -9,5 +9,16 @@
 #define entity_equipment_h
 
 #include <stdio.h>
+#include "itemstack.h"
+
+struct EntityEquipment {
+    struct ItemStack item_in_main_hand;
+    struct ItemStack item_in_off_hand;
+    
+    struct ItemStack helmet;
+    struct ItemStack chestplate;
+    struct ItemStack leggings;
+    struct ItemStack boots;
+};
 
 #endif /* entity_equipment_h */

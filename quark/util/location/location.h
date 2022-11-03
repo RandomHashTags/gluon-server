@@ -9,5 +9,13 @@
 #define location_h
 
 #include <stdio.h>
+#include "world.h"
+
+struct Location {
+    struct World *world;
+    float x;
+    float y;
+    float z;
+};
 
 #endif /* location_h */

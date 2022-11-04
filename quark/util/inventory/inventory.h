@@ -15,9 +15,10 @@ struct Inventory {
     const enum InventoryType type;
     
     int size;
-    
-    struct ItemStack (*getItem)(int slot);
-    void (*setItem)(int slot, struct ItemStack item);
+    struct ItemStack *items[9];
 };
+
+struct ItemStack getItem(struct Inventory inventory, int slot);
+void setItem(struct Inventory inventory, int slot, struct ItemStack *item);
 
 #endif /* inventory_h */

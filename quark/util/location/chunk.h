@@ -14,7 +14,8 @@
 struct Chunk {
     const int x;
     const int z;
-    struct Block (*getBlockAt)(int x, int y, int z);
 };
+
+struct Block getBlockAt(struct Chunk *chunk, int x, int y, int z);
 
 #endif /* chunk_h */

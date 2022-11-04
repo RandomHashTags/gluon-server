@@ -14,9 +14,14 @@
 
 typedef struct Entity {
     const enum EntityType type;
-    const char uuid[36];
+    const int uuid;
     char display_name[16];
     struct Location location;
+    int fire_ticks;
+    int fire_ticks_maximum;
 } Entity;
+
+void teleport(Entity *entity, struct Location location);
+void getNearbyEntities(Entity *entity, double x, double y, double z);
 
 #endif /* entity_h */

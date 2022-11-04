@@ -22,7 +22,7 @@ void startServer(struct QuarkServer server) {
     
     listen(sockID, 1);
     
-    struct Player *player = server.players[0];
+    struct PlayerConnection *player = server.players[0];
     _Bool alive = 1;
     
     while (alive) {
@@ -35,11 +35,11 @@ void startServer(struct QuarkServer server) {
         printf("Received response %s\n", response);
         const float amount = atof(response);
         printf("Received amount %f\n", amount);
-        const enum PlayerDamageResult result = damage(player, amount);
-        if (result == PLAYER_DAMAGE_RESULT_KILLED_VICTIM) {
+        const enum EntityDamageResult result = damageDamageable(player->player, amount);
+        if (result == ENTITY_DAMAGE_RESULT_KILLED_VICTIM) {
             alive = 0;
         }
-        printf("Remaining player health: %f\n", player->living_entity.health);
+        printf("Remaining player health: %f\n", player->player->living_entity.damageable.health);
     }
     printf("Player died! exiting...\n");
 }

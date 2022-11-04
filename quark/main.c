@@ -10,8 +10,6 @@
 #include "server/quark_server.h"
 
 void init(void) {
-    const enum Material material = BEDROCK;
-    
     struct QuarkServer server = {
         .hostname = "localhost",
         .port = 25565
@@ -19,17 +17,21 @@ void init(void) {
     
     struct Player player = {
         .living_entity = {
-            .entity = {
-                .type = ENTITY_TYPE_PLAYER,
-                .uuid = "33d83372-cf9e-432a-ad40-3b444782f465"
-            },
-            .health_maximum = 20,
-            .health = 20
+            .damageable = {
+                .entity = {
+                    .type = ENTITY_TYPE_PLAYER,
+                    .uuid = 1
+                },
+                .health_maximum = 20,
+                .health = 20
+            }
         },
         .name = "RandomHashTags"
     };
-    struct Player *playerPointer = &player;
-    server.players[0] = playerPointer;
+    struct PlayerConnection connection = {
+        .player = &player
+    };
+    server.players[0] = &connection;
     
     const int playersByteSize = sizeof(server.players);
     const int playersIntSize = sizeof(player);
@@ -37,8 +39,8 @@ void init(void) {
     
     //server.playerJoined(&player);
     
-    const struct PlayerEvent event = {
-        .event = { .name = "PlayerEvent" },
+    struct PlayerEvent event = {
+        .event = { .type = EVENT_PLAYER_JOIN },
         .player = &player
     };
     callEvent(&event);

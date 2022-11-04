@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		673D6B892915655500C0BDE7 /* event_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B882915655500C0BDE7 /* event_listener.c */; };
+		673D6B8D291567C900C0BDE7 /* creature.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8C291567C900C0BDE7 /* creature.c */; };
+		673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment.c */; };
+		673D6B9329156B7200C0BDE7 /* damageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B9229156B7200C0BDE7 /* damageable.c */; };
+		673D6B97291570F200C0BDE7 /* player_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B96291570F200C0BDE7 /* player_connection.c */; };
 		6753CF1A29145495008BD41C /* events.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1929145495008BD41C /* events.c */; };
 		6753CF1E291454CF008BD41C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1D291454CF008BD41C /* player.c */; };
 		6753CF22291454E4008BD41C /* world.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF21291454E4008BD41C /* world.c */; };
@@ -36,6 +41,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		673D6B872915655500C0BDE7 /* event_listener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_listener.h; sourceTree = "<group>"; };
+		673D6B882915655500C0BDE7 /* event_listener.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_listener.c; sourceTree = "<group>"; };
+		673D6B8A2915659A00C0BDE7 /* event_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_type.h; sourceTree = "<group>"; };
+		673D6B8B291567C900C0BDE7 /* creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = creature.h; sourceTree = "<group>"; };
+		673D6B8C291567C900C0BDE7 /* creature.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = creature.c; sourceTree = "<group>"; };
+		673D6B8E2915684C00C0BDE7 /* ageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ageable.h; sourceTree = "<group>"; };
+		673D6B8F29156AA700C0BDE7 /* enchantment.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enchantment.c; sourceTree = "<group>"; };
+		673D6B9129156B7200C0BDE7 /* damageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = damageable.h; sourceTree = "<group>"; };
+		673D6B9229156B7200C0BDE7 /* damageable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = damageable.c; sourceTree = "<group>"; };
+		673D6B95291570F200C0BDE7 /* player_connection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_connection.h; sourceTree = "<group>"; };
+		673D6B96291570F200C0BDE7 /* player_connection.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player_connection.c; sourceTree = "<group>"; };
 		6753CF1829145495008BD41C /* events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = events.h; sourceTree = "<group>"; };
 		6753CF1929145495008BD41C /* events.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = events.c; sourceTree = "<group>"; };
 		6753CF1C291454CF008BD41C /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
@@ -73,7 +89,7 @@
 		6799444229142C4200D8F796 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
 		679944552914404B00D8F796 /* quark_managers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_managers.h; sourceTree = "<group>"; };
-		679CC8DC2914AA0300D71267 /* player_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_damage_result.h; sourceTree = "<group>"; };
+		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,10 +104,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		673D6B94291570E200C0BDE7 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				673D6B95291570F200C0BDE7 /* player_connection.h */,
+				673D6B96291570F200C0BDE7 /* player_connection.c */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
 		6753CF1B291454BE008BD41C /* player */ = {
 			isa = PBXGroup;
 			children = (
-				679CC8DC2914AA0300D71267 /* player_damage_result.h */,
 				6753CF1C291454CF008BD41C /* player.h */,
 				6753CF1D291454CF008BD41C /* player.c */,
 				6753CF44291470E9008BD41C /* gamemode.h */,
@@ -118,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				6753CF1B291454BE008BD41C /* player */,
+				679CC8DC2914AA0300D71267 /* entity_damage_result.h */,
 				6753CF282914556E008BD41C /* entity.h */,
 				6753CF292914556E008BD41C /* entity.c */,
 				6753CF2B29145603008BD41C /* entity_type.h */,
@@ -125,6 +150,11 @@
 				6753CF312914572D008BD41C /* living_entity.c */,
 				6753CF3A29146B00008BD41C /* entity_equipment.h */,
 				6753CF3B29146B00008BD41C /* entity_equipment.c */,
+				673D6B8B291567C900C0BDE7 /* creature.h */,
+				673D6B8C291567C900C0BDE7 /* creature.c */,
+				673D6B8E2915684C00C0BDE7 /* ageable.h */,
+				673D6B9129156B7200C0BDE7 /* damageable.h */,
+				673D6B9229156B7200C0BDE7 /* damageable.c */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -173,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				6753CF4F29148514008BD41C /* quark_plugin.h */,
+				673D6B872915655500C0BDE7 /* event_listener.h */,
+				673D6B882915655500C0BDE7 /* event_listener.c */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -196,6 +228,7 @@
 		6799444129142C4200D8F796 /* quark */ = {
 			isa = PBXGroup;
 			children = (
+				673D6B94291570E200C0BDE7 /* network */,
 				6753CF4E291484EF008BD41C /* api */,
 				6753CF362914689C008BD41C /* server */,
 				6799445829144B9100D8F796 /* util */,
@@ -220,6 +253,7 @@
 				679CC8DB2914A9F700D71267 /* player */,
 				6753CF1829145495008BD41C /* events.h */,
 				6753CF1929145495008BD41C /* events.c */,
+				673D6B8A2915659A00C0BDE7 /* event_type.h */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -234,6 +268,7 @@
 				6753CF1F291454D8008BD41C /* location */,
 				6753CF4629147BBF008BD41C /* potion_effect_type.h */,
 				6753CF4729147D7F008BD41C /* enchantment.h */,
+				673D6B8F29156AA700C0BDE7 /* enchantment.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -306,16 +341,21 @@
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
 				6753CF22291454E4008BD41C /* world.c in Sources */,
 				6753CF35291459A8008BD41C /* itemmeta.c in Sources */,
+				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
 				6753CF1A29145495008BD41C /* events.c in Sources */,
 				6753CF2F291456F3008BD41C /* itemstack.c in Sources */,
+				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,
 				6753CF322914572D008BD41C /* living_entity.c in Sources */,
 				6753CF4B291480F8008BD41C /* inventory.c in Sources */,
 				6753CF3F29146CC0008BD41C /* chunk.c in Sources */,
 				6753CF252914550B008BD41C /* location.c in Sources */,
+				673D6B97291570F200C0BDE7 /* player_connection.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
+				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
 				6753CF4329146D06008BD41C /* block.c in Sources */,
 				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,
+				673D6B892915655500C0BDE7 /* event_listener.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,3 +6,9 @@
 //
 
 #include "inventory.h"
+
+void setItem(struct Inventory inventory, int slot, struct ItemStack *item) {
+    if (slot < inventory.size) {
+        inventory.items[slot] = item;
+    }
+}

@@ -15,7 +15,6 @@
 #include "../../inventory/inventory.h"
 #include "permission.h"
 #include "advancement.h"
-#include "player_damage_result.h"
 
 struct Player {
     LivingEntity living_entity;
@@ -44,15 +43,11 @@ struct Player {
     
     struct Inventory inventory;
     struct Inventory inventory_ender_chest;
-    
-    void (*openInventory)(struct Inventory *inventory);
 };
 
-void deallocate(struct Player *player);
+void saveData(struct Player *player);
+void sendMessage(struct Player *player, char message[64]);
 
-enum PlayerDamageResult damage(struct Player *player, double amount);
-_Bool isDead(struct Player *player);
-void saveData(void);
-void sendMessage(char message[64]);
+void openInventory(struct Player *player, struct Inventory *inventory);
 
 #endif /* player_h */

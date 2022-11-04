@@ -10,16 +10,11 @@
 #ifndef quark_managers_h
 #define quark_managers_h
 
-struct EventListener {
-};
-
 struct EventManager {
 };
 
-void callEvent(const struct Event *event) {
-    printf("quark_managers.callEvent, %s\n", event->name);
-};
-
-extern struct EventManager EVENT_MANAGER;
+void callEvent(Event *event) {
+    printf("quark_managers.callEvent, %d\n", event->type);
+}
 
 #endif /* quark_managers_h */

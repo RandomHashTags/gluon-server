@@ -12,7 +12,7 @@
 #include "../enchantment.h"
 
 struct ItemMeta {
-    char display_name[50];
+    char display_name[32];
     char lore[30][30];
     
     struct Enchant enchants[25];

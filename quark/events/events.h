@@ -11,10 +11,11 @@
 #include <stdio.h>
 #include "../util/entity/entity.h"
 #include "../util/entity/player/player.h"
+#include "event_type.h"
 
 typedef struct Event {
     const _Bool is_async;
-    const char name[50];
+    const enum EventType type;
 } Event;
 
 typedef struct PlayerEvent {

@@ -12,11 +12,11 @@
 #include "chunk.h"
 
 struct World {
-    const int seed;
-    char name[18];
-    
-    void (*loadChunk)(int x, int z);
-    void (*unloadChunk)(int x, int z);
+    const int seed[32];
+    char name[16];
 };
+
+void loadChunk(struct World *world, int x, int z);
+void unloadChunk(struct World *world, int x, int z);
 
 #endif /* world_h */

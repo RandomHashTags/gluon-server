@@ -13,17 +13,17 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include "../util/entity/player/player.h"
+#include "../network/player_connection.h"
 
 struct QuarkServer {
-    const char hostname;
+    const char hostname[10];
     const int port;
     
-    char motd[20];
+    char motd[32];
     int max_build_height;
     
     float tps;
-    struct Player *players[50];
+    struct PlayerConnection *players[2];
     
     const _Bool is_online_mode;
     const _Bool is_hardcore;
@@ -33,8 +33,8 @@ void startServer(struct QuarkServer server);
 void stopServer(void);
 void broadcastMessage(char message[50]);
 
-void playerJoined(struct Player *player);
-void playerQuit(struct Player *player);
+void playerJoined(struct PlayerConnection *player);
+void playerQuit(struct PlayerConnection *player);
 
 void getResponse(int port);
 

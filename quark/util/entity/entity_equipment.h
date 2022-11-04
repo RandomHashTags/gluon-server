@@ -9,7 +9,7 @@
 #define entity_equipment_h
 
 #include <stdio.h>
-#include "itemstack.h"
+#include "../item/itemstack.h"
 
 struct EntityEquipment {
     struct ItemStack item_in_main_hand;

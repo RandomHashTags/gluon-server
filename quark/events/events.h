@@ -9,8 +9,8 @@
 #define events_h
 
 #include <stdio.h>
-#include "entity.h"
-#include "player.h"
+#include "../util/entity/entity.h"
+#include "../util/entity/player/player.h"
 
 typedef struct Event {
     const _Bool is_async;
@@ -19,7 +19,7 @@ typedef struct Event {
 
 typedef struct PlayerEvent {
     const struct Event event;
-    const struct Player *player;
+    struct Player *player;
 } PlayerEvent;
 
 struct PlayerJoinEvent {

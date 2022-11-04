@@ -15,11 +15,12 @@
 		6753CF2F291456F3008BD41C /* itemstack.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF2E291456F3008BD41C /* itemstack.c */; };
 		6753CF322914572D008BD41C /* living_entity.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF312914572D008BD41C /* living_entity.c */; };
 		6753CF35291459A8008BD41C /* itemmeta.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF34291459A8008BD41C /* itemmeta.c */; };
-		6753CF39291468AA008BD41C /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF38291468AA008BD41C /* quark_server.c */; };
 		6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF3B29146B00008BD41C /* entity_equipment.c */; };
 		6753CF3F29146CC0008BD41C /* chunk.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF3E29146CC0008BD41C /* chunk.c */; };
 		6753CF4329146D06008BD41C /* block.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF4229146D06008BD41C /* block.c */; };
+		6753CF4B291480F8008BD41C /* inventory.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF4A291480F8008BD41C /* inventory.c */; };
 		6799444329142C4200D8F796 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6799444229142C4200D8F796 /* main.c */; };
+		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,7 +54,6 @@
 		6753CF33291459A8008BD41C /* itemmeta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = itemmeta.h; sourceTree = "<group>"; };
 		6753CF34291459A8008BD41C /* itemmeta.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = itemmeta.c; sourceTree = "<group>"; };
 		6753CF37291468AA008BD41C /* quark_server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_server.h; sourceTree = "<group>"; };
-		6753CF38291468AA008BD41C /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		6753CF3A29146B00008BD41C /* entity_equipment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_equipment.h; sourceTree = "<group>"; };
 		6753CF3B29146B00008BD41C /* entity_equipment.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = entity_equipment.c; sourceTree = "<group>"; };
 		6753CF3D29146CC0008BD41C /* chunk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chunk.h; sourceTree = "<group>"; };
@@ -61,10 +61,20 @@
 		6753CF4129146D06008BD41C /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
 		6753CF4229146D06008BD41C /* block.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = block.c; sourceTree = "<group>"; };
 		6753CF44291470E9008BD41C /* gamemode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamemode.h; sourceTree = "<group>"; };
+		6753CF4629147BBF008BD41C /* potion_effect_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect_type.h; sourceTree = "<group>"; };
+		6753CF4729147D7F008BD41C /* enchantment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enchantment.h; sourceTree = "<group>"; };
+		6753CF49291480F8008BD41C /* inventory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inventory.h; sourceTree = "<group>"; };
+		6753CF4A291480F8008BD41C /* inventory.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = inventory.c; sourceTree = "<group>"; };
+		6753CF4C29148119008BD41C /* inventory_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inventory_type.h; sourceTree = "<group>"; };
+		6753CF4D2914838A008BD41C /* permission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = permission.h; sourceTree = "<group>"; };
+		6753CF4F29148514008BD41C /* quark_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_plugin.h; sourceTree = "<group>"; };
+		6753CF5129148872008BD41C /* advancement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = advancement.h; sourceTree = "<group>"; };
 		6799443F29142C4200D8F796 /* quark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quark; sourceTree = BUILT_PRODUCTS_DIR; };
 		6799444229142C4200D8F796 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
 		679944552914404B00D8F796 /* quark_managers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_managers.h; sourceTree = "<group>"; };
+		679CC8DC2914AA0300D71267 /* player_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_damage_result.h; sourceTree = "<group>"; };
+		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +91,12 @@
 		6753CF1B291454BE008BD41C /* player */ = {
 			isa = PBXGroup;
 			children = (
+				679CC8DC2914AA0300D71267 /* player_damage_result.h */,
 				6753CF1C291454CF008BD41C /* player.h */,
 				6753CF1D291454CF008BD41C /* player.c */,
 				6753CF44291470E9008BD41C /* gamemode.h */,
+				6753CF4D2914838A008BD41C /* permission.h */,
+				6753CF5129148872008BD41C /* advancement.h */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -132,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				6753CF37291468AA008BD41C /* quark_server.h */,
-				6753CF38291468AA008BD41C /* quark_server.c */,
+				679CC8DF2914AD9400D71267 /* quark_server.c */,
 			);
 			path = server;
 			sourceTree = "<group>";
@@ -144,6 +157,24 @@
 				6753CF4229146D06008BD41C /* block.c */,
 			);
 			path = block;
+			sourceTree = "<group>";
+		};
+		6753CF48291480E0008BD41C /* inventory */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF49291480F8008BD41C /* inventory.h */,
+				6753CF4A291480F8008BD41C /* inventory.c */,
+				6753CF4C29148119008BD41C /* inventory_type.h */,
+			);
+			path = inventory;
+			sourceTree = "<group>";
+		};
+		6753CF4E291484EF008BD41C /* api */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF4F29148514008BD41C /* quark_plugin.h */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 		6799443629142C4200D8F796 = {
@@ -165,6 +196,7 @@
 		6799444129142C4200D8F796 /* quark */ = {
 			isa = PBXGroup;
 			children = (
+				6753CF4E291484EF008BD41C /* api */,
 				6753CF362914689C008BD41C /* server */,
 				6799445829144B9100D8F796 /* util */,
 				6799445429143D1E00D8F796 /* events */,
@@ -185,6 +217,7 @@
 		6799445429143D1E00D8F796 /* events */ = {
 			isa = PBXGroup;
 			children = (
+				679CC8DB2914A9F700D71267 /* player */,
 				6753CF1829145495008BD41C /* events.h */,
 				6753CF1929145495008BD41C /* events.c */,
 			);
@@ -194,12 +227,22 @@
 		6799445829144B9100D8F796 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				6753CF48291480E0008BD41C /* inventory */,
 				6753CF4029146CFD008BD41C /* block */,
 				6753CF2C291456DF008BD41C /* item */,
 				6753CF2729145560008BD41C /* entity */,
 				6753CF1F291454D8008BD41C /* location */,
+				6753CF4629147BBF008BD41C /* potion_effect_type.h */,
+				6753CF4729147D7F008BD41C /* enchantment.h */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		679CC8DB2914A9F700D71267 /* player */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,11 +310,12 @@
 				6753CF2F291456F3008BD41C /* itemstack.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,
 				6753CF322914572D008BD41C /* living_entity.c in Sources */,
-				6753CF39291468AA008BD41C /* quark_server.c in Sources */,
+				6753CF4B291480F8008BD41C /* inventory.c in Sources */,
 				6753CF3F29146CC0008BD41C /* chunk.c in Sources */,
 				6753CF252914550B008BD41C /* location.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				6753CF4329146D06008BD41C /* block.c in Sources */,
+				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

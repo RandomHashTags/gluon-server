@@ -15,6 +15,8 @@
 struct ItemStack {
     const enum Material type;
     struct ItemMeta item_meta;
+    
+    int amount;
 };
 
 #endif /* itemstack_h */

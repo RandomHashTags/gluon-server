@@ -9,7 +9,11 @@
 #define quark_server_h
 
 #include <stdio.h>
-#include "player.h"
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include "../util/entity/player/player.h"
 
 struct QuarkServer {
     const char hostname;
@@ -23,11 +27,15 @@ struct QuarkServer {
     
     const _Bool is_online_mode;
     const _Bool is_hardcore;
-    
-    void (*stop);
-    void (*playerJoined)(struct Player *player);
-    void (*playerQuit)(struct Player *player);
-    void (*broadcastMessage)(char message[50]);
 };
+
+void startServer(struct QuarkServer server);
+void stopServer(void);
+void broadcastMessage(char message[50]);
+
+void playerJoined(struct Player *player);
+void playerQuit(struct Player *player);
+
+void getResponse(int port);
 
 #endif /* quark_server_h */

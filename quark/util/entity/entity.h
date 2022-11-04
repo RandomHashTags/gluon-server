@@ -10,12 +10,12 @@
 
 #include <stdio.h>
 #include "entity_type.h"
-#include "location.h"
+#include "../location/location.h"
 
 typedef struct Entity {
     const enum EntityType type;
     const char uuid[36];
-    char display_name[24];
+    char display_name[16];
     struct Location location;
 } Entity;
 

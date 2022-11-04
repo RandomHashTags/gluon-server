@@ -5,13 +5,11 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
-// this project is intended to further my knowledge in C programming. This is a minecraft server alternative to any written in Java.
-
 #include <stdio.h>
-#include "quark_managers.h"
-#include "quark_server.h"
+#include "managers/quark_managers.h"
+#include "server/quark_server.h"
 
-int main(int argc, const char * argv[]) {
+void init(void) {
     const enum Material material = BEDROCK;
     
     struct QuarkServer server = {
@@ -22,7 +20,7 @@ int main(int argc, const char * argv[]) {
     struct Player player = {
         .living_entity = {
             .entity = {
-                .type = ET_PLAYER,
+                .type = ENTITY_TYPE_PLAYER,
                 .uuid = "33d83372-cf9e-432a-ad40-3b444782f465"
             },
             .health_maximum = 20,
@@ -30,7 +28,8 @@ int main(int argc, const char * argv[]) {
         },
         .name = "RandomHashTags"
     };
-    server.players[0] = &player;
+    struct Player *playerPointer = &player;
+    server.players[0] = playerPointer;
     
     const int playersByteSize = sizeof(server.players);
     const int playersIntSize = sizeof(player);
@@ -44,5 +43,11 @@ int main(int argc, const char * argv[]) {
     };
     callEvent(&event);
     printf("Hello, World!\n%i\n", playersIntSize);
+    startServer(server);
+}
+
+int main(int argc, const char * argv[]) {
+    init();
+    //getResponse(25565);
     return 0;
 }

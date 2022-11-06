@@ -8,6 +8,8 @@
 #ifndef enchantment_h
 #define enchantment_h
 
+#define MAXIMUM_ENCHANTMENT_COUNT 25
+
 enum Enchantment {
     ENCHANTMENT_ARROW_DAMAGE,
     ENCHANTMENT_ARROW_KNOCKBACK,

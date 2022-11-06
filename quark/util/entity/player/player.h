@@ -24,8 +24,7 @@ struct Player {
     struct Permission permissions[8];
     struct Advancement advancements[8];
     
-    int played_first;
-    int played_last;
+    const int first_played;
     
     enum Gamemode gamemode;
     _Bool is_blocking;
@@ -34,7 +33,6 @@ struct Player {
     _Bool is_sprinting;
     
     float experience;
-    float experience_total;
     int experience_level;
     float saturation;
     int food_level;
@@ -45,9 +43,16 @@ struct Player {
     struct Inventory inventory_ender_chest;
 };
 
+void tickPlayer(struct Player *player);
+
 void saveData(struct Player *player);
 void sendMessage(struct Player *player, char message[64]);
 
 void openInventory(struct Player *player, struct Inventory *inventory);
+
+void setGamemode(struct Player *player, enum Gamemode);
+void setBlocking(struct Player *player, _Bool value);
+void setSneaking(struct Player *player, _Bool value);
+void setSprinting(struct Player *player, _Bool value);
 
 #endif /* player_h */

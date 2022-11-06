@@ -1635,6 +1635,9 @@ enum Material {
     MATERIAL_ZOMBIE_WALL_HEAD
 };
 
+_Bool materialIsArmor(enum Material material);
+_Bool materialIsTool(enum Material material);
+_Bool canEnchantMaterial(enum Material material);
 void getMaterialName(enum Material material, char *string[40]);
 
 #endif /* material_h */

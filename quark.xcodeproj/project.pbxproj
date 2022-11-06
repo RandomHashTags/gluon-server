@@ -26,6 +26,9 @@
 		6753CF4B291480F8008BD41C /* inventory.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF4A291480F8008BD41C /* inventory.c */; };
 		6799444329142C4200D8F796 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6799444229142C4200D8F796 /* main.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
+		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
+		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
+		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,9 +91,13 @@
 		6799443F29142C4200D8F796 /* quark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quark; sourceTree = BUILT_PRODUCTS_DIR; };
 		6799444229142C4200D8F796 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
-		679944552914404B00D8F796 /* quark_managers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_managers.h; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
+		67C304A729172A0D00D89359 /* event_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_manager.h; sourceTree = "<group>"; };
+		67C304A829172A0D00D89359 /* event_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_manager.c; sourceTree = "<group>"; };
+		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
+		67C304AC29172F0A00D89359 /* potion_effect.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect.c; sourceTree = "<group>"; };
+		67C304AE291737C300D89359 /* material.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				679944512914376900D8F796 /* material.h */,
+				67C304AE291737C300D89359 /* material.c */,
 				6753CF2D291456F3008BD41C /* itemstack.h */,
 				6753CF2E291456F3008BD41C /* itemstack.c */,
 				6753CF33291459A8008BD41C /* itemmeta.h */,
@@ -242,7 +250,8 @@
 		67994452291439B200D8F796 /* managers */ = {
 			isa = PBXGroup;
 			children = (
-				679944552914404B00D8F796 /* quark_managers.h */,
+				67C304A729172A0D00D89359 /* event_manager.h */,
+				67C304A829172A0D00D89359 /* event_manager.c */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -261,12 +270,12 @@
 		6799445829144B9100D8F796 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				67C304AA29172EFB00D89359 /* potion */,
 				6753CF48291480E0008BD41C /* inventory */,
 				6753CF4029146CFD008BD41C /* block */,
 				6753CF2C291456DF008BD41C /* item */,
 				6753CF2729145560008BD41C /* entity */,
 				6753CF1F291454D8008BD41C /* location */,
-				6753CF4629147BBF008BD41C /* potion_effect_type.h */,
 				6753CF4729147D7F008BD41C /* enchantment.h */,
 				673D6B8F29156AA700C0BDE7 /* enchantment.c */,
 			);
@@ -278,6 +287,16 @@
 			children = (
 			);
 			path = player;
+			sourceTree = "<group>";
+		};
+		67C304AA29172EFB00D89359 /* potion */ = {
+			isa = PBXGroup;
+			children = (
+				6753CF4629147BBF008BD41C /* potion_effect_type.h */,
+				67C304AB29172F0A00D89359 /* potion_effect.h */,
+				67C304AC29172F0A00D89359 /* potion_effect.c */,
+			);
+			path = potion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,11 +358,14 @@
 			files = (
 				6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
+				67C304AF291737C300D89359 /* material.c in Sources */,
 				6753CF22291454E4008BD41C /* world.c in Sources */,
 				6753CF35291459A8008BD41C /* itemmeta.c in Sources */,
+				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
 				6753CF1A29145495008BD41C /* events.c in Sources */,
 				6753CF2F291456F3008BD41C /* itemstack.c in Sources */,
+				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
 				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,
 				6753CF322914572D008BD41C /* living_entity.c in Sources */,

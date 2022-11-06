@@ -13,6 +13,7 @@
 struct Advancement {
     const struct QuarkPlugin *plugin;
     const char identifier[16];
+    const char name[16];
     const char description[32];
 };
 

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "damageable.h"
 #include "entity_equipment.h"
-#include "../potion_effect_type.h"
+#include "../potion/potion_effect.h"
 
 typedef struct LivingEntity {
     Damageable damageable;
@@ -27,6 +27,8 @@ typedef struct LivingEntity {
     _Bool is_swimming;
     _Bool is_riptiding;
     
+    struct PotionEffect *potion_effects[MAXIMUM_POTION_EFFECT_TYPE_COUNT];
+    
     double eye_height;
     
     int no_damage_ticks;
@@ -36,8 +38,15 @@ typedef struct LivingEntity {
     int air_maximum;
 } LivingEntity;
 
+enum EntityDamageResult damageLivingEntity(LivingEntity *entity, double amount);
+
+void tickLivingEntity(LivingEntity *entity);
+
 void swingMainHand(LivingEntity *entity);
 void swingOffHand(LivingEntity *entity);
+
+void getPotionEffects(LivingEntity *entity, struct PotionEffect potion_effects[MAXIMUM_POTION_EFFECT_TYPE_COUNT]);
 _Bool hasPotionEffect(LivingEntity *entity, enum PotionEffectType type);
+void addPotionEffect(LivingEntity *entity, struct PotionEffect effect);
 
 #endif /* living_entity_h */

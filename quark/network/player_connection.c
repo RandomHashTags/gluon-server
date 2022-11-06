@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include "player_connection.h"
+#include "../server/quark_server.h"
 
-void disconnect(struct PlayerConnection *player, char reason[32]) {
-    free(player->player);
+void disconnect(struct PlayerConnection player, char reason[32]) {
 }

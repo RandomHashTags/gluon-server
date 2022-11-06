@@ -21,6 +21,7 @@ typedef struct Entity {
     int fire_ticks_maximum;
 } Entity;
 
+void tickEntity(Entity *entity);
 void teleport(Entity *entity, struct Location location);
 void getNearbyEntities(Entity *entity, double x, double y, double z);
 

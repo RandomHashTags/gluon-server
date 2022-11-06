@@ -9,8 +9,11 @@
 #define event_type_h
 
 enum EventType {
+    
+    // PLAYER
     EVENT_PLAYER_JOIN,
-    EVENT_PLAYER_QUIT
+    EVENT_PLAYER_QUIT,
+    EVENT_PLAYER_SNEAK,
 };
 
 #endif /* event_type_h */

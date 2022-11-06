@@ -13,8 +13,8 @@
 #include "../events/event_type.h"
 
 typedef struct EventListener {
-    struct QuarkPlugin *plugin;
-    enum EventType types[];
+    const struct QuarkPlugin *plugin;
+    const enum EventType types[];
 } EventListener;
 
 #endif /* event_listener_h */

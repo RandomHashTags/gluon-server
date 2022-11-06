@@ -16,9 +16,7 @@ struct Block {
     enum Material material;
     int light_level;
     
-    //const struct Location location;
-    
-    _Bool (*isLiquid)(void);
+    const struct Location *location;
 };
 
 #endif /* block_h */

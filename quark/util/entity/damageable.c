@@ -6,6 +6,7 @@
 //
 
 #include "damageable.h"
+#include "living_entity.h"
 
 enum EntityDamageResult damageDamageable(Damageable *damageable, double amount) {
     double new_amount = damageable->health - amount;

@@ -12,7 +12,7 @@
 #include "world.h"
 
 struct Location {
-    struct World *world;
+    const struct World *world;
     float x;
     float y;
     float z;

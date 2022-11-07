@@ -36,7 +36,7 @@ struct QuarkServer {
     const _Bool is_hardcore;
     
     int player_count;
-    struct PlayerConnection players[];
+    struct PlayerConnection *players[];
 };
 
 void startServer(void);
@@ -46,8 +46,10 @@ void tickServer(void);
 
 void broadcastMessage(char message[50]);
 
-void playerJoined(struct PlayerConnection player);
-void playerQuit(struct PlayerConnection player);
+struct PlayerConnection *parsePlayerConnection(int uuid);
+struct Player parsePlayer(int uuid);
+void playerJoined(struct PlayerConnection *player);
+void playerQuit(struct PlayerConnection *player);
 
 void getResponse(int port);
 

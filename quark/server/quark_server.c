@@ -7,6 +7,7 @@
 
 #include "quark_server.h"
 #include "../managers/event_manager.h"
+#include <string.h>
 
 void *connectPlayers(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
@@ -40,17 +41,16 @@ void *connectPlayers(void *threadID) {
             .name = "test"
         };
         struct PlayerConnection connection = {
-            .player = &player
+            .player = player
         };
-        playerJoined(connection);
+        playerJoined(&connection);
     }
     printf("Stopping server...\n");
     pthread_exit(threadID);
 }
 void *beginTickingServer(void *threadID) {
     printf("starting to tick server once every second...\n");
-    _Bool alive = 1;
-    while (alive) {
+    while (SERVER != NULL) {
         tickServer();
         sleep(1);
     }
@@ -61,7 +61,6 @@ void startServer() {
     pthread_t threads[2];
     pthread_create(&threads[0], NULL, connectPlayers, (void *) 0);
     pthread_create(&threads[1], NULL, beginTickingServer, (void *) 1);
-    printf("exited\n");
     pthread_join(threads[1], NULL);
 }
 void stopServer(void) {
@@ -90,62 +89,85 @@ void tickServer(void) {
     printf("server will begin ticking players...\n");
     struct PlayerConnection *players = (struct PlayerConnection *) SERVER->players;
     const int playerCount = SERVER->player_count;
-    for (int i = 0; i < SERVER->player_count; i++) {
+    for (int i = 0; i < playerCount; i++) {
         struct PlayerConnection *connection = &players[i];
-        if (connection != NULL) {
-            struct Player *player = connection->player;
-            tickPlayer(player);
-        }
+        printf("test1\n");
+        printf("test2, %d", connection->ping);
+        struct Player player = connection->player; // TODO: FIX -> SEGMENTATION FAULT
+        printf("test3\n");
+        tickPlayer(player);
     }
-    printf("server has been ticked, playerCount=%d...\n", SERVER->player_count);
+    printf("server has been ticked, playerCount=%d...\n", playerCount);
+    struct PlayerConnection *connection = parsePlayerConnection(0);
+    playerJoined(connection);
+}
+
+struct PlayerConnection *parsePlayerConnection(int uuid) {
+    const int memorySize = sizeof(struct PlayerConnection);
+    struct PlayerConnection *connection;
+    connection = (struct PlayerConnection *) malloc(memorySize);
+    if (!connection) {
+        printf("failed to allocate memory for a player\n");
+        return NULL;
+    }
     
-    const char *name = playerCount == 1 ? "test" : "bro";
-    struct Player otherPlayer = {
+    struct Player player = parsePlayer(uuid);
+    struct PlayerConnection connection1 = {
+        .ping = 0,
+        .player = player
+    };
+    memcpy(connection, &connection1, memorySize);
+    return connection;
+}
+struct Player parsePlayer(int uuid) {
+    struct Player test = {
         .living_entity = {
             .damageable = {
                 .entity = {
-                    .uuid = playerCount
-                }
+                    .type = ENTITY_TYPE_PLAYER,
+                    .uuid = uuid
+                },
+                .health = 20,
+                .health_maximum = 20
             }
         },
-        .name = *name
+        .first_played = 0,
     };
-    struct PlayerConnection otherConnection = {
-        .player = &otherPlayer
-    };
-    playerJoined(otherConnection);
+    test.name = uuid == 0 ? "RandomHashTags" : uuid == 1 ? "test2" : uuid == 2 ? "test3" : "test4";
+    test.gamemode = SURVIVAL;
+    return test;
 }
-
-
-void playerJoined(struct PlayerConnection connection) {
+void playerJoined(struct PlayerConnection *connection) {
     const struct PlayerJoinEvent event = {
         .event = {
             .event = {
                 .type = EVENT_PLAYER_JOIN
             },
-            .player = connection.player
+            .player = &connection->player
         },
     };
+    printf("%s joined the server\n", connection->player.name);
     callEvent((Event *) &event);
     
     SERVER->players[SERVER->player_count] = connection;
     SERVER->player_count += 1;
 }
-void playerQuit(struct PlayerConnection connection) {
+void playerQuit(struct PlayerConnection *connection) {
     int targetPlayerIndex = 0;
-    int playerUUID = connection.player->living_entity.damageable.entity.uuid;
+    const int playerUUID = connection->player.living_entity.damageable.entity.uuid;
     const int playerCount = SERVER->player_count;
-    struct PlayerConnection *players = SERVER->players;
+    struct PlayerConnection *players = (struct PlayerConnection *) SERVER->players;
     for (int i = 0; i < playerCount; i++) {
-        if (players[i].player->living_entity.damageable.entity.uuid == playerUUID) {
+        if (players[i].player.living_entity.damageable.entity.uuid == playerUUID) {
             targetPlayerIndex = i;
             break;
         }
     }
     for (int i = targetPlayerIndex; i < playerCount-1; i++) {
-        SERVER->players[i] = players[i+1];
+        SERVER->players[i] = &players[i+1];
     }
     SERVER->player_count -= 1;
+    free(connection);
 }
 
 void getResponse(int port) {

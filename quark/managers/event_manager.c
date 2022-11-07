@@ -8,5 +8,5 @@
 #include "event_manager.h"
 
 void callEvent(Event *event) {
-    printf("called event %d", event->type);
+    printf("called event %d\n", event->type);
 }

@@ -17,28 +17,11 @@ void init(void) {
         .port = 25565,
     };
     
-    
-    struct Player player = {
-        .living_entity = {
-            .damageable = {
-                .entity = {
-                    .type = ENTITY_TYPE_PLAYER,
-                    .uuid = 0
-                },
-                .health_maximum = 20,
-                .health = 20
-            }
-        },
-        .name = "RandomHashTags"
-    };
-    struct PlayerConnection connection = {
-        .player = &player
-    };
-    
+    struct PlayerConnection *connection = parsePlayerConnection(0);
     
     int maximumAllowedPlayers = 1;
     const int playersByteSize = sizeof(maximumAllowedPlayers);
-    const int playersIntSize = sizeof(player);
+    const int playersIntSize = sizeof(struct PlayerConnection);
     const int count = playersByteSize / playersIntSize;
     printf("Hello, World!\n%i\n", playersIntSize);
     

@@ -18,13 +18,13 @@
 
 struct Player {
     LivingEntity living_entity;
-    const char name[16];
-    char list_name[16];
+    const char *name;
+    char *list_name;
     
     struct Permission permissions[8];
     struct Advancement advancements[8];
     
-    const int first_played;
+    const int *first_played;
     
     enum Gamemode gamemode;
     _Bool is_blocking;
@@ -43,16 +43,11 @@ struct Player {
     struct Inventory inventory_ender_chest;
 };
 
-void tickPlayer(struct Player *player);
+void tickPlayer(struct Player player);
 
-void saveData(struct Player *player);
-void sendMessage(struct Player *player, char message[64]);
-
-void openInventory(struct Player *player, struct Inventory *inventory);
-
-void setGamemode(struct Player *player, enum Gamemode);
-void setBlocking(struct Player *player, _Bool value);
-void setSneaking(struct Player *player, _Bool value);
-void setSprinting(struct Player *player, _Bool value);
+void setGamemode(struct Player player, enum Gamemode);
+void setBlocking(struct Player player, _Bool value);
+void setSneaking(struct Player player, _Bool value);
+void setSprinting(struct Player player, _Bool value);
 
 #endif /* player_h */

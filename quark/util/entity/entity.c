@@ -7,6 +7,13 @@
 
 #include "entity.h"
 
+void freeEntity(Entity *entity) {
+    free((enum EntityType *) entity->type);
+    free((int *) entity->uuid);
+    free((char *) entity->display_name);
+    free(entity);
+}
+
 void tickEntity(Entity *entity) {
     const int fireTicks = entity->fire_ticks-1;
     if (fireTicks >= 0) {

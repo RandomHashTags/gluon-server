@@ -7,12 +7,17 @@
 
 #include "living_entity.h"
 
+void freeLivingEntity(LivingEntity *entity) {
+    freeDamageable(entity->damageable);
+    free(entity);
+}
+
 void tickLivingEntity(LivingEntity *entity) {
     const int noDamageTicks = entity->no_damage_ticks-1;
     if (noDamageTicks >= 0) {
         entity->no_damage_ticks = noDamageTicks;
     }
-    tickEntity(&entity->damageable.entity);
+    tickEntity(entity->damageable->entity);
 }
 
 enum EntityDamageResult damageLivingEntity(LivingEntity *entity, double amount) {

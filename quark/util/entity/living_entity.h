@@ -14,7 +14,7 @@
 #include "../potion/potion_effect.h"
 
 typedef struct LivingEntity {
-    Damageable damageable;
+    Damageable *damageable;
     struct LivingEntity *killer;
     struct EntityEquipment equipment;
     
@@ -37,6 +37,8 @@ typedef struct LivingEntity {
     int air_remaining;
     int air_maximum;
 } LivingEntity;
+
+void freeLivingEntity(LivingEntity *entity);
 
 enum EntityDamageResult damageLivingEntity(LivingEntity *entity, double amount);
 

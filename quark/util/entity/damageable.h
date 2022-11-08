@@ -13,11 +13,13 @@
 #include "entity_damage_result.h"
 
 typedef struct Damageable {
-    Entity entity;
+    Entity *entity;
     
-    double health;
-    double health_maximum;
+    double *health;
+    double *health_maximum;
 } Damageable;
+
+void freeDamageable(Damageable *damageable);
 
 enum EntityDamageResult damageDamageable(Damageable *damageable, double amount);
 _Bool isDead(Damageable *damageable);

@@ -17,7 +17,7 @@
 #include "advancement.h"
 
 struct Player {
-    LivingEntity living_entity;
+    LivingEntity *living_entity;
     const char *name;
     char *list_name;
     
@@ -43,11 +43,13 @@ struct Player {
     struct Inventory inventory_ender_chest;
 };
 
-void tickPlayer(struct Player player);
+void freePlayer(struct Player *player);
 
-void setGamemode(struct Player player, enum Gamemode);
-void setBlocking(struct Player player, _Bool value);
-void setSneaking(struct Player player, _Bool value);
-void setSprinting(struct Player player, _Bool value);
+void tickPlayer(struct Player *player);
+
+void setGamemode(struct Player *player, enum Gamemode);
+void setBlocking(struct Player *player, _Bool value);
+void setSneaking(struct Player *player, _Bool value);
+void setSprinting(struct Player *player, _Bool value);
 
 #endif /* player_h */

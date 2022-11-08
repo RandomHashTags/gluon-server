@@ -17,11 +17,9 @@
 #include <pthread.h>
 #include "../network/player_connection.h"
 
-extern struct QuarkServer *SERVER;
-
 struct QuarkServer {
-    const char hostname[10];
-    const int port;
+    char hostname[10];
+    int port;
     struct QuarkPlugin *plugins[50];
     
     char motd[32];
@@ -32,12 +30,15 @@ struct QuarkServer {
     Entity *entities[100];
     LivingEntity *living_entities[100];
     
-    const _Bool is_online_mode;
-    const _Bool is_hardcore;
+    _Bool is_online_mode;
+    _Bool is_hardcore;
     
-    int player_count;
-    struct PlayerConnection *players[];
+    int *player_count;
+    struct PlayerConnection *players;
 };
+
+struct QuarkServer *initServer(void);
+void freeServer(void);
 
 void startServer(void);
 void stopServer(void);
@@ -46,8 +47,13 @@ void tickServer(void);
 
 void broadcastMessage(char message[50]);
 
+struct Entity *parseEntity(enum EntityType type, int uuid);
+struct Damageable *parseDamageable(int uuid, double health, double health_maximum);
+struct LivingEntity *parseLivingEntity(int uuid, double heath, double health_maximum);
+struct Player *parsePlayer(int uuid);
+
 struct PlayerConnection *parsePlayerConnection(int uuid);
-struct Player parsePlayer(int uuid);
+
 void playerJoined(struct PlayerConnection *player);
 void playerQuit(struct PlayerConnection *player);
 

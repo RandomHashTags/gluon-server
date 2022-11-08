@@ -29,6 +29,7 @@
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
+		67C304B2291A15A200D89359 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304B1291A15A200D89359 /* utilities.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,6 +99,8 @@
 		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
 		67C304AC29172F0A00D89359 /* potion_effect.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect.c; sourceTree = "<group>"; };
 		67C304AE291737C300D89359 /* material.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material.c; sourceTree = "<group>"; };
+		67C304B0291A15A200D89359 /* utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
+		67C304B1291A15A200D89359 /* utilities.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utilities.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,8 @@
 				6799445429143D1E00D8F796 /* events */,
 				67994452291439B200D8F796 /* managers */,
 				6799444229142C4200D8F796 /* main.c */,
+				67C304B0291A15A200D89359 /* utilities.h */,
+				67C304B1291A15A200D89359 /* utilities.c */,
 			);
 			path = quark;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				6753CF35291459A8008BD41C /* itemmeta.c in Sources */,
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
+				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				6753CF1A29145495008BD41C /* events.c in Sources */,
 				6753CF2F291456F3008BD41C /* itemstack.c in Sources */,
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,

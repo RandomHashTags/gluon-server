@@ -9,18 +9,20 @@
 #define entity_h
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "entity_type.h"
 #include "../location/location.h"
 
 typedef struct Entity {
-    const enum EntityType type;
-    const int uuid;
-    char display_name[16];
+    const enum EntityType *type;
+    const int *uuid;
+    char *display_name[16];
     struct Location location;
     int fire_ticks;
     int fire_ticks_maximum;
 } Entity;
 
+void freeEntity(Entity *entity);
 void tickEntity(Entity *entity);
 void teleport(Entity *entity, struct Location location);
 void getNearbyEntities(Entity *entity, double x, double y, double z);

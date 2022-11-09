@@ -9,16 +9,19 @@
 #define potion_effect_h
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "potion_effect_type.h"
 
 struct PotionEffect {
-    const enum PotionEffectType type;
+    const enum PotionEffectType *type;
     _Bool has_icon;
     _Bool has_particles;
     _Bool is_ambient;
     
-    int amplifier;
-    int duration;
+    int *amplifier;
+    int *duration;
 };
+
+void freePotionEffect(struct PotionEffect *effect);
 
 #endif /* potion_effect_h */

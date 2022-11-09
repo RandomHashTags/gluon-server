@@ -11,16 +11,8 @@
 #include "server/quark_server.h"
 
 void init(void) {
-    struct PlayerConnection *connection = parsePlayerConnection(0);
-    
-    int maximumAllowedPlayers = 1;
-    const int playersByteSize = sizeof(maximumAllowedPlayers);
-    const int playersIntSize = sizeof(struct PlayerConnection);
-    const int count = playersByteSize / playersIntSize;
-    printf("Hello, World! %i\n", playersIntSize);
-    
     initServer();
-    playerJoined(connection);
+    tryConnectingPlayer(0);
     startServer();
     freeServer();
     printf("server thread has shutdown, all processing has finished.\n");

@@ -13,12 +13,11 @@ void freePlayer(struct Player *player) {
     freeLivingEntity(player->living_entity);
     free((char *) player->name);
     free(player->list_name);
-    free((int *) player->first_played);
     free(player);
 }
 
 void tickPlayer(struct Player *player) {
-    printf("player \"%s\" at address %p has been ticked; has %f health\n", player->name, player, *player->living_entity->damageable->health);
+    printf("player \"%s\" at address %p has been ticked; has %f health\n", player->name, player, player->living_entity->damageable->health);
     tickLivingEntity(player->living_entity);
 }
 

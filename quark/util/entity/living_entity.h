@@ -27,7 +27,7 @@ typedef struct LivingEntity {
     _Bool is_swimming;
     _Bool is_riptiding;
     
-    struct PotionEffect *potion_effects[MAXIMUM_POTION_EFFECT_TYPE_COUNT];
+    struct PotionEffect *potion_effects;
     
     double eye_height;
     
@@ -47,8 +47,8 @@ void tickLivingEntity(LivingEntity *entity);
 void swingMainHand(LivingEntity *entity);
 void swingOffHand(LivingEntity *entity);
 
-void getPotionEffects(LivingEntity *entity, struct PotionEffect potion_effects[MAXIMUM_POTION_EFFECT_TYPE_COUNT]);
 _Bool hasPotionEffect(LivingEntity *entity, enum PotionEffectType type);
-void addPotionEffect(LivingEntity *entity, struct PotionEffect effect);
+void addPotionEffect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration);
+void removePotionEffect(LivingEntity *entity, enum PotionEffectType type);
 
 #endif /* living_entity_h */

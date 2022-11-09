@@ -15,6 +15,7 @@ void freeEntity(Entity *entity) {
 }
 
 void tickEntity(Entity *entity) {
+    printf("ticking Entity with uuid %d and type %d\n", *entity->uuid, *entity->type);
     const int fireTicks = entity->fire_ticks-1;
     if (fireTicks >= 0) {
         entity->fire_ticks = fireTicks;

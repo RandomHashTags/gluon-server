@@ -19,12 +19,12 @@
 struct Player {
     LivingEntity *living_entity;
     const char *name;
-    char *list_name;
+    char list_name[16];
     
-    struct Permission permissions[8];
-    struct Advancement advancements[8];
+    struct Permission *permissions;
+    struct Advancement *advancements;
     
-    const int *first_played;
+    const int first_played;
     
     enum Gamemode gamemode;
     _Bool is_blocking;

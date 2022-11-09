@@ -8,8 +8,6 @@
 #ifndef potion_effect_type_h
 #define potion_effect_type_h
 
-#define MAXIMUM_POTION_EFFECT_TYPE_COUNT 32
-
 enum PotionEffectType {
     ABSORPTION,
     BAD_OMEN,

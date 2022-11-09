@@ -20,21 +20,22 @@
 struct QuarkServer {
     char hostname[10];
     int port;
-    struct QuarkPlugin *plugins[50];
+    struct QuarkPlugin *plugins;
     
     char motd[32];
     int max_build_height;
     
     float tps;
     
-    Entity *entities[100];
-    LivingEntity *living_entities[100];
+    int *player_count;
+    int player_count_maximum;
+    struct PlayerConnection *players;
+    
+    Entity *entities;
+    LivingEntity *living_entities;
     
     _Bool is_online_mode;
     _Bool is_hardcore;
-    
-    int *player_count;
-    struct PlayerConnection *players;
 };
 
 struct QuarkServer *initServer(void);
@@ -52,6 +53,7 @@ struct Damageable *parseDamageable(int uuid, double health, double health_maximu
 struct LivingEntity *parseLivingEntity(int uuid, double heath, double health_maximum);
 struct Player *parsePlayer(int uuid);
 
+void tryConnectingPlayer(int uuid);
 struct PlayerConnection *parsePlayerConnection(int uuid);
 
 void playerJoined(struct PlayerConnection *player);

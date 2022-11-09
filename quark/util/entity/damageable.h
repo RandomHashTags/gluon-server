@@ -15,8 +15,8 @@
 typedef struct Damageable {
     Entity *entity;
     
-    double *health;
-    double *health_maximum;
+    double health;
+    double health_maximum;
 } Damageable;
 
 void freeDamageable(Damageable *damageable);

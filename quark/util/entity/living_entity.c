@@ -106,8 +106,8 @@ void removePotionEffect(LivingEntity *entity, enum PotionEffectType type) {
         struct PotionEffect *potionEffect = &potionEffects[i];
         if (*potionEffect->type == type) {
             freePotionEffect(potionEffect);
-            for (int j = i; j < potionEffectsCount; j++) {
-                potionEffects[j] = potionEffects[i+1];
+            for (int j = i; j < potionEffectsCount-1; j++) {
+                potionEffects[j] = potionEffects[j+1];
             }
             i -= 1;
             break;

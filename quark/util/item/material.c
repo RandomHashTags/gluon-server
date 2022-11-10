@@ -7,7 +7,7 @@
 
 #include "material.h"
 
-_Bool materialIsArmor(enum Material material) {
+_Bool material_is_armor(enum Material material) {
     switch (material) {
         case MATERIAL_LEATHER_HELMET:
         case MATERIAL_LEATHER_CHESTPLATE:
@@ -39,7 +39,7 @@ _Bool materialIsArmor(enum Material material) {
     }
 }
 
-_Bool materialIsTool(enum Material material) {
+_Bool material_is_tool(enum Material material) {
     switch (material) {
         case MATERIAL_SHEARS:
         case MATERIAL_FISHING_ROD:
@@ -89,6 +89,6 @@ _Bool materialIsTool(enum Material material) {
     }
 }
 
-_Bool canEnchantMaterial(enum Material material) {
-    return materialIsArmor(material) || materialIsTool(material);
+_Bool material_can_be_enchanted(enum Material material) {
+    return material_is_armor(material) || material_is_tool(material);
 }

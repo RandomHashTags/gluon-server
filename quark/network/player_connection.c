@@ -9,6 +9,11 @@
 #include "player_connection.h"
 #include "../server/quark_server.h"
 
-void disconnect(struct PlayerConnection *player, char reason[32]) {
-    playerQuit(player);
+void player_connection_destroy(struct PlayerConnection *connection) {
+    free(connection);
+}
+
+void player_connection_disconnect(struct PlayerConnection *connection, char reason[32]) {
+    server_player_quit(connection);
+    player_connection_destroy(connection);
 }

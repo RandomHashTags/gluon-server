@@ -14,17 +14,17 @@
 #include "../location/location.h"
 
 typedef struct Entity {
-    const enum EntityType *type;
-    const int *uuid;
-    char *display_name[16];
+    enum EntityType type;
+    int uuid;
+    char display_name[16];
     struct Location location;
     int fire_ticks;
     int fire_ticks_maximum;
 } Entity;
 
-void freeEntity(Entity *entity);
-void tickEntity(Entity *entity);
-void teleport(Entity *entity, struct Location location);
-void getNearbyEntities(Entity *entity, double x, double y, double z);
+void entity_destroy(Entity *entity);
+void entity_tick(Entity *entity);
+void entity_teleport(Entity *entity, struct Location location);
+void entity_get_nearby_entities(Entity *entity, double x, double y, double z);
 
 #endif /* entity_h */

@@ -7,8 +7,13 @@
 
 #include "inventory.h"
 
-void setItem(struct Inventory inventory, int slot, struct ItemStack *item) {
-    if (slot < inventory.size) {
-        inventory.items[slot] = item;
+/*struct ItemStack *inventory_get_item(struct Inventory *inventory, int slot) {
+    return inventory->items[slot];
+}
+void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack *item) {
+    if (slot < inventory->size) {
+        struct ItemStack *items = inventory->items;
+        items[slot] = item;
     }
 }
+*/

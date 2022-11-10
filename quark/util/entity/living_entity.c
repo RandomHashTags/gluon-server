@@ -7,13 +7,15 @@
 
 #include "living_entity.h"
 
-void freeLivingEntity(LivingEntity *entity) {
-    freeDamageable(entity->damageable);
+void living_entity_destroy(LivingEntity *entity) {
+    damageable_destroy(entity->damageable);
+    free(entity->killer);
+    free(entity->potion_effects);
     free(entity);
 }
 
-void tickLivingEntity(LivingEntity *entity) {
-    printf("ticking LivingEntity with uuid %d with no_damage_tick_maximum %d\n", *entity->damageable->entity->uuid, entity->no_damage_ticks_maximum);
+void living_entity_tick(LivingEntity *entity) {
+    printf("ticking LivingEntity with uuid %d with no_damage_ticks_maximum %d\n", entity->damageable->entity->uuid, entity->no_damage_ticks_maximum);
     const int noDamageTicks = entity->no_damage_ticks-1;
     if (noDamageTicks >= 0) {
         entity->no_damage_ticks = noDamageTicks;
@@ -26,7 +28,7 @@ void tickLivingEntity(LivingEntity *entity) {
             struct PotionEffect *potionEffect = &potionEffects[i];
             const int newPotionEffectDuration = *potionEffect->duration - 1;
             if (newPotionEffectDuration == 0) {
-                freePotionEffect(potionEffect);
+                potion_effect_destroy(potionEffect);
                 for (int j = i; j < potionEffectsCount; j++) {
                     potionEffects[j] = potionEffects[i+1];
                 }
@@ -37,18 +39,18 @@ void tickLivingEntity(LivingEntity *entity) {
         }
     }
     
-    tickEntity(entity->damageable->entity);
+    entity_tick(entity->damageable->entity);
 }
 
-enum EntityDamageResult damageLivingEntity(LivingEntity *entity, double amount) {
-    const enum EntityDamageResult result = damageDamageable((Damageable *) entity, amount);
+enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount) {
+    const enum EntityDamageResult result = damageable_damage((Damageable *) entity, amount);
     if (result == ENTITY_DAMAGE_RESULT_SUCCESS) {
         entity->no_damage_ticks = entity->no_damage_ticks_maximum;
     }
     return result;
 }
 
-_Bool hasPotionEffect(LivingEntity *entity, enum PotionEffectType type) {
+_Bool living_entity_has_potion_effect(LivingEntity *entity, enum PotionEffectType type) {
     struct PotionEffect *potionEffects = entity->potion_effects;
     for (int i = 0; i < 10; i++) {
         const struct PotionEffect *effect = &potionEffects[i];
@@ -58,8 +60,8 @@ _Bool hasPotionEffect(LivingEntity *entity, enum PotionEffectType type) {
     }
     return 0;
 }
-void addPotionEffect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration) {
-    if (hasPotionEffect(entity, type)) {
+void living_entity_add_potion_effect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration) {
+    if (living_entity_has_potion_effect(entity, type)) {
         
     } else {
         struct PotionEffect *potionEffects = entity->potion_effects;
@@ -99,13 +101,13 @@ void addPotionEffect(LivingEntity *entity, enum PotionEffectType type, int ampli
         entity->potion_effects[potionEffectsCount] = *effect;
     }
 }
-void removePotionEffect(LivingEntity *entity, enum PotionEffectType type) {
+void living_entity_remove_potion_effect(LivingEntity *entity, enum PotionEffectType type) {
     struct PotionEffect *potionEffects = entity->potion_effects;
     const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
     for (int i = 0; i < potionEffectsCount; i++) {
         struct PotionEffect *potionEffect = &potionEffects[i];
         if (*potionEffect->type == type) {
-            freePotionEffect(potionEffect);
+            potion_effect_destroy(potionEffect);
             for (int j = i; j < potionEffectsCount-1; j++) {
                 potionEffects[j] = potionEffects[j+1];
             }

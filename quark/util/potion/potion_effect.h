@@ -22,6 +22,6 @@ struct PotionEffect {
     int *duration;
 };
 
-void freePotionEffect(struct PotionEffect *effect);
+void potion_effect_destroy(struct PotionEffect *effect);
 
 #endif /* potion_effect_h */

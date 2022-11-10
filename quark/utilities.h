@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "server/quark_server.h"
 
+static int TICKS_PER_SECOND;
 static struct QuarkServer *SERVER;
 
 #endif /* utilities_h */

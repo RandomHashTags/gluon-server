@@ -16,7 +16,7 @@ struct World {
     char name[16];
 };
 
-void loadChunk(struct World *world, int x, int z);
-void unloadChunk(struct World *world, int x, int z);
+void world_load_chunk(struct World *world, int x, int z);
+void world_unload_chunk(struct World *world, int x, int z);
 
 #endif /* world_h */

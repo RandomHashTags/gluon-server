@@ -9,6 +9,7 @@
 #define location_h
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "world.h"
 
 struct Location {
@@ -17,5 +18,7 @@ struct Location {
     float y;
     float z;
 };
+
+void location_destroy(struct Location *location);
 
 #endif /* location_h */

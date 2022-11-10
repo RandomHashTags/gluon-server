@@ -14,6 +14,6 @@
 struct EventManager {
 };
 
-void callEvent(Event *event);
+void event_manager_call_event(Event *event);
 
 #endif /* event_manager_h */

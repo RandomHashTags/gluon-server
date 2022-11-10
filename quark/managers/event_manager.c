@@ -7,6 +7,6 @@
 
 #include "event_manager.h"
 
-void callEvent(Event *event) {
+void event_manager_call_event(Event *event) {
     printf("called event %d\n", event->type);
 }

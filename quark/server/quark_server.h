@@ -38,27 +38,27 @@ struct QuarkServer {
     _Bool is_hardcore;
 };
 
-struct QuarkServer *initServer(void);
-void freeServer(void);
+struct QuarkServer *server_create(void);
+void server_destroy(void);
 
-void startServer(void);
-void stopServer(void);
+void server_start(void);
+void server_stop(void);
 
-void tickServer(void);
+void server_tick(void);
 
-void broadcastMessage(char message[50]);
+void server_broadcast_message(char message[50]);
 
-struct Entity *parseEntity(enum EntityType type, int uuid);
-struct Damageable *parseDamageable(int uuid, double health, double health_maximum);
-struct LivingEntity *parseLivingEntity(int uuid, double heath, double health_maximum);
-struct Player *parsePlayer(int uuid);
+struct Entity *server_parse_entity(enum EntityType type, int uuid);
+struct Damageable *server_parse_damageable(int uuid, double health, double health_maximum);
+struct LivingEntity *server_parse_living_entity(int uuid, double heath, double health_maximum);
+struct Player *server_parse_player(int uuid);
 
-void tryConnectingPlayer(int uuid);
-struct PlayerConnection *parsePlayerConnection(int uuid);
+void server_try_connecting_player(int uuid);
+struct PlayerConnection *server_parse_player_connection(int uuid);
 
-void playerJoined(struct PlayerConnection *player);
-void playerQuit(struct PlayerConnection *player);
+void server_player_joined(struct PlayerConnection *player);
+void server_player_quit(struct PlayerConnection *player);
 
-void getResponse(int port);
+void server_get_response(int port);
 
 #endif /* quark_server_h */

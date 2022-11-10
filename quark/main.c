@@ -11,14 +11,14 @@
 #include "server/quark_server.h"
 
 void init(void) {
-    initServer();
-    tryConnectingPlayer(0);
-    startServer();
-    freeServer();
+    server_create();
+    server_try_connecting_player(0);
+    server_start();
+    server_destroy();
     printf("server thread has shutdown, all processing has finished.\n");
 }
 
 int main(int argc, const char * argv[]) {
     init();
-    //getResponse(25565);
+    //server_get_response(25565);
 }

@@ -8,7 +8,7 @@
 #ifndef enchantment_h
 #define enchantment_h
 
-#define MAXIMUM_ENCHANTMENT_COUNT 25
+#include <stdlib.h>
 
 enum Enchantment {
     ENCHANTMENT_ARROW_DAMAGE,
@@ -51,11 +51,13 @@ enum EnchantmentTarget {
     ENCHANTMENT_TARGET_WEAPON
 };
 
-enum EnchantmentTarget getEnchantmentTarget(enum Enchantment enchantment);
+enum EnchantmentTarget enchantment_get_enchantment_target(enum Enchantment enchantment);
 
 struct Enchant {
     const enum Enchantment type;
     int level;
 };
+
+void enchants_destroy(struct Enchant *enchants);
 
 #endif /* enchantment_h */

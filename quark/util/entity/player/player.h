@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include "../living_entity.h"
-#include "../../item/itemstack.h"
+#include "../../item/item_stack.h"
 #include "gamemode.h"
 #include "../../inventory/inventory.h"
 #include "permission.h"
@@ -18,13 +18,13 @@
 
 struct Player {
     LivingEntity *living_entity;
-    const char *name;
+    char name[16];
     char list_name[16];
     
     struct Permission *permissions;
     struct Advancement *advancements;
     
-    const int first_played;
+    int first_played;
     
     enum Gamemode gamemode;
     _Bool is_blocking;
@@ -43,13 +43,13 @@ struct Player {
     struct Inventory inventory_ender_chest;
 };
 
-void freePlayer(struct Player *player);
+void player_destroy(struct Player *player);
 
-void tickPlayer(struct Player *player);
+void player_tick(struct Player *player);
 
-void setGamemode(struct Player *player, enum Gamemode);
-void setBlocking(struct Player *player, _Bool value);
-void setSneaking(struct Player *player, _Bool value);
-void setSprinting(struct Player *player, _Bool value);
+void player_set_gamemode(struct Player *player, enum Gamemode);
+void player_set_blocking(struct Player *player, _Bool value);
+void player_set_sneaking(struct Player *player, _Bool value);
+void player_set_sprinting(struct Player *player, _Bool value);
 
 #endif /* player_h */

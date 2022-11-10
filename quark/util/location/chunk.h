@@ -16,6 +16,6 @@ struct Chunk {
     const int z;
 };
 
-struct Block getBlockAt(struct Chunk *chunk, int x, int y, int z);
+struct Block chunk_get_block_at(struct Chunk *chunk, int x, int y, int z);
 
 #endif /* chunk_h */

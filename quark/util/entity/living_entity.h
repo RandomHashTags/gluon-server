@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "damageable.h"
+#include "projectile_source.h"
 #include "entity_equipment.h"
 #include "../potion/potion_effect.h"
 
@@ -38,17 +39,17 @@ typedef struct LivingEntity {
     int air_maximum;
 } LivingEntity;
 
-void freeLivingEntity(LivingEntity *entity);
+void living_entity_destroy(LivingEntity *entity);
 
-enum EntityDamageResult damageLivingEntity(LivingEntity *entity, double amount);
+enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount);
 
-void tickLivingEntity(LivingEntity *entity);
+void living_entity_tick(LivingEntity *entity);
 
-void swingMainHand(LivingEntity *entity);
-void swingOffHand(LivingEntity *entity);
+void living_entity_swing_main_hand(LivingEntity *entity);
+void living_entity_swing_off_hand(LivingEntity *entity);
 
-_Bool hasPotionEffect(LivingEntity *entity, enum PotionEffectType type);
-void addPotionEffect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration);
-void removePotionEffect(LivingEntity *entity, enum PotionEffectType type);
+_Bool living_entity_has_potion_effect(LivingEntity *entity, enum PotionEffectType type);
+void living_entity_add_potion_effect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration);
+void living_entity_remove_potion_effect(LivingEntity *entity, enum PotionEffectType type);
 
 #endif /* living_entity_h */

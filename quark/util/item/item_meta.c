@@ -17,7 +17,7 @@ struct Enchant *item_meta_get_enchants(struct ItemMeta *meta) {
 }
 _Bool item_meta_has_enchant(struct ItemMeta *meta, enum Enchantment enchantment) {
     struct Enchant *enchants = meta->enchants;
-    const int enchantsCount = sizeof(&enchants) / sizeof(enchants[0]);
+    const int enchantsCount = sizeof(*enchants) / sizeof(&enchants[0]);
     for (int i = 0; i < enchantsCount; i++) {
         if (enchants[i].type == enchantment) {
             return 1;

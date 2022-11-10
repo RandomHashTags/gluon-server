@@ -17,14 +17,14 @@
 #include "advancement.h"
 
 struct Player {
-    LivingEntity *living_entity;
-    char name[16];
-    char list_name[16];
+    LivingEntity living_entity;
+    const char *name;
+    char *list_name;
     
     struct Permission *permissions;
     struct Advancement *advancements;
     
-    int first_played;
+    const int first_played;
     
     enum Gamemode gamemode;
     _Bool is_blocking;

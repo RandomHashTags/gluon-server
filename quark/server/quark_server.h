@@ -18,7 +18,7 @@
 #include "../network/player_connection.h"
 
 struct QuarkServer {
-    char hostname[10];
+    const char *hostname;
     int port;
     struct QuarkPlugin *plugins;
     
@@ -27,8 +27,8 @@ struct QuarkServer {
     
     float tps;
     
-    int *player_count;
-    int player_count_maximum;
+    int player_count;
+    const int player_count_maximum;
     struct PlayerConnection *players;
     
     Entity *entities;
@@ -48,10 +48,10 @@ void server_tick(void);
 
 void server_broadcast_message(char message[50]);
 
-struct Entity *server_parse_entity(enum EntityType type, int uuid);
-struct Damageable *server_parse_damageable(int uuid, double health, double health_maximum);
-struct LivingEntity *server_parse_living_entity(int uuid, double heath, double health_maximum);
-struct Player *server_parse_player(int uuid);
+struct Entity server_parse_entity(enum EntityType type, int uuid);
+struct Damageable server_parse_damageable(int uuid, double health, double health_maximum);
+struct LivingEntity server_parse_living_entity(int uuid, double heath, double health_maximum);
+struct Player server_parse_player(int uuid);
 
 void server_try_connecting_player(int uuid);
 struct PlayerConnection *server_parse_player_connection(int uuid);

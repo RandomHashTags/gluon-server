@@ -14,9 +14,9 @@
 #include "../location/location.h"
 
 typedef struct Entity {
-    enum EntityType type;
-    int uuid;
-    char display_name[16];
+    const enum EntityType type;
+    const int uuid;
+    char *display_name;
     struct Location location;
     int fire_ticks;
     int fire_ticks_maximum;

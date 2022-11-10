@@ -8,7 +8,6 @@
 #include "entity.h"
 
 void entity_destroy(Entity *entity) {
-    free((enum EntityType *) entity->type);
     free((char *) entity->display_name);
     free(entity);
 }

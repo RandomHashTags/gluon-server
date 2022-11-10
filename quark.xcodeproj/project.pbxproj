@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		673D6B892915655500C0BDE7 /* event_listener.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B882915655500C0BDE7 /* event_listener.c */; };
 		673D6B8D291567C900C0BDE7 /* creature.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8C291567C900C0BDE7 /* creature.c */; };
 		673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment.c */; };
 		673D6B9329156B7200C0BDE7 /* damageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B9229156B7200C0BDE7 /* damageable.c */; };
@@ -27,6 +26,9 @@
 		6759E98E291C96C000EB161F /* projectile.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E98D291C96C000EB161F /* projectile.c */; };
 		6759E991291C975B00EB161F /* projectile_source.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E990291C975B00EB161F /* projectile_source.c */; };
 		6759E995291C9C6A00EB161F /* projectile_arrow.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E994291C9C6A00EB161F /* projectile_arrow.c */; };
+		6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E997291CC28D00EB161F /* quark_plugin_version.c */; };
+		6759E99A291CC2EA00EB161F /* quark_plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E999291CC2EA00EB161F /* quark_plugin.c */; };
+		6759E99C291CCCF000EB161F /* entity_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E99B291CCCF000EB161F /* entity_type.c */; };
 		6799444329142C4200D8F796 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6799444229142C4200D8F796 /* main.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
@@ -48,8 +50,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		673D6B872915655500C0BDE7 /* event_listener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_listener.h; sourceTree = "<group>"; };
-		673D6B882915655500C0BDE7 /* event_listener.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_listener.c; sourceTree = "<group>"; };
 		673D6B8A2915659A00C0BDE7 /* event_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_type.h; sourceTree = "<group>"; };
 		673D6B8B291567C900C0BDE7 /* creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = creature.h; sourceTree = "<group>"; };
 		673D6B8C291567C900C0BDE7 /* creature.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = creature.c; sourceTree = "<group>"; };
@@ -98,6 +98,10 @@
 		6759E990291C975B00EB161F /* projectile_source.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = projectile_source.c; sourceTree = "<group>"; };
 		6759E993291C9C6A00EB161F /* projectile_arrow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectile_arrow.h; sourceTree = "<group>"; };
 		6759E994291C9C6A00EB161F /* projectile_arrow.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = projectile_arrow.c; sourceTree = "<group>"; };
+		6759E996291CC28D00EB161F /* quark_plugin_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_plugin_version.h; sourceTree = "<group>"; };
+		6759E997291CC28D00EB161F /* quark_plugin_version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_plugin_version.c; sourceTree = "<group>"; };
+		6759E999291CC2EA00EB161F /* quark_plugin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_plugin.c; sourceTree = "<group>"; };
+		6759E99B291CCCF000EB161F /* entity_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = entity_type.c; sourceTree = "<group>"; };
 		6799443F29142C4200D8F796 /* quark */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = quark; sourceTree = BUILT_PRODUCTS_DIR; };
 		6799444229142C4200D8F796 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 				6753CF282914556E008BD41C /* entity.h */,
 				6753CF292914556E008BD41C /* entity.c */,
 				6753CF2B29145603008BD41C /* entity_type.h */,
+				6759E99B291CCCF000EB161F /* entity_type.c */,
 				6753CF302914572D008BD41C /* living_entity.h */,
 				6753CF312914572D008BD41C /* living_entity.c */,
 				6753CF3A29146B00008BD41C /* entity_equipment.h */,
@@ -228,8 +233,9 @@
 			isa = PBXGroup;
 			children = (
 				6753CF4F29148514008BD41C /* quark_plugin.h */,
-				673D6B872915655500C0BDE7 /* event_listener.h */,
-				673D6B882915655500C0BDE7 /* event_listener.c */,
+				6759E999291CC2EA00EB161F /* quark_plugin.c */,
+				6759E996291CC28D00EB161F /* quark_plugin_version.h */,
+				6759E997291CC28D00EB161F /* quark_plugin_version.c */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -377,17 +383,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */,
+				6759E99A291CC2EA00EB161F /* quark_plugin.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
 				67C304AF291737C300D89359 /* material.c in Sources */,
 				6753CF22291454E4008BD41C /* world.c in Sources */,
 				6753CF35291459A8008BD41C /* item_meta.c in Sources */,
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
+				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
 				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				6753CF1A29145495008BD41C /* events.c in Sources */,
 				6753CF2F291456F3008BD41C /* item_stack.c in Sources */,
 				6759E991291C975B00EB161F /* projectile_source.c in Sources */,
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
+				6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */,
 				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,
 				6753CF322914572D008BD41C /* living_entity.c in Sources */,
@@ -401,7 +410,6 @@
 				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,
 				6759E98E291C96C000EB161F /* projectile.c in Sources */,
 				6759E995291C9C6A00EB161F /* projectile_arrow.c in Sources */,
-				673D6B892915655500C0BDE7 /* event_listener.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

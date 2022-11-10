@@ -13,7 +13,7 @@
 #include "entity_damage_result.h"
 
 typedef struct Damageable {
-    Entity *entity;
+    Entity entity;
     
     double health;
     double health_maximum;

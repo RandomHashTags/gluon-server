@@ -13,11 +13,12 @@ void player_destroy(struct Player *player) {
     living_entity_destroy(player->living_entity);
     free((char *) player->name);
     free(player->list_name);
-    free(player);
+    free(player->permissions);
+    free(player->advancements);
 }
 
 void player_tick(struct Player *player) {
-    printf("player \"%s\" at address %p has been ticked; has %f health\n", player->name, player, player->living_entity->damageable->health);
+    printf("player \"%s\" at address %p has been ticked; has %f health\n", player->name, player, player->living_entity.damageable.health);
     living_entity_tick(player->living_entity);
 }
 

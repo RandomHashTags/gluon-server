@@ -81,4 +81,6 @@ enum EntityType {
     ENTITY_TYPE_ZOMBIE_VILLAGER
 };
 
+int entity_type_get_damage_ticks_maximum(enum EntityType type);
+
 #endif /* entity_type_h */

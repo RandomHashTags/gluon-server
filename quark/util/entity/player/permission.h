@@ -12,7 +12,7 @@
 
 struct Permission {
     struct QuarkPlugin *plugin;
-    const char identifier[16];
+    const char *identifier;
 };
 
 #endif /* permission_h */

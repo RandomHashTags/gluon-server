@@ -12,7 +12,6 @@
 
 void init(void) {
     server_create();
-    server_try_connecting_player(0);
     server_start();
     server_destroy();
     printf("server thread has shutdown, all processing has finished.\n");

@@ -8,13 +8,12 @@
 #ifndef player_h
 #define player_h
 
-#include <stdio.h>
-#include "../living_entity.h"
-#include "../../item/item_stack.h"
 #include "gamemode.h"
-#include "../../inventory/inventory.h"
 #include "permission.h"
 #include "advancement.h"
+#include "../living_entity.h"
+#include "../../inventory/inventory.h"
+#include "../../item/item_stack.h"
 
 struct Player {
     LivingEntity living_entity;

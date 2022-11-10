@@ -8,8 +8,6 @@
 #ifndef potion_effect_h
 #define potion_effect_h
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "potion_effect_type.h"
 
 struct PotionEffect {

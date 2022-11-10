@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
 #include "player.h"
 #include "../../../events/events.h"
 #include "../../../managers/event_manager.h"

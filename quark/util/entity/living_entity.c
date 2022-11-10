@@ -7,6 +7,7 @@
 
 #include <string.h>
 #include "living_entity.h"
+#include "../../utilities.h"
 
 void living_entity_destroy(LivingEntity entity) {
     damageable_destroy(&entity.damageable);
@@ -31,7 +32,7 @@ void living_entity_tick(LivingEntity entity) {
             if (newPotionEffectDuration == 0) {
                 potion_effect_destroy(potionEffect);
                 for (int j = i; j < potionEffectsCount; j++) {
-                    memcpy(&potionEffects[j], &potionEffects[i+1], sizeof(struct PotionEffect));
+                    memmove(&potionEffects[j], &potionEffects[i+1], sizeof(struct PotionEffect));
                 }
                 i -= 1;
             } else {
@@ -53,9 +54,10 @@ enum EntityDamageResult living_entity_damage(LivingEntity entity, double amount)
 
 _Bool living_entity_has_potion_effect(LivingEntity entity, enum PotionEffectType type) {
     struct PotionEffect *potionEffects = entity.potion_effects;
-    for (int i = 0; i < 10; i++) {
+    const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
+    for (int i = 0; i < potionEffectsCount; i++) {
         const struct PotionEffect *effect = &potionEffects[i];
-        if (effect != NULL && effect->type == type) {
+        if (effect->type == type) {
             return 1;
         }
     }
@@ -65,28 +67,30 @@ void living_entity_add_potion_effect(LivingEntity entity, enum PotionEffectType 
     if (living_entity_has_potion_effect(entity, type)) {
         
     } else {
-        struct PotionEffect *potionEffects = entity.potion_effects;
-        const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
-        
         struct PotionEffect effect = {
             .type = type,
             .amplifier = amplifier,
-            .duration = duration
+            .duration = duration * TICKS_PER_SECOND_MULTIPLIER
         };
-        memcpy((struct PotionEffect *) &entity.potion_effects[potionEffectsCount], &effect, sizeof(struct PotionEffect));
+        
+        struct PotionEffect *potionEffects = entity.potion_effects;
+        const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
+        memmove((struct PotionEffect *) &entity.potion_effects[potionEffectsCount], &effect, sizeof(struct PotionEffect));
     }
 }
 void living_entity_remove_potion_effect(LivingEntity entity, enum PotionEffectType type) {
     struct PotionEffect *potionEffects = entity.potion_effects;
-    const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
+    int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
     for (int i = 0; i < potionEffectsCount; i++) {
         struct PotionEffect *potionEffect = &potionEffects[i];
         if (potionEffect->type == type) {
             potion_effect_destroy(potionEffect);
+            const int potionEffectSize = sizeof(struct PotionEffect);
             for (int j = i; j < potionEffectsCount-1; j++) {
-                memmove((struct PotionEffect *) &potionEffects[j], &potionEffects[j+1], sizeof(struct PotionEffect));
+                memmove((struct PotionEffect *) &potionEffects[j], &potionEffects[j+1], potionEffectSize);
             }
             i -= 1;
+            potionEffectsCount -= 1;
             break;
         }
     }

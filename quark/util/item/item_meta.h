@@ -1,5 +1,5 @@
 //
-//  itemmeta.h
+//  item_meta.h
 //  quark
 //
 //  Created by Evan Anderson on 11/3/22.
@@ -8,8 +8,6 @@
 #ifndef item_meta_h
 #define item_meta_h
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "../enchantment.h"
 
 struct ItemMeta {
@@ -24,4 +22,4 @@ void item_meta_destroy(struct ItemMeta *meta);
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta);
 _Bool item_meta_has_enchant(struct ItemMeta *meta, enum Enchantment enchantment);
 
-#endif /* itemmeta_h */
+#endif /* item_meta_h */

@@ -5,10 +5,15 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <string.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <pthread.h>
 #include "quark_server.h"
 #include "utilities.h"
 #include "../managers/event_manager.h"
-#include <string.h>
 
 void server_destroy(void) {
     free((char *) SERVER->hostname);
@@ -24,10 +29,10 @@ struct QuarkServer *server_create() {
     serverPointer->port = 25565;
     
     const int maximumPlayers = 2;
-    memcpy((int *) &serverPointer->player_count_maximum, &maximumPlayers, sizeof(int));
+    memmove((int *) &serverPointer->player_count_maximum, &maximumPlayers, sizeof(int));
     serverPointer->player_count = 0;
     
-    struct PlayerConnection *players = malloc(maximumPlayers * sizeof(struct PlayerConnection)); // TODO: FIX -> SEMGENTATION FAULT IF NOT MULTIPLIED BY A NUMBER > 1 | only allows 1 player
+    struct PlayerConnection *players = malloc(maximumPlayers * sizeof(struct PlayerConnection));
     if (!players) {
         printf("failed to allocate memory for a QuarkServer players\n");
         return NULL;
@@ -35,7 +40,7 @@ struct QuarkServer *server_create() {
     serverPointer->players = players;
     
     SERVER = serverPointer;
-    TICKS_PER_SECOND = 20;
+    server_change_tickrate(20);
     printf("created server with address %p\n", serverPointer);
     return serverPointer;
 }
@@ -44,14 +49,14 @@ void *connectPlayers(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
     const struct sockaddr_in servAddr = {
         .sin_family = AF_INET,
-        .sin_port = htons(25565),
+        .sin_port = htons(SERVER->port),
         .sin_addr.s_addr = INADDR_ANY
     };
     
     const char msg[256] = "yeah, guess who! (RandomHashTags baby)";
     const int msgSize = sizeof(msg);
     
-    bind(sockID, (struct sockaddr*) &servAddr, sizeof(servAddr));
+    bind(sockID, (struct sockaddr *) &servAddr, sizeof(servAddr));
     
     listen(sockID, 1);
     
@@ -81,10 +86,13 @@ void *connectPlayers(void *threadID) {
     pthread_exit(threadID);
 }
 void *beginTickingServer(void *threadID) {
-    printf("starting to tick server once every second...\n");
+    const double interval = 1000 / (double) TICKS_PER_SECOND;
+    printf("starting to tick server %d times every second (once every %f ms)...\n", TICKS_PER_SECOND, interval);
     while (SERVER != NULL) {
         server_tick();
         sleep(1);
+        //const double interval = 1000 / (double) TICKS_PER_SECOND;
+        //sleep(interval);
     }
     printf("shut down server ticking...\n");
     pthread_exit(threadID);
@@ -101,22 +109,20 @@ void server_stop(void) {
 
 void server_tick(void) {
     printf("\nserver at address %p will be ticked...\n", SERVER);
-    /*Entity *entities = SERVER->entities;
-    for (int i = 0; i < 100; i++) {
+    const int entityCount = SERVER->entity_count;
+    Entity *entities = SERVER->entities;
+    for (int i = 0; i < entityCount; i++) {
         Entity *entity = &entities[i];
-        if (entity != NULL) {
-            entity_tick(entity);
-        }
+        entity_tick(entity);
     }
     
     printf("server will begin ticking living entities...\n");
+    const int livingEntityCount = SERVER->living_entity_count;
     LivingEntity *livingEntities = (LivingEntity *) SERVER->living_entities;
-    for (int i = 0; i < 100; i++) {
-        LivingEntity *entity = &livingEntities[i];
-        if (entity != NULL) {
-            living_entity_tick(entity);
-        }
-    }*/
+    for (int i = 0; i < livingEntityCount; i++) {
+        LivingEntity entity = livingEntities[i];
+        living_entity_tick(entity);
+    }
     
     const int playerCount = SERVER->player_count;
     printf("server will tick %d player(s)...\n", playerCount);
@@ -134,6 +140,57 @@ void server_tick(void) {
     printf("server has been ticked, playerCount=%d...\n", playerCount);
     server_try_connecting_player(playerCount);
     printf("test3\n");
+}
+
+void server_sync_tickrate_for_entity(Entity entity, enum EntityType entity_type) {
+    entity.fire_ticks *= TICKS_PER_SECOND_MULTIPLIER;
+    entity.fire_ticks_maximum = entity_type_get_fire_ticks_maximum(entity_type);
+}
+void server_sync_tickrate_for_living_entity(LivingEntity living_entity, enum EntityType entity_type, int no_damage_ticks_maximum) {
+    Entity entity = living_entity.damageable.entity;
+    
+    living_entity.no_damage_ticks *= TICKS_PER_SECOND_MULTIPLIER;
+    living_entity.no_damage_ticks_maximum = no_damage_ticks_maximum;
+    
+    struct PotionEffect *potionEffects = living_entity.potion_effects;
+    if (potionEffects != NULL) {
+        const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
+        for (int i = 0; i < potionEffectsCount; i++) {
+            potionEffects[i].duration *= TICKS_PER_SECOND_MULTIPLIER;
+        }
+    }
+    
+    server_sync_tickrate_for_entity(entity, entity_type);
+}
+void server_sync_tickrate_for_player(struct Player player, int no_damage_ticks_maximum) {
+    server_sync_tickrate_for_living_entity(player.living_entity, ENTITY_TYPE_PLAYER, no_damage_ticks_maximum);
+}
+void server_change_tickrate(int ticks_per_second) {
+    TICKS_PER_SECOND = ticks_per_second;
+    TICKS_PER_SECOND_MULTIPLIER = (double) ticks_per_second / 20;
+    
+    const double interval = 1000 / (double) ticks_per_second;
+    printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
+    
+    const int playerCount = SERVER->player_count;
+    struct PlayerConnection *players = (struct PlayerConnection *) SERVER->players;
+    printf("updating tickrate values for %d player(s)...\n", playerCount);
+    const int maximumPlayerNoDamageTicksMaximum = entity_type_get_damage_ticks_maximum(ENTITY_TYPE_PLAYER);
+    for (int i = 0; i < playerCount; i++) {
+        struct PlayerConnection *connection = &players[i];
+        server_sync_tickrate_for_player(connection->player, maximumPlayerNoDamageTicksMaximum);
+    }
+    
+    const int livingEntityCount = SERVER->living_entity_count;
+    printf("updating tickrate values for %d living entities...\n", livingEntityCount);
+    LivingEntity *livingEntities = (LivingEntity *) SERVER->living_entities;
+    for (int i = 0; i < livingEntityCount; i++) {
+        LivingEntity *living_entity = &livingEntities[i];
+        const enum EntityType entity_type = living_entity->damageable.entity.type;
+        server_sync_tickrate_for_living_entity(*living_entity, entity_type, entity_type_get_damage_ticks_maximum(entity_type));
+    }
+    
+    printf("server successfully updated tickrate values\n");
 }
 
 Entity server_parse_entity(enum EntityType type, int uuid) {
@@ -190,11 +247,12 @@ struct PlayerConnection *server_parse_player_connection(int uuid) {
         return NULL;
     }
     
+    struct Player *playerPointer = &connection->player;
     struct Player player = server_parse_player(uuid);
-    memcpy((struct Player *) &connection->player, &player, sizeof(struct Player));
+    memcpy((struct Player *) playerPointer, &player, sizeof(struct Player));
     connection->ping = 4;
     connection->chat_cooldown = 20;
-    printf("parsed player \"%s\" with address=%p\n", connection->player.name, &connection->player);
+    printf("parsed player \"%s\" with address=%p\n", playerPointer->name, playerPointer);
     return connection;
 }
 
@@ -212,7 +270,7 @@ void server_player_joined(struct PlayerConnection *connection) {
     event_manager_call_event((Event *) &event);
     
     const int playerCount = SERVER->player_count;
-    memcpy(&SERVER->players[playerCount], connection, sizeof(struct PlayerConnection));
+    memmove(&SERVER->players[playerCount], connection, sizeof(struct PlayerConnection));
     SERVER->player_count += 1;
 }
 void server_player_quit(struct PlayerConnection *connection) {

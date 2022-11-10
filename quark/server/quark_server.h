@@ -8,13 +8,6 @@
 #ifndef quark_server_h
 #define quark_server_h
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <pthread.h>
 #include "../network/player_connection.h"
 
 struct QuarkServer {
@@ -31,7 +24,9 @@ struct QuarkServer {
     const int player_count_maximum;
     struct PlayerConnection *players;
     
+    int entity_count;
     Entity *entities;
+    int living_entity_count;
     LivingEntity *living_entities;
     
     _Bool is_online_mode;
@@ -45,6 +40,7 @@ void server_start(void);
 void server_stop(void);
 
 void server_tick(void);
+void server_change_tickrate(int ticks_per_second);
 
 void server_broadcast_message(char message[50]);
 

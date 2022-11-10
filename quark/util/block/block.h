@@ -8,7 +8,6 @@
 #ifndef block_h
 #define block_h
 
-#include <stdio.h>
 #include "material.h"
 #include "location.h"
 

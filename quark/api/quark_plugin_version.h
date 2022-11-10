@@ -8,8 +8,6 @@
 #ifndef quark_plugin_version_h
 #define quark_plugin_version_h
 
-#include <stdio.h>
-
 struct QuarkPluginVersion {
     const int major;
     const int minor;

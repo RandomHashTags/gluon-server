@@ -6,6 +6,7 @@
 //
 
 #include "potion_effect.h"
+#include <stdlib.h>
 
 void potion_effect_destroy(struct PotionEffect *effect) {
     free(effect);

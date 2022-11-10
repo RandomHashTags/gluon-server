@@ -8,7 +8,6 @@
 #ifndef player_connection_h
 #define player_connection_h
 
-#include <stdio.h>
 #include "../util/entity/player/player.h"
 
 struct PlayerConnection {

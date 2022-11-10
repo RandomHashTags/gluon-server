@@ -14,3 +14,10 @@ int entity_type_get_damage_ticks_maximum(enum EntityType type) {
             return TICKS_PER_SECOND;
     }
 }
+
+int entity_type_get_fire_ticks_maximum(enum EntityType type) {
+    switch (type) {
+        default:
+            return TICKS_PER_SECOND;
+    }
+}

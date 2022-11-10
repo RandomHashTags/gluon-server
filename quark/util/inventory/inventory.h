@@ -8,7 +8,6 @@
 #ifndef inventory_h
 #define inventory_h
 
-#include <stdio.h>
 #include "inventory_type.h"
 
 struct Inventory {

@@ -82,5 +82,6 @@ enum EntityType {
 };
 
 int entity_type_get_damage_ticks_maximum(enum EntityType type);
+int entity_type_get_fire_ticks_maximum(enum EntityType type);
 
 #endif /* entity_type_h */

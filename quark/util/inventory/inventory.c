@@ -15,5 +15,4 @@ void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack 
         struct ItemStack *items = inventory->items;
         items[slot] = item;
     }
-}
-*/
+}*/

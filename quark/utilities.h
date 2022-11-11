@@ -10,8 +10,8 @@
 
 #include "server/quark_server.h"
 
-static int TICKS_PER_SECOND;
-static float TICKS_PER_SECOND_MULTIPLIER;
-static struct QuarkServer *SERVER;
+extern int TICKS_PER_SECOND;
+extern float TICKS_PER_SECOND_MULTIPLIER;
+extern struct QuarkServer *SERVER;
 
 #endif /* utilities_h */

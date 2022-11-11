@@ -17,6 +17,10 @@
 #include "utilities.h"
 #include "../managers/event_manager.h"
 
+int TICKS_PER_SECOND;
+float TICKS_PER_SECOND_MULTIPLIER;
+struct QuarkServer *SERVER;
+
 void server_destroy(void) {
     free((char *) SERVER->hostname);
     
@@ -184,7 +188,7 @@ void server_tick(void) {
         printf("ping %d and chat_cooldown %d; ", connection->ping, connection->chat_cooldown);
         struct Player *player = connection->player;
         player_tick(player);
-        damageable_damage((Damageable *) player, 1);
+        damageable_damage(player->living_entity->damageable, 1);
         player->living_entity->no_damage_ticks_maximum -= 1;
         printf("test2\n");
     }
@@ -224,7 +228,7 @@ void server_change_tickrate(int ticks_per_second) {
     const int playerCount = SERVER->player_count;
     struct PlayerConnection *players = (struct PlayerConnection *) SERVER->players;
     printf("updating tickrate values for %d player(s)...\n", playerCount);
-    const int maximumPlayerNoDamageTicksMaximum = entity_type_get_damage_ticks_maximum(ENTITY_TYPE_PLAYER);
+    const int maximumPlayerNoDamageTicksMaximum = entity_type_get_no_damage_ticks_maximum(ENTITY_TYPE_PLAYER);
     for (int i = 0; i < playerCount; i++) {
         struct PlayerConnection *connection = &players[i];
         server_sync_tickrate_for_player(connection->player, maximumPlayerNoDamageTicksMaximum);
@@ -236,7 +240,7 @@ void server_change_tickrate(int ticks_per_second) {
     for (int i = 0; i < livingEntityCount; i++) {
         LivingEntity *living_entity = &livingEntities[i];
         const enum EntityType entity_type = living_entity->damageable->entity->type;
-        server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type_get_damage_ticks_maximum(entity_type));
+        server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type_get_no_damage_ticks_maximum(entity_type));
     }
     
     printf("server successfully updated tickrate values\n");
@@ -314,8 +318,9 @@ LivingEntity *server_parse_living_entity(enum EntityType entity_type, int uuid, 
     }
     
     entity->damageable = damageable;
-    entity->no_damage_ticks_maximum = entity_type_get_damage_ticks_maximum(entity_type);
     entity->potion_effects = potionEffects;
+    entity->no_damage_ticks = 0;
+    entity->no_damage_ticks_maximum = entity_type_get_no_damage_ticks_maximum(entity_type);
     return entity;
 }
 struct Player *server_parse_player(int uuid) {
@@ -335,11 +340,11 @@ struct Player *server_parse_player(int uuid) {
         return NULL;
     }
     namePointer = uuid == 0 ? "RandomHashTags" : uuid == 1 ? "test2" : uuid == 2 ? "test3" : "test4";
+    const int firstPlayed = 50;
     
     player->living_entity = entity;
-    const int firstPlayed = 50;
-    memcpy((int *) &player->first_played, &firstPlayed, sizeof(int));
     player->name = namePointer;
+    memcpy((int *) &player->first_played, &firstPlayed, sizeof(int));
     return player;
 }
 

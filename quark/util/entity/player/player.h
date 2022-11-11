@@ -16,7 +16,7 @@
 #include "../../item/item_stack.h"
 
 struct Player {
-    LivingEntity living_entity;
+    LivingEntity *living_entity;
     const char *name;
     char *list_name;
     

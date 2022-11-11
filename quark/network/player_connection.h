@@ -11,7 +11,7 @@
 #include "../util/entity/player/player.h"
 
 struct PlayerConnection {
-    struct Player player;
+    struct Player *player;
     int ping;
     int chat_cooldown;
 };

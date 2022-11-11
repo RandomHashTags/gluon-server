@@ -14,6 +14,6 @@ struct ItemStack *inventory_get_item(struct Inventory *inventory, int slot) {
 void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack *item) {
     if (slot < inventory->size) {
         struct ItemStack *items = inventory->items;
-        memcpy((struct ItemStack *) &items[slot], item, sizeof(struct ItemStack));
+        memmove(&items[slot], item, sizeof(struct ItemStack));
     }
 }

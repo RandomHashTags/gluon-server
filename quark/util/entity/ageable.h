@@ -11,7 +11,7 @@
 #include "creature.h"
 
 typedef struct Ageable {
-    struct Creature creature;
+    Creature *creature;
     
     int age;
     _Bool age_locked;
@@ -19,5 +19,7 @@ typedef struct Ageable {
     _Bool is_adult;
     _Bool can_breed;
 } Ageable;
+
+void ageable_destroy(Ageable *ageable);
 
 #endif /* ageable_h */

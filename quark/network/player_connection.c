@@ -10,7 +10,7 @@
 #include "../server/quark_server.h"
 
 void player_connection_destroy(struct PlayerConnection *connection) {
-    player_destroy(&connection->player);
+    player_destroy(connection->player);
     free(connection);
 }
 

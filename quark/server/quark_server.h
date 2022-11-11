@@ -22,8 +22,8 @@ struct QuarkServer {
     
     float tps;
     
-    int world_count;
-    const int world_count_maximum;
+    short world_count;
+    short world_count_maximum;
     struct World *worlds;
     
     int player_count;
@@ -54,10 +54,10 @@ void server_world_destroy(struct World *world);
 
 void server_broadcast_message(char *message);
 
-struct Entity server_parse_entity(enum EntityType type, int uuid);
-struct Damageable server_parse_damageable(int uuid, double health, double health_maximum);
-struct LivingEntity server_parse_living_entity(int uuid, double heath, double health_maximum);
-struct Player server_parse_player(int uuid);
+struct Entity *server_parse_entity(enum EntityType entity_type, int uuid);
+struct Damageable *server_parse_damageable(enum EntityType entity_type, int uuid, double health, double health_maximum);
+struct LivingEntity *server_parse_living_entity(enum EntityType entity_type, int uuid, double heath, double health_maximum);
+struct Player *server_parse_player(int uuid);
 
 void server_try_connecting_player(int uuid);
 struct PlayerConnection *server_parse_player_connection(int uuid);

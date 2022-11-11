@@ -6,14 +6,16 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "damageable.h"
 
-void damageable_destroy(Damageable damageable) {
-    entity_destroy(damageable.entity);
+void damageable_destroy(Damageable *damageable) {
+    entity_destroy(damageable->entity);
+    free(damageable);
 }
 
 enum EntityDamageResult damageable_damage(Damageable *damageable, double amount) {
-    printf("damaging damagable at address %p with uuid %d %f units\n", damageable, damageable->entity.uuid, amount);
+    printf("damaging damagable at address %p with uuid %d %f units\n", damageable, damageable->entity->uuid, amount);
     double new_amount = damageable->health - amount;
     enum EntityDamageResult result = ENTITY_DAMAGE_RESULT_SUCCESS;
     if (new_amount <= 0.00) {

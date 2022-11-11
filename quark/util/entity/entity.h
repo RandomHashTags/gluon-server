@@ -25,7 +25,7 @@ typedef struct Entity {
     int fire_ticks_maximum;
 } Entity;
 
-void entity_destroy(Entity entity);
+void entity_destroy(Entity *entity);
 
 void entity_tick(Entity *entity);
 

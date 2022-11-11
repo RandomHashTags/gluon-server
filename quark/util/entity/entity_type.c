@@ -8,15 +8,15 @@
 #include "entity_type.h"
 #include "../../utilities.h"
 
-int entity_type_get_damage_ticks_maximum(enum EntityType type) {
-    switch (type) {
+int entity_type_get_damage_ticks_maximum(enum EntityType entity_type) {
+    switch (entity_type) {
         default:
             return TICKS_PER_SECOND;
     }
 }
 
-int entity_type_get_fire_ticks_maximum(enum EntityType type) {
-    switch (type) {
+int entity_type_get_fire_ticks_maximum(enum EntityType entity_type) {
+    switch (entity_type) {
         default:
             return TICKS_PER_SECOND;
     }

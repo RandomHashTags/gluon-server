@@ -11,8 +11,10 @@
 #include "living_entity.h"
 
 typedef struct Creature {
-    struct LivingEntity living_entity;
+    struct LivingEntity *living_entity;
     struct LivingEntity *target;
 } Creature;
+
+void creature_destroy(Creature *creature);
 
 #endif /* creature_h */

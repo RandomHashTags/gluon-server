@@ -16,6 +16,7 @@ struct World {
     const char *name;
     
     int chunks_loaded_count;
+    const int chunks_loaded_count_maximum;
     struct Chunk *chunks_loaded;
 };
 

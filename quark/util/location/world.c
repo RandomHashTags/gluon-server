@@ -24,6 +24,12 @@ void world_destroy(struct World *world) {
 }
 
 void world_load_chunk(struct World *world, struct Chunk *chunk) {
+    const int chunks_loaded = world->chunks_loaded_count;
+    if (chunks_loaded + 1 <= world->chunks_loaded_count_maximum) {
+        struct Chunk *chunks = world->chunks_loaded;
+        memmove(&chunks[chunks_loaded], chunk, sizeof(struct Chunk));
+        world->chunks_loaded_count += 1;
+    }
 }
 void world_unload_chunk(struct World *world, struct Chunk *chunk) {
     const int chunks_loaded = world->chunks_loaded_count;

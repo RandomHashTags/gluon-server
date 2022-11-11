@@ -58,7 +58,7 @@ void server_destroy(void) {
     struct World *worlds = (struct World *) SERVER->worlds;
     for (int i = 0; i < world_count; i++) {
         struct World *world = &worlds[i];
-        world_destroy(world);
+        server_world_destroy(world);
     }
     free(SERVER->worlds);
     
@@ -235,6 +235,27 @@ void server_change_tickrate(int ticks_per_second) {
     }
     
     printf("server successfully updated tickrate values\n");
+}
+
+void server_world_create(struct World *world) {
+    const int world_count = SERVER->world_count;
+    if (world_count + 1 <= SERVER->world_count_maximum) {
+        struct World *worlds = SERVER->worlds;
+        memmove((struct World *) &worlds[world_count], world, sizeof(struct World));
+        SERVER->world_count += 1;
+    }
+}
+void server_world_destroy(struct World *world) {
+    const int world_count = SERVER->world_count;
+    struct World *worlds = SERVER->worlds;
+    for (int i = 0; i < world_count; i++) {
+        struct World *targetWorld = &worlds[i];
+        if (targetWorld == world) {
+            world_destroy(world);
+            SERVER->world_count -= 1;
+            break;
+        }
+    }
 }
 
 Entity server_parse_entity(enum EntityType type, int uuid) {

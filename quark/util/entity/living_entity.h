@@ -9,7 +9,6 @@
 #define living_entity_h
 
 #include "damageable.h"
-#include "projectile_source.h"
 #include "entity_equipment.h"
 #include "../potion/potion_effect.h"
 

@@ -20,13 +20,10 @@ void block_break_naturally(struct Block *block, struct ItemStack *item) {
 }
 
 _Bool block_is_preferred_tool(struct Block *block, struct ItemStack *item) {
-    const enum Material block_material = block->material;
+    const Material block_material = block->material;
     if (item != NULL) {
-        const enum Material item_material = item->material;
-        switch (item_material) {
-            default:
-                return 0;
-        }
+        const Material item_material = item->material;
+        return 1;
     }
     return 0;
 }

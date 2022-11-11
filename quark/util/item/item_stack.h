@@ -12,7 +12,7 @@
 #include "item_meta.h"
 
 struct ItemStack {
-    const enum Material material;
+    const Material material;
     struct ItemMeta *meta;
     
     int amount;

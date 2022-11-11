@@ -17,7 +17,49 @@
 
 void server_destroy(void) {
     free((char *) SERVER->hostname);
+    
+    const int plugin_count = SERVER->plugin_count;
+    struct QuarkPlugin *plugins = (struct QuarkPlugin *) SERVER->plugins;
+    for (int i = 0; i < plugin_count; i++) {
+        struct QuarkPlugin *plugin = &plugins[i];
+        plugin_disable(plugin);
+        plugin_destroy(plugin);
+    }
+    free(SERVER->plugins);
+    
+    const int player_count = SERVER->player_count;
+    struct PlayerConnection *connections = (struct PlayerConnection *) SERVER->players;
+    for (int i = 0; i < player_count; i++) {
+        struct PlayerConnection *connection = &connections[i];
+        // TODO: kick player
+        player_connection_destroy(connection);
+    }
     free(SERVER->players);
+    
+    const int living_entity_count = SERVER->living_entity_count;
+    LivingEntity *living_entities = (LivingEntity *) SERVER->living_entities;
+    for (int i = 0; i < living_entity_count; i++) {
+        LivingEntity living_entity = living_entities[i];
+        living_entity_destroy(living_entity);
+    }
+    free(SERVER->living_entities);
+    
+    const int entity_count = SERVER->entity_count;
+    Entity *entities = (Entity *) SERVER->entities;
+    for (int i = 0; i < entity_count; i++) {
+        Entity entity = entities[i];
+        entity_destroy(entity);
+    }
+    free(SERVER->entities);
+    
+    const int world_count = SERVER->world_count;
+    struct World *worlds = (struct World *) SERVER->worlds;
+    for (int i = 0; i < world_count; i++) {
+        struct World *world = &worlds[i];
+        world_destroy(world);
+    }
+    free(SERVER->worlds);
+    
     free(SERVER);
 }
 struct QuarkServer *server_create() {

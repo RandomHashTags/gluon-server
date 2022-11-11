@@ -10,10 +10,9 @@
 #include "../../utilities.h"
 
 void living_entity_destroy(LivingEntity entity) {
-    damageable_destroy(&entity.damageable);
+    damageable_destroy(entity.damageable);
     potion_effect_destroy(entity.potion_effects);
     free(entity.killer);
-    free(entity.potion_effects);
 }
 
 void living_entity_tick(LivingEntity entity) {
@@ -74,8 +73,9 @@ void living_entity_add_potion_effect(LivingEntity entity, enum PotionEffectType 
         };
         
         struct PotionEffect *potionEffects = entity.potion_effects;
-        const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
-        memmove((struct PotionEffect *) &entity.potion_effects[potionEffectsCount], &effect, sizeof(struct PotionEffect));
+        const int potionEffectMemorySize = sizeof(struct PotionEffect);
+        const int potionEffectsCount = sizeof(*potionEffects) / potionEffectMemorySize;
+        memmove((struct PotionEffect *) &entity.potion_effects[potionEffectsCount], &effect, potionEffectMemorySize);
     }
 }
 void living_entity_remove_potion_effect(LivingEntity entity, enum PotionEffectType type) {

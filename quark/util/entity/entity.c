@@ -7,9 +7,8 @@
 
 #include "entity.h"
 
-void entity_destroy(Entity *entity) {
-    free((char *) entity->display_name);
-    free(entity);
+void entity_destroy(Entity entity) {
+    free((char *) entity.display_name);
 }
 
 void entity_tick(Entity *entity) {

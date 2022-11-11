@@ -7,8 +7,8 @@
 
 #include "damageable.h"
 
-void damageable_destroy(Damageable *damageable) {
-    entity_destroy(&damageable->entity);
+void damageable_destroy(Damageable damageable) {
+    entity_destroy(damageable.entity);
 }
 
 enum EntityDamageResult damageable_damage(Damageable *damageable, double amount) {

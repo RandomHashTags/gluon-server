@@ -12,12 +12,12 @@
 #include "../projectile.h"
 
 struct ProjectileArrow {
-    Projectile *projectile;
+    Projectile projectile;
     
     double damage;
     int pierce_level;
 };
 
-void projectile_arrow_destroy(struct ProjectileArrow *arrow);
+void projectile_arrow_destroy(struct ProjectileArrow arrow);
 
 #endif /* projectile_arrow_h */

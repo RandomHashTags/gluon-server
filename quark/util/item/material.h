@@ -8,6 +8,17 @@
 #ifndef material_h
 #define material_h
 
+//#include "../color.h"
+
+/*typedef struct Material {
+    const char *identifier;
+    const char *name;
+    const struct Color color;
+    
+    const _Bool is_armor;
+    const _Bool is_tool;
+} Material;*/
+
 enum Material {
     MATERIAL_ACACIA_BOAT,
     MATERIAL_ACACIA_BUTTON,
@@ -1636,8 +1647,11 @@ enum Material {
 };
 
 _Bool material_is_armor(enum Material material);
+_Bool material_is_ore(enum Material material);
 _Bool material_is_tool(enum Material material);
+
 _Bool material_can_be_enchanted(enum Material material);
+
 void material_get_name(enum Material material, char *string[40]);
 
 #endif /* material_h */

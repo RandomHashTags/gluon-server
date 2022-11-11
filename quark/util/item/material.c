@@ -33,6 +33,23 @@ _Bool material_is_armor(enum Material material) {
         case MATERIAL_DIAMOND_CHESTPLATE:
         case MATERIAL_DIAMOND_LEGGINGS:
         case MATERIAL_DIAMOND_BOOTS:
+            
+        case MATERIAL_NETHERITE_HELMET:
+        case MATERIAL_NETHERITE_CHESTPLATE:
+        case MATERIAL_NETHERITE_LEGGINGS:
+        case MATERIAL_NETHERITE_BOOTS:
+            return 1;
+        default:
+            return 0;
+    }
+}
+
+_Bool material_is_ore(enum Material material) {
+    switch (material) {
+        case MATERIAL_COAL_ORE:
+        case MATERIAL_COPPER_ORE:
+        case MATERIAL_DIAMOND_ORE:
+        case MATERIAL_GOLD_ORE:
             return 1;
         default:
             return 0;

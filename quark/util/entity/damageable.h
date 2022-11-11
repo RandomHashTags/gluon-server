@@ -19,7 +19,7 @@ typedef struct Damageable {
     double health_maximum;
 } Damageable;
 
-void damageable_destroy(Damageable *damageable);
+void damageable_destroy(Damageable damageable);
 
 enum EntityDamageResult damageable_damage(Damageable *damageable, double amount);
 _Bool damageable_is_dead(Damageable *damageable);

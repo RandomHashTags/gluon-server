@@ -13,6 +13,8 @@
 struct QuarkServer {
     const char *hostname;
     int port;
+    
+    int plugin_count;
     struct QuarkPlugin *plugins;
     
     char motd[32];
@@ -20,12 +22,16 @@ struct QuarkServer {
     
     float tps;
     
+    int world_count;
+    struct World *worlds;
+    
     int player_count;
     const int player_count_maximum;
     struct PlayerConnection *players;
     
     int entity_count;
     Entity *entities;
+    
     int living_entity_count;
     LivingEntity *living_entities;
     

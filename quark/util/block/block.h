@@ -9,13 +9,21 @@
 #define block_h
 
 #include "material.h"
-#include "location.h"
+#include "block_location.h"
+#include "../item/item_stack.h"
 
 struct Block {
     enum Material material;
     int light_level;
     
-    const struct Location *location;
+    const struct BlockLocation location;
 };
+
+void block_destroy(struct Block *block);
+
+void block_break_naturally(struct Block *block, struct ItemStack *item);
+
+_Bool block_is_preferred_tool(struct Block *block, struct ItemStack *item);
+struct ItemStack *block_get_drops(struct Block *block, struct ItemStack *item);
 
 #endif /* block_h */

@@ -8,17 +8,17 @@
 #ifndef location_h
 #define location_h
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "world.h"
 
 struct Location {
-    const struct World *world;
     float x;
     float y;
     float z;
+    const struct World *world;
 };
 
 void location_destroy(struct Location *location);
+
+void location_get_chunk(struct Location *location);
 
 #endif /* location_h */

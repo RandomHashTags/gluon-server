@@ -13,7 +13,7 @@ void item_stack_destroy(struct ItemStack *item) {
 }
 
 _Bool item_stack_can_be_enchanted(struct ItemStack *item) {
-    if (material_can_be_enchanted(item->type)) {
+    if (material_can_be_enchanted(item->material)) {
         return 1;
     }
     return 0;

@@ -8,7 +8,6 @@
 #include "projectile.h"
 #include "entity.h"
 
-void projectile_destroy(Projectile *projectile) {
-    entity_destroy(projectile->entity);
-    free(projectile);
+void projectile_destroy(Projectile projectile) {
+    entity_destroy(projectile.entity);
 }

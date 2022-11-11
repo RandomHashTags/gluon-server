@@ -9,6 +9,7 @@
 #define inventory_h
 
 #include "inventory_type.h"
+#include "../item/item_stack.h"
 
 struct Inventory {
     const enum InventoryType type;

@@ -13,7 +13,8 @@ void location_destroy(struct Location *location) {
     free(location);
 }
 
-void location_get_chunk(struct Location *location) {
+struct Chunk *location_get_chunk(struct Location *location) {
     const int chunkX = location->x / 16;
     const int chunkZ = location->z / 16;
+    return NULL;
 }

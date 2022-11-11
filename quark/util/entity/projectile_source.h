@@ -8,7 +8,6 @@
 #ifndef projectile_source_h
 #define projectile_source_h
 
-#include <stdio.h>
 #include "living_entity.h"
 
 struct ProjectileSource {

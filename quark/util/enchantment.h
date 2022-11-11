@@ -8,8 +8,6 @@
 #ifndef enchantment_h
 #define enchantment_h
 
-#include <stdlib.h>
-
 enum Enchantment {
     ENCHANTMENT_ARROW_DAMAGE,
     ENCHANTMENT_ARROW_KNOCKBACK,

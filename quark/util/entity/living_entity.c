@@ -5,6 +5,8 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "living_entity.h"
 #include "../../utilities.h"
@@ -24,14 +26,15 @@ void living_entity_tick(LivingEntity entity) {
     
     struct PotionEffect *potionEffects = entity.potion_effects;
     if (potionEffects != NULL) {
-        const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
+        const int potionEffectMemorySize = sizeof(struct PotionEffect);
+        const int potionEffectsCount = sizeof(*potionEffects) / potionEffectMemorySize;
         for (int i = 0; i < potionEffectsCount; i++) {
             struct PotionEffect *potionEffect = &potionEffects[i];
             const int newPotionEffectDuration = potionEffect->duration - 1;
             if (newPotionEffectDuration == 0) {
                 potion_effect_destroy(potionEffect);
                 for (int j = i; j < potionEffectsCount; j++) {
-                    memmove(&potionEffects[j], &potionEffects[i+1], sizeof(struct PotionEffect));
+                    memmove(&potionEffects[j], &potionEffects[j+1], potionEffectMemorySize);
                 }
                 i -= 1;
             } else {

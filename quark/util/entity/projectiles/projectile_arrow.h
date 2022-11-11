@@ -8,7 +8,6 @@
 #ifndef projectile_arrow_h
 #define projectile_arrow_h
 
-#include <stdio.h>
 #include "../projectile.h"
 
 struct ProjectileArrow {

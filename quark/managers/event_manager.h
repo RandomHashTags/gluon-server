@@ -8,7 +8,6 @@
 #ifndef event_manager_h
 #define event_manager_h
 
-#include <stdio.h>
 #include "../events/events.h"
 
 struct EventManager {

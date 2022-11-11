@@ -5,6 +5,8 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -120,7 +122,7 @@ void *connectPlayers(void *threadID) {
         if (playerCount + 1 == maximum) {
             printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
         } else {
-            struct PlayerConnection *test = server_parse_player_connection(5);
+            struct PlayerConnection *test = server_parse_player_connection(playerCount);
             server_player_joined(test);
         }
     }

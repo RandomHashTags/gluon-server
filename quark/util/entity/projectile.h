@@ -8,7 +8,6 @@
 #ifndef projectile_h
 #define projectile_h
 
-#include <stdio.h>
 #include "entity.h"
 #include "projectile_source.h"
 

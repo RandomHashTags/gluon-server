@@ -8,7 +8,6 @@
 #ifndef creature_h
 #define creature_h
 
-#include <stdio.h>
 #include "living_entity.h"
 
 typedef struct Creature {

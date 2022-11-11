@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 11/4/22.
 //
 
+#include <stdio.h>
 #include "damageable.h"
 
 void damageable_destroy(Damageable damageable) {

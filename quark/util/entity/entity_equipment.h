@@ -8,7 +8,6 @@
 #ifndef entity_equipment_h
 #define entity_equipment_h
 
-#include <stdio.h>
 #include "../item/item_stack.h"
 
 struct EntityEquipment {

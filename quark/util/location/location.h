@@ -19,6 +19,6 @@ struct Location {
 
 void location_destroy(struct Location *location);
 
-void location_get_chunk(struct Location *location);
+struct Chunk *location_get_chunk(struct Location *location);
 
 #endif /* location_h */

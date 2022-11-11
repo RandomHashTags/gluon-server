@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 11/4/22.
 //
 
+#include <stdlib.h>
 #include "enchantment.h"
 
 enum EnchantmentTarget enchantment_get_enchantment_target(enum Enchantment enchantment) {

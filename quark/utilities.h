@@ -8,7 +8,6 @@
 #ifndef utilities_h
 #define utilities_h
 
-#include <stdio.h>
 #include "server/quark_server.h"
 
 static int TICKS_PER_SECOND;

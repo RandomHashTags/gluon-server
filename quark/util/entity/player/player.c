@@ -6,6 +6,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "player.h"
 #include "../../../events/events.h"
 #include "../../../managers/event_manager.h"

@@ -8,7 +8,6 @@
 #ifndef living_entity_h
 #define living_entity_h
 
-#include <stdio.h>
 #include "damageable.h"
 #include "projectile_source.h"
 #include "entity_equipment.h"

@@ -8,10 +8,9 @@
 #ifndef events_h
 #define events_h
 
-#include <stdio.h>
+#include "event_type.h"
 #include "../util/entity/entity.h"
 #include "../util/entity/player/player.h"
-#include "event_type.h"
 
 typedef struct Event {
     const _Bool is_async;

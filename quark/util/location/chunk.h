@@ -8,13 +8,12 @@
 #ifndef chunk_h
 #define chunk_h
 
-#include <stdio.h>
-#include "block.h"
-
 struct Chunk {
     const int x;
     const int z;
 };
+
+void chunk_destroy(struct Chunk *chunk);
 
 struct Block chunk_get_block_at(struct Chunk *chunk, int x, int y, int z);
 

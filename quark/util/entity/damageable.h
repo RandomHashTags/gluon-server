@@ -8,7 +8,6 @@
 #ifndef damageable_h
 #define damageable_h
 
-#include <stdio.h>
 #include "entity.h"
 #include "entity_damage_result.h"
 

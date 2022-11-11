@@ -5,6 +5,8 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "entity.h"
 
 void entity_destroy(Entity entity) {
@@ -19,6 +21,6 @@ void entity_tick(Entity *entity) {
     }
 }
 
-void entity_teleport(Entity *entity, struct Location location) {
-    entity->location = location;
+void entity_teleport(Entity *entity, struct Location *location) {
+    entity->location = *location;
 }

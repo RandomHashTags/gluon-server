@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdlib.h>
 #include "item_stack.h"
 
 void item_stack_destroy(struct ItemStack *item) {

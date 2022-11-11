@@ -5,6 +5,7 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdlib.h>
 #include "item_meta.h"
 
 void item_meta_destroy(struct ItemMeta *meta) {

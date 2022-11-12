@@ -13,6 +13,8 @@
 
 void player_destroy(struct Player *player) {
     living_entity_destroy(player->living_entity);
+    inventory_destroy(player->inventory);
+    inventory_destroy(player->inventory_ender_chest);
     free((char *) player->name);
     free(player->list_name);
     free(player->permissions);

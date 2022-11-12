@@ -8,10 +8,12 @@
 #ifndef material_h
 #define material_h
 
+#include "material_configuration.h"
 //#include "../color.h"
 
 typedef struct Material {
     const char *identifier;
+    const MaterialConfiguration configuration;
 } Material;
 
 char *material_get_name(Material material);

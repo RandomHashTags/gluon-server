@@ -38,8 +38,10 @@ struct Player {
     
     struct Location bed_spawn_location;
     
-    struct Inventory inventory;
-    struct Inventory inventory_ender_chest;
+    struct Inventory *inventory;
+    struct Inventory *inventory_ender_chest;
+    
+    LivingEntity *spectator_target;
 };
 
 void player_destroy(struct Player *player);

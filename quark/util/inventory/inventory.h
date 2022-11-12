@@ -12,11 +12,16 @@
 #include "../item/item_stack.h"
 
 struct Inventory {
-    const enum InventoryType type;
+    InventoryType type;
     
     int size;
     struct ItemStack *items;
+    
+    int viewers_count;
+    struct Player *viewers;
 };
+
+void inventory_destroy(struct Inventory *inventory);
 
 struct ItemStack *inventory_get_item(struct Inventory *inventory, int slot);
 void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack *item);

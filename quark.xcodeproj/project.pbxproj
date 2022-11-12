@@ -39,6 +39,10 @@
 		67A66C15291F776E00A144F8 /* difficulty.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C14291F776E00A144F8 /* difficulty.c */; };
 		67A66C18291F7D9000A144F8 /* item.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C17291F7D9000A144F8 /* item.c */; };
 		67A66C1A291F804900A144F8 /* gamemode.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C19291F804900A144F8 /* gamemode.c */; };
+		67A66C1D291F823C00A144F8 /* dye_color.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C1C291F823C00A144F8 /* dye_color.c */; };
+		67A66C20291F83AC00A144F8 /* tameable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C1F291F83AC00A144F8 /* tameable.c */; };
+		67A66C23291F87E600A144F8 /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C22291F87E600A144F8 /* material_configuration.c */; };
+		67A66C25291F8AB000A144F8 /* inventory_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C24291F8AB000A144F8 /* inventory_type.c */; };
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
@@ -128,6 +132,13 @@
 		67A66C16291F7D9000A144F8 /* item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
 		67A66C17291F7D9000A144F8 /* item.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = item.c; sourceTree = "<group>"; };
 		67A66C19291F804900A144F8 /* gamemode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gamemode.c; sourceTree = "<group>"; };
+		67A66C1B291F823C00A144F8 /* dye_color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dye_color.h; sourceTree = "<group>"; };
+		67A66C1C291F823C00A144F8 /* dye_color.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dye_color.c; sourceTree = "<group>"; };
+		67A66C1E291F83AC00A144F8 /* tameable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tameable.h; sourceTree = "<group>"; };
+		67A66C1F291F83AC00A144F8 /* tameable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tameable.c; sourceTree = "<group>"; };
+		67A66C21291F87E600A144F8 /* material_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material_configuration.h; sourceTree = "<group>"; };
+		67A66C22291F87E600A144F8 /* material_configuration.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material_configuration.c; sourceTree = "<group>"; };
+		67A66C24291F8AB000A144F8 /* inventory_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = inventory_type.c; sourceTree = "<group>"; };
 		67C304A729172A0D00D89359 /* event_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_manager.h; sourceTree = "<group>"; };
 		67C304A829172A0D00D89359 /* event_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_manager.c; sourceTree = "<group>"; };
 		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
@@ -207,6 +218,8 @@
 				6759E990291C975B00EB161F /* projectile_source.c */,
 				67A66C16291F7D9000A144F8 /* item.h */,
 				67A66C17291F7D9000A144F8 /* item.c */,
+				67A66C1E291F83AC00A144F8 /* tameable.h */,
+				67A66C1F291F83AC00A144F8 /* tameable.c */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -216,6 +229,8 @@
 			children = (
 				679944512914376900D8F796 /* material.h */,
 				67C304AE291737C300D89359 /* material.c */,
+				67A66C21291F87E600A144F8 /* material_configuration.h */,
+				67A66C22291F87E600A144F8 /* material_configuration.c */,
 				6753CF2D291456F3008BD41C /* item_stack.h */,
 				6753CF2E291456F3008BD41C /* item_stack.c */,
 				6753CF33291459A8008BD41C /* item_meta.h */,
@@ -250,6 +265,7 @@
 				6753CF49291480F8008BD41C /* inventory.h */,
 				6753CF4A291480F8008BD41C /* inventory.c */,
 				6753CF4C29148119008BD41C /* inventory_type.h */,
+				67A66C24291F8AB000A144F8 /* inventory_type.c */,
 			);
 			path = inventory;
 			sourceTree = "<group>";
@@ -360,6 +376,8 @@
 				67A66C14291F776E00A144F8 /* difficulty.c */,
 				6753CF44291470E9008BD41C /* gamemode.h */,
 				67A66C19291F804900A144F8 /* gamemode.c */,
+				67A66C1B291F823C00A144F8 /* dye_color.h */,
+				67A66C1C291F823C00A144F8 /* dye_color.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -434,6 +452,7 @@
 			files = (
 				6753CF3C29146B00008BD41C /* entity_equipment.c in Sources */,
 				6759E99A291CC2EA00EB161F /* quark_plugin.c in Sources */,
+				67A66C20291F83AC00A144F8 /* tameable.c in Sources */,
 				67A66C12291ED90C00A144F8 /* ageable.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
 				67C304AF291737C300D89359 /* material.c in Sources */,
@@ -441,6 +460,7 @@
 				6753CF35291459A8008BD41C /* item_meta.c in Sources */,
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
+				67A66C23291F87E600A144F8 /* material_configuration.c in Sources */,
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
@@ -454,8 +474,10 @@
 				67A66C15291F776E00A144F8 /* difficulty.c in Sources */,
 				6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */,
 				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
+				67A66C25291F8AB000A144F8 /* inventory_type.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,
 				6753CF322914572D008BD41C /* living_entity.c in Sources */,
+				67A66C1D291F823C00A144F8 /* dye_color.c in Sources */,
 				6753CF4B291480F8008BD41C /* inventory.c in Sources */,
 				6753CF3F29146CC0008BD41C /* chunk.c in Sources */,
 				6753CF252914550B008BD41C /* location.c in Sources */,

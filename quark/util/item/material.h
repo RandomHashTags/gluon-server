@@ -17,7 +17,6 @@ typedef struct Material {
 char *material_get_name(Material material);
 _Bool material_is_tool(Material material);
 
-//enum Material {
 extern Material MATERIAL_MINECRAFT_ACACIA_BOAT;
 extern Material MATERIAL_MINECRAFT_ACACIA_BUTTON;
 extern Material MATERIAL_MINECRAFT_ACACIA_CHEST_BOAT;
@@ -1643,6 +1642,5 @@ extern Material MATERIAL_MINECRAFT_ZOMBIE_PIGMAN_SPAWN_EGG;
 extern Material MATERIAL_MINECRAFT_ZOMBIE_SPAWN_EGG;
 extern Material MATERIAL_MINECRAFT_ZOMBIE_VILLAGER_SPAWN_EGG;
 extern Material MATERIAL_MINECRAFT_ZOMBIE_WALL_HEAD;
-//};
 
 #endif /* material_h */

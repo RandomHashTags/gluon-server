@@ -10,6 +10,7 @@
 
 void item_meta_destroy(struct ItemMeta *meta) {
     enchants_destroy(meta->enchants);
+    free(meta->display_name);
     free(meta);
 }
 

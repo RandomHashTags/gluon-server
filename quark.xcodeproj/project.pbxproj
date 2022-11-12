@@ -37,6 +37,8 @@
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
 		67A66C15291F776E00A144F8 /* difficulty.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C14291F776E00A144F8 /* difficulty.c */; };
+		67A66C18291F7D9000A144F8 /* item.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C17291F7D9000A144F8 /* item.c */; };
+		67A66C1A291F804900A144F8 /* gamemode.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C19291F804900A144F8 /* gamemode.c */; };
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
@@ -123,6 +125,9 @@
 		67A66C11291ED90C00A144F8 /* ageable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ageable.c; sourceTree = "<group>"; };
 		67A66C13291F776E00A144F8 /* difficulty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = difficulty.h; sourceTree = "<group>"; };
 		67A66C14291F776E00A144F8 /* difficulty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = difficulty.c; sourceTree = "<group>"; };
+		67A66C16291F7D9000A144F8 /* item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
+		67A66C17291F7D9000A144F8 /* item.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = item.c; sourceTree = "<group>"; };
+		67A66C19291F804900A144F8 /* gamemode.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gamemode.c; sourceTree = "<group>"; };
 		67C304A729172A0D00D89359 /* event_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_manager.h; sourceTree = "<group>"; };
 		67C304A829172A0D00D89359 /* event_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_manager.c; sourceTree = "<group>"; };
 		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
@@ -157,7 +162,6 @@
 			children = (
 				6753CF1C291454CF008BD41C /* player.h */,
 				6753CF1D291454CF008BD41C /* player.c */,
-				6753CF44291470E9008BD41C /* gamemode.h */,
 				6753CF4D2914838A008BD41C /* permission.h */,
 				6753CF5129148872008BD41C /* advancement.h */,
 			);
@@ -201,6 +205,8 @@
 				6759E98D291C96C000EB161F /* projectile.c */,
 				6759E98F291C975B00EB161F /* projectile_source.h */,
 				6759E990291C975B00EB161F /* projectile_source.c */,
+				67A66C16291F7D9000A144F8 /* item.h */,
+				67A66C17291F7D9000A144F8 /* item.c */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -352,6 +358,8 @@
 				6759E9A4291D9E2C00EB161F /* color.c */,
 				67A66C13291F776E00A144F8 /* difficulty.h */,
 				67A66C14291F776E00A144F8 /* difficulty.c */,
+				6753CF44291470E9008BD41C /* gamemode.h */,
+				67A66C19291F804900A144F8 /* gamemode.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -434,6 +442,7 @@
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
+				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
 				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */,
@@ -454,6 +463,7 @@
 				6759E99F291D967300EB161F /* vector.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
+				67A66C18291F7D9000A144F8 /* item.c in Sources */,
 				6753CF4329146D06008BD41C /* block.c in Sources */,
 				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,
 				6759E98E291C96C000EB161F /* projectile.c in Sources */,

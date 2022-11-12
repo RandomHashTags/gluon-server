@@ -25,7 +25,7 @@ void player_tick(struct Player *player) {
     living_entity_tick(player->living_entity);
 }
 
-void player_set_gamemode(struct Player *player, enum Gamemode gamemode) {
+void player_set_gamemode(struct Player *player, Gamemode gamemode) {
     const struct PlayerGamemodeChangeEvent event = {
         .event = {
             .player = player

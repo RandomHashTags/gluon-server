@@ -41,7 +41,7 @@ struct PlayerQuitEvent {
 
 struct PlayerGamemodeChangeEvent {
     const struct PlayerEventCancellable event;
-    const enum Gamemode gamemode;
+    const Gamemode gamemode;
 };
 struct PlayerToggleBlockingEvent {
     const struct PlayerEventCancellable event;

@@ -8,10 +8,10 @@
 #ifndef player_h
 #define player_h
 
-#include "gamemode.h"
 #include "permission.h"
 #include "advancement.h"
 #include "../living_entity.h"
+#include "../../gamemode.h"
 #include "../../inventory/inventory.h"
 #include "../../item/item_stack.h"
 
@@ -25,7 +25,7 @@ struct Player {
     
     const int first_played;
     
-    enum Gamemode gamemode;
+    Gamemode gamemode;
     _Bool is_blocking;
     _Bool is_flying;
     _Bool is_sneaking;
@@ -46,7 +46,7 @@ void player_destroy(struct Player *player);
 
 void player_tick(struct Player *player);
 
-void player_set_gamemode(struct Player *player, enum Gamemode);
+void player_set_gamemode(struct Player *player, Gamemode gamemode);
 void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);

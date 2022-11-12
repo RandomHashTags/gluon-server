@@ -39,7 +39,7 @@ struct QuarkServer {
     LivingEntity *living_entities;
     
     _Bool is_online_mode;
-    _Bool is_hardcore;
+    _Bool is_pvp_enabled;
 };
 
 struct QuarkServer *server_create(void);

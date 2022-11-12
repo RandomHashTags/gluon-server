@@ -8,11 +8,13 @@
 #ifndef quark_server_h
 #define quark_server_h
 
+#include "../util/difficulty.h"
 #include "../network/player_connection.h"
 
 struct QuarkServer {
     const char *hostname;
     int port;
+    Difficulty difficulty;
     
     int plugin_count;
     struct QuarkPlugin *plugins;

@@ -9,11 +9,14 @@
 #define world_h
 
 #include "chunk.h"
+#include "../difficulty.h"
 //#include "../entity/entity.h" // TODO: FIX - WHY BROKEN ??
 
 struct World {
     const int seed[32];
     const char *name;
+    
+    Difficulty difficulty;
     
     int chunks_loaded_count;
     const int chunks_loaded_count_maximum;

@@ -36,6 +36,7 @@
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
+		67A66C15291F776E00A144F8 /* difficulty.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C14291F776E00A144F8 /* difficulty.c */; };
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
@@ -120,6 +121,8 @@
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
 		67A66C11291ED90C00A144F8 /* ageable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ageable.c; sourceTree = "<group>"; };
+		67A66C13291F776E00A144F8 /* difficulty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = difficulty.h; sourceTree = "<group>"; };
+		67A66C14291F776E00A144F8 /* difficulty.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = difficulty.c; sourceTree = "<group>"; };
 		67C304A729172A0D00D89359 /* event_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_manager.h; sourceTree = "<group>"; };
 		67C304A829172A0D00D89359 /* event_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_manager.c; sourceTree = "<group>"; };
 		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				6759E99E291D967300EB161F /* vector.c */,
 				6759E9A3291D9E2C00EB161F /* color.h */,
 				6759E9A4291D9E2C00EB161F /* color.c */,
+				67A66C13291F776E00A144F8 /* difficulty.h */,
+				67A66C14291F776E00A144F8 /* difficulty.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				6759E9A2291D98CA00EB161F /* block_location.c in Sources */,
 				6759E991291C975B00EB161F /* projectile_source.c in Sources */,
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
+				67A66C15291F776E00A144F8 /* difficulty.c in Sources */,
 				6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */,
 				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,

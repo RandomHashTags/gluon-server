@@ -8,8 +8,8 @@
 #ifndef material_configuration_h
 #define material_configuration_h
 
-typedef struct MaterialConfiguration {
+struct MaterialConfiguration {
     const int max_item_stack_size;
-} MaterialConfiguration;
+};
 
 #endif /* material_configuration_h */

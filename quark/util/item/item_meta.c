@@ -17,11 +17,12 @@ void item_meta_destroy(struct ItemMeta *meta) {
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta) {
     return meta->enchants;
 }
-_Bool item_meta_has_enchant(struct ItemMeta *meta, enum Enchantment enchantment) {
+_Bool item_meta_has_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment) {
+    const char *identifier = enchantment.identifier;
     struct Enchant *enchants = meta->enchants;
     const int enchantsCount = sizeof(*enchants) / sizeof(&enchants[0]);
     for (int i = 0; i < enchantsCount; i++) {
-        if (enchants[i].type == enchantment) {
+        if (enchants[i].type.identifier == identifier) {
             return 1;
         }
     }

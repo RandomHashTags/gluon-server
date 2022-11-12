@@ -12,7 +12,7 @@
 #include "../item/item_stack.h"
 
 struct Inventory {
-    InventoryType type;
+    struct InventoryType type;
     
     int size;
     struct ItemStack *items;

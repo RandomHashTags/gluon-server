@@ -16,7 +16,7 @@ struct World {
     const int seed[32];
     const char *name;
     
-    Difficulty difficulty;
+    struct Difficulty difficulty;
     
     int chunks_loaded_count;
     const int chunks_loaded_count_maximum;

@@ -13,7 +13,7 @@
 #include "../item/item_stack.h"
 
 struct Block {
-    Material material;
+    struct Material material;
     int light_level;
     
     const struct BlockLocation location;

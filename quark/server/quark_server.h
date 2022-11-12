@@ -14,7 +14,7 @@
 struct QuarkServer {
     const char *hostname;
     int port;
-    Difficulty difficulty;
+    struct Difficulty difficulty;
     
     int plugin_count;
     struct QuarkPlugin *plugins;

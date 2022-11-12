@@ -8,7 +8,7 @@
 #ifndef item_meta_h
 #define item_meta_h
 
-#include "../enchantment.h"
+#include "../enchantment_type.h"
 
 struct ItemMeta {
     char *display_name;
@@ -20,6 +20,6 @@ struct ItemMeta {
 void item_meta_destroy(struct ItemMeta *meta);
 
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta);
-_Bool item_meta_has_enchant(struct ItemMeta *meta, enum Enchantment enchantment);
+_Bool item_meta_has_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment);
 
 #endif /* item_meta_h */

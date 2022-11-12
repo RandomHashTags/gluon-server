@@ -46,8 +46,8 @@ void living_entity_tick(LivingEntity *entity);
 void living_entity_swing_main_hand(LivingEntity *entity);
 void living_entity_swing_off_hand(LivingEntity *entity);
 
-_Bool living_entity_has_potion_effect(LivingEntity *entity, PotionEffectType type);
-void living_entity_add_potion_effect(LivingEntity *entity, PotionEffectType type, int amplifier, int duration);
-void living_entity_remove_potion_effect(LivingEntity *entity, PotionEffectType type);
+_Bool living_entity_has_potion_effect(LivingEntity *entity, struct PotionEffectType type);
+void living_entity_add_potion_effect(LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration);
+void living_entity_remove_potion_effect(LivingEntity *entity, struct PotionEffectType type);
 
 #endif /* living_entity_h */

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		673D6B8D291567C900C0BDE7 /* creature.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8C291567C900C0BDE7 /* creature.c */; };
-		673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment.c */; };
+		673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment_type.c */; };
 		673D6B9329156B7200C0BDE7 /* damageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B9229156B7200C0BDE7 /* damageable.c */; };
 		673D6B97291570F200C0BDE7 /* player_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B96291570F200C0BDE7 /* player_connection.c */; };
 		6753CF1A29145495008BD41C /* events.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1929145495008BD41C /* events.c */; };
@@ -43,6 +43,7 @@
 		67A66C20291F83AC00A144F8 /* tameable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C1F291F83AC00A144F8 /* tameable.c */; };
 		67A66C23291F87E600A144F8 /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C22291F87E600A144F8 /* material_configuration.c */; };
 		67A66C25291F8AB000A144F8 /* inventory_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C24291F8AB000A144F8 /* inventory_type.c */; };
+		67A66C282920344400A144F8 /* enchantment_target.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C272920344400A144F8 /* enchantment_target.c */; };
 		67C304A929172A0D00D89359 /* event_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304A829172A0D00D89359 /* event_manager.c */; };
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
@@ -66,7 +67,7 @@
 		673D6B8B291567C900C0BDE7 /* creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = creature.h; sourceTree = "<group>"; };
 		673D6B8C291567C900C0BDE7 /* creature.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = creature.c; sourceTree = "<group>"; };
 		673D6B8E2915684C00C0BDE7 /* ageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ageable.h; sourceTree = "<group>"; };
-		673D6B8F29156AA700C0BDE7 /* enchantment.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enchantment.c; sourceTree = "<group>"; };
+		673D6B8F29156AA700C0BDE7 /* enchantment_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enchantment_type.c; sourceTree = "<group>"; };
 		673D6B9129156B7200C0BDE7 /* damageable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = damageable.h; sourceTree = "<group>"; };
 		673D6B9229156B7200C0BDE7 /* damageable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = damageable.c; sourceTree = "<group>"; };
 		673D6B95291570F200C0BDE7 /* player_connection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_connection.h; sourceTree = "<group>"; };
@@ -97,7 +98,7 @@
 		6753CF4229146D06008BD41C /* block.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = block.c; sourceTree = "<group>"; };
 		6753CF44291470E9008BD41C /* gamemode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gamemode.h; sourceTree = "<group>"; };
 		6753CF4629147BBF008BD41C /* potion_effect_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect_type.h; sourceTree = "<group>"; };
-		6753CF4729147D7F008BD41C /* enchantment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enchantment.h; sourceTree = "<group>"; };
+		6753CF4729147D7F008BD41C /* enchantment_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enchantment_type.h; sourceTree = "<group>"; };
 		6753CF49291480F8008BD41C /* inventory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inventory.h; sourceTree = "<group>"; };
 		6753CF4A291480F8008BD41C /* inventory.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = inventory.c; sourceTree = "<group>"; };
 		6753CF4C29148119008BD41C /* inventory_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inventory_type.h; sourceTree = "<group>"; };
@@ -139,6 +140,8 @@
 		67A66C21291F87E600A144F8 /* material_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material_configuration.h; sourceTree = "<group>"; };
 		67A66C22291F87E600A144F8 /* material_configuration.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material_configuration.c; sourceTree = "<group>"; };
 		67A66C24291F8AB000A144F8 /* inventory_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = inventory_type.c; sourceTree = "<group>"; };
+		67A66C262920344400A144F8 /* enchantment_target.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enchantment_target.h; sourceTree = "<group>"; };
+		67A66C272920344400A144F8 /* enchantment_target.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enchantment_target.c; sourceTree = "<group>"; };
 		67C304A729172A0D00D89359 /* event_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_manager.h; sourceTree = "<group>"; };
 		67C304A829172A0D00D89359 /* event_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event_manager.c; sourceTree = "<group>"; };
 		67C304AB29172F0A00D89359 /* potion_effect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = potion_effect.h; sourceTree = "<group>"; };
@@ -366,8 +369,10 @@
 				6753CF2C291456DF008BD41C /* item */,
 				6753CF2729145560008BD41C /* entity */,
 				6753CF1F291454D8008BD41C /* location */,
-				6753CF4729147D7F008BD41C /* enchantment.h */,
-				673D6B8F29156AA700C0BDE7 /* enchantment.c */,
+				6753CF4729147D7F008BD41C /* enchantment_type.h */,
+				673D6B8F29156AA700C0BDE7 /* enchantment_type.c */,
+				67A66C262920344400A144F8 /* enchantment_target.h */,
+				67A66C272920344400A144F8 /* enchantment_target.c */,
 				6759E99D291D967300EB161F /* vector.h */,
 				6759E99E291D967300EB161F /* vector.c */,
 				6759E9A3291D9E2C00EB161F /* color.h */,
@@ -456,10 +461,11 @@
 				67A66C12291ED90C00A144F8 /* ageable.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
 				67C304AF291737C300D89359 /* material.c in Sources */,
+				67A66C282920344400A144F8 /* enchantment_target.c in Sources */,
 				6753CF22291454E4008BD41C /* world.c in Sources */,
 				6753CF35291459A8008BD41C /* item_meta.c in Sources */,
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
-				673D6B9029156AA700C0BDE7 /* enchantment.c in Sources */,
+				673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */,
 				67A66C23291F87E600A144F8 /* material_configuration.c in Sources */,
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,

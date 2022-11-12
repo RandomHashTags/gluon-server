@@ -9,7 +9,7 @@
 #define difficulty_h
 
 typedef struct Difficulty {
-    const char *identifier;
+    const char identifier[24];
 } Difficulty;
 
 extern Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;

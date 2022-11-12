@@ -12,7 +12,7 @@
 //#include "../color.h"
 
 typedef struct Material {
-    const char *identifier;
+    const char identifier[32];
     const MaterialConfiguration configuration;
 } Material;
 

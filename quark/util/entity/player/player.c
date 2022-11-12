@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "player.h"
 #include "../../../events/events.h"
 #include "../../../managers/event_manager.h"
@@ -36,7 +37,7 @@ void player_set_gamemode(struct Player *player, Gamemode gamemode) {
     };
     event_manager_call_event((Event *) &event);
     if (!event.event.event.is_cancelled) {
-        player->gamemode = gamemode;
+        memcpy(&player->gamemode, &gamemode, sizeof(Gamemode));
     }
 }
 

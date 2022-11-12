@@ -11,7 +11,7 @@
 #include "color.h"
 
 typedef struct DyeColor {
-    const char *identifier;
+    const char identifier[24];
     const struct Color color;
     const struct Color firework_color;
 } DyeColor;

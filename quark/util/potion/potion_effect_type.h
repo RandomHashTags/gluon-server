@@ -9,7 +9,7 @@
 #define potion_effect_type_h
 
 typedef struct PotionEffectType {
-    const char *identifier;
+    const char identifier[32];
 } PotionEffectType;
 
 char *potion_effect_type_get_name(PotionEffectType type);

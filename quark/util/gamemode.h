@@ -9,7 +9,7 @@
 #define gamemode_h
 
 typedef struct Gamemode {
-    const char *identifier;
+    const char identifier[24];
 } Gamemode;
 
 extern Gamemode GAMEMODE_MINECRAFT_ADVENTURE;

@@ -11,7 +11,7 @@
 #include "potion_effect_type.h"
 
 struct PotionEffect {
-    const enum PotionEffectType type;
+    const PotionEffectType type;
     _Bool has_icon;
     _Bool has_particles;
     _Bool is_ambient;

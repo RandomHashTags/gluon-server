@@ -53,18 +53,19 @@ enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount
     return result;
 }
 
-_Bool living_entity_has_potion_effect(LivingEntity *entity, enum PotionEffectType type) {
+_Bool living_entity_has_potion_effect(LivingEntity *entity, PotionEffectType type) {
+    const char *typeIdentifier = type.identifier;
     struct PotionEffect *potionEffects = entity->potion_effects;
     const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
     for (int i = 0; i < potionEffectsCount; i++) {
         const struct PotionEffect *effect = &potionEffects[i];
-        if (effect->type == type) {
+        if (effect->type.identifier == typeIdentifier) {
             return 1;
         }
     }
     return 0;
 }
-void living_entity_add_potion_effect(LivingEntity *entity, enum PotionEffectType type, int amplifier, int duration) {
+void living_entity_add_potion_effect(LivingEntity *entity, PotionEffectType type, int amplifier, int duration) {
     if (living_entity_has_potion_effect(entity, type)) {
         
     } else {
@@ -80,12 +81,13 @@ void living_entity_add_potion_effect(LivingEntity *entity, enum PotionEffectType
         memmove((struct PotionEffect *) &entity->potion_effects[potionEffectsCount], &effect, potionEffectMemorySize);
     }
 }
-void living_entity_remove_potion_effect(LivingEntity *entity, enum PotionEffectType type) {
+void living_entity_remove_potion_effect(LivingEntity *entity, PotionEffectType type) {
+    const char *typeIdentifier = type.identifier;
     struct PotionEffect *potionEffects = entity->potion_effects;
     int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
     for (int i = 0; i < potionEffectsCount; i++) {
         struct PotionEffect *potionEffect = &potionEffects[i];
-        if (potionEffect->type == type) {
+        if (potionEffect->type.identifier == typeIdentifier) {
             potion_effect_destroy(potionEffect);
             const int potionEffectSize = sizeof(struct PotionEffect);
             for (int j = i; j < potionEffectsCount-1; j++) {

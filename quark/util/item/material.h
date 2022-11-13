@@ -12,7 +12,7 @@
 //#include "../color.h"
 
 struct Material {
-    const char identifier[32];
+    const char identifier[40];
     const struct MaterialConfiguration configuration;
 };
 

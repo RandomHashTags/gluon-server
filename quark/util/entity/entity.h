@@ -12,7 +12,7 @@
 #include "../location/location.h"
 #include "../vector.h"
 
-typedef struct Entity {
+struct Entity {
     const enum EntityType type;
     const int uuid;
     
@@ -23,13 +23,13 @@ typedef struct Entity {
     
     int fire_ticks;
     int fire_ticks_maximum;
-} Entity;
+};
 
-void entity_destroy(Entity *entity);
+void entity_destroy(struct Entity *entity);
 
-void entity_tick(Entity *entity);
+void entity_tick(struct Entity *entity);
 
-void entity_teleport(Entity *entity, struct Location *location);
-void entity_get_nearby_entities(Entity *entity, double x, double y, double z);
+void entity_teleport(struct Entity *entity, struct Location *location);
+void entity_get_nearby_entities(struct Entity *entity, double x, double y, double z);
 
 #endif /* entity_h */

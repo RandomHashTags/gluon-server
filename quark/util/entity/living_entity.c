@@ -11,14 +11,14 @@
 #include "living_entity.h"
 #include "../../utilities.h"
 
-void living_entity_destroy(LivingEntity *entity) {
+void living_entity_destroy(struct LivingEntity *entity) {
     damageable_destroy(entity->damageable);
     potion_effect_destroy(entity->potion_effects);
     free(entity->killer);
     free(entity);
 }
 
-void living_entity_tick(LivingEntity *entity) {
+void living_entity_tick(struct LivingEntity *entity) {
     printf("ticking LivingEntity at address %p with uuid %d with no_damage_ticks_maximum %d\n", &entity, entity->damageable->entity->uuid, entity->no_damage_ticks_maximum);
     const int noDamageTicks = entity->no_damage_ticks-1;
     if (noDamageTicks >= 0) {
@@ -45,7 +45,7 @@ void living_entity_tick(LivingEntity *entity) {
     entity_tick(entity->damageable->entity);
 }
 
-enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount) {
+enum EntityDamageResult living_entity_damage(struct LivingEntity *entity, double amount) {
     const enum EntityDamageResult result = damageable_damage(entity->damageable, amount);
     if (result == ENTITY_DAMAGE_RESULT_SUCCESS) {
         entity->no_damage_ticks = entity->no_damage_ticks_maximum;
@@ -53,7 +53,7 @@ enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount
     return result;
 }
 
-_Bool living_entity_has_potion_effect(LivingEntity *entity, struct PotionEffectType type) {
+_Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type) {
     const char *typeIdentifier = type.identifier;
     struct PotionEffect *potionEffects = entity->potion_effects;
     const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
@@ -65,7 +65,7 @@ _Bool living_entity_has_potion_effect(LivingEntity *entity, struct PotionEffectT
     }
     return 0;
 }
-void living_entity_add_potion_effect(LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration) {
+void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration) {
     if (living_entity_has_potion_effect(entity, type)) {
         
     } else {
@@ -81,7 +81,7 @@ void living_entity_add_potion_effect(LivingEntity *entity, struct PotionEffectTy
         memmove((struct PotionEffect *) &entity->potion_effects[potionEffectsCount], &effect, potionEffectMemorySize);
     }
 }
-void living_entity_remove_potion_effect(LivingEntity *entity, struct PotionEffectType type) {
+void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type) {
     const char *typeIdentifier = type.identifier;
     struct PotionEffect *potionEffects = entity->potion_effects;
     int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);

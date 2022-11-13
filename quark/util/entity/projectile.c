@@ -9,7 +9,7 @@
 #include "projectile.h"
 #include "entity.h"
 
-void projectile_destroy(Projectile *projectile) {
+void projectile_destroy(struct Projectile *projectile) {
     entity_destroy(projectile->entity);
     free(projectile->shooter);
     free(projectile);

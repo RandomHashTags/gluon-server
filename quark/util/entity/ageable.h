@@ -10,16 +10,16 @@
 
 #include "creature.h"
 
-typedef struct Ageable {
-    Creature *creature;
+struct Ageable {
+    struct Creature *creature;
     
     int age;
     _Bool age_locked;
     
     _Bool is_adult;
     _Bool can_breed;
-} Ageable;
+};
 
-void ageable_destroy(Ageable *ageable);
+void ageable_destroy(struct Ageable *ageable);
 
 #endif /* ageable_h */

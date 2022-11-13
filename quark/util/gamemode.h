@@ -8,13 +8,13 @@
 #ifndef gamemode_h
 #define gamemode_h
 
-typedef struct Gamemode {
+struct Gamemode {
     const char identifier[24];
-} Gamemode;
+};
 
-extern Gamemode GAMEMODE_MINECRAFT_ADVENTURE;
-extern Gamemode GAMEMODE_MINECRAFT_CREATIVE;
-extern Gamemode GAMEMODE_MINECRAFT_SPECTATOR;
-extern Gamemode GAMEMODE_MINECRAFT_SURVIVAL;
+extern struct Gamemode GAMEMODE_MINECRAFT_ADVENTURE;
+extern struct Gamemode GAMEMODE_MINECRAFT_CREATIVE;
+extern struct Gamemode GAMEMODE_MINECRAFT_SPECTATOR;
+extern struct Gamemode GAMEMODE_MINECRAFT_SURVIVAL;
 
 #endif /* gamemode_h */

@@ -8,6 +8,6 @@
 #include <stdio.h>
 #include "event_manager.h"
 
-void event_manager_call_event(Event *event) {
+void event_manager_call_event(struct Event *event) {
     printf("called event %d\n", event->type);
 }

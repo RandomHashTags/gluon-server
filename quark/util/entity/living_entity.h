@@ -12,8 +12,8 @@
 #include "entity_equipment.h"
 #include "../potion/potion_effect.h"
 
-typedef struct LivingEntity {
-    Damageable *damageable;
+struct LivingEntity {
+    struct Damageable *damageable;
     struct LivingEntity *killer;
     struct EntityEquipment equipment;
     
@@ -35,19 +35,19 @@ typedef struct LivingEntity {
     
     int air_remaining;
     int air_maximum;
-} LivingEntity;
+};
 
-void living_entity_destroy(LivingEntity *entity);
+void living_entity_destroy(struct LivingEntity *entity);
 
-enum EntityDamageResult living_entity_damage(LivingEntity *entity, double amount);
+enum EntityDamageResult living_entity_damage(struct LivingEntity *entity, double amount);
 
-void living_entity_tick(LivingEntity *entity);
+void living_entity_tick(struct LivingEntity *entity);
 
-void living_entity_swing_main_hand(LivingEntity *entity);
-void living_entity_swing_off_hand(LivingEntity *entity);
+void living_entity_swing_main_hand(struct LivingEntity *entity);
+void living_entity_swing_off_hand(struct LivingEntity *entity);
 
-_Bool living_entity_has_potion_effect(LivingEntity *entity, struct PotionEffectType type);
-void living_entity_add_potion_effect(LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration);
-void living_entity_remove_potion_effect(LivingEntity *entity, struct PotionEffectType type);
+_Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
+void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration);
+void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
 
 #endif /* living_entity_h */

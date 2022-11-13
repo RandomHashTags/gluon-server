@@ -11,7 +11,7 @@
 #include "../projectile.h"
 
 struct ProjectileArrow {
-    Projectile *projectile;
+    struct Projectile *projectile;
     
     double damage;
     int pierce_level;

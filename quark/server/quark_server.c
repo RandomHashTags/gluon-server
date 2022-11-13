@@ -43,17 +43,17 @@ void server_destroy(void) {
     free(SERVER->players);
     
     const int living_entity_count = SERVER->living_entity_count;
-    LivingEntity *living_entities = (LivingEntity *) SERVER->living_entities;
+    struct LivingEntity *living_entities = (struct LivingEntity *) SERVER->living_entities;
     for (int i = 0; i < living_entity_count; i++) {
-        LivingEntity *living_entity = &living_entities[i];
+        struct LivingEntity *living_entity = &living_entities[i];
         living_entity_destroy(living_entity);
     }
     free(SERVER->living_entities);
     
     const int entity_count = SERVER->entity_count;
-    Entity *entities = (Entity *) SERVER->entities;
+    struct Entity *entities = (struct Entity *) SERVER->entities;
     for (int i = 0; i < entity_count; i++) {
-        Entity *entity = &entities[i];
+        struct Entity *entity = &entities[i];
         entity_destroy(entity);
     }
     free(SERVER->entities);
@@ -165,17 +165,17 @@ void server_stop(void) {
 void server_tick(void) {
     printf("\nserver at address %p will be ticked...\n", SERVER);
     const int entityCount = SERVER->entity_count;
-    Entity *entities = SERVER->entities;
+    struct Entity *entities = SERVER->entities;
     for (int i = 0; i < entityCount; i++) {
-        Entity *entity = &entities[i];
+        struct Entity *entity = &entities[i];
         entity_tick(entity);
     }
     
     printf("server will begin ticking living entities...\n");
     const int livingEntityCount = SERVER->living_entity_count;
-    LivingEntity *livingEntities = (LivingEntity *) SERVER->living_entities;
+    struct LivingEntity *livingEntities = (struct LivingEntity *) SERVER->living_entities;
     for (int i = 0; i < livingEntityCount; i++) {
-        LivingEntity *entity = &livingEntities[i];
+        struct LivingEntity *entity = &livingEntities[i];
         living_entity_tick(entity);
     }
     
@@ -197,12 +197,12 @@ void server_tick(void) {
     printf("test3\n");
 }
 
-void server_sync_tickrate_for_entity(Entity *entity, enum EntityType entity_type) {
+void server_sync_tickrate_for_entity(struct Entity *entity, enum EntityType entity_type) {
     entity->fire_ticks *= TICKS_PER_SECOND_MULTIPLIER;
     entity->fire_ticks_maximum = entity_type_get_fire_ticks_maximum(entity_type);
 }
-void server_sync_tickrate_for_living_entity(LivingEntity *living_entity, enum EntityType entity_type, int no_damage_ticks_maximum) {
-    Entity *entity = living_entity->damageable->entity;
+void server_sync_tickrate_for_living_entity(struct LivingEntity *living_entity, enum EntityType entity_type, int no_damage_ticks_maximum) {
+    struct Entity *entity = living_entity->damageable->entity;
     
     living_entity->no_damage_ticks *= TICKS_PER_SECOND_MULTIPLIER;
     living_entity->no_damage_ticks_maximum = no_damage_ticks_maximum;
@@ -236,9 +236,9 @@ void server_change_tickrate(int ticks_per_second) {
     
     const int livingEntityCount = SERVER->living_entity_count;
     printf("updating tickrate values for %d living entities...\n", livingEntityCount);
-    LivingEntity *livingEntities = (LivingEntity *) SERVER->living_entities;
+    struct LivingEntity *livingEntities = (struct LivingEntity *) SERVER->living_entities;
     for (int i = 0; i < livingEntityCount; i++) {
-        LivingEntity *living_entity = &livingEntities[i];
+        struct LivingEntity *living_entity = &livingEntities[i];
         const enum EntityType entity_type = living_entity->damageable->entity->type;
         server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type_get_no_damage_ticks_maximum(entity_type));
     }
@@ -275,8 +275,8 @@ void server_world_destroy(struct World *world) {
     }
 }
 
-Entity *server_parse_entity(enum EntityType entity_type, int uuid) {
-    Entity *entity = malloc(sizeof(Entity));
+struct Entity *server_parse_entity(enum EntityType entity_type, int uuid) {
+    struct Entity *entity = malloc(sizeof(struct Entity));
     if (!entity) {
         printf("failed to allocate memory for a Entity\n");
         return NULL;
@@ -285,12 +285,12 @@ Entity *server_parse_entity(enum EntityType entity_type, int uuid) {
     memcpy((int *) &entity->uuid, &uuid, sizeof(int));
     return entity;
 }
-Damageable *server_parse_damageable(enum EntityType entity_type, int uuid, double health, double health_maximum) {
-    Entity *entity = server_parse_entity(entity_type, uuid);
+struct Damageable *server_parse_damageable(enum EntityType entity_type, int uuid, double health, double health_maximum) {
+    struct Entity *entity = server_parse_entity(entity_type, uuid);
     if (!entity) {
         return NULL;
     }
-    Damageable *damageable = malloc(sizeof(Damageable));
+    struct Damageable *damageable = malloc(sizeof(struct Damageable));
     if (!damageable) {
         printf("failed to allocate memory for a Damageable\n");
         return NULL;
@@ -300,12 +300,12 @@ Damageable *server_parse_damageable(enum EntityType entity_type, int uuid, doubl
     damageable->health_maximum = health_maximum;
     return damageable;
 }
-LivingEntity *server_parse_living_entity(enum EntityType entity_type, int uuid, double health, double health_maximum) {
-    Damageable *damageable = server_parse_damageable(entity_type, uuid, health, health_maximum);
+struct LivingEntity *server_parse_living_entity(enum EntityType entity_type, int uuid, double health, double health_maximum) {
+    struct Damageable *damageable = server_parse_damageable(entity_type, uuid, health, health_maximum);
     if (!damageable) {
         return NULL;
     }
-    LivingEntity *entity = malloc(sizeof(LivingEntity));
+    struct LivingEntity *entity = malloc(sizeof(struct LivingEntity));
     if (!entity) {
         printf("failed to allocate memory for a LivingEntity\n");
         return NULL;
@@ -324,7 +324,7 @@ LivingEntity *server_parse_living_entity(enum EntityType entity_type, int uuid, 
     return entity;
 }
 struct Player *server_parse_player(int uuid) {
-    LivingEntity *entity = server_parse_living_entity(ENTITY_TYPE_PLAYER, uuid, 20, 20);
+    struct LivingEntity *entity = server_parse_living_entity(ENTITY_TYPE_PLAYER, uuid, 20, 20);
     if (!entity) {
         return NULL;
     }
@@ -387,7 +387,7 @@ void server_player_joined(struct PlayerConnection *connection) {
         },
     };
     printf("\"%s\" joined with address %p server at address %p with %d ping, %d chat_cooldown, and %d no_damage_ticks_maximum\n", player->name, player, SERVER, connection->ping, connection->chat_cooldown, connection->player->living_entity->no_damage_ticks_maximum);
-    event_manager_call_event((Event *) &event);
+    event_manager_call_event((struct Event *) &event);
     
     const int playerCount = SERVER->player_count;
     SERVER->players[playerCount] = *connection;

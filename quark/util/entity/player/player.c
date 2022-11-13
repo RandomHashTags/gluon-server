@@ -28,16 +28,16 @@ void player_tick(struct Player *player) {
     living_entity_tick(player->living_entity);
 }
 
-void player_set_gamemode(struct Player *player, Gamemode gamemode) {
+void player_set_gamemode(struct Player *player, struct Gamemode gamemode) {
     const struct PlayerGamemodeChangeEvent event = {
         .event = {
             .player = player
         },
         .gamemode = gamemode
     };
-    event_manager_call_event((Event *) &event);
+    event_manager_call_event((struct Event *) &event);
     if (!event.event.event.is_cancelled) {
-        memcpy(&player->gamemode, &gamemode, sizeof(Gamemode));
+        memcpy(&player->gamemode, &gamemode, sizeof(struct Gamemode));
     }
 }
 
@@ -48,7 +48,7 @@ void player_set_blocking(struct Player *player, _Bool value) {
         },
         .value = value
     };
-    event_manager_call_event((Event *) &event);
+    event_manager_call_event((struct Event *) &event);
     if (!event.event.event.is_cancelled) {
         player->is_blocking = value;
     }
@@ -61,7 +61,7 @@ void player_set_sneaking(struct Player *player, _Bool value) {
         },
         .value = value
     };
-    event_manager_call_event((Event *) &event);
+    event_manager_call_event((struct Event *) &event);
     if (!event.event.event.is_cancelled) {
         player->is_sneaking = value;
     }
@@ -74,7 +74,7 @@ void player_set_sprinting(struct Player *player, _Bool value) {
         },
         .value = value
     };
-    event_manager_call_event((Event *) & event);
+    event_manager_call_event((struct Event *) & event);
     if (!event.event.event.is_cancelled) {
         player->is_sprinting = value;
     }

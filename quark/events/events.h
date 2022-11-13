@@ -12,24 +12,24 @@
 #include "../util/entity/entity.h"
 #include "../util/entity/player/player.h"
 
-typedef struct Event {
+struct Event {
     const _Bool is_async;
     const enum EventType type;
-} Event;
+};
 
-typedef struct EventCancellable {
+struct EventCancellable {
     const struct Event event;
     _Bool is_cancelled;
-} EventCancellable;
+};
 
-typedef struct PlayerEvent {
+struct PlayerEvent {
     const struct Event event;
     struct Player *player;
-} PlayerEvent;
-typedef struct PlayerEventCancellable {
+};
+struct PlayerEventCancellable {
     const struct EventCancellable event;
     struct Player *player;
-} PlayerEventCancellable;
+};
 
 
 struct PlayerJoinEvent {
@@ -41,7 +41,7 @@ struct PlayerQuitEvent {
 
 struct PlayerGamemodeChangeEvent {
     const struct PlayerEventCancellable event;
-    const Gamemode gamemode;
+    const struct Gamemode gamemode;
 };
 struct PlayerToggleBlockingEvent {
     const struct PlayerEventCancellable event;

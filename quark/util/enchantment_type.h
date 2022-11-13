@@ -12,6 +12,7 @@
 
 struct EnchantmentType {
     const char identifier[16];
+    const int max_level;
     const struct EnchantmentType *incompatible_with;
 };
 

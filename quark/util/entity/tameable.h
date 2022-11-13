@@ -10,11 +10,11 @@
 
 #include "living_entity.h"
 
-typedef struct Tameable {
-    LivingEntity *entity;
+struct Tameable {
+    struct LivingEntity *entity;
     
     int owner_uuid;
     _Bool is_tamed;
-} Tameable;
+};
 
 #endif /* tameable_h */

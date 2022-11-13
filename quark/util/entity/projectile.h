@@ -11,13 +11,13 @@
 #include "entity.h"
 #include "projectile_source.h"
 
-typedef struct Projectile {
-    Entity *entity;
+struct Projectile {
+    struct Entity *entity;
     struct ProjectileSource *shooter;
-} Projectile;
+};
 
-void projectile_destroy(Projectile *projectile);
+void projectile_destroy(struct Projectile *projectile);
 
-void projectile_launch(struct ProjectileSource *source, Projectile projectile);
+void projectile_launch(struct ProjectileSource *source, struct Projectile projectile);
 
 #endif /* projectile_h */

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "ageable.h"
 
-void ageable_destroy(Ageable *ageable) {
+void ageable_destroy(struct Ageable *ageable) {
     creature_destroy(ageable->creature);
     free(ageable);
 }

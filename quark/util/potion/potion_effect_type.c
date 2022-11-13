@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "potion_effect_type.h"
 
-char *potion_effect_type_get_name(PotionEffectType type) {
+char *potion_effect_type_get_name(struct PotionEffectType type) {
     /*switch (type) {
         case POTION_EFFECT_TYPE_MINECRAFT_ABSORPTION: return "Absorption";
         case POTION_EFFECT_TYPE_MINECRAFT_BAD_OMEN: return "Bad Omen";
@@ -47,7 +47,7 @@ char *potion_effect_type_get_name(PotionEffectType type) {
     }*/
     return NULL;
 }
-_Bool potion_effect_type_is_instant(PotionEffectType type) {
+_Bool potion_effect_type_is_instant(struct PotionEffectType type) {
     /*switch (type) {
         case POTION_EFFECT_TYPE_MINECRAFT_HARM:
         case POTION_EFFECT_TYPE_MINECRAFT_HEAL:
@@ -59,36 +59,36 @@ _Bool potion_effect_type_is_instant(PotionEffectType type) {
     return 0;
 }
 
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_ABSORPTION =          { .identifier = "minecraft.absorption" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_BAD_OMEN =            { .identifier = "minecraft.bad_omen" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_BLINDNESS =           { .identifier = "minecraft.blindness" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_CONDUIT_POWER =       { .identifier = "minecraft.conduit_power" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_CONFUSION =           { .identifier = "minecraft.confusion" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DAMAGE_RESISTANCE =   { .identifier = "minecraft.damage_resistance" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DARKNESS =            { .identifier = "minecraft.darkness" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DOLPHINS_GRACE =      { .identifier = "minecraft.dolphins_grace" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_FIRE_RESISTANCE =     { .identifier = "minecraft.fire_resistance" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_GLOWING =             { .identifier = "minecraft.glowing" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HARM =                { .identifier = "minecraft.harm" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HASTE =               { .identifier = "minecraft.haste" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HEAL =                { .identifier = "minecraft.heal" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HEALTH_BOOST =        { .identifier = "minecraft.health_boost" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HERO_OF_THE_VILLAGE = { .identifier = "minecraft.hero_of_the_village" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HUNGER =              { .identifier = "minecraft.hunger" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_INVISIBILITY =        { .identifier = "minecraft.invisibility" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_JUMP_BOOST =          { .identifier = "minecraft.jump" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_LEVITATION =          { .identifier = "minecraft.levitation" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_LUCK =                { .identifier = "minecraft.luck" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_MINING_FATIGUE =      { .identifier = "minecraft.mining_fatigue" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_NIGHT_VISION =        { .identifier = "minecraft.night_vision" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_POISON =              { .identifier = "minecraft.poison" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_REGENERATION =        { .identifier = "minecraft.regeneration" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SATURATION =          { .identifier = "minecraft.saturation" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SLOWNESS =            { .identifier = "minecraft.slowness" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SLOW_FALLING =        { .identifier = "minecraft.slow_falling" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SPEED =               { .identifier = "minecraft.speed" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_STRENGTH =            { .identifier = "minecraft.strength" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_UNLUCK =              { .identifier = "minecraft.unluck" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WATER_BREATHING =     { .identifier = "minecraft.water_breathing" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WEAKNESS =            { .identifier = "minecraft.weakness" };
-PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WITHER =              { .identifier = "minecraft.wither" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_ABSORPTION =          { .identifier = "minecraft.absorption" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_BAD_OMEN =            { .identifier = "minecraft.bad_omen" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_BLINDNESS =           { .identifier = "minecraft.blindness" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_CONDUIT_POWER =       { .identifier = "minecraft.conduit_power" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_CONFUSION =           { .identifier = "minecraft.confusion" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DAMAGE_RESISTANCE =   { .identifier = "minecraft.damage_resistance" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DARKNESS =            { .identifier = "minecraft.darkness" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_DOLPHINS_GRACE =      { .identifier = "minecraft.dolphins_grace" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_FIRE_RESISTANCE =     { .identifier = "minecraft.fire_resistance" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_GLOWING =             { .identifier = "minecraft.glowing" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HARM =                { .identifier = "minecraft.harm" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HASTE =               { .identifier = "minecraft.haste" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HEAL =                { .identifier = "minecraft.heal" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HEALTH_BOOST =        { .identifier = "minecraft.health_boost" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HERO_OF_THE_VILLAGE = { .identifier = "minecraft.hero_of_the_village" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_HUNGER =              { .identifier = "minecraft.hunger" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_INVISIBILITY =        { .identifier = "minecraft.invisibility" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_JUMP_BOOST =          { .identifier = "minecraft.jump" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_LEVITATION =          { .identifier = "minecraft.levitation" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_LUCK =                { .identifier = "minecraft.luck" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_MINING_FATIGUE =      { .identifier = "minecraft.mining_fatigue" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_NIGHT_VISION =        { .identifier = "minecraft.night_vision" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_POISON =              { .identifier = "minecraft.poison" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_REGENERATION =        { .identifier = "minecraft.regeneration" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SATURATION =          { .identifier = "minecraft.saturation" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SLOWNESS =            { .identifier = "minecraft.slowness" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SLOW_FALLING =        { .identifier = "minecraft.slow_falling" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_SPEED =               { .identifier = "minecraft.speed" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_STRENGTH =            { .identifier = "minecraft.strength" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_UNLUCK =              { .identifier = "minecraft.unluck" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WATER_BREATHING =     { .identifier = "minecraft.water_breathing" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WEAKNESS =            { .identifier = "minecraft.weakness" };
+struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_WITHER =              { .identifier = "minecraft.wither" };

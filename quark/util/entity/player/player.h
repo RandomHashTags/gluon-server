@@ -16,7 +16,7 @@
 #include "../../item/item_stack.h"
 
 struct Player {
-    LivingEntity *living_entity;
+    struct LivingEntity *living_entity;
     const char *name;
     char *list_name;
     
@@ -25,7 +25,7 @@ struct Player {
     
     const int first_played;
     
-    Gamemode gamemode;
+    struct Gamemode gamemode;
     _Bool is_blocking;
     _Bool is_flying;
     _Bool is_sneaking;
@@ -41,14 +41,14 @@ struct Player {
     struct Inventory *inventory;
     struct Inventory *inventory_ender_chest;
     
-    LivingEntity *spectator_target;
+    struct LivingEntity *spectator_target;
 };
 
 void player_destroy(struct Player *player);
 
 void player_tick(struct Player *player);
 
-void player_set_gamemode(struct Player *player, Gamemode gamemode);
+void player_set_gamemode(struct Player *player, struct Gamemode gamemode);
 void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);

@@ -8,14 +8,14 @@
 #ifndef difficulty_h
 #define difficulty_h
 
-typedef struct Difficulty {
+struct Difficulty {
     const char identifier[24];
-} Difficulty;
+};
 
-extern Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;
-extern Difficulty DIFFICULTY_MINECRAFT_PEACEFUL;
-extern Difficulty DIFFICULTY_MINECRAFT_EASY;
-extern Difficulty DIFFICULTY_MINECRAFT_NORMAL;
-extern Difficulty DIFFICULTY_MINECRAFT_HARD;
+extern struct Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;
+extern struct Difficulty DIFFICULTY_MINECRAFT_PEACEFUL;
+extern struct Difficulty DIFFICULTY_MINECRAFT_EASY;
+extern struct Difficulty DIFFICULTY_MINECRAFT_NORMAL;
+extern struct Difficulty DIFFICULTY_MINECRAFT_HARD;
 
 #endif /* difficulty_h */

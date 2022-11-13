@@ -11,16 +11,16 @@
 #include "entity.h"
 #include "entity_damage_result.h"
 
-typedef struct Damageable {
-    Entity *entity;
+struct Damageable {
+    struct Entity *entity;
     
     double health;
     double health_maximum;
-} Damageable;
+};
 
-void damageable_destroy(Damageable *damageable);
+void damageable_destroy(struct Damageable *damageable);
 
-enum EntityDamageResult damageable_damage(Damageable *damageable, double amount);
-_Bool damageable_is_dead(Damageable *damageable);
+enum EntityDamageResult damageable_damage(struct Damageable *damageable, double amount);
+_Bool damageable_is_dead(struct Damageable *damageable);
 
 #endif /* damageable_h */

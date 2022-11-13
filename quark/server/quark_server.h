@@ -33,10 +33,10 @@ struct QuarkServer {
     struct PlayerConnection *players;
     
     int entity_count;
-    Entity *entities;
+    struct Entity *entities;
     
     int living_entity_count;
-    LivingEntity *living_entities;
+    struct LivingEntity *living_entities;
     
     _Bool is_online_mode;
     _Bool is_pvp_enabled;

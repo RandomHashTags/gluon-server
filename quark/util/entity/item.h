@@ -12,7 +12,7 @@
 #include "../item/item_stack.h"
 
 struct Item {
-    Entity *entity;
+    struct Entity *entity;
     struct ItemStack *item_stack;
     int pickup_delay;
 };

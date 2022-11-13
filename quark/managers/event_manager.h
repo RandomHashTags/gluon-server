@@ -13,6 +13,6 @@
 struct EventManager {
 };
 
-void event_manager_call_event(struct Event *event);
+_Bool event_manager_call_event(struct Event *event);
 
 #endif /* event_manager_h */

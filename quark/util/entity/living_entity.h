@@ -14,7 +14,6 @@
 
 struct LivingEntity {
     struct Damageable *damageable;
-    struct LivingEntity *killer;
     struct EntityEquipment equipment;
     
     _Bool can_pickup_items;
@@ -35,6 +34,8 @@ struct LivingEntity {
     
     int air_remaining;
     int air_maximum;
+    
+    struct LivingEntity *killer;
 };
 
 void living_entity_destroy(struct LivingEntity *entity);

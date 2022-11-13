@@ -1,0 +1,6 @@
+{
+    "is_only_item" : true,
+    "item_configuration" : {
+        "item_stack_size_maximum" : 1
+    }
+}

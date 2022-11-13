@@ -1,0 +1,11 @@
+{
+    "names" : {
+        "en" : "Diamond Pickaxe"
+    },
+    "material_categories" : [
+        "minecraft.pickaxe"
+    ],
+    "item_configuration" : {
+        "durability" : 1561
+    }
+}

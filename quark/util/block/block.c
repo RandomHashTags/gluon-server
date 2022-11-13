@@ -14,7 +14,7 @@ void block_destroy(struct Block *block) {
 }
 
 void block_break_naturally(struct Block *block, struct ItemStack *item) {
-    if (item != NULL && material_is_tool(item->material)) {
+    if (item != NULL) {
     }
     block_destroy(block);
 }

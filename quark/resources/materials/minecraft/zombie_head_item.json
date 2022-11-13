@@ -1,0 +1,8 @@
+{
+    "names" : {
+        "en" : "Zombie Head"
+    },
+    "item_configuration" : {
+        "placed_block" : "minecraft.zombie_head"
+    }
+}

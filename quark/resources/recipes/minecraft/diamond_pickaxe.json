@@ -1,0 +1,21 @@
+{
+    "inventories" : {
+        "minecraft.workbench" : {
+            "materials" : [
+                {
+                    "identifier" : "minecraft.diamond",
+                    "symbol" : "D"
+                },
+                {
+                    "identifier" : "minecraft.stick",
+                    "symbol": "S"
+                }
+            ],
+            "format": [
+                "DDD",
+                " S ",
+                " S "
+            ]
+        }
+    }
+}

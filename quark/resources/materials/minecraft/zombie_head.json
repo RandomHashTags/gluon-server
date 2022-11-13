@@ -1,0 +1,12 @@
+{
+    "names" : {
+        "en" : "Zombie Head"
+    },
+    "block_configuration" : {
+        "dropped_items" : [
+            {
+                "identifier" : "minecraft.zombie_head_item"
+            }
+        ]
+    }
+}

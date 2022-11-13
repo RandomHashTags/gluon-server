@@ -1,0 +1,11 @@
+{
+    "names" : {
+        "en" : "Villager Spawn Egg"
+    },
+    "material_categories" : [
+        "minecraft.spawn_egg"
+    ],
+    "item_configuration" : {
+        "spawned_entity" : "minecraft.villager"
+    }
+}

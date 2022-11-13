@@ -1,0 +1,14 @@
+{
+    "names" : {
+        "en" : "Iron Pickaxe"
+    },
+    "material_categories" : [
+        "minecraft.pickaxe"
+    ],
+    "item_configuration" : {
+        "durability" : 250
+    },
+    "smelting_configuration" : {
+        "is_smeltable" : true
+    }
+}

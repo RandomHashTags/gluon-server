@@ -13,12 +13,13 @@
 #include "../item/item_stack.h"
 
 struct Block {
-    struct Material material;
-    int light_level;
+    struct Material *material;
+    unsigned short light_level;
     
     const struct BlockLocation location;
 };
 
+struct Block *block_create(struct Material *material, struct BlockLocation location);
 void block_destroy(struct Block *block);
 
 void block_break_naturally(struct Block *block, struct ItemStack *item);

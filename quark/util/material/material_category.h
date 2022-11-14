@@ -11,7 +11,7 @@
 #include "material_configuration.h"
 
 struct MaterialCategory {
-    const char identifier[24];
+    const char *identifier;
     struct MaterialConfiguration *configuration;
 };
 

@@ -56,4 +56,17 @@ struct PlayerToggleSprintingEvent {
     const _Bool value;
 };
 
+struct PlayerBreakBlockEvent {
+    const struct PlayerEventCancellable event;
+    const struct Block *block;
+    const _Bool instantly;
+    _Bool drop_items;
+};
+struct PlayerBreakBlocksEvent {
+    const struct PlayerEventCancellable event;
+    const struct Block *blocks;
+    const _Bool instantly;
+    _Bool *drop_items;
+};
+
 #endif /* events_h */

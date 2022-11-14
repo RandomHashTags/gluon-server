@@ -13,7 +13,7 @@
 struct Ageable {
     struct Creature *creature;
     
-    int age;
+    unsigned short age;
     _Bool age_locked;
     
     _Bool is_adult;

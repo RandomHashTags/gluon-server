@@ -18,8 +18,8 @@ struct World {
     
     struct Difficulty difficulty;
     
-    int chunks_loaded_count;
-    const int chunks_loaded_count_maximum;
+    unsigned int chunks_loaded_count;
+    const unsigned int chunks_loaded_count_maximum;
     struct Chunk *chunks_loaded;
 };
 

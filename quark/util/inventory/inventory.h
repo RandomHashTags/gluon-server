@@ -14,10 +14,10 @@
 struct Inventory {
     struct InventoryType type;
     
-    int size;
+    unsigned int size;
     struct ItemStack *items;
     
-    int viewers_count;
+    unsigned short viewers_count;
     struct Player *viewers;
 };
 

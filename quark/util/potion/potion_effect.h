@@ -16,8 +16,8 @@ struct PotionEffect {
     _Bool has_particles;
     _Bool is_ambient;
     
-    int amplifier;
-    int duration;
+    unsigned short amplifier;
+    unsigned short duration;
 };
 
 void potion_effect_destroy(struct PotionEffect *effect);

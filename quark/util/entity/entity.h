@@ -14,15 +14,15 @@
 
 struct Entity {
     const struct EntityType type;
-    const int uuid;
+    const unsigned int uuid;
     
     char *display_name;
     
     struct Location location;
     struct Vector vector;
     
-    int fire_ticks;
-    int fire_ticks_maximum;
+    unsigned short fire_ticks;
+    unsigned short fire_ticks_maximum;
 };
 
 void entity_destroy(struct Entity *entity);

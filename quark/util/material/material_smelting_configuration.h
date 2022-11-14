@@ -10,7 +10,7 @@
 
 struct MaterialSmeltingConfiguration {
     const char *smelts_to_material;
-    const short smelted_experience;
+    const unsigned short smelted_experience;
 };
 
 void material_smelting_configuration_destroy(struct MaterialSmeltingConfiguration *configuration);

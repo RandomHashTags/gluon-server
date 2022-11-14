@@ -17,27 +17,28 @@ struct QuarkServer {
     struct Difficulty difficulty;
     _Bool is_sleeping;
     
-    int plugin_count;
+    unsigned short plugin_count;
     struct QuarkPlugin *plugins;
     
+    struct Material *materials;
+    
     char motd[32];
-    short max_build_height;
+    unsigned short max_build_height;
     
     float tps;
     
     const char *default_world;
-    short world_count;
-    short world_count_maximum;
+    unsigned short world_count;
+    unsigned short world_count_maximum;
     struct World *worlds;
     
-    int player_count;
-    const int player_count_maximum;
+    const unsigned int player_count_maximum;
     struct PlayerConnection *players;
     char *players_whitelisted;
     
-    short banned_ips_count;
+    unsigned short banned_ips_count;
     char *banned_ips;
-    short banned_player_count;
+    unsigned short banned_player_count;
     char *banned_players;
     
     int entity_count;
@@ -73,6 +74,7 @@ struct Damageable *server_parse_damageable(struct EntityType entity_type, int uu
 struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, int uuid, double heath, double health_maximum);
 struct Player *server_parse_player(int uuid);
 
+unsigned int server_get_player_count(void);
 void server_try_connecting_player(int uuid);
 struct PlayerConnection *server_parse_player_connection(int uuid);
 

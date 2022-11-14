@@ -14,6 +14,8 @@ struct Location {
     float x;
     float y;
     float z;
+    float yaw;
+    float pitch;
     const struct World *world;
 };
 

@@ -12,12 +12,14 @@
 #include "item_meta.h"
 
 struct ItemStack {
-    const struct Material material;
+    const struct Material *material;
     struct ItemMeta *meta;
     
-    int amount;
+    unsigned short amount;
+    short durability;
 };
 
+struct ItemStack *item_stack_create(struct Material *material, short amount, short durability, struct ItemMeta *meta);
 void item_stack_destroy(struct ItemStack *item);
 
 _Bool item_stack_can_be_enchanted(struct ItemStack *item);

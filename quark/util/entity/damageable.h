@@ -14,8 +14,8 @@
 struct Damageable {
     struct Entity *entity;
     
-    double health;
-    double health_maximum;
+    float health;
+    float health_maximum;
 };
 
 void damageable_destroy(struct Damageable *damageable);

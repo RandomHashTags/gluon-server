@@ -9,7 +9,7 @@
 #define enchantment_target_h
 
 struct EnchantmentTarget {
-    const char identifier[24];
+    const char *identifier;
 };
 
 extern struct EnchantmentTarget ENCHANTMENT_TARGET_MINECRAFT_ALL;

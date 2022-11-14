@@ -12,11 +12,12 @@
 
 struct ItemMeta {
     char *display_name;
-    char lore[30][30];
+    char *lore;
     
     struct Enchant *enchants;
 };
 
+struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants);
 void item_meta_destroy(struct ItemMeta *meta);
 
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta);

@@ -14,7 +14,7 @@
 struct Item {
     struct Entity *entity;
     struct ItemStack *item_stack;
-    int pickup_delay;
+    unsigned short pickup_delay;
 };
 
 #endif /* item_h */

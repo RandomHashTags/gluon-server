@@ -23,7 +23,7 @@ struct Player {
     struct Permission *permissions;
     struct Advancement *advancements;
     
-    const int first_played;
+    const unsigned int first_played;
     
     struct Gamemode gamemode;
     _Bool is_blocking;
@@ -31,10 +31,12 @@ struct Player {
     _Bool is_sneaking;
     _Bool is_sprinting;
     
-    float experience;
-    int experience_level;
+    unsigned int experience;
+    unsigned int experience_level;
     float saturation;
-    int food_level;
+    unsigned int food_level;
+    
+    unsigned short block_break_delay;
     
     struct Location bed_spawn_location;
     
@@ -52,5 +54,7 @@ void player_set_gamemode(struct Player *player, struct Gamemode gamemode);
 void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);
+
+void player_broke_block(struct Player *player, struct Block *block, _Bool instantly);
 
 #endif /* player_h */

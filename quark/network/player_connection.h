@@ -12,8 +12,8 @@
 
 struct PlayerConnection {
     struct Player *player;
-    int ping;
-    int chat_cooldown;
+    unsigned short ping;
+    unsigned short chat_cooldown;
 };
 
 void player_connection_destroy(struct PlayerConnection *connection);

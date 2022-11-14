@@ -11,9 +11,9 @@
 #include "../location/world.h"
 
 struct BlockLocation {
-    const int x;
-    const int y;
-    const int z;
+    const long x;
+    const long y;
+    const long z;
     const struct World *world;
 };
 

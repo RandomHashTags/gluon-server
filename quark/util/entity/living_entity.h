@@ -14,7 +14,7 @@
 
 struct LivingEntity {
     struct Damageable *damageable;
-    struct EntityEquipment equipment;
+    struct EntityEquipment *equipment;
     
     _Bool can_pickup_items;
     _Bool has_ai;
@@ -29,11 +29,11 @@ struct LivingEntity {
     
     double eye_height;
     
-    int no_damage_ticks;
-    int no_damage_ticks_maximum;
+    unsigned short no_damage_ticks;
+    unsigned short no_damage_ticks_maximum;
     
-    int air_remaining;
-    int air_maximum;
+    unsigned int air_remaining;
+    unsigned int air_maximum;
     
     struct LivingEntity *killer;
 };
@@ -50,5 +50,7 @@ void living_entity_swing_off_hand(struct LivingEntity *entity);
 _Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
 void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration);
 void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
+
+void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, short amount);
 
 #endif /* living_entity_h */

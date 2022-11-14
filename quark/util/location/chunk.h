@@ -9,12 +9,12 @@
 #define chunk_h
 
 struct Chunk {
-    const int x;
-    const int z;
+    const long x;
+    const long z;
 };
 
 void chunk_destroy(struct Chunk *chunk);
 
-struct Block chunk_get_block_at(struct Chunk *chunk, int x, int y, int z);
+struct Block chunk_get_block_at(struct Chunk *chunk, long x, long y, long z);
 
 #endif /* chunk_h */

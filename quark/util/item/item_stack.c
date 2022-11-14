@@ -5,11 +5,26 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "item_stack.h"
 
+struct ItemStack *item_stack_create(struct Material *material, short amount, short durability, struct ItemMeta *meta) {
+    struct ItemStack *item_stack = malloc(sizeof(struct ItemStack));
+    if (!item_stack) {
+        printf("failed to allocate memory for a ItemStack\n");
+        return NULL;
+    }
+    memcpy((struct Material *) item_stack->material, material, sizeof(struct Material));
+    item_stack->amount = amount;
+    item_stack->durability = durability;
+    item_stack->meta = meta;
+    return item_stack;
+}
 void item_stack_destroy(struct ItemStack *item) {
     item_meta_destroy(item->meta);
+    free((struct Material *) item->material);
     free(item);
 }
 

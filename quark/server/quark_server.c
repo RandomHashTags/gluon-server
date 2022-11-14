@@ -17,8 +17,9 @@
 #include "utilities.h"
 #include "../managers/event_manager.h"
 
-short TICKS_PER_SECOND;
+unsigned short TICKS_PER_SECOND;
 float TICKS_PER_SECOND_MULTIPLIER;
+unsigned short BLOCK_BREAK_DELAY_TICKS;
 struct QuarkServer *SERVER;
 pthread_t *THREADS;
 
@@ -41,18 +42,16 @@ struct QuarkServer *server_create() {
 _Bool server_allocate(void) {
     struct World *worldsPointer = malloc(4 * sizeof(struct World));
     if (!worldsPointer) {
-        printf("failed to allocate memory for a QuarkServer worldsPointer");
+        printf("failed to allocate memory for a QuarkServer worldsPointer\n");
         return NULL;
     }
     SERVER->worlds = worldsPointer;
     
     const int players_maximum = 2;
     memcpy((int *) &SERVER->player_count_maximum, &players_maximum, sizeof(int));
-    SERVER->player_count = 0;
-    
     struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
     if (!players) {
-        printf("failed to allocate memory for a QuarkServer players\n");
+        printf("failed to allocate memory for a QuarkServer playersPointer\n");
         return NULL;
     }
     SERVER->players = players;
@@ -71,7 +70,7 @@ void server_deallocate(void) {
     }
     free(SERVER->plugins);
     
-    const int player_count = SERVER->player_count;
+    const int player_count = server_get_player_count();
     struct PlayerConnection *connections = SERVER->players;
     for (int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &connections[i];
@@ -120,11 +119,11 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
     const float amount = atof(response);
     printf("Received amount %f\n", amount);
     
-    const int playerCount = SERVER->player_count;
-    if (playerCount + 1 == maximum) {
+    const int player_count = server_get_player_count();
+    if (player_count + 1 == maximum) {
         printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
     } else {
-        struct PlayerConnection *test = server_parse_player_connection(playerCount);
+        struct PlayerConnection *test = server_parse_player_connection(player_count);
         if (test) {
             server_player_joined(test);
         }
@@ -216,10 +215,10 @@ void server_tick(void) {
         living_entity_tick(entity);
     }
     
-    const int playerCount = SERVER->player_count;
-    printf("server will tick %d player(s)...\n", playerCount);
+    const int player_count = server_get_player_count();
+    printf("server will tick %d player(s)...\n", player_count);
     struct PlayerConnection *players = SERVER->players;
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < player_count; i++) {
         printf("i=%d, ", i);
         struct PlayerConnection *connection = &players[i];
         printf("ping %d and chat_cooldown %d; ", connection->ping, connection->chat_cooldown);
@@ -229,8 +228,8 @@ void server_tick(void) {
         player->living_entity->no_damage_ticks_maximum -= 1;
         printf("test2\n");
     }
-    printf("server has been ticked, playerCount=%d...\n", playerCount);
-    server_try_connecting_player(playerCount);
+    printf("server has been ticked, playerCount=%d...\n", player_count);
+    server_try_connecting_player(player_count);
     printf("test3\n");
 }
 
@@ -258,23 +257,24 @@ void server_sync_tickrate_for_player(struct Player *player, int no_damage_ticks_
 void server_change_tickrate(short ticks_per_second) {
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
+    BLOCK_BREAK_DELAY_TICKS = TICKS_PER_SECOND / 3;
     
     const double interval = 1000 / (float) ticks_per_second;
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
     
-    const int playerCount = SERVER->player_count;
+    const int player_count = server_get_player_count();
     struct PlayerConnection *players = SERVER->players;
-    printf("updating tickrate values for %d player(s)...\n", playerCount);
+    printf("updating tickrate values for %d player(s)...\n", player_count);
     const int maximumPlayerNoDamageTicksMaximum = entity_type_get_no_damage_ticks_maximum(ENTITY_TYPE_MINECRAFT_PLAYER);
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &players[i];
         server_sync_tickrate_for_player(connection->player, maximumPlayerNoDamageTicksMaximum);
     }
     
-    const int livingEntityCount = SERVER->living_entity_count;
-    printf("updating tickrate values for %d living entities...\n", livingEntityCount);
+    const int living_entity_count = SERVER->living_entity_count;
+    printf("updating tickrate values for %d living entities...\n", living_entity_count);
     struct LivingEntity *livingEntities = SERVER->living_entities;
-    for (int i = 0; i < livingEntityCount; i++) {
+    for (int i = 0; i < living_entity_count; i++) {
         struct LivingEntity *living_entity = &livingEntities[i];
         const struct EntityType entity_type = living_entity->damageable->entity->type;
         server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type_get_no_damage_ticks_maximum(entity_type));
@@ -385,10 +385,14 @@ struct Player *server_parse_player(int uuid) {
     return player;
 }
 
+unsigned int server_get_player_count(void) {
+    const struct PlayerConnection *players = SERVER->players;
+    return (sizeof(*players) / sizeof(&players[0]));
+}
 void server_try_connecting_player(int uuid) {
-    const int playerCount = SERVER->player_count;
-    const int maximum = SERVER->player_count_maximum;
-    if (playerCount + 1 > maximum) {
+    const unsigned int player_count = server_get_player_count();
+    const unsigned int maximum = SERVER->player_count_maximum;
+    if (player_count + 1 > maximum) {
         printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
     } else {
         struct PlayerConnection *test = server_parse_player_connection(uuid);
@@ -429,28 +433,26 @@ void server_player_joined(struct PlayerConnection *connection) {
     printf("\"%s\" joined with address %p server at address %p with %d ping, %d chat_cooldown, and %d no_damage_ticks_maximum\n", player->name, player, SERVER, connection->ping, connection->chat_cooldown, connection->player->living_entity->no_damage_ticks_maximum);
     event_manager_call_event((struct Event *) &event);
     
-    const int playerCount = SERVER->player_count;
+    const int playerCount = server_get_player_count();
     SERVER->players[playerCount] = *connection;
-    SERVER->player_count += 1;
 }
 void server_player_quit(struct PlayerConnection *connection) {
     int targetPlayerIndex = 0;
     const int playerUUID = connection->player->living_entity->damageable->entity->uuid;
-    const int playerCount = SERVER->player_count;
+    const int player_count = server_get_player_count();
     struct PlayerConnection *players = SERVER->players;
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < player_count; i++) {
         if (players[i].player->living_entity->damageable->entity->uuid == playerUUID) {
             targetPlayerIndex = i;
             break;
         }
     }
-    for (int i = targetPlayerIndex; i < playerCount-1; i++) {
+    for (int i = targetPlayerIndex; i < player_count-1; i++) {
         SERVER->players[i] = players[i+1];
     }
-    SERVER->player_count -= 1;
     player_connection_destroy(connection);
     
-    if (playerCount == 1) {
+    if (player_count == 1) {
         server_set_sleeping(1);
     }
 }

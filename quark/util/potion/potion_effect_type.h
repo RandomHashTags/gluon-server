@@ -9,11 +9,10 @@
 #define potion_effect_type_h
 
 struct PotionEffectType {
-    const char identifier[32];
+    const char *identifier;
 };
 
-char *potion_effect_type_get_name(struct PotionEffectType type);
-_Bool potion_effect_type_is_instant(struct PotionEffectType type);
+void potion_effect_type_destroy(struct PotionEffectType *type);
 
 extern struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_ABSORPTION;
 extern struct PotionEffectType POTION_EFFECT_TYPE_MINECRAFT_BAD_OMEN;

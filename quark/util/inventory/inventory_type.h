@@ -9,7 +9,7 @@
 #define inventory_type_h
 
 struct InventoryType {
-    const char identifier[24];
+    const char *identifier;
 };
 
 extern struct InventoryType INVENTORY_TYPE_MINECRAFT_ANVIL;

@@ -99,3 +99,18 @@ void living_entity_remove_potion_effect(struct LivingEntity *entity, struct Poti
         }
     }
 }
+
+void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, short amount) {
+    struct EntityEquipment *equipment = entity->equipment;
+    struct ItemStack *item_stack = equipment->item_in_main_hand;
+    const short durability = item_stack->durability;
+    if (durability > 0) {
+        const short new_durability = durability - 1;
+        if (new_durability == 0) {
+            equipment->item_in_main_hand = NULL;
+            item_stack_destroy(item_stack);
+        } else {
+            equipment->item_in_main_hand->durability -= 1;
+        }
+    }
+}

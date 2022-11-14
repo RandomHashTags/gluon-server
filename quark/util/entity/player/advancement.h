@@ -12,9 +12,9 @@
 
 struct Advancement {
     const struct QuarkPlugin *plugin;
-    const char identifier[16];
-    const char name[16];
-    const char description[32];
+    const char *identifier;
+    const char *name;
+    const char *description;
 };
 
 #endif /* advancement_h */

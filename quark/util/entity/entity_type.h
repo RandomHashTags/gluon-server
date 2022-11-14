@@ -9,7 +9,7 @@
 #define entity_type_h
 
 struct EntityType {
-    const char identifier[32];
+    const char *identifier;
 };
 
 extern struct EntityType ENTITY_TYPE_MINECRAFT_AREA_EFFECT_CLOUD;

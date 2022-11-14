@@ -181,6 +181,7 @@
 		67C304AE291737C300D89359 /* material.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material.c; sourceTree = "<group>"; };
 		67C304B0291A15A200D89359 /* utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		67C304B1291A15A200D89359 /* utilities.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utilities.c; sourceTree = "<group>"; };
+		67D4C3932921B2B800A3AC10 /* speed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = speed.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +331,7 @@
 				67A66C552921A86800A144F8 /* inventories */,
 				67A66C36292199CB00A144F8 /* material_categories */,
 				67A66C29292192BC00A144F8 /* materials */,
+				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
 				67A66C522921A76300A144F8 /* recipes */,
 			);
 			path = resources;
@@ -503,10 +505,10 @@
 				67A66C3E29219D4A00A144F8 /* material_block_configuration.c */,
 				67A66C4029219DDC00A144F8 /* material_item_configuration.h */,
 				67A66C4129219DDC00A144F8 /* material_item_configuration.c */,
-				67A66C4329219DFB00A144F8 /* material_names.h */,
-				67A66C4429219DFB00A144F8 /* material_names.c */,
 				67A66C4E2921A50C00A144F8 /* material_smelting_configuration.h */,
 				67A66C4F2921A50C00A144F8 /* material_smelting_configuration.c */,
+				67A66C4329219DFB00A144F8 /* material_names.h */,
+				67A66C4429219DFB00A144F8 /* material_names.c */,
 			);
 			path = material;
 			sourceTree = "<group>";
@@ -590,6 +592,22 @@
 				67C304AC29172F0A00D89359 /* potion_effect.c */,
 			);
 			path = potion;
+			sourceTree = "<group>";
+		};
+		67D4C3912921B25A00A3AC10 /* potion_effect_types */ = {
+			isa = PBXGroup;
+			children = (
+				67D4C3922921B26200A3AC10 /* minecraft */,
+			);
+			path = potion_effect_types;
+			sourceTree = "<group>";
+		};
+		67D4C3922921B26200A3AC10 /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+				67D4C3932921B2B800A3AC10 /* speed.json */,
+			);
+			path = minecraft;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

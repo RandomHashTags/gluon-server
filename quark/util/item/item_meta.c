@@ -5,12 +5,25 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "item_meta.h"
 
+struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants) {
+    struct ItemMeta *meta = malloc(sizeof(struct ItemMeta));
+    if (!meta) {
+        printf("failed to allocate memory for a ItemMeta\n");
+        return NULL;
+    }
+    meta->display_name = display_name;
+    meta->lore = lore;
+    meta->enchants = enchants;
+    return meta;
+}
 void item_meta_destroy(struct ItemMeta *meta) {
     enchants_destroy(meta->enchants);
     free(meta->display_name);
+    free(meta->lore);
     free(meta);
 }
 

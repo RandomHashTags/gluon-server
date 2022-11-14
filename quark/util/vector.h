@@ -9,9 +9,9 @@
 #define vector_h
 
 struct Vector {
-    double x;
-    double y;
-    double z;
+    float x;
+    float y;
+    float z;
 };
 
 #endif /* vector_h */

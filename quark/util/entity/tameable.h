@@ -13,7 +13,7 @@
 struct Tameable {
     struct LivingEntity *entity;
     
-    int owner_uuid;
+    unsigned int owner_uuid;
     _Bool is_tamed;
 };
 

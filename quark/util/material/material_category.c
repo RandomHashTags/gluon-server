@@ -9,5 +9,6 @@
 #include "material_category.h"
 
 void material_category_destroy(struct MaterialCategory *category) {
+    free((char *) category->identifier);
     free(category);
 }

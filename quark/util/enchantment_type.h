@@ -11,8 +11,8 @@
 #include "enchantment_target.h"
 
 struct EnchantmentType {
-    const char identifier[16];
-    const int max_level;
+    const char *identifier;
+    const unsigned short max_level;
     const struct EnchantmentType *incompatible_with;
 };
 

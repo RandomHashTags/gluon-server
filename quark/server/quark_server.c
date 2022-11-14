@@ -21,11 +21,23 @@ unsigned short TICKS_PER_SECOND;
 float TICKS_PER_SECOND_MULTIPLIER;
 unsigned short BLOCK_BREAK_DELAY_TICKS;
 struct QuarkServer *SERVER;
+
+#define QUARK_SERVER_THREAD_COUNT 3
+#define QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS 0
+#define QUARK_SERVER_THREAD_ID_SERVER_LOOP 1
+#define QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS 2
 pthread_t *THREADS;
 
 void server_destroy(void) {
     server_deallocate();
     free(SERVER);
+}
+int64_t current_time_milliseconds(void) {
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    int64_t seconds = (int64_t) now.tv_sec * 1000;
+    int64_t microseconds = now.tv_usec / 1000;
+    return seconds;
 }
 struct QuarkServer *server_create() {
     struct QuarkServer *serverPointer = malloc(sizeof(struct QuarkServer));
@@ -34,28 +46,33 @@ struct QuarkServer *server_create() {
         return NULL;
     }
     serverPointer->is_sleeping = 1;
-    serverPointer->port = 25565;
+    
+    const unsigned int port = 25565;
+    memcpy((unsigned int *) &serverPointer->port, &port, sizeof(port));
+    
+    const int64_t started = current_time_milliseconds();
+    memcpy((int64_t *) &serverPointer->started, &started, sizeof(started));
+    
+    const unsigned int players_maximum = 2;
+    memcpy((unsigned int *) &serverPointer->player_count_maximum, &players_maximum, sizeof(unsigned int));
+    struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
+    if (!players) {
+        printf("failed to allocate memory for a QuarkServer playersPointer\n");
+        return 0;
+    }
+    serverPointer->players = players;
     SERVER = serverPointer;
-    printf("created server with address %p\n", serverPointer);
+    server_change_tickrate(20);
+    printf("created server with address %p, created at %lld\n", serverPointer, started);
     return serverPointer;
 }
 _Bool server_allocate(void) {
     struct World *worldsPointer = malloc(4 * sizeof(struct World));
     if (!worldsPointer) {
         printf("failed to allocate memory for a QuarkServer worldsPointer\n");
-        return NULL;
+        return 0;
     }
     SERVER->worlds = worldsPointer;
-    
-    const int players_maximum = 2;
-    memcpy((int *) &SERVER->player_count_maximum, &players_maximum, sizeof(int));
-    struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
-    if (!players) {
-        printf("failed to allocate memory for a QuarkServer playersPointer\n");
-        return NULL;
-    }
-    SERVER->players = players;
-    server_change_tickrate(20);
     return 1;
 }
 void server_deallocate(void) {
@@ -70,14 +87,13 @@ void server_deallocate(void) {
     }
     free(SERVER->plugins);
     
-    const int player_count = server_get_player_count();
+    const int player_count = SERVER->player_count;
     struct PlayerConnection *connections = SERVER->players;
     for (int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &connections[i];
         // TODO: kick player
         player_connection_destroy(connection);
     }
-    free(SERVER->players);
     free(SERVER->players_whitelisted);
     free(SERVER->banned_ips);
     free(SERVER->banned_players);
@@ -110,24 +126,19 @@ void server_deallocate(void) {
 
 void acceptClient(const int sockID, const struct sockaddr_in servAddr, const char *msg, const short msgSize, const short maximum) {
     const int client = accept(sockID, NULL, NULL);
-    send(client, msg, msgSize, 0);
+    //send(client, msg, msgSize, 0);
+    printf("Received connection\n");
     
-    char response[4];
-    recv(client, response, sizeof(response), 0);
-    
-    printf("Received response %s\n", response);
-    const float amount = atof(response);
-    printf("Received amount %f\n", amount);
-    
-    const int player_count = server_get_player_count();
+    const unsigned int player_count = SERVER->player_count;
     if (player_count + 1 == maximum) {
-        printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
+        printf("player cannot join due to the server being full! (%d maximum players allowed, %d connected)\n", maximum, player_count);
     } else {
         struct PlayerConnection *test = server_parse_player_connection(player_count);
         if (test) {
             server_player_joined(test);
         }
     }
+    //close(client);
 }
 void *connectPlayers(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
@@ -149,10 +160,11 @@ void *connectPlayers(void *threadID) {
     while (alive) {
         acceptClient(sockID, servAddr, msg, msgSize, maximum);
     }
+    close(sockID);
     printf("server will stop accepting clients...\n");
     pthread_exit(threadID);
 }
-void *beginTickingServer(void *threadID) {
+void *begin_ticking_server(void *threadID) {
     double interval = 1000 / (double) TICKS_PER_SECOND;
     printf("starting to tick server %d times every second (once every %f ms)...\n", TICKS_PER_SECOND, interval);
     interval = (double) TICKS_PER_SECOND / 1000;
@@ -164,15 +176,25 @@ void *beginTickingServer(void *threadID) {
     printf("shut down server ticking...\n");
     pthread_exit(threadID);
 }
+void *begin_updating_player_pings(void *threadID) {
+    const unsigned short interval = 10;
+    printf("starting to update player pings every %d seconds...\n", interval);
+    while (SERVER != NULL) {
+        server_update_player_ping_rates();
+        sleep(interval);
+    }
+    printf("shut down updating player ping updates...\n");
+    pthread_exit(threadID);
+}
 void server_start() {
-    pthread_t *threads = malloc(2 * sizeof(pthread_t));
+    pthread_t *threads = malloc(QUARK_SERVER_THREAD_COUNT * sizeof(pthread_t));
     if (!threads) {
-        printf("failed to allocate memory for the 2 threads\n");
+        printf("failed to allocate memory for the %d threads\n", QUARK_SERVER_THREAD_COUNT);
         return;
     }
     THREADS = threads;
-    pthread_create(&THREADS[0], NULL, connectPlayers, (void *) 0);
-    pthread_join(THREADS[0], NULL);
+    pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], NULL, connectPlayers, (void *) QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS);
+    pthread_join(THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], NULL);
 }
 void server_stop(void) {
     server_destroy();
@@ -185,52 +207,51 @@ void server_set_sleeping(_Bool value) {
         if (!value) {
             const _Bool allocated = server_allocate();
             if (allocated) {
-                pthread_create(&THREADS[1], NULL, beginTickingServer, (void *) 1);
-                pthread_join(THREADS[1], NULL);
+                pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], NULL, begin_ticking_server, (void *) QUARK_SERVER_THREAD_ID_SERVER_LOOP);
+                pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], NULL, begin_updating_player_pings, (void *) QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
             } else {
                 printf("failed to allocate memory to run server\n");
             }
         } else {
-            pthread_join(THREADS[0], NULL);
             server_deallocate();
-            pthread_kill(THREADS[1], 1);
+            pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], QUARK_SERVER_THREAD_ID_SERVER_LOOP);
+            pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
         }
     }
 }
 
 void server_tick(void) {
     printf("\nserver at address %p will be ticked...\n", SERVER);
+    
     const int entityCount = SERVER->entity_count;
+    printf("server will tick %d entities...\n", entityCount);
     struct Entity *entities = SERVER->entities;
     for (int i = 0; i < entityCount; i++) {
         struct Entity *entity = &entities[i];
         entity_tick(entity);
     }
     
-    printf("server will begin ticking living entities...\n");
     const int livingEntityCount = SERVER->living_entity_count;
+    printf("server will tick %d living entities...\n", livingEntityCount);
     struct LivingEntity *livingEntities = SERVER->living_entities;
     for (int i = 0; i < livingEntityCount; i++) {
         struct LivingEntity *entity = &livingEntities[i];
         living_entity_tick(entity);
     }
     
-    const int player_count = server_get_player_count();
+    const int player_count = SERVER->player_count;
     printf("server will tick %d player(s)...\n", player_count);
     struct PlayerConnection *players = SERVER->players;
     for (int i = 0; i < player_count; i++) {
-        printf("i=%d, ", i);
+        printf("ticking player #%d, ", i);
         struct PlayerConnection *connection = &players[i];
-        printf("ping %d and chat_cooldown %d; ", connection->ping, connection->chat_cooldown);
+        printf("with ping %d\n", connection->ping);
         struct Player *player = connection->player;
         player_tick(player);
         damageable_damage(player->living_entity->damageable, 1);
-        player->living_entity->no_damage_ticks_maximum -= 1;
         printf("test2\n");
     }
-    printf("server has been ticked, playerCount=%d...\n", player_count);
-    server_try_connecting_player(player_count);
-    printf("test3\n");
+    printf("server has been ticked\n");
 }
 
 void server_sync_tickrate_for_entity(struct Entity *entity, struct EntityType entity_type) {
@@ -244,17 +265,17 @@ void server_sync_tickrate_for_living_entity(struct LivingEntity *living_entity, 
     living_entity->no_damage_ticks_maximum = no_damage_ticks_maximum;
     
     struct PotionEffect *potionEffects = living_entity->potion_effects;
-    const int potionEffectsCount = sizeof(*potionEffects) / sizeof(&potionEffects[0]);
-    for (int i = 0; i < potionEffectsCount; i++) {
+    const unsigned short potion_effect_count = living_entity->potion_effect_count;
+    for (int i = 0; i < potion_effect_count; i++) {
         potionEffects[i].duration *= TICKS_PER_SECOND_MULTIPLIER;
     }
     
     server_sync_tickrate_for_entity(entity, entity_type);
 }
-void server_sync_tickrate_for_player(struct Player *player, int no_damage_ticks_maximum) {
+void server_sync_tickrate_for_player(struct Player *player, unsigned int no_damage_ticks_maximum) {
     server_sync_tickrate_for_living_entity(player->living_entity, ENTITY_TYPE_MINECRAFT_PLAYER, no_damage_ticks_maximum);
 }
-void server_change_tickrate(short ticks_per_second) {
+void server_change_tickrate(unsigned short ticks_per_second) {
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
     BLOCK_BREAK_DELAY_TICKS = TICKS_PER_SECOND / 3;
@@ -262,7 +283,7 @@ void server_change_tickrate(short ticks_per_second) {
     const double interval = 1000 / (float) ticks_per_second;
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
     
-    const int player_count = server_get_player_count();
+    const unsigned int player_count = SERVER->player_count;
     struct PlayerConnection *players = SERVER->players;
     printf("updating tickrate values for %d player(s)...\n", player_count);
     const int maximumPlayerNoDamageTicksMaximum = entity_type_get_no_damage_ticks_maximum(ENTITY_TYPE_MINECRAFT_PLAYER);
@@ -312,17 +333,17 @@ void server_world_destroy(struct World *world) {
     }
 }
 
-struct Entity *server_parse_entity(struct EntityType entity_type, int uuid) {
+struct Entity *server_parse_entity(struct EntityType entity_type, unsigned int uuid) {
     struct Entity *entity = malloc(sizeof(struct Entity));
     if (!entity) {
         printf("failed to allocate memory for a Entity\n");
         return NULL;
     }
     memcpy((struct EntityType *) &entity->type, &entity_type, sizeof(struct EntityType));
-    memcpy((int *) &entity->uuid, &uuid, sizeof(int));
+    memcpy((unsigned int *) &entity->uuid, &uuid, sizeof(uuid));
     return entity;
 }
-struct Damageable *server_parse_damageable(struct EntityType entity_type, int uuid, double health, double health_maximum) {
+struct Damageable *server_parse_damageable(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum) {
     struct Entity *entity = server_parse_entity(entity_type, uuid);
     if (!entity) {
         return NULL;
@@ -337,7 +358,7 @@ struct Damageable *server_parse_damageable(struct EntityType entity_type, int uu
     damageable->health_maximum = health_maximum;
     return damageable;
 }
-struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, int uuid, double health, double health_maximum) {
+struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum) {
     struct Damageable *damageable = server_parse_damageable(entity_type, uuid, health, health_maximum);
     if (!damageable) {
         return NULL;
@@ -355,12 +376,13 @@ struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, i
     }
     
     entity->damageable = damageable;
+    entity->potion_effect_count = 0;
     entity->potion_effects = potionEffects;
     entity->no_damage_ticks = 0;
     entity->no_damage_ticks_maximum = entity_type_get_no_damage_ticks_maximum(entity_type);
     return entity;
 }
-struct Player *server_parse_player(int uuid) {
+struct Player *server_parse_player(unsigned int uuid) {
     struct LivingEntity *entity = server_parse_living_entity(ENTITY_TYPE_MINECRAFT_PLAYER, uuid, 20, 20);
     if (!entity) {
         return NULL;
@@ -377,20 +399,17 @@ struct Player *server_parse_player(int uuid) {
         return NULL;
     }
     namePointer = uuid == 0 ? "RandomHashTags" : uuid == 1 ? "test2" : uuid == 2 ? "test3" : "test4";
-    const int firstPlayed = 50;
+    const unsigned int firstPlayed = 50;
     
     player->living_entity = entity;
     player->name = namePointer;
-    memcpy((int *) &player->first_played, &firstPlayed, sizeof(int));
+    memcpy((unsigned int *) &player->first_played, &firstPlayed, sizeof(firstPlayed));
+    player->block_break_delay = 0;
     return player;
 }
 
-unsigned int server_get_player_count(void) {
-    const struct PlayerConnection *players = SERVER->players;
-    return (sizeof(*players) / sizeof(&players[0]));
-}
-void server_try_connecting_player(int uuid) {
-    const unsigned int player_count = server_get_player_count();
+void server_try_connecting_player(unsigned int uuid) {
+    const unsigned int player_count = SERVER->player_count;
     const unsigned int maximum = SERVER->player_count_maximum;
     if (player_count + 1 > maximum) {
         printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
@@ -399,7 +418,7 @@ void server_try_connecting_player(int uuid) {
         server_player_joined(test);
     }
 }
-struct PlayerConnection *server_parse_player_connection(int uuid) {
+struct PlayerConnection *server_parse_player_connection(unsigned int uuid) {
     struct Player *player = server_parse_player(uuid);
     if (!player) {
         return NULL;
@@ -415,6 +434,14 @@ struct PlayerConnection *server_parse_player_connection(int uuid) {
     connection->chat_cooldown = 20;
     printf("parsed player \"%s\" with address=%p\n", player->name, player);
     return connection;
+}
+void server_update_player_ping_rates(void) {
+    const int player_count = SERVER->player_count;
+    struct PlayerConnection *connections = SERVER->players;
+    for (int i = 0; i < player_count; i++) {
+        struct PlayerConnection *connection = &connections[i];
+        connection->ping = (unsigned short) rand();
+    }
 }
 
 void server_player_joined(struct PlayerConnection *connection) {
@@ -433,25 +460,25 @@ void server_player_joined(struct PlayerConnection *connection) {
     printf("\"%s\" joined with address %p server at address %p with %d ping, %d chat_cooldown, and %d no_damage_ticks_maximum\n", player->name, player, SERVER, connection->ping, connection->chat_cooldown, connection->player->living_entity->no_damage_ticks_maximum);
     event_manager_call_event((struct Event *) &event);
     
-    const int playerCount = server_get_player_count();
+    const unsigned int playerCount = SERVER->player_count;
     SERVER->players[playerCount] = *connection;
+    SERVER->player_count += 1;
 }
 void server_player_quit(struct PlayerConnection *connection) {
-    int targetPlayerIndex = 0;
-    const int playerUUID = connection->player->living_entity->damageable->entity->uuid;
-    const int player_count = server_get_player_count();
+    const unsigned int player_uuid = connection->player->living_entity->damageable->entity->uuid;
+    const unsigned int player_count = SERVER->player_count;
     struct PlayerConnection *players = SERVER->players;
     for (int i = 0; i < player_count; i++) {
-        if (players[i].player->living_entity->damageable->entity->uuid == playerUUID) {
-            targetPlayerIndex = i;
+        if (players[i].player->living_entity->damageable->entity->uuid == player_uuid) {
+            for (int j = i; j < player_count-1; j++) {
+                SERVER->players[j] = players[j+1];
+            }
             break;
         }
     }
-    for (int i = targetPlayerIndex; i < player_count-1; i++) {
-        SERVER->players[i] = players[i+1];
-    }
-    player_connection_destroy(connection);
     
+    player_connection_destroy(connection);
+    SERVER->player_count -= 1;
     if (player_count == 1) {
         server_set_sleeping(1);
     }

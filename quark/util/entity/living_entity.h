@@ -25,6 +25,7 @@ struct LivingEntity {
     _Bool is_swimming;
     _Bool is_riptiding;
     
+    unsigned short potion_effect_count;
     struct PotionEffect *potion_effects;
     
     double eye_height;

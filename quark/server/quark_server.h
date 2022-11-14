@@ -8,12 +8,14 @@
 #ifndef quark_server_h
 #define quark_server_h
 
+#include <sys/time.h>
 #include "../util/difficulty.h"
 #include "../network/player_connection.h"
 
 struct QuarkServer {
     const char *hostname;
-    int port;
+    const unsigned int port;
+    const int64_t started;
     struct Difficulty difficulty;
     _Bool is_sleeping;
     
@@ -32,6 +34,7 @@ struct QuarkServer {
     unsigned short world_count_maximum;
     struct World *worlds;
     
+    unsigned int player_count;
     const unsigned int player_count_maximum;
     struct PlayerConnection *players;
     char *players_whitelisted;
@@ -62,21 +65,21 @@ void server_stop(void);
 void server_set_sleeping(_Bool value);
 
 void server_tick(void);
-void server_change_tickrate(short ticks_per_second);
+void server_change_tickrate(unsigned short ticks_per_second);
 
 void server_world_create(struct World *world);
 void server_world_destroy(struct World *world);
 
 void server_broadcast_message(char *message);
 
-struct Entity *server_parse_entity(struct EntityType entity_type, int uuid);
-struct Damageable *server_parse_damageable(struct EntityType entity_type, int uuid, double health, double health_maximum);
-struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, int uuid, double heath, double health_maximum);
-struct Player *server_parse_player(int uuid);
+struct Entity *server_parse_entity(struct EntityType entity_type, unsigned int uuid);
+struct Damageable *server_parse_damageable(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum);
+struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, unsigned int uuid, double heath, double health_maximum);
+struct Player *server_parse_player(unsigned int uuid);
 
-unsigned int server_get_player_count(void);
-void server_try_connecting_player(int uuid);
-struct PlayerConnection *server_parse_player_connection(int uuid);
+void server_try_connecting_player(unsigned int uuid);
+struct PlayerConnection *server_parse_player_connection(unsigned int uuid);
+void server_update_player_ping_rates(void);
 
 void server_player_joined(struct PlayerConnection *player);
 void server_player_quit(struct PlayerConnection *player);

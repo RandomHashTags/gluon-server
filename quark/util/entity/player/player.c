@@ -22,6 +22,7 @@ void player_destroy(struct Player *player) {
     free(player->list_name);
     free(player->permissions);
     free(player->advancements);
+    free(player->spectator_target);
     free(player);
 }
 
@@ -29,9 +30,9 @@ void player_tick(struct Player *player) {
     printf("player \"%s\" at address %p has been ticked; has %f health\n", player->name, player, player->living_entity->damageable->health);
     living_entity_tick(player->living_entity);
     
-    const unsigned short block_break_delay = player->block_break_delay;
-    if (block_break_delay-1 >= 0) {
-        player->block_break_delay -= 1;
+    const unsigned short new_block_break_delay = player->block_break_delay - 1;
+    if (new_block_break_delay >= 0) {
+        player->block_break_delay = new_block_break_delay;
     }
 }
 

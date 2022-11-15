@@ -18,7 +18,7 @@ struct Entity {
     
     char *display_name;
     
-    struct Location location;
+    struct Location *location;
     struct Vector vector;
     
     unsigned short fire_ticks;

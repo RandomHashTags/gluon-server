@@ -27,7 +27,7 @@
 		6759E98E291C96C000EB161F /* projectile.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E98D291C96C000EB161F /* projectile.c */; };
 		6759E991291C975B00EB161F /* projectile_source.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E990291C975B00EB161F /* projectile_source.c */; };
 		6759E995291C9C6A00EB161F /* projectile_arrow.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E994291C9C6A00EB161F /* projectile_arrow.c */; };
-		6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E997291CC28D00EB161F /* quark_plugin_version.c */; };
+		6759E998291CC28D00EB161F /* semantic_version.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E997291CC28D00EB161F /* semantic_version.c */; };
 		6759E99A291CC2EA00EB161F /* quark_plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E999291CC2EA00EB161F /* quark_plugin.c */; };
 		6759E99C291CCCF000EB161F /* entity_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E99B291CCCF000EB161F /* entity_type.c */; };
 		6759E99F291D967300EB161F /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 6759E99E291D967300EB161F /* vector.c */; };
@@ -120,8 +120,8 @@
 		6759E990291C975B00EB161F /* projectile_source.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = projectile_source.c; sourceTree = "<group>"; };
 		6759E993291C9C6A00EB161F /* projectile_arrow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectile_arrow.h; sourceTree = "<group>"; };
 		6759E994291C9C6A00EB161F /* projectile_arrow.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = projectile_arrow.c; sourceTree = "<group>"; };
-		6759E996291CC28D00EB161F /* quark_plugin_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = quark_plugin_version.h; sourceTree = "<group>"; };
-		6759E997291CC28D00EB161F /* quark_plugin_version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_plugin_version.c; sourceTree = "<group>"; };
+		6759E996291CC28D00EB161F /* semantic_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = semantic_version.h; sourceTree = "<group>"; };
+		6759E997291CC28D00EB161F /* semantic_version.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = semantic_version.c; sourceTree = "<group>"; };
 		6759E999291CC2EA00EB161F /* quark_plugin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_plugin.c; sourceTree = "<group>"; };
 		6759E99B291CCCF000EB161F /* entity_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = entity_type.c; sourceTree = "<group>"; };
 		6759E99D291D967300EB161F /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
@@ -319,8 +319,6 @@
 			children = (
 				6753CF4F29148514008BD41C /* quark_plugin.h */,
 				6759E999291CC2EA00EB161F /* quark_plugin.c */,
-				6759E996291CC28D00EB161F /* quark_plugin_version.h */,
-				6759E997291CC28D00EB161F /* quark_plugin_version.c */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -379,6 +377,8 @@
 				6799444229142C4200D8F796 /* main.c */,
 				67C304B0291A15A200D89359 /* utilities.h */,
 				67C304B1291A15A200D89359 /* utilities.c */,
+				6759E996291CC28D00EB161F /* semantic_version.h */,
+				6759E997291CC28D00EB161F /* semantic_version.c */,
 			);
 			path = quark;
 			sourceTree = "<group>";
@@ -708,7 +708,7 @@
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
 				67A66C502921A50C00A144F8 /* material_smelting_configuration.c in Sources */,
 				67A66C15291F776E00A144F8 /* difficulty.c in Sources */,
-				6759E998291CC28D00EB161F /* quark_plugin_version.c in Sources */,
+				6759E998291CC28D00EB161F /* semantic_version.c in Sources */,
 				673D6B8D291567C900C0BDE7 /* creature.c in Sources */,
 				67A66C25291F8AB000A144F8 /* inventory_type.c in Sources */,
 				6753CF1E291454CF008BD41C /* player.c in Sources */,

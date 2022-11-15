@@ -13,6 +13,8 @@ struct InventoryType {
     const unsigned short size;
 };
 
+void inventory_type_destroy(struct InventoryType *type);
+
 extern struct InventoryType INVENTORY_TYPE_MINECRAFT_ANVIL;
 extern struct InventoryType INVENTORY_TYPE_MINECRAFT_BARREL;
 extern struct InventoryType INVENTORY_TYPE_MINECRAFT_BEACON;

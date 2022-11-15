@@ -11,14 +11,18 @@
 #include "world.h"
 
 struct Location {
-    float x;
-    float y;
-    float z;
+    const struct World *world;
+    long x;
+    long y;
+    long z;
+    unsigned short x_float;
+    unsigned short y_float;
+    unsigned short z_float;
     float yaw;
     float pitch;
-    const struct World *world;
 };
 
+struct Location *location_create(struct World *world, const long x, const long y, const long z, const unsigned x_float, const unsigned short y_float, const unsigned short z_float, const float yaw, const float pitch);
 void location_destroy(struct Location *location);
 
 struct Chunk *location_get_chunk(struct Location *location);

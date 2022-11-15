@@ -9,6 +9,7 @@
 #define crafting_recipe_h
 
 struct CraftingRecipe {
+    const _Bool enforce_format;
 };
 
 void crafting_recipe_destroy(struct CraftingRecipe *recipe);

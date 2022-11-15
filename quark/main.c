@@ -19,8 +19,13 @@ void init(void) {
 }
 
 void test(void) {
-    const unsigned int size = sizeof(struct Player);
+    const unsigned int size = sizeof(struct Location);
     printf("main.test; size=%d\n", size);
+    
+    const long test_long = 999999999999999999;
+    printf("main.test; long=%ld\n", test_long);
+    printf("main.test; float=%f\n", (float) test_long);
+    printf("main.test; double=%f\n", (double) test_long);
 }
 
 int main(int argc, const char * argv[]) {

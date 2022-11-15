@@ -5,7 +5,13 @@
 //  Created by Evan Anderson on 11/12/22.
 //
 
+#include <stdlib.h>
 #include "inventory_type.h"
+
+void inventory_type_destroy(struct InventoryType *type) {
+    free((char *) type->identifier);
+    free(type);
+}
 
 struct InventoryType INVENTORY_TYPE_MINECRAFT_ANVIL =         { .identifier = "minecraft.anvil" };
 struct InventoryType INVENTORY_TYPE_MINECRAFT_BARREL =        { .identifier = "minecraft.barrel" };

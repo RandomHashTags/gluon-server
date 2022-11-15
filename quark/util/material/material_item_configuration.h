@@ -16,7 +16,7 @@ struct MaterialItemConfiguration {
     const _Bool has_durability;
     const short durability;
     
-    const struct CraftingRecipe crafting_recipe;
+    const struct CraftingRecipe *crafting_recipe;
     union { // TODO: free these
         const char *spawned_entity;
         const char *placed_block_material;

@@ -7,9 +7,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "entity.h"
 
 void entity_destroy(struct Entity *entity) {
+    location_destroy(entity->location);
     free((char *) entity->display_name);
     free(entity);
 }
@@ -22,5 +24,5 @@ void entity_tick(struct Entity *entity) {
 }
 
 void entity_teleport(struct Entity *entity, struct Location *location) {
-    entity->location = *location;
+    memcpy(entity->location, location, sizeof(struct Location));
 }

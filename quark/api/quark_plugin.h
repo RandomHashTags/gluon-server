@@ -8,13 +8,13 @@
 #ifndef quark_plugin_h
 #define quark_plugin_h
 
-#include "quark_plugin_version.h"
+#include "../semantic_version.h"
 //#include "../util/item/struct struct Material.h"
 
 struct QuarkPlugin {
     const char *name;
     const char *authors;
-    const struct QuarkPluginVersion version;
+    const struct SemanticVersion version;
     //const enum struct struct Material *struct Materials;
 };
 

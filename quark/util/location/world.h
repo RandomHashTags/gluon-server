@@ -13,7 +13,7 @@
 //#include "../entity/entity.h" // TODO: FIX - WHY BROKEN ??
 
 struct World {
-    const int seed[32];
+    const long seed;
     const char *name;
     
     struct Difficulty difficulty;
@@ -23,6 +23,7 @@ struct World {
     struct Chunk *chunks_loaded;
 };
 
+struct World *world_create(long seed);
 void world_destroy(struct World *world);
 
 void world_load_chunk(struct World *world, struct Chunk *chunk);

@@ -65,20 +65,20 @@ void server_stop(void);
 void server_set_sleeping(_Bool value);
 
 void server_tick(void);
-void server_change_tickrate(unsigned short ticks_per_second);
+void server_change_tickrate(const unsigned short ticks_per_second);
 
 void server_world_create(struct World *world);
 void server_world_destroy(struct World *world);
 
 void server_broadcast_message(char *message);
 
-struct Entity *server_parse_entity(struct EntityType entity_type, unsigned int uuid);
-struct Damageable *server_parse_damageable(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum);
-struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, unsigned int uuid, double heath, double health_maximum);
-struct Player *server_parse_player(unsigned int uuid);
+struct Entity *server_parse_entity(const struct EntityType *entity_type, const unsigned int uuid);
+struct Damageable *server_parse_damageable(const struct EntityType *entity_type, const unsigned int uuid, const double health, const double health_maximum);
+struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_type, const unsigned int uuid, const double heath, const double health_maximum);
+struct Player *server_parse_player(const unsigned int uuid);
 
-void server_try_connecting_player(unsigned int uuid);
-struct PlayerConnection *server_parse_player_connection(unsigned int uuid);
+void server_try_connecting_player(const unsigned int uuid);
+struct PlayerConnection *server_parse_player_connection(const unsigned int uuid);
 void server_update_player_ping_rates(void);
 
 void server_player_joined(struct PlayerConnection *player);

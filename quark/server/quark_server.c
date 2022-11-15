@@ -37,7 +37,7 @@ int64_t current_time_milliseconds(void) {
     gettimeofday(&now, NULL);
     int64_t seconds = (int64_t) now.tv_sec * 1000;
     int64_t microseconds = now.tv_usec / 1000;
-    return seconds;
+    return seconds + microseconds;
 }
 struct QuarkServer *server_create() {
     struct QuarkServer *serverPointer = malloc(sizeof(struct QuarkServer));
@@ -138,7 +138,7 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
             server_player_joined(test);
         }
     }
-    //close(client);
+    close(client);
 }
 void *connectPlayers(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
@@ -223,18 +223,18 @@ void server_set_sleeping(_Bool value) {
 void server_tick(void) {
     printf("\nserver at address %p will be ticked...\n", SERVER);
     
-    const int entityCount = SERVER->entity_count;
-    printf("server will tick %d entities...\n", entityCount);
+    const int entity_count = SERVER->entity_count;
+    printf("server will tick %d entities...\n", entity_count);
     struct Entity *entities = SERVER->entities;
-    for (int i = 0; i < entityCount; i++) {
+    for (int i = 0; i < entity_count; i++) {
         struct Entity *entity = &entities[i];
         entity_tick(entity);
     }
     
-    const int livingEntityCount = SERVER->living_entity_count;
-    printf("server will tick %d living entities...\n", livingEntityCount);
+    const int living_entity_count = SERVER->living_entity_count;
+    printf("server will tick %d living entities...\n", living_entity_count);
     struct LivingEntity *livingEntities = SERVER->living_entities;
-    for (int i = 0; i < livingEntityCount; i++) {
+    for (int i = 0; i < living_entity_count; i++) {
         struct LivingEntity *entity = &livingEntities[i];
         living_entity_tick(entity);
     }
@@ -249,33 +249,32 @@ void server_tick(void) {
         struct Player *player = connection->player;
         player_tick(player);
         damageable_damage(player->living_entity->damageable, 1);
-        printf("test2\n");
     }
     printf("server has been ticked\n");
 }
 
-void server_sync_tickrate_for_entity(struct Entity *entity, struct EntityType entity_type) {
+void server_sync_tickrate_for_entity(struct Entity *entity, const struct EntityType *entity_type) {
     entity->fire_ticks *= TICKS_PER_SECOND_MULTIPLIER;
-    entity->fire_ticks_maximum = entity_type_get_fire_ticks_maximum(entity_type);
+    entity->fire_ticks_maximum = entity_type->fire_ticks_maximum;
 }
-void server_sync_tickrate_for_living_entity(struct LivingEntity *living_entity, struct EntityType entity_type, int no_damage_ticks_maximum) {
+void server_sync_tickrate_for_living_entity(struct LivingEntity *living_entity, const struct EntityType *entity_type, int no_damage_ticks_maximum) {
     struct Entity *entity = living_entity->damageable->entity;
     
     living_entity->no_damage_ticks *= TICKS_PER_SECOND_MULTIPLIER;
     living_entity->no_damage_ticks_maximum = no_damage_ticks_maximum;
     
-    struct PotionEffect *potionEffects = living_entity->potion_effects;
+    struct PotionEffect *potion_effects = living_entity->potion_effects;
     const unsigned short potion_effect_count = living_entity->potion_effect_count;
     for (int i = 0; i < potion_effect_count; i++) {
-        potionEffects[i].duration *= TICKS_PER_SECOND_MULTIPLIER;
+        potion_effects[i].duration *= TICKS_PER_SECOND_MULTIPLIER;
     }
     
     server_sync_tickrate_for_entity(entity, entity_type);
 }
-void server_sync_tickrate_for_player(struct Player *player, unsigned int no_damage_ticks_maximum) {
-    server_sync_tickrate_for_living_entity(player->living_entity, ENTITY_TYPE_MINECRAFT_PLAYER, no_damage_ticks_maximum);
+void server_sync_tickrate_for_player(struct Player *player, const unsigned int no_damage_ticks_maximum) {
+    server_sync_tickrate_for_living_entity(player->living_entity, &ENTITY_TYPE_MINECRAFT_PLAYER, no_damage_ticks_maximum);
 }
-void server_change_tickrate(unsigned short ticks_per_second) {
+void server_change_tickrate(const unsigned short ticks_per_second) {
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
     BLOCK_BREAK_DELAY_TICKS = TICKS_PER_SECOND / 3;
@@ -286,7 +285,7 @@ void server_change_tickrate(unsigned short ticks_per_second) {
     const unsigned int player_count = SERVER->player_count;
     struct PlayerConnection *players = SERVER->players;
     printf("updating tickrate values for %d player(s)...\n", player_count);
-    const int maximumPlayerNoDamageTicksMaximum = entity_type_get_no_damage_ticks_maximum(ENTITY_TYPE_MINECRAFT_PLAYER);
+    const int maximumPlayerNoDamageTicksMaximum = ENTITY_TYPE_MINECRAFT_PLAYER.no_damage_ticks_maximum;
     for (int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &players[i];
         server_sync_tickrate_for_player(connection->player, maximumPlayerNoDamageTicksMaximum);
@@ -294,11 +293,11 @@ void server_change_tickrate(unsigned short ticks_per_second) {
     
     const int living_entity_count = SERVER->living_entity_count;
     printf("updating tickrate values for %d living entities...\n", living_entity_count);
-    struct LivingEntity *livingEntities = SERVER->living_entities;
+    struct LivingEntity *living_entities = SERVER->living_entities;
     for (int i = 0; i < living_entity_count; i++) {
-        struct LivingEntity *living_entity = &livingEntities[i];
-        const struct EntityType entity_type = living_entity->damageable->entity->type;
-        server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type_get_no_damage_ticks_maximum(entity_type));
+        struct LivingEntity *living_entity = &living_entities[i];
+        const struct EntityType *entity_type = living_entity->damageable->entity->type;
+        server_sync_tickrate_for_living_entity(living_entity, entity_type, entity_type->no_damage_ticks_maximum);
     }
     
     printf("server successfully updated tickrate values\n");
@@ -333,17 +332,18 @@ void server_world_destroy(struct World *world) {
     }
 }
 
-struct Entity *server_parse_entity(struct EntityType entity_type, unsigned int uuid) {
+struct Entity *server_parse_entity(const struct EntityType *entity_type, const unsigned int uuid) {
     struct Entity *entity = malloc(sizeof(struct Entity));
     if (!entity) {
         printf("failed to allocate memory for a Entity\n");
         return NULL;
     }
-    memcpy((struct EntityType *) &entity->type, &entity_type, sizeof(struct EntityType));
+    entity->type = entity_type;
+    //memcpy((struct EntityType *) &entity->type, &entity_type, sizeof(struct EntityType));
     memcpy((unsigned int *) &entity->uuid, &uuid, sizeof(uuid));
     return entity;
 }
-struct Damageable *server_parse_damageable(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum) {
+struct Damageable *server_parse_damageable(const struct EntityType *entity_type, const unsigned int uuid, const double health, const double health_maximum) {
     struct Entity *entity = server_parse_entity(entity_type, uuid);
     if (!entity) {
         return NULL;
@@ -358,7 +358,7 @@ struct Damageable *server_parse_damageable(struct EntityType entity_type, unsign
     damageable->health_maximum = health_maximum;
     return damageable;
 }
-struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, unsigned int uuid, double health, double health_maximum) {
+struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_type, const unsigned int uuid, const double health, const double health_maximum) {
     struct Damageable *damageable = server_parse_damageable(entity_type, uuid, health, health_maximum);
     if (!damageable) {
         return NULL;
@@ -379,11 +379,13 @@ struct LivingEntity *server_parse_living_entity(struct EntityType entity_type, u
     entity->potion_effect_count = 0;
     entity->potion_effects = potionEffects;
     entity->no_damage_ticks = 0;
-    entity->no_damage_ticks_maximum = entity_type_get_no_damage_ticks_maximum(entity_type);
+    entity->no_damage_ticks_maximum = entity_type->no_damage_ticks_maximum;
     return entity;
 }
 struct Player *server_parse_player(unsigned int uuid) {
-    struct LivingEntity *entity = server_parse_living_entity(ENTITY_TYPE_MINECRAFT_PLAYER, uuid, 20, 20);
+    const double health = 20;
+    const double health_maximum = 20;
+    struct LivingEntity *entity = server_parse_living_entity(&ENTITY_TYPE_MINECRAFT_PLAYER, uuid, health, health_maximum);
     if (!entity) {
         return NULL;
     }
@@ -408,7 +410,7 @@ struct Player *server_parse_player(unsigned int uuid) {
     return player;
 }
 
-void server_try_connecting_player(unsigned int uuid) {
+void server_try_connecting_player(const unsigned int uuid) {
     const unsigned int player_count = SERVER->player_count;
     const unsigned int maximum = SERVER->player_count_maximum;
     if (player_count + 1 > maximum) {
@@ -418,7 +420,7 @@ void server_try_connecting_player(unsigned int uuid) {
         server_player_joined(test);
     }
 }
-struct PlayerConnection *server_parse_player_connection(unsigned int uuid) {
+struct PlayerConnection *server_parse_player_connection(const unsigned int uuid) {
     struct Player *player = server_parse_player(uuid);
     if (!player) {
         return NULL;
@@ -437,11 +439,13 @@ struct PlayerConnection *server_parse_player_connection(unsigned int uuid) {
 }
 void server_update_player_ping_rates(void) {
     const int player_count = SERVER->player_count;
+    printf("updating %d player pings...\n", player_count);
     struct PlayerConnection *connections = SERVER->players;
     for (int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &connections[i];
         connection->ping = (unsigned short) rand();
     }
+    printf("finished updating player pings\n");
 }
 
 void server_player_joined(struct PlayerConnection *connection) {

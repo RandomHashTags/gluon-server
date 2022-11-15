@@ -14,12 +14,12 @@
 
 struct Block {
     struct Material *material;
-    unsigned short light_level;
+    unsigned char light_level;
     
-    const struct BlockLocation location;
+    const struct BlockLocation *location;
 };
 
-struct Block *block_create(struct Material *material, struct BlockLocation location);
+struct Block *block_create(struct Material *material, struct BlockLocation *location);
 void block_destroy(struct Block *block);
 
 void block_break_naturally(struct Block *block, struct ItemStack *item);

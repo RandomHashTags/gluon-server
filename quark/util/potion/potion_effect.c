@@ -9,5 +9,6 @@
 #include <stdlib.h>
 
 void potion_effect_destroy(struct PotionEffect *effect) {
+    free((struct PotionEffectType *) effect->type);
     free(effect);
 }

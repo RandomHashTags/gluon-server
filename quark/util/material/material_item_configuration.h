@@ -12,9 +12,12 @@
 
 struct MaterialItemConfiguration {
     const unsigned char item_stack_size_maximum;
+    
+    const _Bool has_durability;
     const short durability;
-    const struct CraftingRecipe *crafting_recipe;
-    union {
+    
+    const struct CraftingRecipe crafting_recipe;
+    union { // TODO: free these
         const char *spawned_entity;
         const char *placed_block_material;
     };

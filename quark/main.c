@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include "managers/event_manager.h"
 #include "server/quark_server.h"
+#include "util/block/block.h"
 
 void init(void) {
     server_create();
@@ -17,7 +18,13 @@ void init(void) {
     printf("server thread has shutdown, all processing has finished.\n");
 }
 
+void test(void) {
+    const unsigned int size = sizeof(struct Player);
+    printf("main.test; size=%d\n", size);
+}
+
 int main(int argc, const char * argv[]) {
-    init();
+    test();
+    //init();
     //server_get_response(25565);
 }

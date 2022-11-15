@@ -14,7 +14,7 @@ struct ProjectileArrow {
     struct Projectile *projectile;
     
     double damage;
-    int pierce_level;
+    unsigned short pierce_level;
 };
 
 void projectile_arrow_destroy(struct ProjectileArrow *arrow);

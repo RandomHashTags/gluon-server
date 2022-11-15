@@ -17,4 +17,6 @@ struct Tameable {
     _Bool is_tamed;
 };
 
+void tameable_destroy(struct Tameable *tameable);
+
 #endif /* tameable_h */

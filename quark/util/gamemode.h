@@ -12,6 +12,8 @@ struct Gamemode {
     const char *identifier;
 };
 
+void gamemode_destroy(struct Gamemode *gamemode);
+
 extern struct Gamemode GAMEMODE_MINECRAFT_ADVENTURE;
 extern struct Gamemode GAMEMODE_MINECRAFT_CREATIVE;
 extern struct Gamemode GAMEMODE_MINECRAFT_SPECTATOR;

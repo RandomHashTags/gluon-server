@@ -16,6 +16,8 @@ struct DyeColor {
     const struct Color firework_color;
 };
 
+void dye_color_destroy(struct DyeColor *color);
+
 extern struct DyeColor DYE_COLOR_MINECRAFT_BLACK;
 extern struct DyeColor DYE_COLOR_MINECRAFT_BLUE;
 extern struct DyeColor DYE_COLOR_MINECRAFT_BROWN;

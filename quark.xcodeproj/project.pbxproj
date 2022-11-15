@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		672760AC292386B500F26301 /* seed_generator.c in Sources */ = {isa = PBXBuildFile; fileRef = 672760AB292386B500F26301 /* seed_generator.c */; };
 		673D6B8D291567C900C0BDE7 /* creature.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8C291567C900C0BDE7 /* creature.c */; };
 		673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment_type.c */; };
 		673D6B9329156B7200C0BDE7 /* damageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B9229156B7200C0BDE7 /* damageable.c */; };
@@ -69,6 +70,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		672760AA292386B500F26301 /* seed_generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = seed_generator.h; sourceTree = "<group>"; };
+		672760AB292386B500F26301 /* seed_generator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = seed_generator.c; sourceTree = "<group>"; };
 		673D6B8A2915659A00C0BDE7 /* event_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_type.h; sourceTree = "<group>"; };
 		673D6B8B291567C900C0BDE7 /* creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = creature.h; sourceTree = "<group>"; };
 		673D6B8C291567C900C0BDE7 /* creature.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = creature.c; sourceTree = "<group>"; };
@@ -195,6 +198,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		672760A92923865800F26301 /* generators */ = {
+			isa = PBXGroup;
+			children = (
+				672760AA292386B500F26301 /* seed_generator.h */,
+				672760AB292386B500F26301 /* seed_generator.c */,
+			);
+			path = generators;
+			sourceTree = "<group>";
+		};
 		673D6B94291570E200C0BDE7 /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +372,7 @@
 				673D6B94291570E200C0BDE7 /* network */,
 				6753CF4E291484EF008BD41C /* api */,
 				6753CF362914689C008BD41C /* server */,
+				672760A92923865800F26301 /* generators */,
 				6799445829144B9100D8F796 /* util */,
 				6799445429143D1E00D8F796 /* events */,
 				67994452291439B200D8F796 /* managers */,
@@ -707,6 +720,7 @@
 				6753CF252914550B008BD41C /* location.c in Sources */,
 				673D6B97291570F200C0BDE7 /* player_connection.c in Sources */,
 				6759E99F291D967300EB161F /* vector.c in Sources */,
+				672760AC292386B500F26301 /* seed_generator.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
 				67A66C18291F7D9000A144F8 /* item.c in Sources */,

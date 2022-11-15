@@ -16,7 +16,7 @@ struct ItemStack {
     struct ItemMeta *meta;
     
     unsigned short amount;
-    short durability;
+    unsigned short durability;
 };
 
 struct ItemStack *item_stack_create(struct Material *material, short amount, short durability, struct ItemMeta *meta);

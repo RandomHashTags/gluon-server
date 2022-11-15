@@ -5,15 +5,13 @@
 //  Created by Evan Anderson on 11/10/22.
 //
 
+#include <stdlib.h>
 #include "entity_type.h"
 #include "../../utilities.h"
 
-int entity_type_get_no_damage_ticks_maximum(struct EntityType entity_type) {
-    return TICKS_PER_SECOND;
-}
-
-int entity_type_get_fire_ticks_maximum(struct EntityType entity_type) {
-    return TICKS_PER_SECOND;
+void entity_type_destroy(struct EntityType *type) {
+    free((char *) type->identifier);
+    free(type);
 }
 
 struct EntityType ENTITY_TYPE_MINECRAFT_AREA_EFFECT_CLOUD = { "minecraft.area_effect_cloud" };

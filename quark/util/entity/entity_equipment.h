@@ -20,4 +20,6 @@ struct EntityEquipment {
     struct ItemStack *boots;
 };
 
+void entity_equipment_destroy(struct EntityEquipment *equipment);
+
 #endif /* entity_equipment_h */

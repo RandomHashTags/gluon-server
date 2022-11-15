@@ -10,6 +10,7 @@
 
 struct InventoryType {
     const char *identifier;
+    const unsigned short size;
 };
 
 extern struct InventoryType INVENTORY_TYPE_MINECRAFT_ANVIL;

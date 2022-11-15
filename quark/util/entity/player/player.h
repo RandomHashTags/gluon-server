@@ -33,7 +33,6 @@ struct Player {
     
     unsigned int experience;
     unsigned int experience_level;
-    float saturation;
     unsigned int food_level;
     
     unsigned short block_break_delay;

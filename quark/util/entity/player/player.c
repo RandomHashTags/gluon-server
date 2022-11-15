@@ -117,6 +117,10 @@ void player_broke_block(struct Player *player, struct Block *block, _Bool instan
 void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool instantly, short item_damage_amount) {
     const int blocks_broken_count = sizeof(*blocks) / sizeof(&blocks[0]);
     _Bool *drop_items = malloc(blocks_broken_count * sizeof(_Bool));
+    if (!drop_items) {
+        printf("failed to allocate memory for a Player broke_blocks drop_items pointer\n");
+        return;
+    }
     struct PlayerBreakBlocksEvent breakEvent = {
         .event = {
             .player = player
@@ -136,7 +140,7 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
             for (int i = 0; i < blocks_broken_count; i++) {
                 const _Bool should_drop_items = updated_drop_items[i];
                 if (should_drop_items) {
-                    const struct MaterialConfiguration *configuration = blocks[0].material->configuration;
+                    const struct MaterialConfiguration *configuration = blocks[i].material->configuration;
                     if (configuration != NULL) {
                         const struct MaterialBlockConfiguration *blockConfiguration = configuration->block_configuration;
                         if (blockConfiguration != NULL) {

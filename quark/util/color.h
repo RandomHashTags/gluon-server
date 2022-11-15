@@ -9,9 +9,9 @@
 #define color_h
 
 struct Color {
-    unsigned int red;
-    unsigned int green;
-    unsigned int blue;
+    unsigned short red;
+    unsigned short green;
+    unsigned short blue;
 };
 
 #endif /* color_h */

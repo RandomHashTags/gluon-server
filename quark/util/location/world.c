@@ -5,10 +5,20 @@
 //  Created by Evan Anderson on 11/3/22.
 //
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "world.h"
 
+struct World *world_create(long seed) {
+    struct World *world = malloc(sizeof(struct World));
+    if (!world) {
+        printf("failed to allocate memory for a World\n");
+        return NULL;
+    }
+    memcpy((long *) world->seed, &seed, sizeof(seed));
+    return world;
+}
 void world_destroy(struct World *world) {
     free((char *) world->name);
     
@@ -37,10 +47,10 @@ void world_unload_chunk(struct World *world, struct Chunk *chunk) {
     for (int i = 0; i < chunks_loaded; i++) {
         struct Chunk *targetChunk = &chunks[i];
         if (targetChunk == chunk) {
-            const int chunkMemorySize = sizeof(struct Chunk);
+            const int chunk_memory_size = sizeof(struct Chunk);
             chunk_destroy(chunk);
             for (int j = i; j < chunks_loaded-1; j++) {
-                memmove(&chunks[j], &chunks[j+1], chunkMemorySize);
+                memmove(&chunks[j], &chunks[j+1], chunk_memory_size);
             }
             world->chunks_loaded_count -= 1;
             break;

@@ -12,18 +12,17 @@
 #include "../item/item_stack.h"
 
 struct Inventory {
-    struct InventoryType type;
-    
-    unsigned int size;
+    struct InventoryType *type;
     struct ItemStack *items;
     
     unsigned short viewers_count;
     struct Player *viewers;
 };
 
+void inventory_create(struct InventoryType type);
 void inventory_destroy(struct Inventory *inventory);
 
-struct ItemStack *inventory_get_item(struct Inventory *inventory, int slot);
-void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack *item);
+struct ItemStack *inventory_get_item(struct Inventory *inventory, unsigned short slot);
+void inventory_set_item(struct Inventory *inventory, unsigned short slot, struct ItemStack *item);
 
 #endif /* inventory_h */

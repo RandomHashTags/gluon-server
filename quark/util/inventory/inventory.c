@@ -17,7 +17,7 @@ void inventory_destroy(struct Inventory *inventory) {
     }
     free(viewers);
     
-    const int size = inventory->size;
+    const int size = inventory->type->size;
     struct ItemStack *items = inventory->items;
     for (int i = 0; i < size; i++) {
         struct ItemStack *item = &items[i];
@@ -28,12 +28,11 @@ void inventory_destroy(struct Inventory *inventory) {
     free(inventory);
 }
 
-struct ItemStack *inventory_get_item(struct Inventory *inventory, int slot) {
+struct ItemStack *inventory_get_item(struct Inventory *inventory, unsigned short slot) {
     return &inventory->items[slot];
 }
-void inventory_set_item(struct Inventory *inventory, int slot, struct ItemStack *item) {
-    if (slot < inventory->size) {
-        struct ItemStack *items = inventory->items;
-        memmove(&items[slot], item, sizeof(struct ItemStack));
+void inventory_set_item(struct Inventory *inventory, unsigned short slot, struct ItemStack *item) {
+    if (slot < inventory->type->size) {
+        inventory->items[slot] = *item;
     }
 }

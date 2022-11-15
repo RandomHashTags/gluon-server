@@ -10,18 +10,19 @@
 #include <string.h>
 #include "block.h"
 
-struct Block *block_create(struct Material *material, struct BlockLocation location) {
+struct Block *block_create(struct Material *material, struct BlockLocation *location) {
     struct Block *block = malloc(sizeof(struct Block));
     if (!block) {
         printf("failed to allocate memory for a Block\n");
         return NULL;
     }
     block->material = material;
-    memcpy((struct BlockLocation *) &block->location, &location, sizeof(struct BlockLocation));
+    block->location = location;
     return block;
 }
 void block_destroy(struct Block *block) {
-    block_location_destroy((struct BlockLocation *) &block->location);
+    block_location_destroy((struct BlockLocation *) block->location);
+    free(block->material);
     free(block);
 }
 

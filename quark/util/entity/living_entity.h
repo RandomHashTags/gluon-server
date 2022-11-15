@@ -33,8 +33,8 @@ struct LivingEntity {
     unsigned short no_damage_ticks;
     unsigned short no_damage_ticks_maximum;
     
-    unsigned int air_remaining;
-    unsigned int air_maximum;
+    unsigned short air_remaining;
+    unsigned short air_maximum;
     
     struct LivingEntity *killer;
 };
@@ -49,9 +49,9 @@ void living_entity_swing_main_hand(struct LivingEntity *entity);
 void living_entity_swing_off_hand(struct LivingEntity *entity);
 
 _Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
-void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, int amplifier, int duration);
+void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, unsigned short amplifier, unsigned short duration);
 void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
 
-void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, short amount);
+void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, unsigned short amount);
 
 #endif /* living_entity_h */

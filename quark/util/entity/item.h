@@ -17,4 +17,6 @@ struct Item {
     unsigned short pickup_delay;
 };
 
+void item_destroy(struct Item *item, _Bool destroy_item_stack);
+
 #endif /* item_h */

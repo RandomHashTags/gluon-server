@@ -13,7 +13,7 @@
 #include "../vector.h"
 
 struct Entity {
-    const struct EntityType type;
+    const struct EntityType *type;
     const unsigned int uuid;
     
     char *display_name;

@@ -10,7 +10,11 @@
 
 struct EntityType {
     const char *identifier;
+    unsigned short no_damage_ticks_maximum;
+    unsigned short fire_ticks_maximum;
 };
+
+void entity_type_destroy(struct EntityType *type);
 
 extern struct EntityType ENTITY_TYPE_MINECRAFT_AREA_EFFECT_CLOUD;
 extern struct EntityType ENTITY_TYPE_MINECRAFT_ARMOR_STAND;
@@ -137,8 +141,5 @@ extern struct EntityType ENTITY_TYPE_MINECRAFT_ZOMBIE;
 extern struct EntityType ENTITY_TYPE_MINECRAFT_ZOMBIE_HORSE;
 extern struct EntityType ENTITY_TYPE_MINECRAFT_ZOMBIE_VILLAGER;
 extern struct EntityType ENTITY_TYPE_MINECRAFT_ZOMBIFIED_PIGLIN;
-
-int entity_type_get_no_damage_ticks_maximum(struct EntityType entity_type);
-int entity_type_get_fire_ticks_maximum(struct EntityType entity_type);
 
 #endif /* entity_type_h */

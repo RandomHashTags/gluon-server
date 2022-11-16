@@ -10,25 +10,42 @@
 
 #include "chunk.h"
 #include "../difficulty.h"
-//#include "../entity/entity.h" // TODO: FIX - WHY BROKEN ??
+#include "../../network/player_connection.h"
 
 struct World {
     const long seed;
     const char *name;
     
-    struct Difficulty difficulty;
+    struct Difficulty *difficulty;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;
     struct Chunk *chunks_loaded;
+    
+    int entity_count;
+    struct Entity *entities;
+    
+    unsigned int player_count;
+    struct PlayerConnection *players;
+    
+    int living_entity_count;
+    struct LivingEntity *living_entities;
 };
 
 struct World *world_create(long seed);
 void world_destroy(struct World *world);
 
+void world_tick(struct World *world);
+
+void world_sync_tick_rate_for_entity(struct World *world, struct Entity *entity, const struct EntityType *entity_type);
+void world_sync_tick_rate_for_living_entity(struct World *world, struct LivingEntity *entity, const struct EntityType *type, const unsigned short no_damage_ticks_maximum);
+void world_sync_tick_rate_for_player(struct World *world, struct PlayerConnection *player, const unsigned short no_damage_ticks_maximum);
+void world_change_tick_rate(struct World *world, const unsigned short tick_rate);
+
 void world_load_chunk(struct World *world, struct Chunk *chunk);
 void world_unload_chunk(struct World *world, struct Chunk *chunk);
 
-//void world_entity_joined(Entity *entity);
+void world_player_joined(struct World *world, struct PlayerConnection *connection);
+void world_player_quit(struct World *world, struct PlayerConnection *connection);
 
 #endif /* world_h */

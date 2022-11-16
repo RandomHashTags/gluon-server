@@ -17,4 +17,6 @@ struct Advancement {
     const char *description;
 };
 
+void advancement_destroy(struct Advancement *advancement);
+
 #endif /* advancement_h */

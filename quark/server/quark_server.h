@@ -10,6 +10,7 @@
 
 #include <sys/time.h>
 #include "../util/difficulty.h"
+#include "../util/location/world.h"
 #include "../network/player_connection.h"
 
 struct QuarkServer {
@@ -24,7 +25,7 @@ struct QuarkServer {
     
     struct Material *materials;
     
-    char motd[32];
+    char *motd;
     unsigned short max_build_height;
     
     float tps;
@@ -36,19 +37,12 @@ struct QuarkServer {
     
     unsigned int player_count;
     const unsigned int player_count_maximum;
-    struct PlayerConnection *players;
     char *players_whitelisted;
     
     unsigned short banned_ips_count;
     char *banned_ips;
     unsigned short banned_player_count;
     char *banned_players;
-    
-    int entity_count;
-    struct Entity *entities;
-    
-    int living_entity_count;
-    struct LivingEntity *living_entities;
     
     _Bool is_online_mode;
     _Bool is_pvp_enabled;
@@ -65,7 +59,7 @@ void server_stop(void);
 void server_set_sleeping(_Bool value);
 
 void server_tick(void);
-void server_change_tickrate(const unsigned short ticks_per_second);
+void server_change_tick_rate(const unsigned short ticks_per_second);
 
 void server_world_create(struct World *world);
 void server_world_destroy(struct World *world);

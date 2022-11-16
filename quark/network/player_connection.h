@@ -18,7 +18,7 @@ struct PlayerConnection {
 
 void player_connection_destroy(struct PlayerConnection *connection);
 
-void player_connection_chat(struct PlayerConnection connection, char message[32]);
-void player_connection_disconnect(struct PlayerConnection *connection, char reason[32]);
+void player_connection_chat(struct PlayerConnection connection, char *message);
+void player_connection_disconnect(struct PlayerConnection *connection, char *reason);
 
 #endif /* player_connection_h */

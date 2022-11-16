@@ -16,9 +16,11 @@
 
 void player_destroy(struct Player *player) {
     living_entity_destroy(player->living_entity);
+    location_destroy(player->bed_spawn_location);
     inventory_destroy(player->inventory);
     inventory_destroy(player->inventory_ender_chest);
     free((char *) player->name);
+    free(player->gamemode);
     free(player->list_name);
     free(player->permissions);
     free(player->advancements);

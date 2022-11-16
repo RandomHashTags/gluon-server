@@ -11,8 +11,10 @@
 #include "../../../api/quark_plugin.h"
 
 struct Permission {
-    struct QuarkPlugin *plugin;
+    const struct QuarkPlugin *plugin;
     const char *identifier;
 };
+
+void permission_destroy(struct Permission *permission);
 
 #endif /* permission_h */

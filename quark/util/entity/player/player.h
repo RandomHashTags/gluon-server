@@ -12,6 +12,7 @@
 #include "advancement.h"
 #include "../living_entity.h"
 #include "../../gamemode.h"
+#include "../../block/block.h"
 #include "../../inventory/inventory.h"
 #include "../../item/item_stack.h"
 
@@ -25,7 +26,7 @@ struct Player {
     
     const unsigned int first_played;
     
-    struct Gamemode gamemode;
+    struct Gamemode *gamemode;
     _Bool is_blocking;
     _Bool is_flying;
     _Bool is_sneaking;
@@ -37,7 +38,7 @@ struct Player {
     
     unsigned short block_break_delay;
     
-    struct Location bed_spawn_location;
+    struct Location *bed_spawn_location;
     
     struct Inventory *inventory;
     struct Inventory *inventory_ender_chest;

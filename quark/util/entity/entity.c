@@ -12,6 +12,7 @@
 
 void entity_destroy(struct Entity *entity) {
     location_destroy(entity->location);
+    free((struct EntityType *) entity->type);
     free((char *) entity->display_name);
     free(entity);
 }

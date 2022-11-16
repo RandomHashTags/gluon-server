@@ -10,6 +10,7 @@
 
 #include "inventory_type.h"
 #include "../item/item_stack.h"
+#include "../entity/player/player.h"
 
 struct Inventory {
     struct InventoryType *type;
@@ -19,7 +20,7 @@ struct Inventory {
     struct Player *viewers;
 };
 
-void inventory_create(struct InventoryType type);
+struct Inventory *inventory_create(struct InventoryType type, struct ItemStack *items);
 void inventory_destroy(struct Inventory *inventory);
 
 struct ItemStack *inventory_get_item(struct Inventory *inventory, unsigned short slot);

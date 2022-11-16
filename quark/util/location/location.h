@@ -25,6 +25,6 @@ struct Location {
 struct Location *location_create(struct World *world, const long x, const long y, const long z, const unsigned x_float, const unsigned short y_float, const unsigned short z_float, const float yaw, const float pitch);
 void location_destroy(struct Location *location);
 
-struct Chunk *location_get_chunk(struct Location *location);
+struct Chunk *location_get_loaded_chunk(struct Location *location);
 
 #endif /* location_h */

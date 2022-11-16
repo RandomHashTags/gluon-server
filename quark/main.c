@@ -11,6 +11,8 @@
 #include "server/quark_server.h"
 #include "util/block/block.h"
 
+// TODO: switch tick rate to be managed per world instead of only the server
+
 void init(void) {
     server_create();
     server_start();
@@ -29,7 +31,7 @@ void test(void) {
 }
 
 int main(int argc, const char * argv[]) {
-    test();
-    //init();
+    //test();
+    init();
     //server_get_response(25565);
 }

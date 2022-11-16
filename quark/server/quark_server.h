@@ -23,6 +23,12 @@ struct QuarkServer {
     unsigned short plugin_count;
     struct QuarkPlugin *plugins;
     
+    unsigned short entity_types_count;
+    const unsigned short entity_types_count_maximum;
+    struct EntityType *entity_types;
+    
+    unsigned short materials_count;
+    const unsigned short materials_count_maximum;
     struct Material *materials;
     
     char *motd;
@@ -61,7 +67,8 @@ void server_set_sleeping(_Bool value);
 void server_tick(void);
 void server_change_tick_rate(const unsigned short ticks_per_second);
 
-void server_world_create(struct World *world);
+struct World *server_get_world(char *world_name);
+struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty);
 void server_world_destroy(struct World *world);
 
 void server_broadcast_message(char *message);

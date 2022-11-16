@@ -36,8 +36,8 @@ int64_t current_time_milliseconds(void) {
     struct timeval now;
     gettimeofday(&now, NULL);
     int64_t seconds = (int64_t) now.tv_sec * 1000;
-    int64_t microseconds = now.tv_usec / 1000;
-    return seconds + microseconds;
+    int64_t milliseconds = now.tv_usec / 1000;
+    return seconds + milliseconds;
 }
 struct QuarkServer *server_create() {
     struct QuarkServer *serverPointer = malloc(sizeof(struct QuarkServer));
@@ -46,6 +46,7 @@ struct QuarkServer *server_create() {
         return NULL;
     }
     serverPointer->is_sleeping = 1;
+    serverPointer->default_world = "world";
     
     const unsigned int port = 25565;
     memcpy((unsigned int *) &serverPointer->port, &port, sizeof(port));
@@ -70,8 +71,13 @@ _Bool server_allocate(void) {
     return 1;
 }
 void server_deallocate(void) {
-    free((char *) SERVER->hostname);
-    free(SERVER->motd);
+    const int world_count = SERVER->world_count;
+    struct World *worlds = SERVER->worlds;
+    for (int i = 0; i < world_count; i++) {
+        struct World *world = &worlds[i];
+        world_destroy(world);
+    }
+    free(worlds);
     
     const int plugin_count = SERVER->plugin_count;
     struct QuarkPlugin *plugins = SERVER->plugins;
@@ -80,19 +86,30 @@ void server_deallocate(void) {
         plugin_disable(plugin);
         plugin_destroy(plugin);
     }
-    free(SERVER->plugins);
+    free(plugins);
+    
+    const unsigned short materials_count = SERVER->materials_count;
+    struct Material *materials = SERVER->materials;
+    for (int i = 0; i < materials_count; i++) {
+        struct Material *material = &materials[i];
+        material_destroy(material);
+    }
+    free(materials);
+    
+    const unsigned short entity_types_count = SERVER->entity_types_count;
+    struct EntityType *entity_types = SERVER->entity_types;
+    for (int i = 0; i < entity_types_count; i++) {
+        struct EntityType *entity_type = &entity_types[i];
+        entity_type_destroy(entity_type);
+    }
+    free(entity_types);
+    
+    free((char *) SERVER->hostname);
+    free(SERVER->motd);
+    free((char *) SERVER->default_world);
     free(SERVER->players_whitelisted);
     free(SERVER->banned_ips);
     free(SERVER->banned_players);
-    
-    const int world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
-    for (int i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
-        world_destroy(world);
-    }
-    free(SERVER->worlds);
-    free((char *) SERVER->default_world);
 }
 
 void acceptClient(const int sockID, const struct sockaddr_in servAddr, const char *msg, const short msgSize, const short maximum) {
@@ -223,21 +240,54 @@ void server_change_tick_rate(const unsigned short ticks_per_second) {
     printf("server successfully updated tickrate values\n");
 }
 
-void server_world_create(struct World *world) {
+struct World *server_get_world(char *world_name) {
+    const unsigned short world_count = SERVER->world_count;
+    struct World *worlds = SERVER->worlds;
+    for (int i = 0; i < world_count; i++) {
+        struct World *world = &worlds[i];
+        if (world_name == world->name) {
+            return world;
+        }
+    }
+    return NULL;
+}
+struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty) {
     const short world_count = SERVER->world_count;
     const short world_count_maximum = SERVER->world_count_maximum;
     struct World *worlds = SERVER->worlds;
     if (world_count + 1 > world_count_maximum) {
         const short new_world_count_maximum = world_count_maximum + 4;
-        SERVER->world_count_maximum = new_world_count_maximum;
         worlds = realloc(worlds, new_world_count_maximum * sizeof(struct World));
         if (!worlds) {
             printf("failed to reallocate memory to expand QuarkServer worldPointer!\n");
-            return;
+            return NULL;
         }
+        SERVER->world_count_maximum = new_world_count_maximum;
     }
+    
+    struct World *world = malloc(sizeof(struct World));
+    if (!world) {
+        printf("failed to allocate memory for a World\n");
+        return NULL;
+    }
+    
+    const unsigned int chunks_loaded_count_maximum = 16 * 16;
+    memcpy((unsigned int *) &world->chunks_loaded_count_maximum, &chunks_loaded_count_maximum, sizeof(unsigned int));
+    struct Chunk *chunks_loaded = malloc(chunks_loaded_count_maximum * sizeof(struct Chunk));
+    if (!chunks_loaded) {
+        printf("failed to allocate memory for a World chunks_loaded pointer\n");
+        free(world);
+        return NULL;
+    }
+    memcpy((long *) &world->seed, &seed, sizeof(seed));
+    memcpy((char *) world->name, world_name, sizeof(*world_name));
+    world->chunks_loaded = chunks_loaded;
+    world->chunks_loaded_count = 0;
+    world->difficulty = difficulty;
+    
     memmove((struct World *) &worlds[world_count], world, sizeof(struct World));
     SERVER->world_count += 1;
+    return world;
 }
 void server_world_destroy(struct World *world) {
     const int world_count = SERVER->world_count;
@@ -258,9 +308,32 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
         printf("failed to allocate memory for a Entity\n");
         return NULL;
     }
+    
+    const char *world_name = SERVER->default_world;
+    struct World *world = server_world_create(0, world_name, &DIFFICULTY_MINECRAFT_NORMAL);
+    if (!world) {
+        free(entity);
+        return NULL;
+    }
+    
+    struct Location *location = location_create(world, 0, 0, 0, 0, 0, 0, 90, 0);
+    if (!location) {
+        world_destroy(world);
+        return NULL;
+    }
     entity->type = entity_type;
-    //memcpy((struct EntityType *) &entity->type, &entity_type, sizeof(struct EntityType));
     memcpy((unsigned int *) &entity->uuid, &uuid, sizeof(uuid));
+    entity->display_name = NULL;
+    entity->location = location;
+    
+    struct Vector vector = {
+        .x = 0,
+        .y = 0,
+        .z = 0
+    };
+    entity->vector = vector;
+    entity->fire_ticks = 0;
+    entity->fire_ticks_maximum = entity_type->fire_ticks_maximum;
     return entity;
 }
 struct Damageable *server_parse_damageable(const struct EntityType *entity_type, const unsigned int uuid, const double health, const double health_maximum) {
@@ -270,6 +343,7 @@ struct Damageable *server_parse_damageable(const struct EntityType *entity_type,
     }
     struct Damageable *damageable = malloc(sizeof(struct Damageable));
     if (!damageable) {
+        entity_destroy(entity);
         printf("failed to allocate memory for a Damageable\n");
         return NULL;
     }
@@ -285,12 +359,15 @@ struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_
     }
     struct LivingEntity *entity = malloc(sizeof(struct LivingEntity));
     if (!entity) {
+        damageable_destroy(damageable);
         printf("failed to allocate memory for a LivingEntity\n");
         return NULL;
     }
     
     struct PotionEffect *potionEffects = malloc(27 * sizeof(struct PotionEffect));
     if (!potionEffects) {
+        damageable_destroy(damageable);
+        free(entity);
         printf("failed to allocate memory for a LivingEntity potionEffectsPointer\n");
         return NULL;
     }
@@ -311,12 +388,15 @@ struct Player *server_parse_player(unsigned int uuid) {
     }
     struct Player *player = malloc(sizeof(struct Player));
     if (!player) {
+        living_entity_destroy(entity);
         printf("failed to allocate memory for a Player\n");
         return NULL;
     }
     
     char *namePointer = malloc(16 * sizeof(char));
     if (!namePointer) {
+        living_entity_destroy(entity);
+        free(player);
         printf("failed to allocate memory for a Player namePointer\n");
         return NULL;
     }
@@ -361,6 +441,7 @@ struct PlayerConnection *server_parse_player_connection(const unsigned int uuid)
     
     struct PlayerConnection *connection = malloc(sizeof(struct PlayerConnection));
     if (!connection) {
+        player_destroy(player);
         printf("failed to allocate memory for a PlayerConnection\n");
         return NULL;
     }
@@ -385,7 +466,6 @@ void server_update_player_ping_rates(void) {
             connection->ping = (unsigned short) rand();
         }
     }
-    
     printf("finished updating player pings\n");
 }
 

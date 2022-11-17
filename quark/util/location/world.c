@@ -202,10 +202,7 @@ void world_player_quit(struct World *world, struct PlayerConnection *connection)
     server_player_quit(connection);
 }
 void world_player_joined(struct World *world, struct PlayerConnection *connection) {
-    printf("test1\n");
     const unsigned int player_count = world->player_count;
-    printf("test2\n");
     world->players[player_count] = *connection;
-    printf("test3\n");
     world->player_count += 1;
 }

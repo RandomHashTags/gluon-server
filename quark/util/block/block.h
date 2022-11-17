@@ -16,7 +16,7 @@ struct Block {
     struct Material *material;
     unsigned char light_level;
     
-    const struct BlockLocation *location;
+    struct BlockLocation *location;
 };
 
 struct Block *block_create(struct Material *material, struct BlockLocation *location);

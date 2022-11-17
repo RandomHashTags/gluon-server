@@ -28,12 +28,22 @@ void item_stack_destroy(struct ItemStack *item) {
     free(item);
 }
 
+_Bool item_stack_is_similar(struct ItemStack *item_stack1, struct ItemStack *item_stack2) {
+    if (item_stack1 == item_stack2) {
+        return 1;
+    } else if ((item_stack1 == NULL && item_stack2 != NULL) || (item_stack2 == NULL && item_stack2 != NULL) || (item_stack1->material != item_stack2->material)) {
+        return 0;
+    } else {
+        return item_meta_is_similar(item_stack1->meta, item_stack2->meta);
+    }
+}
+
 _Bool item_stack_can_be_enchanted(struct ItemStack *item) {
     return 0;
 }
 struct Enchant *item_stack_get_enchants(struct ItemStack *item) {
     return item_meta_get_enchants(item->meta);
 }
-_Bool item_stack_has_enchant(struct ItemStack *item, struct EnchantmentType enchantment) {
-    return item_meta_has_enchant(item->meta, enchantment);
+struct Enchant *item_stack_has_enchant(struct ItemStack *item, struct EnchantmentType enchantment) {
+    return item_meta_get_enchant(item->meta, enchantment);
 }

@@ -20,15 +20,16 @@ struct QuarkServer {
     struct Difficulty difficulty;
     _Bool is_sleeping;
     
-    unsigned short plugin_count;
+    unsigned short plugins_count;
     struct QuarkPlugin *plugins;
     
     unsigned short entity_types_count;
-    const unsigned short entity_types_count_maximum;
     struct EntityType *entity_types;
     
+    unsigned short inventory_types_count;
+    struct InventoryType *inventory_types;
+    
     unsigned short materials_count;
-    const unsigned short materials_count_maximum;
     struct Material *materials;
     
     char *motd;

@@ -39,7 +39,7 @@ void player_tick(struct Player *player) {
 }
 
 void player_set_gamemode(struct Player *player, struct Gamemode gamemode) {
-    const struct PlayerGamemodeChangeEvent event = {
+    struct PlayerGamemodeChangeEvent event = {
         .event = {
             .player = player
         },
@@ -52,7 +52,7 @@ void player_set_gamemode(struct Player *player, struct Gamemode gamemode) {
 }
 
 void player_set_blocking(struct Player *player, _Bool value) {
-    const struct PlayerToggleBlockingEvent event = {
+    struct PlayerToggleBlockingEvent event = {
         .event = {
             .player = player
         },
@@ -65,7 +65,7 @@ void player_set_blocking(struct Player *player, _Bool value) {
 }
 
 void player_set_sneaking(struct Player *player, _Bool value) {
-    const struct PlayerToggleSneakEvent event = {
+    struct PlayerToggleSneakEvent event = {
         .event = {
             .player = player
         },
@@ -78,7 +78,7 @@ void player_set_sneaking(struct Player *player, _Bool value) {
 }
 
 void player_set_sprinting(struct Player *player, _Bool value) {
-    const struct PlayerToggleSprintingEvent event = {
+    struct PlayerToggleSprintingEvent event = {
         .event = {
             .player = player
         },
@@ -101,19 +101,19 @@ void player_broke_block(struct Player *player, struct Block *block, _Bool instan
     };
     event_manager_call_event((struct Event *) &breakEvent);
     if (!breakEvent.event.event.is_cancelled) {
-        block_destroy(block);
         living_entity_damage_item_in_main_hand(player->living_entity, 1);
         if (!instantly) {
             player->block_break_delay = BLOCK_BREAK_DELAY_TICKS;
         }
         if (breakEvent.drop_items) {
             const struct MaterialConfiguration *configuration = block->material->configuration;
-            if (configuration != NULL) {
-                const struct MaterialBlockConfiguration *blockConfiguration = configuration->block_configuration;
-                if (blockConfiguration != NULL) {
+            if (!configuration) {
+                const struct MaterialBlockConfiguration *block_configuration = configuration->block_configuration;
+                if (!block_configuration) {
                 }
             }
         }
+        block_destroy(block);
     }
 }
 void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool instantly, short item_damage_amount) {
@@ -144,12 +144,16 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
                 if (should_drop_items) {
                     const struct MaterialConfiguration *configuration = blocks[i].material->configuration;
                     if (!configuration) {
-                        const struct MaterialBlockConfiguration *blockConfiguration = configuration->block_configuration;
-                        if (!blockConfiguration) {
+                        const struct MaterialBlockConfiguration *block_configuration = configuration->block_configuration;
+                        if (!block_configuration) {
                         }
                     }
                 }
             }
+        }
+        for (int i = 0; i < blocks_broken_count; i++) {
+            struct Block *block = &blocks[i];
+            block_destroy(block);
         }
     }
     free(drop_items);

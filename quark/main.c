@@ -24,7 +24,7 @@ void init(void) {
 }
 
 void test(void) {
-    const unsigned int size = sizeof(struct Location);
+    const unsigned int size = sizeof(struct Material) + sizeof(struct MaterialConfiguration) + sizeof(struct MaterialItemConfiguration) + sizeof(struct MaterialBlockConfiguration) + sizeof(struct MaterialSmeltingConfiguration);
     printf("main.test; size=%d\n", size);
     
     const long test_long = 999999999999999999;

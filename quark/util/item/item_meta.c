@@ -15,8 +15,28 @@ struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant
         printf("failed to allocate memory for a ItemMeta\n");
         return NULL;
     }
-    meta->display_name = display_name;
-    meta->lore = lore;
+    
+    const int char_size = 36 * sizeof(char);
+    char *target_display_name = malloc(char_size);
+    if (!target_display_name) {
+        free(meta);
+        printf("failed to allocate memory for a ItemMeta display_name\n");
+        return NULL;
+    }
+    
+    char *target_lore = malloc(24 * char_size);
+    if (!target_lore) {
+        free(meta);
+        free(target_display_name);
+        printf("failed to allocate memory for a ItemMeta lore\n");
+        return NULL;
+    }
+    
+    target_display_name = display_name;
+    target_lore = lore;
+    
+    meta->display_name = target_display_name;
+    meta->lore = target_lore;
     meta->enchants = enchants;
     return meta;
 }
@@ -27,17 +47,28 @@ void item_meta_destroy(struct ItemMeta *meta) {
     free(meta);
 }
 
+_Bool item_meta_is_similar(struct ItemMeta *item_meta1, struct ItemMeta *item_meta2) {
+    if (item_meta1 == item_meta2) {
+        return 1;
+    } else if ((item_meta1 == NULL && item_meta2 != NULL) || (item_meta1 != NULL && item_meta2 == NULL)) {
+        return 0;
+    } else {
+        return item_meta1->display_name == item_meta2->display_name && item_meta1->lore == item_meta2->lore;
+    }
+}
+
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta) {
     return meta->enchants;
 }
-_Bool item_meta_has_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment) {
+struct Enchant *item_meta_get_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment) {
     const char *identifier = enchantment.identifier;
     struct Enchant *enchants = meta->enchants;
     const int enchantsCount = sizeof(*enchants) / sizeof(&enchants[0]);
     for (int i = 0; i < enchantsCount; i++) {
-        if (enchants[i].type.identifier == identifier) {
-            return 1;
+        struct Enchant *enchant = &enchants[i];
+        if (enchant->type.identifier == identifier) {
+            return enchant;
         }
     }
-    return 0;
+    return NULL;
 }

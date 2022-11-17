@@ -12,9 +12,9 @@
 
 struct BlockLocation {
     const struct World *world;
-    const long x;
-    const long y;
-    const long z;
+    long x;
+    long y;
+    long z;
 };
 
 struct BlockLocation *block_location_create(struct World *world, const long x, const long y, const long z);

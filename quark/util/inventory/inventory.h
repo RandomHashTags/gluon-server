@@ -20,7 +20,7 @@ struct Inventory {
     struct Player *viewers;
 };
 
-struct Inventory *inventory_create(struct InventoryType type, struct ItemStack *items);
+struct Inventory *inventory_create(struct InventoryType *type, struct ItemStack *items);
 void inventory_destroy(struct Inventory *inventory);
 
 struct ItemStack *inventory_get_item(struct Inventory *inventory, unsigned short slot);

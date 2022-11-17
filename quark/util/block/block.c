@@ -21,7 +21,7 @@ struct Block *block_create(struct Material *material, struct BlockLocation *loca
     return block;
 }
 void block_destroy(struct Block *block) {
-    block_location_destroy((struct BlockLocation *) block->location);
+    block_location_destroy(block->location);
     free(block->material);
     free(block);
 }

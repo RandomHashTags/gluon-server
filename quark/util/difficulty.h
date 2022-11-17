@@ -12,10 +12,10 @@ struct Difficulty {
     const char *identifier;
 };
 
-extern struct Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;
-extern struct Difficulty DIFFICULTY_MINECRAFT_PEACEFUL;
-extern struct Difficulty DIFFICULTY_MINECRAFT_EASY;
-extern struct Difficulty DIFFICULTY_MINECRAFT_NORMAL;
-extern struct Difficulty DIFFICULTY_MINECRAFT_HARD;
+extern const struct Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;
+extern const struct Difficulty DIFFICULTY_MINECRAFT_PEACEFUL;
+extern const struct Difficulty DIFFICULTY_MINECRAFT_EASY;
+extern const struct Difficulty DIFFICULTY_MINECRAFT_NORMAL;
+extern const struct Difficulty DIFFICULTY_MINECRAFT_HARD;
 
 #endif /* difficulty_h */

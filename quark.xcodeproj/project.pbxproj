@@ -341,8 +341,16 @@
 		6759E9A6291DCCDD00EB161F /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				679C6CD42926EF0D00EE168D /* difficulties */,
+				67A66C332921990E00A144F8 /* enchantments */,
+				67A66C32292198CA00A144F8 /* entities */,
+				67A66C5B2921ABBD00A144F8 /* generators */,
+				67A66C552921A86800A144F8 /* inventory_types */,
+				67A66C36292199CB00A144F8 /* material_categories */,
+				67A66C29292192BC00A144F8 /* materials */,
 				679C6CD32925825B00EE168D /* player_data */,
-				679C6CD22925825200EE168D /* legacy */,
+				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
+				67A66C522921A76300A144F8 /* recipes */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -439,26 +447,26 @@
 			path = structure;
 			sourceTree = "<group>";
 		};
-		679C6CD22925825200EE168D /* legacy */ = {
-			isa = PBXGroup;
-			children = (
-				67A66C5B2921ABBD00A144F8 /* generators */,
-				67A66C332921990E00A144F8 /* enchantments */,
-				67A66C32292198CA00A144F8 /* entities */,
-				67A66C552921A86800A144F8 /* inventories */,
-				67A66C36292199CB00A144F8 /* material_categories */,
-				67A66C29292192BC00A144F8 /* materials */,
-				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
-				67A66C522921A76300A144F8 /* recipes */,
-			);
-			path = legacy;
-			sourceTree = "<group>";
-		};
 		679C6CD32925825B00EE168D /* player_data */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = player_data;
+			sourceTree = "<group>";
+		};
+		679C6CD42926EF0D00EE168D /* difficulties */ = {
+			isa = PBXGroup;
+			children = (
+				679C6CD52926EF1800EE168D /* minecraft */,
+			);
+			path = difficulties;
+			sourceTree = "<group>";
+		};
+		679C6CD52926EF1800EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = minecraft;
 			sourceTree = "<group>";
 		};
 		67A66C29292192BC00A144F8 /* materials */ = {
@@ -579,12 +587,12 @@
 			path = minecraft;
 			sourceTree = "<group>";
 		};
-		67A66C552921A86800A144F8 /* inventories */ = {
+		67A66C552921A86800A144F8 /* inventory_types */ = {
 			isa = PBXGroup;
 			children = (
 				67A66C562921A87000A144F8 /* minecraft */,
 			);
-			path = inventories;
+			path = inventory_types;
 			sourceTree = "<group>";
 		};
 		67A66C562921A87000A144F8 /* minecraft */ = {

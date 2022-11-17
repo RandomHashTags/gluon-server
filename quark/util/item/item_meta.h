@@ -20,7 +20,9 @@ struct ItemMeta {
 struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants);
 void item_meta_destroy(struct ItemMeta *meta);
 
+_Bool item_meta_is_similar(struct ItemMeta *item_meta1, struct ItemMeta *item_meta2);
+
 struct Enchant *item_meta_get_enchants(struct ItemMeta *meta);
-_Bool item_meta_has_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment);
+struct Enchant *item_meta_get_enchant(struct ItemMeta *meta, struct EnchantmentType enchantment);
 
 #endif /* item_meta_h */

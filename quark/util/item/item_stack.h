@@ -22,9 +22,11 @@ struct ItemStack {
 struct ItemStack *item_stack_create(struct Material *material, short amount, short durability, struct ItemMeta *meta);
 void item_stack_destroy(struct ItemStack *item);
 
+_Bool item_stack_is_similar(struct ItemStack *item_stack1, struct ItemStack *item_stack2);
+
 _Bool item_stack_can_be_enchanted(struct ItemStack *item);
 struct Enchant *item_stack_get_enchants(struct ItemStack *item);
-_Bool item_stack_has_enchant(struct ItemStack *item, struct EnchantmentType enchantment);
+struct Enchant *item_stack_get_enchant(struct ItemStack *item, struct EnchantmentType enchantment);
 _Bool item_stack_try_applying_enchant(struct ItemStack *item, struct Enchant *enchant);
 void item_stack_apply_unsafe_enchant(struct ItemStack *item, struct Enchant *enchant);
 

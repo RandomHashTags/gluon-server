@@ -11,23 +11,45 @@
 #include "world.h"
 #include "../../utilities.h"
 
-struct World *world_create(long seed) {
+struct World *world_create(const long seed, const char *world_name, struct Difficulty *difficulty) {
     struct World *world = malloc(sizeof(struct World));
     if (!world) {
         printf("failed to allocate memory for a World\n");
         return NULL;
     }
-    memcpy((long *) world->seed, &seed, sizeof(seed));
-    
-    world->player_count = 0;
-    
-    const int players_maximum = SERVER->player_count_maximum;
+    const unsigned int players_maximum = SERVER->player_count_maximum;
     struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
     if (!players) {
         printf("failed to allocate memory for a World playersPointer\n");
         return 0;
     }
+    
+    const unsigned int chunks_loaded_count_maximum = 16 * 16;
+    memcpy((unsigned int *) &world->chunks_loaded_count_maximum, &chunks_loaded_count_maximum, sizeof(unsigned int));
+    struct Chunk *chunks_loaded = malloc(chunks_loaded_count_maximum * sizeof(struct Chunk));
+    if (!chunks_loaded) {
+        free(world);
+        free(players);
+        printf("failed to allocate memory for a World chunks_loaded pointer\n");
+        return NULL;
+    }
+    
+    const char *target_world_name = malloc(sizeof(*world_name));
+    if (!target_world_name) {
+        free(world);
+        free(players);
+        free(chunks_loaded);
+        printf("failed to allocate memory for a QuarkServer target_world_name pointer\n");
+        return NULL;
+    }
+    target_world_name = world_name;
+    world->name = target_world_name;
+    memcpy((long *) &world->seed, &seed, sizeof(seed));
+    world->chunks_loaded = chunks_loaded;
+    world->chunks_loaded_count = 0;
+    world->player_count = 0;
     world->players = players;
+    world->difficulty = difficulty;
     return world;
 }
 void world_destroy(struct World *world) {
@@ -71,10 +93,7 @@ void world_destroy(struct World *world) {
 }
 
 void world_tick(struct World *world) {
-    printf("ticking world \"%s\"...", world->name);
-    
     const int entity_count = world->entity_count;
-    printf("world will tick %d entities...\n", entity_count);
     struct Entity *entities = world->entities;
     for (int i = 0; i < entity_count; i++) {
         struct Entity *entity = &entities[i];
@@ -82,7 +101,6 @@ void world_tick(struct World *world) {
     }
     
     const int living_entity_count = world->living_entity_count;
-    printf("world will tick %d living entities...\n", living_entity_count);
     struct LivingEntity *livingEntities = world->living_entities;
     for (int i = 0; i < living_entity_count; i++) {
         struct LivingEntity *entity = &livingEntities[i];
@@ -90,7 +108,7 @@ void world_tick(struct World *world) {
     }
     
     const int player_count = SERVER->player_count;
-    printf("world will tick %d player(s)...\n", player_count);
+    printf("world \"%s\" will tick %d player(s)...\n", world->name, player_count);
     struct PlayerConnection *players = world->players;
     for (int i = 0; i < player_count; i++) {
         printf("ticking player #%d, ", i);
@@ -100,8 +118,7 @@ void world_tick(struct World *world) {
         player_tick(player);
         damageable_damage(player->living_entity->damageable, 1);
     }
-    
-    printf("finished ticking world \"%s\"", world->name);
+    printf("finished ticking world \"%s\"\n", world->name);
 }
 
 void world_sync_tick_rate_for_entity(struct World *world, struct Entity *entity, const struct EntityType *entity_type) {
@@ -136,7 +153,6 @@ void world_change_tick_rate(struct World *world, const unsigned short tick_rate)
     }
     
     const int living_entity_count = world->living_entity_count;
-    printf("updating tickrate values for %d living entities...\n", living_entity_count);
     struct LivingEntity *living_entities = world->living_entities;
     for (int i = 0; i < living_entity_count; i++) {
         struct LivingEntity *living_entity = &living_entities[i];
@@ -186,6 +202,10 @@ void world_player_quit(struct World *world, struct PlayerConnection *connection)
     server_player_quit(connection);
 }
 void world_player_joined(struct World *world, struct PlayerConnection *connection) {
-    world->players[world->player_count] = *connection;
+    printf("test1\n");
+    const unsigned int player_count = world->player_count;
+    printf("test2\n");
+    world->players[player_count] = *connection;
+    printf("test3\n");
     world->player_count += 1;
 }

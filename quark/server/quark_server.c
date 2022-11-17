@@ -39,36 +39,48 @@ int64_t current_time_milliseconds(void) {
     int64_t milliseconds = now.tv_usec / 1000;
     return seconds + milliseconds;
 }
-struct QuarkServer *server_create() {
-    struct QuarkServer *serverPointer = malloc(sizeof(struct QuarkServer));
-    if (serverPointer == NULL) {
+void server_create(void) {
+    struct QuarkServer *server = malloc(sizeof(struct QuarkServer));
+    if (!server) {
         printf("failed to allocate memory for a QuarkServer\n");
-        return NULL;
+        return;
     }
-    serverPointer->is_sleeping = 1;
-    serverPointer->default_world = "world";
+    server->is_sleeping = 1;
+    
+    struct World *worlds = malloc(4 * sizeof(struct World));
+    if (!worlds) {
+        free(server);
+        printf("failed to allocate memory for a QuarkServer worlds pointer\n");
+        return;
+    }
+    server->worlds = worlds;
+    
+    const char *default_world_name = "world";
+    server->default_world = default_world_name;
+    server->world_count = 0;
+    server->world_count_maximum = 4;
     
     const unsigned int port = 25565;
-    memcpy((unsigned int *) &serverPointer->port, &port, sizeof(port));
+    memcpy((unsigned int *) &server->port, &port, sizeof(port));
     
     const int64_t started = current_time_milliseconds();
-    memcpy((int64_t *) &serverPointer->started, &started, sizeof(started));
+    memcpy((int64_t *) &server->started, &started, sizeof(started));
     
     const unsigned int players_maximum = 2;
-    memcpy((unsigned int *) &serverPointer->player_count_maximum, &players_maximum, sizeof(unsigned int));
-    SERVER = serverPointer;
-    printf("created server with address %p, created at %lld\n", serverPointer, started);
-    server_change_tick_rate(20);
-    return serverPointer;
-}
-_Bool server_allocate(void) {
-    struct World *worldsPointer = malloc(4 * sizeof(struct World));
-    if (!worldsPointer) {
-        printf("failed to allocate memory for a QuarkServer worldsPointer\n");
-        return 0;
+    memcpy((unsigned int *) &server->player_count_maximum, &players_maximum, sizeof(unsigned int));
+    SERVER = server;
+    
+    struct World *world = server_world_create(0, default_world_name, &DIFFICULTY_MINECRAFT_NORMAL);
+    if (!world) {
+        free(server);
+        free(worlds);
+        free((char *) default_world_name);
+        free(SERVER);
+        return;
     }
-    SERVER->worlds = worldsPointer;
-    return 1;
+    
+    printf("created server with address %p, created at %lld\n", server, started);
+    server_change_tick_rate(20);
 }
 void server_deallocate(void) {
     const int world_count = SERVER->world_count;
@@ -126,9 +138,9 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
             server_player_joined(test);
         }
     }
-    close(client);
+    //close(client);
 }
-void *connectPlayers(void *threadID) {
+void *begin_connecting_players(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
     const struct sockaddr_in servAddr = {
         .sin_family = AF_INET,
@@ -143,7 +155,7 @@ void *connectPlayers(void *threadID) {
     listen(sockID, 1);
     
     const short maximum = SERVER->player_count_maximum;
-    printf("Waiting for players to connect...\n");
+    printf("Waiting for players to connect on port %d...\n", SERVER->port);
     _Bool alive = 1;
     while (alive) {
         acceptClient(sockID, servAddr, msg, msgSize, maximum);
@@ -167,7 +179,7 @@ void *begin_ticking_server(void *threadID) {
 void *begin_updating_player_pings(void *threadID) {
     const unsigned short interval = 10;
     printf("starting to update player pings every %d seconds...\n", interval);
-    while (SERVER != NULL) {
+    while (SERVER) {
         server_update_player_ping_rates();
         sleep(interval);
     }
@@ -181,10 +193,15 @@ void server_start() {
         return;
     }
     THREADS = threads;
-    pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], NULL, connectPlayers, (void *) QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS);
+    pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], NULL, begin_connecting_players, (void *) QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS);
     pthread_join(THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], NULL);
 }
 void server_stop(void) {
+    printf("stopping server...\n");
+    server_deallocate();
+    pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS], QUARK_SERVER_THREAD_ID_HANDLE_PLAYER_CONNECTIONS);
+    pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], QUARK_SERVER_THREAD_ID_SERVER_LOOP);
+    pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
     server_destroy();
 }
 void server_set_sleeping(_Bool value) {
@@ -193,17 +210,10 @@ void server_set_sleeping(_Bool value) {
     printf("server_set_sleeping, value=%d\n", value);
     if (value != previous_value) {
         if (!value) {
-            const _Bool allocated = server_allocate();
-            if (allocated) {
-                pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], NULL, begin_ticking_server, (void *) QUARK_SERVER_THREAD_ID_SERVER_LOOP);
-                pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], NULL, begin_updating_player_pings, (void *) QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
-            } else {
-                printf("failed to allocate memory to run server\n");
-            }
+            pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], NULL, begin_ticking_server, (void *) QUARK_SERVER_THREAD_ID_SERVER_LOOP);
+            pthread_create(&THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], NULL, begin_updating_player_pings, (void *) QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
         } else {
-            server_deallocate();
-            pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_SERVER_LOOP], QUARK_SERVER_THREAD_ID_SERVER_LOOP);
-            pthread_kill(THREADS[QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS], QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS);
+            server_stop();
         }
     }
 }
@@ -225,7 +235,7 @@ void server_tick(void) {
 void server_change_tick_rate(const unsigned short ticks_per_second) {
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
-    BLOCK_BREAK_DELAY_TICKS = TICKS_PER_SECOND / 3;
+    BLOCK_BREAK_DELAY_TICKS = ticks_per_second / 3;
     
     const double interval = 1000 / (float) ticks_per_second;
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
@@ -236,11 +246,10 @@ void server_change_tick_rate(const unsigned short ticks_per_second) {
         struct World *world = &worlds[i];
         world_change_tick_rate(world, ticks_per_second);
     }
-    
-    printf("server successfully updated tickrate values\n");
+    printf("server successfully updated tick rate values\n");
 }
 
-struct World *server_get_world(char *world_name) {
+struct World *server_get_world(const char *world_name) {
     const unsigned short world_count = SERVER->world_count;
     struct World *worlds = SERVER->worlds;
     for (int i = 0; i < world_count; i++) {
@@ -249,6 +258,7 @@ struct World *server_get_world(char *world_name) {
             return world;
         }
     }
+    printf("server failed to get world with name \"%s\"\n", world_name);
     return NULL;
 }
 struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty) {
@@ -264,28 +274,12 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         }
         SERVER->world_count_maximum = new_world_count_maximum;
     }
-    
-    struct World *world = malloc(sizeof(struct World));
+    struct World *world = world_create(seed, world_name, difficulty);
     if (!world) {
         printf("failed to allocate memory for a World\n");
         return NULL;
     }
-    
-    const unsigned int chunks_loaded_count_maximum = 16 * 16;
-    memcpy((unsigned int *) &world->chunks_loaded_count_maximum, &chunks_loaded_count_maximum, sizeof(unsigned int));
-    struct Chunk *chunks_loaded = malloc(chunks_loaded_count_maximum * sizeof(struct Chunk));
-    if (!chunks_loaded) {
-        printf("failed to allocate memory for a World chunks_loaded pointer\n");
-        free(world);
-        return NULL;
-    }
-    memcpy((long *) &world->seed, &seed, sizeof(seed));
-    memcpy((char *) world->name, world_name, sizeof(*world_name));
-    world->chunks_loaded = chunks_loaded;
-    world->chunks_loaded_count = 0;
-    world->difficulty = difficulty;
-    
-    memmove((struct World *) &worlds[world_count], world, sizeof(struct World));
+    memcpy((struct World *) &worlds[world_count], world, sizeof(struct World));
     SERVER->world_count += 1;
     return world;
 }
@@ -310,15 +304,21 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
     }
     
     const char *world_name = SERVER->default_world;
-    struct World *world = server_world_create(0, world_name, &DIFFICULTY_MINECRAFT_NORMAL);
+    struct World *world = server_get_world(world_name);
     if (!world) {
-        free(entity);
-        return NULL;
+        const char *default_world_name = SERVER->default_world;
+        struct World *default_world = server_get_world(default_world_name);
+        if (!default_world) {
+            free(entity);
+            printf("failed to parse World for Entity's location, and the default server's world\n");
+            return NULL;
+        }
+        world = default_world;
     }
     
     struct Location *location = location_create(world, 0, 0, 0, 0, 0, 0, 90, 0);
     if (!location) {
-        world_destroy(world);
+        free(entity);
         return NULL;
     }
     entity->type = entity_type;
@@ -430,7 +430,9 @@ void server_try_connecting_player(const unsigned int uuid) {
         printf("player cannot join due to the server being full! (%d maximum players)\n", maximum);
     } else {
         struct PlayerConnection *test = server_parse_player_connection(uuid);
-        server_player_joined(test);
+        if (test) {
+            server_player_joined(test);
+        }
     }
 }
 struct PlayerConnection *server_parse_player_connection(const unsigned int uuid) {
@@ -446,9 +448,9 @@ struct PlayerConnection *server_parse_player_connection(const unsigned int uuid)
         return NULL;
     }
     connection->player = player;
-    connection->ping = 4;
+    connection->ping = (unsigned short) rand();
     connection->chat_cooldown = 20;
-    printf("parsed player \"%s\" with address=%p\n", player->name, player);
+    printf("parsed player connection \"%s\" with address=%p\n", player->name, player);
     return connection;
 }
 void server_update_player_ping_rates(void) {
@@ -475,6 +477,7 @@ void server_player_joined(struct PlayerConnection *connection) {
     }
     struct Player *player = connection->player;
     world_player_joined((struct World *) player->living_entity->damageable->entity->location->world, connection);
+    SERVER->player_count += 1;
     const struct PlayerJoinEvent event = {
         .event = {
             .event = {
@@ -485,8 +488,6 @@ void server_player_joined(struct PlayerConnection *connection) {
     };
     printf("\"%s\" joined with address %p server at address %p with %d ping, %d chat_cooldown, and %d no_damage_ticks_maximum\n", player->name, player, SERVER, connection->ping, connection->chat_cooldown, connection->player->living_entity->no_damage_ticks_maximum);
     event_manager_call_event((struct Event *) &event);
-    
-    SERVER->player_count += 1;
 }
 void server_player_quit(struct PlayerConnection *connection) {
     player_connection_destroy(connection);

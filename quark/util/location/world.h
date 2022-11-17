@@ -22,17 +22,17 @@ struct World {
     const unsigned int chunks_loaded_count_maximum;
     struct Chunk *chunks_loaded;
     
-    int entity_count;
+    unsigned int entity_count;
     struct Entity *entities;
     
     unsigned int player_count;
     struct PlayerConnection *players;
     
-    int living_entity_count;
+    unsigned int living_entity_count;
     struct LivingEntity *living_entities;
 };
 
-struct World *world_create(long seed);
+struct World *world_create(const long seed, const char *world_name, struct Difficulty *difficulty);
 void world_destroy(struct World *world);
 
 void world_tick(struct World *world);

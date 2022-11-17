@@ -10,13 +10,16 @@
 #include "managers/event_manager.h"
 #include "server/quark_server.h"
 #include "util/block/block.h"
+#include "utilities.h"
 
 // TODO: switch tick rate to be managed per world instead of only the server
 
 void init(void) {
     server_create();
-    server_start();
-    server_destroy();
+    if (SERVER) {
+        server_start();
+        server_destroy();
+    }
     printf("server thread has shutdown, all processing has finished.\n");
 }
 

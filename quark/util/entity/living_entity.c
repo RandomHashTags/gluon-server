@@ -26,7 +26,7 @@ void living_entity_tick(struct LivingEntity *entity) {
     }
     
     struct PotionEffect *potion_effects = entity->potion_effects;
-    const int potionEffectMemorySize = sizeof(struct PotionEffect);
+    const int potion_effect_memory_size = sizeof(struct PotionEffect);
     const unsigned short potion_effect_count = entity->potion_effect_count;
     for (int i = 0; i < potion_effect_count; i++) {
         struct PotionEffect *potion_effect = &potion_effects[i];
@@ -34,7 +34,7 @@ void living_entity_tick(struct LivingEntity *entity) {
         if (new_potion_effect_duration == 0) {
             potion_effect_destroy(potion_effect);
             for (int j = i; j < potion_effect_count-1; j++) {
-                memmove(&potion_effects[j], &potion_effects[j+1], potionEffectMemorySize);
+                memmove(&potion_effects[j], &potion_effects[j+1], potion_effect_memory_size);
             }
             i -= 1;
             entity->potion_effect_count -= 1;
@@ -54,29 +54,38 @@ enum EntityDamageResult living_entity_damage(struct LivingEntity *entity, double
     return result;
 }
 
-_Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type) {
+struct PotionEffect *living_entity_get_potion_effect(struct LivingEntity *entity, struct PotionEffectType type) {
     const char *type_identifier = type.identifier;
     struct PotionEffect *potion_effects = entity->potion_effects;
     const unsigned short potion_effect_count = entity->potion_effect_count;
     for (int i = 0; i < potion_effect_count; i++) {
-        const struct PotionEffect *effect = &potion_effects[i];
+        struct PotionEffect *effect = &potion_effects[i];
         if (effect->type->identifier == type_identifier) {
-            return 1;
+            return effect;
         }
     }
-    return 0;
+    return NULL;
 }
-void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, unsigned short amplifier, unsigned short duration) {
-    if (living_entity_has_potion_effect(entity, type)) {
-        
+void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, unsigned short amplifier, unsigned short duration, _Bool has_icon, _Bool has_particles, _Bool is_ambient) {
+    struct PotionEffect *existing_potion_effect = living_entity_get_potion_effect(entity, type);
+    const unsigned short new_duration = duration * TICKS_PER_SECOND_MULTIPLIER;
+    if (!existing_potion_effect) {
+        existing_potion_effect->amplifier = amplifier;
+        existing_potion_effect->duration = new_duration;
+        existing_potion_effect->has_icon = has_icon;
+        existing_potion_effect->has_particles = has_particles;
+        existing_potion_effect->is_ambient = is_ambient;
     } else {
         struct PotionEffect effect = {
             .type = &type,
             .amplifier = amplifier,
-            .duration = duration * TICKS_PER_SECOND_MULTIPLIER
+            .duration = new_duration,
+            .has_icon = has_icon,
+            .has_particles = has_particles,
+            .is_ambient = is_ambient
         };
         const unsigned short potion_effect_count = entity->potion_effect_count;
-        memmove((struct PotionEffect *) &entity->potion_effects[potion_effect_count], &effect, sizeof(struct PotionEffect));
+        memcpy((struct PotionEffect *) &entity->potion_effects[potion_effect_count], &effect, sizeof(struct PotionEffect));
     }
 }
 void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type) {
@@ -104,15 +113,12 @@ void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, unsigne
     if (item_stack != NULL) {
         const struct MaterialItemConfiguration *configuration = item_stack->material->configuration->item_configuration;
         if (configuration != NULL && configuration->has_durability) {
-            const short durability = item_stack->durability;
-            if (durability > 0) {
-                const short new_durability = durability - 1;
-                if (new_durability == 0) {
-                    equipment->item_in_main_hand = NULL;
-                    item_stack_destroy(item_stack);
-                } else {
-                    equipment->item_in_main_hand->durability -= 1;
-                }
+            const unsigned short new_durability = item_stack->durability - 1;
+            if (new_durability == 0) {
+                item_stack = NULL;
+                item_stack_destroy(item_stack);
+            } else {
+                item_stack->durability = new_durability;
             }
         }
     }

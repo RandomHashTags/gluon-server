@@ -138,18 +138,19 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
             player->block_break_delay = BLOCK_BREAK_DELAY_TICKS;
         }
         const _Bool *updated_drop_items = breakEvent.drop_items;
-        if (updated_drop_items != NULL) {
+        if (!updated_drop_items) {
             for (int i = 0; i < blocks_broken_count; i++) {
                 const _Bool should_drop_items = updated_drop_items[i];
                 if (should_drop_items) {
                     const struct MaterialConfiguration *configuration = blocks[i].material->configuration;
-                    if (configuration != NULL) {
+                    if (!configuration) {
                         const struct MaterialBlockConfiguration *blockConfiguration = configuration->block_configuration;
-                        if (blockConfiguration != NULL) {
+                        if (!blockConfiguration) {
                         }
                     }
                 }
             }
         }
     }
+    free(drop_items);
 }

@@ -27,14 +27,14 @@ void block_destroy(struct Block *block) {
 }
 
 void block_break_naturally(struct Block *block, struct ItemStack *item) {
-    if (item != NULL) {
+    if (item) {
     }
     block_destroy(block);
 }
 
 _Bool block_is_preferred_tool(struct Block *block, struct ItemStack *item) {
     const struct Material *block_material = block->material;
-    if (item != NULL) {
+    if (item) {
         const struct Material *item_material = item->material;
         return 1;
     }

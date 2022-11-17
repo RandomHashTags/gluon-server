@@ -20,6 +20,7 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
     const unsigned int players_maximum = SERVER->player_count_maximum;
     struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
     if (!players) {
+        free(world);
         printf("failed to allocate memory for a World playersPointer\n");
         return 0;
     }
@@ -63,7 +64,7 @@ void world_destroy(struct World *world) {
         // TODO: kick player
         player_connection_destroy(connection);
     }
-    free(world->players);
+    free(connections);
     
     const int living_entity_count = world->living_entity_count;
     struct LivingEntity *living_entities = world->living_entities;
@@ -71,7 +72,7 @@ void world_destroy(struct World *world) {
         struct LivingEntity *living_entity = &living_entities[i];
         living_entity_destroy(living_entity);
     }
-    free(world->living_entities);
+    free(living_entities);
     
     const int entity_count = world->entity_count;
     struct Entity *entities = world->entities;
@@ -79,7 +80,7 @@ void world_destroy(struct World *world) {
         struct Entity *entity = &entities[i];
         entity_destroy(entity);
     }
-    free(world->entities);
+    free(entities);
     
     const int chunks_loaded_count = world->chunks_loaded_count;
     struct Chunk *chunks = world->chunks_loaded;

@@ -48,8 +48,8 @@ void living_entity_tick(struct LivingEntity *entity);
 void living_entity_swing_main_hand(struct LivingEntity *entity);
 void living_entity_swing_off_hand(struct LivingEntity *entity);
 
-_Bool living_entity_has_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
-void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, unsigned short amplifier, unsigned short duration);
+struct PotionEffect *living_entity_get_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
+void living_entity_add_potion_effect(struct LivingEntity *entity, struct PotionEffectType type, unsigned short amplifier, unsigned short duration, _Bool has_icon, _Bool has_particles, _Bool is_ambient);
 void living_entity_remove_potion_effect(struct LivingEntity *entity, struct PotionEffectType type);
 
 void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, unsigned short amount);

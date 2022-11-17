@@ -16,10 +16,14 @@ struct Inventory *inventory_create(struct InventoryType type, struct ItemStack *
         printf("failed to allocate memory for a Inventory\n");
         return NULL;
     }
+    struct Player *viewers = malloc(2 * sizeof(struct Player));
+    if (!viewers) {
+        free(inventory);
+        printf("failed to allocate memory for a Inventory viewers pointer\n");
+        return NULL;
+    }
     inventory->items = items;
     inventory->viewers_count = 0;
-    
-    struct Player *viewers = malloc(2 * sizeof(struct Player));
     inventory->viewers = viewers;
     return inventory;
 }

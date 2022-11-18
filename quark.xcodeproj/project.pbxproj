@@ -675,11 +675,7 @@
 		679C6CFB29276C7B00EE168D /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				679C6D0229276CBA00EE168D /* break */,
-				679C6D0129276CB500EE168D /* fall */,
-				679C6D0029276CA700EE168D /* hit */,
-				679C6CFF29276CA300EE168D /* place */,
-				679C6CFE29276C9B00EE168D /* step */,
+				679C6D542928525000EE168D /* minecraft */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -769,9 +765,49 @@
 			path = biome;
 			sourceTree = "<group>";
 		};
+		679C6D542928525000EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D0229276CBA00EE168D /* break */,
+				679C6D0129276CB500EE168D /* fall */,
+				679C6D0029276CA700EE168D /* hit */,
+				679C6CFF29276CA300EE168D /* place */,
+				679C6CFE29276C9B00EE168D /* step */,
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
+		679C6D552928525A00EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
+		679C6D562928527400EE168D /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D5329284A9300EE168D /* diamond_axe.json */,
+				67A66C3B29219ADC00A144F8 /* diamond_pickaxe.json */,
+				67A66C512921A62500A144F8 /* iron_pickaxe.json */,
+				67A66C4B2921A23100A144F8 /* netherite_pickaxe.json */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		679C6D58292852A200EE168D /* spawn_eggs */ = {
+			isa = PBXGroup;
+			children = (
+				67A66C2D2921953300A144F8 /* villager_spawn_egg.json */,
+			);
+			path = spawn_eggs;
+			sourceTree = "<group>";
+		};
 		67A66C29292192BC00A144F8 /* materials */ = {
 			isa = PBXGroup;
 			children = (
+				67A66C312921988800A144F8 /* icons */,
+				679C6CFB29276C7B00EE168D /* sounds */,
 				67A66C2A2921938500A144F8 /* minecraft */,
 			);
 			path = materials;
@@ -780,14 +816,9 @@
 		67A66C2A2921938500A144F8 /* minecraft */ = {
 			isa = PBXGroup;
 			children = (
-				679C6CFB29276C7B00EE168D /* sounds */,
-				67A66C312921988800A144F8 /* icons */,
+				679C6D58292852A200EE168D /* spawn_eggs */,
+				679C6D562928527400EE168D /* tools */,
 				67A66C2B292193A000A144F8 /* air.json */,
-				679C6D5329284A9300EE168D /* diamond_axe.json */,
-				67A66C3B29219ADC00A144F8 /* diamond_pickaxe.json */,
-				67A66C512921A62500A144F8 /* iron_pickaxe.json */,
-				67A66C4B2921A23100A144F8 /* netherite_pickaxe.json */,
-				67A66C2D2921953300A144F8 /* villager_spawn_egg.json */,
 				67A66C2F292197E000A144F8 /* zombie_head.json */,
 				67A66C302921984100A144F8 /* zombie_head_item.json */,
 			);
@@ -797,6 +828,7 @@
 		67A66C312921988800A144F8 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D552928525A00EE168D /* minecraft */,
 			);
 			path = icons;
 			sourceTree = "<group>";

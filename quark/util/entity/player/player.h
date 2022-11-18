@@ -55,6 +55,6 @@ void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);
 
-void player_broke_block(struct Player *player, struct Block *block, _Bool instantly);
+void player_broke_block(struct Player *player, struct Block *block, _Bool instantly); // TODO: fix circular dependency problem
 
 #endif /* player_h */

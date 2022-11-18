@@ -21,7 +21,7 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
     struct PlayerConnection *players = malloc(players_maximum * sizeof(struct PlayerConnection));
     if (!players) {
         free(world);
-        printf("failed to allocate memory for a World playersPointer\n");
+        printf("failed to allocate memory for a World players\n");
         return NULL;
     }
     
@@ -31,7 +31,16 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
     if (!chunks_loaded) {
         free(world);
         free(players);
-        printf("failed to allocate memory for a World chunks_loaded pointer\n");
+        printf("failed to allocate memory for a World chunks_loaded\n");
+        return NULL;
+    }
+    
+    struct Location *spawn_location = location_create(world, 0, 10, 0, 0, 0, 0, 90, 0);
+    if (!spawn_location) {
+        free(world);
+        free(players);
+        free(chunks_loaded);
+        printf("failed to allocate a World spawn_location\n");
         return NULL;
     }
     
@@ -40,12 +49,15 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
         free(world);
         free(players);
         free(chunks_loaded);
-        printf("failed to allocate memory for a QuarkServer target_world_name pointer\n");
+        free(spawn_location);
+        printf("failed to allocate memory for a QuarkServer target_world_name\n");
         return NULL;
     }
     target_world_name = world_name;
+    
     world->name = target_world_name;
     memcpy((long *) &world->seed, &seed, sizeof(seed));
+    world->spawn_location = spawn_location;
     world->chunks_loaded = chunks_loaded;
     world->chunks_loaded_count = 0;
     world->player_count = 0;
@@ -87,6 +99,7 @@ void world_destroy(struct World *world) {
     }
     free(chunks);
     
+    location_destroy(world->spawn_location);
     free((char *) world->name);
     free(world->difficulty);
     free(world);
@@ -201,6 +214,9 @@ void world_player_quit(struct World *world, struct PlayerConnection *connection)
     server_player_quit(connection);
 }
 void world_player_joined(struct World *world, struct PlayerConnection *connection) {
+    struct Player *player = connection->player;
+    memcpy(player->living_entity->damageable->entity->location, world->spawn_location, sizeof(struct Location));
+    
     const unsigned int player_count = world->player_count;
     world->players[player_count] = *connection;
     world->player_count += 1;

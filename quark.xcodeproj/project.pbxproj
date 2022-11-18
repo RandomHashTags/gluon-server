@@ -36,6 +36,7 @@
 		6799444329142C4200D8F796 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6799444229142C4200D8F796 /* main.c */; };
 		679C6CCE2925799A00EE168D /* permission.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CCD2925799A00EE168D /* permission.c */; };
 		679C6CD0292579C400EE168D /* advancement.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CCF292579C400EE168D /* advancement.c */; };
+		679C6CD8292713D800EE168D /* biome.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CD7292713D800EE168D /* biome.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
@@ -137,6 +138,8 @@
 		679944512914376900D8F796 /* material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material.h; sourceTree = "<group>"; };
 		679C6CCD2925799A00EE168D /* permission.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = permission.c; sourceTree = "<group>"; };
 		679C6CCF292579C400EE168D /* advancement.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = advancement.c; sourceTree = "<group>"; };
+		679C6CD6292713D800EE168D /* biome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = biome.h; sourceTree = "<group>"; };
+		679C6CD7292713D800EE168D /* biome.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = biome.c; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -236,12 +239,14 @@
 		6753CF1F291454D8008BD41C /* location */ = {
 			isa = PBXGroup;
 			children = (
+				679C6CD6292713D800EE168D /* biome.h */,
+				679C6CD7292713D800EE168D /* biome.c */,
+				6753CF3D29146CC0008BD41C /* chunk.h */,
+				6753CF3E29146CC0008BD41C /* chunk.c */,
 				6753CF20291454E4008BD41C /* world.h */,
 				6753CF21291454E4008BD41C /* world.c */,
 				6753CF232914550B008BD41C /* location.h */,
 				6753CF242914550B008BD41C /* location.c */,
-				6753CF3D29146CC0008BD41C /* chunk.h */,
-				6753CF3E29146CC0008BD41C /* chunk.c */,
 			);
 			path = location;
 			sourceTree = "<group>";
@@ -341,16 +346,9 @@
 		6759E9A6291DCCDD00EB161F /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				679C6CD42926EF0D00EE168D /* difficulties */,
-				67A66C332921990E00A144F8 /* enchantments */,
-				67A66C32292198CA00A144F8 /* entities */,
-				67A66C5B2921ABBD00A144F8 /* generators */,
-				67A66C552921A86800A144F8 /* inventory_types */,
-				67A66C36292199CB00A144F8 /* material_categories */,
-				67A66C29292192BC00A144F8 /* materials */,
+				679C6CDF292729D000EE168D /* data */,
+				679C6CDE292729CC00EE168D /* settings */,
 				679C6CD32925825B00EE168D /* player_data */,
-				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
-				67A66C522921A76300A144F8 /* recipes */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -467,6 +465,45 @@
 			children = (
 			);
 			path = minecraft;
+			sourceTree = "<group>";
+		};
+		679C6CD9292713FC00EE168D /* biomes */ = {
+			isa = PBXGroup;
+			children = (
+				679C6CDA2927140100EE168D /* minecraft */,
+			);
+			path = biomes;
+			sourceTree = "<group>";
+		};
+		679C6CDA2927140100EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
+		679C6CDE292729CC00EE168D /* settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		679C6CDF292729D000EE168D /* data */ = {
+			isa = PBXGroup;
+			children = (
+				679C6CD9292713FC00EE168D /* biomes */,
+				679C6CD42926EF0D00EE168D /* difficulties */,
+				67A66C332921990E00A144F8 /* enchantments */,
+				67A66C32292198CA00A144F8 /* entities */,
+				67A66C5B2921ABBD00A144F8 /* generators */,
+				67A66C552921A86800A144F8 /* inventory_types */,
+				67A66C36292199CB00A144F8 /* material_categories */,
+				67A66C29292192BC00A144F8 /* materials */,
+				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
+				67A66C522921A76300A144F8 /* recipes */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		67A66C29292192BC00A144F8 /* materials */ = {
@@ -763,6 +800,7 @@
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
 				679C6CD0292579C400EE168D /* advancement.c in Sources */,
+				679C6CD8292713D800EE168D /* biome.c in Sources */,
 				67A66C18291F7D9000A144F8 /* item.c in Sources */,
 				6753CF4329146D06008BD41C /* block.c in Sources */,
 				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,

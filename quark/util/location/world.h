@@ -16,6 +16,7 @@ struct World {
     const long seed;
     const char *name;
     
+    struct Location *spawn_location;
     struct Difficulty *difficulty;
     
     unsigned int chunks_loaded_count;

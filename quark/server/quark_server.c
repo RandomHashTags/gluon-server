@@ -517,7 +517,7 @@ struct PlayerConnection *server_parse_player_connection(const unsigned int uuid)
 }
 void server_update_player_ping_rates(void) {
     const int player_count = SERVER->player_count;
-    printf("updating %d player pings...\n", player_count);
+    printf("\nupdating %d player pings...\n", player_count);
     
     const unsigned short world_count = SERVER->world_count;
     struct World *worlds = SERVER->worlds;
@@ -540,7 +540,7 @@ void server_player_joined(struct PlayerConnection *connection) {
     struct Player *player = connection->player;
     world_player_joined((struct World *) player->living_entity->damageable->entity->location->world, connection);
     SERVER->player_count += 1;
-    const struct PlayerJoinEvent event = {
+    struct PlayerJoinEvent event = {
         .event = {
             .event = {
                 .type = EVENT_PLAYER_JOIN

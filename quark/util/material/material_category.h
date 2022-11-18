@@ -12,9 +12,10 @@
 
 struct MaterialCategory {
     const char *identifier;
-    struct MaterialConfiguration *configuration;
+    const struct MaterialConfiguration *configuration;
 };
 
+struct MaterialCategory *material_category_create(const char *identifier, const struct MaterialConfiguration *configuration);
 void material_category_destroy(struct MaterialCategory *category);
 
 #endif /* material_category_h */

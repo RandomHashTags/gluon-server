@@ -5,7 +5,9 @@
     "material_categories" : [
         "minecraft.pickaxe"
     ],
-    "item_configuration" : {
-        "durability" : 2031
+    "configuration" : {
+        "item" : {
+            "durability" : 2031
+        }
     }
 }

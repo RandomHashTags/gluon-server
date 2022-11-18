@@ -8,16 +8,20 @@
 #ifndef world_h
 #define world_h
 
+#include "biome.h"
 #include "chunk.h"
 #include "../difficulty.h"
+#include "../../minecraft_version.h"
 #include "../../network/player_connection.h"
 
 struct World {
+    enum MinecraftVersion version;
     const long seed;
     const char *name;
     
     struct Location *spawn_location;
     struct Difficulty *difficulty;
+    struct Biome *biomes;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;
@@ -33,7 +37,7 @@ struct World {
     struct LivingEntity *living_entities;
 };
 
-struct World *world_create(const long seed, const char *world_name, struct Difficulty *difficulty);
+struct World *world_create(enum MinecraftVersion version, const long seed, const char *world_name, struct Difficulty *difficulty);
 void world_destroy(struct World *world);
 
 void world_tick(struct World *world);

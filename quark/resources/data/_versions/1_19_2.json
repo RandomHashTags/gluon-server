@@ -1,0 +1,22 @@
+{
+    "generators" : {
+        "chunk" : "minecraft.1_19_2"
+    },
+    "worlds" : {
+        "world" : {
+            "min_y" : -64,
+            "max_y" : 320,
+            "biomes" : []
+        },
+        "world_nether" : {
+            "min_y" : -64,
+            "max_y" : 320,
+            "biomes": []
+        },
+        "world_the_end" : {
+            "min_y" : -64,
+            "max_y" : 320,
+            "biomes" : []
+        }
+    }
+}

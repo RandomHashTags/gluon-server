@@ -15,6 +15,6 @@ extern float TICKS_PER_SECOND_MULTIPLIER;
 extern unsigned short BLOCK_BREAK_DELAY_TICKS;
 extern struct QuarkServer *SERVER;
 
-char *malloc_string(const char *string);
+char *malloc_string(const char string[]);
 
 #endif /* utilities_h */

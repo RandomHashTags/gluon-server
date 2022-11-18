@@ -16,7 +16,9 @@ struct QuarkPlugin {
     const char *bundle_id;
     const char *authors;
     const struct SemanticVersion version;
-    //const enum struct struct Material *struct Materials;
+    
+    //const struct Material *materials;
+    // TODO: added required dependencies
 };
 
 struct QuarkPlugin *plugin_create(const char *name, const char *bundle_id, const char *authors, const struct SemanticVersion version);

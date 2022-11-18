@@ -360,7 +360,7 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         }
         SERVER->world_count_maximum = new_world_count_maximum;
     }
-    struct World *world = world_create(seed, world_name, difficulty);
+    struct World *world = world_create(MINECRAFT_VERSION_1_19_2, seed, world_name, difficulty);
     if (!world) {
         printf("failed to allocate memory for a World\n");
         return NULL;

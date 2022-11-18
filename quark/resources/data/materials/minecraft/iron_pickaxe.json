@@ -5,10 +5,12 @@
     "material_categories" : [
         "minecraft.pickaxe"
     ],
-    "item_configuration" : {
-        "durability" : 250
-    },
-    "smelting_configuration" : {
-        "is_smeltable" : true
+    "configuration" : {
+        "item" : {
+            "durability" : 250
+        },
+        "smelting" : {
+            "is_smeltable" : true
+        }
     }
 }

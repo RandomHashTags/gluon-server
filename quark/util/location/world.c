@@ -11,7 +11,7 @@
 #include "world.h"
 #include "../../utilities.h"
 
-struct World *world_create(const long seed, const char *world_name, struct Difficulty *difficulty) {
+struct World *world_create(enum MinecraftVersion version, const long seed, const char *world_name, struct Difficulty *difficulty) {
     struct World *world = malloc(sizeof(struct World));
     if (!world) {
         printf("failed to allocate memory for a World\n");
@@ -54,6 +54,7 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
         return NULL;
     }
     
+    world->version = version;
     world->name = target_world_name;
     memcpy((long *) &world->seed, &seed, sizeof(seed));
     world->spawn_location = spawn_location;
@@ -101,6 +102,7 @@ void world_destroy(struct World *world) {
     location_destroy(world->spawn_location);
     free((char *) world->name);
     free(world->difficulty);
+    free(world->biomes);
     free(world);
 }
 

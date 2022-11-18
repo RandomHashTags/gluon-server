@@ -108,7 +108,7 @@ void player_broke_block(struct Player *player, struct Block *block, _Bool instan
         if (breakEvent.drop_items) {
             const struct MaterialConfiguration *configuration = block->material->configuration;
             if (!configuration) {
-                const struct MaterialBlockConfiguration *block_configuration = configuration->block_configuration;
+                const struct MaterialBlockConfiguration *block_configuration = configuration->block;
                 if (!block_configuration) {
                 }
             }
@@ -144,7 +144,7 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
                 if (should_drop_items) {
                     const struct MaterialConfiguration *configuration = blocks[i].material->configuration;
                     if (!configuration) {
-                        const struct MaterialBlockConfiguration *block_configuration = configuration->block_configuration;
+                        const struct MaterialBlockConfiguration *block_configuration = configuration->block;
                         if (!block_configuration) {
                         }
                     }

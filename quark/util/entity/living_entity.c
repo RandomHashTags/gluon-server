@@ -111,7 +111,7 @@ void living_entity_damage_item_in_main_hand(struct LivingEntity *entity, unsigne
     struct EntityEquipment *equipment = entity->equipment;
     struct ItemStack *item_stack = equipment->item_in_main_hand;
     if (item_stack != NULL) {
-        const struct MaterialItemConfiguration *configuration = item_stack->material->configuration->item_configuration;
+        const struct MaterialItemConfiguration *configuration = item_stack->material->configuration->item;
         if (configuration != NULL && configuration->has_durability) {
             const unsigned short new_durability = item_stack->durability - 1;
             if (new_durability == 0) {

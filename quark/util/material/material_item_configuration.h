@@ -16,14 +16,14 @@ struct MaterialItemConfiguration {
     
     /// If the item has durability.
     const _Bool has_durability;
-    /// The item's current durability.
+    /// The item's maximum durability.
     const unsigned short durability;
     
-    /// Amount of health points this item afflicts to a LivingEntity.
+    /// Amount of health points this item inflicts to a LivingEntity.
     const float attack_damage;
     /// Amount of durability to reduced this item by when attacking a LivingEntity.
     const unsigned short attack_durability_damage;
-    /// Amount of durability to reduce this item by if the block broken preferres the item's material.
+    /// Amount of durability to reduce this item by if the block broken does prefer the item's material.
     const unsigned short break_preferred_block_durability_damage;
     /// Amount of durability to reduce this item by if the block broken doesn't prefer the item's material.
     const unsigned short break_nonpreferred_block_durability_damage;

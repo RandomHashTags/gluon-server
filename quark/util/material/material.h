@@ -17,7 +17,7 @@ struct Material {
     const struct MaterialConfiguration *configuration;
 };
 
-struct Material *material_create(const char *identifier, const struct MaterialConfiguration *configuration);
+struct Material *material_create(const char *identifier, const struct MaterialNames *names, const struct MaterialConfiguration *configuration);
 void material_destroy(struct Material *material);
 
 extern struct Material MINECRAFT_AIR;

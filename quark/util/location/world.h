@@ -8,8 +8,8 @@
 #ifndef world_h
 #define world_h
 
-#include "biome.h"
 #include "chunk.h"
+#include "../biome/biome.h"
 #include "../difficulty.h"
 #include "../../minecraft_version.h"
 #include "../../network/player_connection.h"

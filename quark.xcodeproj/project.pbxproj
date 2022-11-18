@@ -43,6 +43,7 @@
 		679C6D0A2927728C00EE168D /* bounding_box.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D092927728C00EE168D /* bounding_box.c */; };
 		679C6D0F2927755700EE168D /* bounding_circle.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D0E2927755700EE168D /* bounding_circle.c */; };
 		679C6D122927765100EE168D /* boundary.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D112927765100EE168D /* boundary.c */; };
+		679C6D4D29282F4600EE168D /* biome_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D4C29282F4600EE168D /* biome_configuration.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
@@ -224,6 +225,11 @@
 		679C6D4729282E3800EE168D /* windswept_hills.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_hills.json; sourceTree = "<group>"; };
 		679C6D4829282E4800EE168D /* windswept_savanna.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_savanna.json; sourceTree = "<group>"; };
 		679C6D4929282E5400EE168D /* wooded_badlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wooded_badlands.json; sourceTree = "<group>"; };
+		679C6D4B29282F4600EE168D /* biome_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = biome_configuration.h; sourceTree = "<group>"; };
+		679C6D4C29282F4600EE168D /* biome_configuration.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = biome_configuration.c; sourceTree = "<group>"; };
+		679C6D4E29283C7500EE168D /* shovel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = shovel.json; sourceTree = "<group>"; };
+		679C6D4F2928406700EE168D /* item_only.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item_only.json; sourceTree = "<group>"; };
+		679C6D50292841B600EE168D /* item_single_stack_size.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item_single_stack_size.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -322,8 +328,6 @@
 		6753CF1F291454D8008BD41C /* location */ = {
 			isa = PBXGroup;
 			children = (
-				679C6CD6292713D800EE168D /* biome.h */,
-				679C6CD7292713D800EE168D /* biome.c */,
 				6753CF3D29146CC0008BD41C /* chunk.h */,
 				6753CF3E29146CC0008BD41C /* chunk.c */,
 				6753CF232914550B008BD41C /* location.h */,
@@ -495,6 +499,7 @@
 		6799445829144B9100D8F796 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D4A29282F1700EE168D /* biome */,
 				679C6D072927725500EE168D /* collision */,
 				679C6D0329276CCC00EE168D /* sound */,
 				679C6CD12925820E00EE168D /* structure */,
@@ -750,6 +755,17 @@
 			path = minecraft;
 			sourceTree = "<group>";
 		};
+		679C6D4A29282F1700EE168D /* biome */ = {
+			isa = PBXGroup;
+			children = (
+				679C6CD6292713D800EE168D /* biome.h */,
+				679C6CD7292713D800EE168D /* biome.c */,
+				679C6D4B29282F4600EE168D /* biome_configuration.h */,
+				679C6D4C29282F4600EE168D /* biome_configuration.c */,
+			);
+			path = biome;
+			sourceTree = "<group>";
+		};
 		67A66C29292192BC00A144F8 /* materials */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,8 +834,11 @@
 			children = (
 				67A66C3929219AA400A144F8 /* armor.json */,
 				67A66C3C29219B3800A144F8 /* pickaxe.json */,
+				679C6D4E29283C7500EE168D /* shovel.json */,
 				67A66C4C2921A2BD00A144F8 /* spawn_egg.json */,
 				67A66C4D2921A49400A144F8 /* tool.json */,
+				679C6D4F2928406700EE168D /* item_only.json */,
+				679C6D50292841B600EE168D /* item_single_stack_size.json */,
 			);
 			path = minecraft;
 			sourceTree = "<group>";
@@ -1047,6 +1066,7 @@
 				672760AC292386B500F26301 /* seed_generator.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				679C6D0F2927755700EE168D /* bounding_circle.c in Sources */,
+				679C6D4D29282F4600EE168D /* biome_configuration.c in Sources */,
 				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
 				679C6CD0292579C400EE168D /* advancement.c in Sources */,
 				679C6CD8292713D800EE168D /* biome.c in Sources */,

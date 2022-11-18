@@ -1,8 +1,12 @@
 {
-    "is_only_item" : true,
+    "material_categories" : [
+        "minecraft.item_only",
+        "minecraft.item_single_stack_size"
+    ],
     "configuration" : {
         "item" : {
-            "item_stack_size_maximum" : 1
+            "break_preferred_block_durability_damage" : 1,
+            "break_nonpreferred_block_durability_damage" : 1
         }
     }
 }

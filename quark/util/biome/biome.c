@@ -7,10 +7,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "biome.h"
+#include "../biome/biome.h"
 #include "../../utilities.h"
 
-struct Biome *biome_create(const char *identifier) {
+struct Biome *biome_create(const char *identifier, const struct BiomeConfiguration *configuration) {
     struct Biome *biome = malloc(sizeof(struct Biome));
     if (!biome) {
         printf("failed to allocate memory for a Biome\n");
@@ -23,9 +23,11 @@ struct Biome *biome_create(const char *identifier) {
         return NULL;
     }
     biome->identifier = target_identifier;
+    biome->configuration = configuration;
     return biome;
 }
 void biome_destroy(struct Biome *biome) {
+    biome_configuration_destroy((struct BiomeConfiguration *) biome->configuration);
     free((char *) biome->identifier);
     free(biome);
 }

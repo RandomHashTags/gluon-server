@@ -10,7 +10,7 @@
 #include "material.h"
 #include "../../utilities.h"
 
-struct Material *material_create(const char *identifier, const struct MaterialConfiguration *configuration) {
+struct Material *material_create(const char *identifier, const struct MaterialNames *names, const struct MaterialConfiguration *configuration) {
     struct Material *material = malloc(sizeof(struct Material));
     if (!material) {
         printf("failed to allocate memory for a Material\n");
@@ -23,6 +23,7 @@ struct Material *material_create(const char *identifier, const struct MaterialCo
         return NULL;
     }
     material->identifier = target_identifier;
+    material->names = names;
     material->configuration = configuration;
     return material;
 }

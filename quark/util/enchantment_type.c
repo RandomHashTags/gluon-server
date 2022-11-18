@@ -8,7 +8,15 @@
 #include <stdlib.h>
 #include "enchantment_type.h"
 
-void enchants_destroy(struct Enchant *enchants) {
+void enchant_destroy(struct Enchant *enchant) {
+    free((struct EnchantmentType *) enchant->type);
+    free(enchant);
+}
+void enchants_destroy(unsigned short enchants_count, struct Enchant *enchants) {
+    for (unsigned short i = 0; i < enchants_count; i++) {
+        struct Enchant *enchant = &enchants[i];
+        enchant_destroy(enchant);
+    }
     free(enchants);
 }
 

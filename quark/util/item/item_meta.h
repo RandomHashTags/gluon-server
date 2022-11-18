@@ -14,10 +14,12 @@ struct ItemMeta {
     char *display_name;
     char *lore;
     
+    unsigned short enchants_count;
     struct Enchant *enchants;
 };
 
-struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants);
+struct ItemMeta *item_meta_create(char *display_name, char *lore, unsigned short enchants_count, struct Enchant *enchants);
+struct ItemMeta *item_meta_clone(struct ItemMeta *meta);
 void item_meta_destroy(struct ItemMeta *meta);
 
 _Bool item_meta_is_similar(struct ItemMeta *item_meta1, struct ItemMeta *item_meta2);

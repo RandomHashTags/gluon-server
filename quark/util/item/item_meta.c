@@ -10,7 +10,7 @@
 #include "item_meta.h"
 #include "../../utilities.h"
 
-struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants) {
+struct ItemMeta *item_meta_create(char *display_name, char *lore, unsigned short enchants_count, struct Enchant *enchants) {
     struct ItemMeta *meta = malloc(sizeof(struct ItemMeta));
     if (!meta) {
         printf("failed to allocate memory for a ItemMeta\n");
@@ -34,11 +34,15 @@ struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant
     
     meta->display_name = target_display_name;
     meta->lore = target_lore;
+    meta->enchants_count = enchants_count;
     meta->enchants = enchants;
     return meta;
 }
+struct ItemMeta *item_meta_clone(struct ItemMeta *meta) {
+    return item_meta_create(meta->display_name, meta->lore, meta->enchants_count, meta->enchants);
+}
 void item_meta_destroy(struct ItemMeta *meta) {
-    enchants_destroy(meta->enchants);
+    enchants_destroy(meta->enchants_count, meta->enchants);
     free(meta->display_name);
     free(meta->lore);
     free(meta);
@@ -63,7 +67,7 @@ struct Enchant *item_meta_get_enchant(struct ItemMeta *meta, struct EnchantmentT
     const int enchantsCount = sizeof(*enchants) / sizeof(&enchants[0]);
     for (int i = 0; i < enchantsCount; i++) {
         struct Enchant *enchant = &enchants[i];
-        if (enchant->type.identifier == identifier) {
+        if (enchant->type->identifier == identifier) {
             return enchant;
         }
     }

@@ -8,10 +8,13 @@
 #ifndef material_block_configuration_h
 #define material_block_configuration_h
 
+#include "../item/item_stack.h"
+
 struct MaterialBlockConfiguration {
     const short resistance;
     
-    const char *dropped_items;
+    const unsigned short dropped_items_count;
+    const struct ItemStack *dropped_items;
 };
 
 void material_block_configuration_destroy(struct MaterialBlockConfiguration *configuration);

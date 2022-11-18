@@ -20,7 +20,9 @@ struct ItemStack {
 };
 
 struct ItemStack *item_stack_create(struct Material *material, short amount, short durability, struct ItemMeta *meta);
+struct ItemStack *item_stack_clone(struct ItemStack *item);
 void item_stack_destroy(struct ItemStack *item);
+void item_stacks_destroy(const unsigned short count, struct ItemStack *items);
 
 _Bool item_stack_is_similar(struct ItemStack *item_stack1, struct ItemStack *item_stack2);
 

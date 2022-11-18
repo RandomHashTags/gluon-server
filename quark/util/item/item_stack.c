@@ -22,10 +22,32 @@ struct ItemStack *item_stack_create(struct Material *material, short amount, sho
     item_stack->meta = meta;
     return item_stack;
 }
+struct ItemStack *item_stack_clone(struct ItemStack *item) {
+    struct Material *material = (struct Material *) item->material;
+    unsigned short amount = item->amount;
+    unsigned short durability = item->durability;
+    struct ItemMeta *meta = item->meta;
+    if (meta != NULL) {
+        struct ItemMeta *meta_clone = item_meta_clone(meta);
+        if (!meta_clone) {
+            return NULL;
+        }
+        return item_stack_create(material, amount, durability, meta_clone);
+    } else {
+        return item_stack_create(material, amount, durability, NULL);
+    }
+}
 void item_stack_destroy(struct ItemStack *item) {
     item_meta_destroy(item->meta);
     free((struct Material *) item->material);
     free(item);
+}
+void item_stacks_destroy(const unsigned short count, struct ItemStack *items) {
+    for (unsigned short i = 0; i < count; i++) {
+        struct ItemStack *item = &items[i];
+        item_stack_destroy(item);
+    }
+    free(items);
 }
 
 _Bool item_stack_is_similar(struct ItemStack *item_stack1, struct ItemStack *item_stack2) {

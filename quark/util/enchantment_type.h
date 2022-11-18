@@ -94,11 +94,12 @@ extern struct EnchantmentType ENCHANTMENT_TYPE_MINECRAFT_UNBREAKING;
 extern struct EnchantmentType ENCHANTMENT_TYPE_MINECRAFT_VANISHING_CURSE;
 
 struct Enchant {
-    const struct EnchantmentType type;
+    const struct EnchantmentType *type;
     int level;
 };
 
-void enchants_destroy(struct Enchant *enchants);
+void enchant_destroy(struct Enchant *enchant);
+void enchants_destroy(unsigned short enchants_count, struct Enchant *enchants);
 
 struct EnchantmentTarget enchantment_type_get_enchantment_target(struct EnchantmentType *enchantment);
 

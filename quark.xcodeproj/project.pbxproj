@@ -40,6 +40,9 @@
 		679C6CE42927568700EE168D /* chunk_generator.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CE32927568700EE168D /* chunk_generator.c */; };
 		679C6CE729275A7D00EE168D /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CE529275A7D00EE168D /* material_configuration.c */; };
 		679C6D0629276CD500EE168D /* sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D0529276CD500EE168D /* sound.c */; };
+		679C6D0A2927728C00EE168D /* bounding_box.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D092927728C00EE168D /* bounding_box.c */; };
+		679C6D0F2927755700EE168D /* bounding_circle.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D0E2927755700EE168D /* bounding_circle.c */; };
+		679C6D122927765100EE168D /* boundary.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D112927765100EE168D /* boundary.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
@@ -162,6 +165,13 @@
 		679C6CFA292768B000EE168D /* 1_19_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 1_19_2.json; sourceTree = "<group>"; };
 		679C6D0429276CD500EE168D /* sound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sound.h; sourceTree = "<group>"; };
 		679C6D0529276CD500EE168D /* sound.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sound.c; sourceTree = "<group>"; };
+		679C6D082927728C00EE168D /* bounding_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bounding_box.h; sourceTree = "<group>"; };
+		679C6D092927728C00EE168D /* bounding_box.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bounding_box.c; sourceTree = "<group>"; };
+		679C6D0B292773D900EE168D /* boundary_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boundary_type.h; sourceTree = "<group>"; };
+		679C6D0D2927755700EE168D /* bounding_circle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bounding_circle.h; sourceTree = "<group>"; };
+		679C6D0E2927755700EE168D /* bounding_circle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bounding_circle.c; sourceTree = "<group>"; };
+		679C6D102927765100EE168D /* boundary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boundary.h; sourceTree = "<group>"; };
+		679C6D112927765100EE168D /* boundary.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = boundary.c; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -610,6 +620,13 @@
 		679C6D072927725500EE168D /* collision */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D0B292773D900EE168D /* boundary_type.h */,
+				679C6D102927765100EE168D /* boundary.h */,
+				679C6D112927765100EE168D /* boundary.c */,
+				679C6D082927728C00EE168D /* bounding_box.h */,
+				679C6D092927728C00EE168D /* bounding_box.c */,
+				679C6D0D2927755700EE168D /* bounding_circle.h */,
+				679C6D0E2927755700EE168D /* bounding_circle.c */,
 			);
 			path = collision;
 			sourceTree = "<group>";
@@ -884,6 +901,7 @@
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
+				679C6D0A2927728C00EE168D /* bounding_box.c in Sources */,
 				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */,
 				6753CF1A29145495008BD41C /* events.c in Sources */,
@@ -910,6 +928,7 @@
 				6759E99F291D967300EB161F /* vector.c in Sources */,
 				672760AC292386B500F26301 /* seed_generator.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
+				679C6D0F2927755700EE168D /* bounding_circle.c in Sources */,
 				673D6B9329156B7200C0BDE7 /* damageable.c in Sources */,
 				679C6CD0292579C400EE168D /* advancement.c in Sources */,
 				679C6CD8292713D800EE168D /* biome.c in Sources */,
@@ -918,6 +937,7 @@
 				679CC8E02914AD9400D71267 /* quark_server.c in Sources */,
 				6759E98E291C96C000EB161F /* projectile.c in Sources */,
 				6759E995291C9C6A00EB161F /* projectile_arrow.c in Sources */,
+				679C6D122927765100EE168D /* boundary.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,13 +1,14 @@
 {
     "is_block_and_item" : true,
     "item" : {
-        "attack_damage" : 1,
-        "attack_item_damage" : 0,
-        "attack_recharge_ticks" : 0,
+        "attack_damage" : 1.0,
+        "attack_durability_damage" : 0,
+        "attack_recharge_ticks" : 5,
         "item_stack_size_maximum" : 64
         "placed_block_material" : "%identifier%"
     },
     "block" : {
+        "breaks_instantly" : false,
         "dropped_items" : [
             {
                 "identifier" : "%identifier%"

@@ -21,5 +21,6 @@ struct Material *material_create(const char *identifier, const struct MaterialNa
 void material_destroy(struct Material *material);
 
 extern struct Material MINECRAFT_AIR;
+extern struct Material MINECRAFT_BEDROCK;
 
 #endif /* material_h */

@@ -11,6 +11,8 @@
 #include "../item/item_stack.h"
 
 struct MaterialBlockConfiguration {
+    /// If this block breaks instantly when attacked.
+    const _Bool breaks_instantly;
     const short resistance;
     
     const unsigned short dropped_items_count;

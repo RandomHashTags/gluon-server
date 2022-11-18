@@ -35,6 +35,8 @@ void material_destroy(struct Material *material) {
 }
 
 struct Material MINECRAFT_AIR = {
-    .identifier = "minecraft.air",
-    .configuration = NULL
+    .identifier = "minecraft.air"
+};
+struct Material MINECRAFT_BEDROCK = {
+    .identifier = "minecraft.bedrock"
 };

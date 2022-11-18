@@ -230,6 +230,9 @@
 		679C6D4E29283C7500EE168D /* shovel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = shovel.json; sourceTree = "<group>"; };
 		679C6D4F2928406700EE168D /* item_only.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item_only.json; sourceTree = "<group>"; };
 		679C6D50292841B600EE168D /* item_single_stack_size.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item_single_stack_size.json; sourceTree = "<group>"; };
+		679C6D512928470800EE168D /* hoe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hoe.json; sourceTree = "<group>"; };
+		679C6D5229284A5400EE168D /* axe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = axe.json; sourceTree = "<group>"; };
+		679C6D5329284A9300EE168D /* diamond_axe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = diamond_axe.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -780,6 +783,7 @@
 				679C6CFB29276C7B00EE168D /* sounds */,
 				67A66C312921988800A144F8 /* icons */,
 				67A66C2B292193A000A144F8 /* air.json */,
+				679C6D5329284A9300EE168D /* diamond_axe.json */,
 				67A66C3B29219ADC00A144F8 /* diamond_pickaxe.json */,
 				67A66C512921A62500A144F8 /* iron_pickaxe.json */,
 				67A66C4B2921A23100A144F8 /* netherite_pickaxe.json */,
@@ -833,6 +837,8 @@
 			isa = PBXGroup;
 			children = (
 				67A66C3929219AA400A144F8 /* armor.json */,
+				679C6D5229284A5400EE168D /* axe.json */,
+				679C6D512928470800EE168D /* hoe.json */,
 				67A66C3C29219B3800A144F8 /* pickaxe.json */,
 				679C6D4E29283C7500EE168D /* shovel.json */,
 				67A66C4C2921A2BD00A144F8 /* spawn_egg.json */,

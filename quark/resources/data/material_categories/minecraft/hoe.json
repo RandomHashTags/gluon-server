@@ -4,8 +4,7 @@
     ],
     "configuration" : {
         "item" : {
-            "attack_durability_damage" : 2,
-            "attack_recharge_ticks" : 20
+            "attack_recharge_ticks" : 17
         }
     }
 }

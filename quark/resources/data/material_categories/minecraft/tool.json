@@ -5,6 +5,7 @@
     ],
     "configuration" : {
         "item" : {
+            "attack_durability_damage" : 1,
             "break_preferred_block_durability_damage" : 1,
             "break_nonpreferred_block_durability_damage" : 1
         }

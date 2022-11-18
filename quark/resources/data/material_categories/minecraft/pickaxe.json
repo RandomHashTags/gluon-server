@@ -2,6 +2,8 @@
     "is_only_item" : true,
     "configuration" : {
         "item" : {
+            "attack_item_damage" : 2,
+            "block_break_item_damage" : 1,
             "item_stack_size_maximum" : 1
         }
     }

@@ -6,17 +6,20 @@
         "world" : {
             "min_y" : -64,
             "max_y" : 320,
+            "material_configuration" : "minecraft.1_19_2",
             "biomes" : []
         },
         "world_nether" : {
             "min_y" : -64,
             "max_y" : 320,
+            "material_configuration" : "minecraft.1_19_2",
             "biomes": []
         },
         "world_the_end" : {
             "min_y" : -64,
             "max_y" : 320,
+            "material_configuration" : "minecraft.1_19_2",
             "biomes" : []
         }
-    }
+    },
 }

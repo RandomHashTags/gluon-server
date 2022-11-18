@@ -172,6 +172,58 @@
 		679C6D0E2927755700EE168D /* bounding_circle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bounding_circle.c; sourceTree = "<group>"; };
 		679C6D102927765100EE168D /* boundary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boundary.h; sourceTree = "<group>"; };
 		679C6D112927765100EE168D /* boundary.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = boundary.c; sourceTree = "<group>"; };
+		679C6D1429282B0000EE168D /* 1_19_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = 1_19_2.json; sourceTree = "<group>"; };
+		679C6D1629282BC900EE168D /* deep_lukewarm_ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = deep_lukewarm_ocean.json; sourceTree = "<group>"; };
+		679C6D1729282BE700EE168D /* deep_ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = deep_ocean.json; sourceTree = "<group>"; };
+		679C6D1829282BF200EE168D /* desert.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = desert.json; sourceTree = "<group>"; };
+		679C6D1A29282C0D00EE168D /* dripstone_caves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dripstone_caves.json; sourceTree = "<group>"; };
+		679C6D1B29282C1700EE168D /* end_barrens.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = end_barrens.json; sourceTree = "<group>"; };
+		679C6D1C29282C2200EE168D /* end_highlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = end_highlands.json; sourceTree = "<group>"; };
+		679C6D1D29282C2C00EE168D /* end_midlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = end_midlands.json; sourceTree = "<group>"; };
+		679C6D1E29282C3A00EE168D /* eroded_badlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eroded_badlands.json; sourceTree = "<group>"; };
+		679C6D1F29282C4500EE168D /* flower_forest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flower_forest.json; sourceTree = "<group>"; };
+		679C6D2029282C4F00EE168D /* forest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = forest.json; sourceTree = "<group>"; };
+		679C6D2129282C5900EE168D /* frozen_ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frozen_ocean.json; sourceTree = "<group>"; };
+		679C6D2229282C6500EE168D /* frozen_river.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frozen_river.json; sourceTree = "<group>"; };
+		679C6D2329282C6E00EE168D /* grove.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = grove.json; sourceTree = "<group>"; };
+		679C6D2429282C7800EE168D /* ice_spikes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ice_spikes.json; sourceTree = "<group>"; };
+		679C6D2529282C8400EE168D /* jagged_peaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jagged_peaks.json; sourceTree = "<group>"; };
+		679C6D2629282C8C00EE168D /* jungle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = jungle.json; sourceTree = "<group>"; };
+		679C6D2729282C9D00EE168D /* lukewarm_ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lukewarm_ocean.json; sourceTree = "<group>"; };
+		679C6D2829282CAA00EE168D /* lush_caves.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lush_caves.json; sourceTree = "<group>"; };
+		679C6D2929282CB800EE168D /* mangrove_swamp.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mangrove_swamp.json; sourceTree = "<group>"; };
+		679C6D2A29282CC700EE168D /* meadow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = meadow.json; sourceTree = "<group>"; };
+		679C6D2B29282CD300EE168D /* mushroom_fields.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mushroom_fields.json; sourceTree = "<group>"; };
+		679C6D2C29282CE100EE168D /* nether_wastes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = nether_wastes.json; sourceTree = "<group>"; };
+		679C6D2D29282CED00EE168D /* ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ocean.json; sourceTree = "<group>"; };
+		679C6D2E29282D0200EE168D /* old_growth_birch_forest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = old_growth_birch_forest.json; sourceTree = "<group>"; };
+		679C6D2F29282D1300EE168D /* old_growth_pine_taiga.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = old_growth_pine_taiga.json; sourceTree = "<group>"; };
+		679C6D3029282D2400EE168D /* old_growth_spruce_taiga.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = old_growth_spruce_taiga.json; sourceTree = "<group>"; };
+		679C6D3129282D3100EE168D /* plains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = plains.json; sourceTree = "<group>"; };
+		679C6D3229282D3A00EE168D /* river.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = river.json; sourceTree = "<group>"; };
+		679C6D3329282D4900EE168D /* savanna.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = savanna.json; sourceTree = "<group>"; };
+		679C6D3429282D5200EE168D /* savanna_plateau.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = savanna_plateau.json; sourceTree = "<group>"; };
+		679C6D3529282D5D00EE168D /* small_end_islands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = small_end_islands.json; sourceTree = "<group>"; };
+		679C6D3629282D6800EE168D /* snowy_beach.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snowy_beach.json; sourceTree = "<group>"; };
+		679C6D3729282D7700EE168D /* snowy_plains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snowy_plains.json; sourceTree = "<group>"; };
+		679C6D3829282D8900EE168D /* snowy_slopes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snowy_slopes.json; sourceTree = "<group>"; };
+		679C6D3929282D9400EE168D /* snowy_taiga.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snowy_taiga.json; sourceTree = "<group>"; };
+		679C6D3A29282D9F00EE168D /* soul_sand_valley.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soul_sand_valley.json; sourceTree = "<group>"; };
+		679C6D3B29282DA900EE168D /* sparse_jungle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sparse_jungle.json; sourceTree = "<group>"; };
+		679C6D3C29282DB400EE168D /* stony_peaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stony_peaks.json; sourceTree = "<group>"; };
+		679C6D3D29282DBD00EE168D /* stony_shore.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stony_shore.json; sourceTree = "<group>"; };
+		679C6D3E29282DC600EE168D /* sunflower_plains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sunflower_plains.json; sourceTree = "<group>"; };
+		679C6D3F29282DD000EE168D /* swamp.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swamp.json; sourceTree = "<group>"; };
+		679C6D4029282DD800EE168D /* taiga.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = taiga.json; sourceTree = "<group>"; };
+		679C6D4129282DE100EE168D /* the_end.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = the_end.json; sourceTree = "<group>"; };
+		679C6D4229282DE900EE168D /* the_void.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = the_void.json; sourceTree = "<group>"; };
+		679C6D4329282DF900EE168D /* warm_ocean.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = warm_ocean.json; sourceTree = "<group>"; };
+		679C6D4429282E0300EE168D /* warped_forest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = warped_forest.json; sourceTree = "<group>"; };
+		679C6D4529282E1000EE168D /* windswept_forest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_forest.json; sourceTree = "<group>"; };
+		679C6D4629282E2C00EE168D /* windswept_gravelly_hills.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_gravelly_hills.json; sourceTree = "<group>"; };
+		679C6D4729282E3800EE168D /* windswept_hills.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_hills.json; sourceTree = "<group>"; };
+		679C6D4829282E4800EE168D /* windswept_savanna.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = windswept_savanna.json; sourceTree = "<group>"; };
+		679C6D4929282E5400EE168D /* wooded_badlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wooded_badlands.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -190,7 +242,6 @@
 		67A66C272920344400A144F8 /* enchantment_target.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = enchantment_target.c; sourceTree = "<group>"; };
 		67A66C2B292193A000A144F8 /* air.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = air.json; sourceTree = "<group>"; };
 		67A66C2D2921953300A144F8 /* villager_spawn_egg.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = villager_spawn_egg.json; sourceTree = "<group>"; };
-		67A66C2E2921955100A144F8 /* defaults.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaults.json; sourceTree = "<group>"; };
 		67A66C2F292197E000A144F8 /* zombie_head.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombie_head.json; sourceTree = "<group>"; };
 		67A66C302921984100A144F8 /* zombie_head_item.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombie_head_item.json; sourceTree = "<group>"; };
 		67A66C342921992400A144F8 /* sharpness.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sharpness.json; sourceTree = "<group>"; };
@@ -524,6 +575,57 @@
 				679C6CF2292765E500EE168D /* deep_cold_ocean.json */,
 				679C6CF3292765F200EE168D /* deep_dark.json */,
 				679C6CF52927660E00EE168D /* deep_frozen_ocean.json */,
+				679C6D1629282BC900EE168D /* deep_lukewarm_ocean.json */,
+				679C6D1729282BE700EE168D /* deep_ocean.json */,
+				679C6D1829282BF200EE168D /* desert.json */,
+				679C6D1A29282C0D00EE168D /* dripstone_caves.json */,
+				679C6D1B29282C1700EE168D /* end_barrens.json */,
+				679C6D1C29282C2200EE168D /* end_highlands.json */,
+				679C6D1D29282C2C00EE168D /* end_midlands.json */,
+				679C6D1E29282C3A00EE168D /* eroded_badlands.json */,
+				679C6D1F29282C4500EE168D /* flower_forest.json */,
+				679C6D2029282C4F00EE168D /* forest.json */,
+				679C6D2129282C5900EE168D /* frozen_ocean.json */,
+				679C6D2229282C6500EE168D /* frozen_river.json */,
+				679C6D2329282C6E00EE168D /* grove.json */,
+				679C6D2429282C7800EE168D /* ice_spikes.json */,
+				679C6D2529282C8400EE168D /* jagged_peaks.json */,
+				679C6D2629282C8C00EE168D /* jungle.json */,
+				679C6D2729282C9D00EE168D /* lukewarm_ocean.json */,
+				679C6D2829282CAA00EE168D /* lush_caves.json */,
+				679C6D2929282CB800EE168D /* mangrove_swamp.json */,
+				679C6D2A29282CC700EE168D /* meadow.json */,
+				679C6D2B29282CD300EE168D /* mushroom_fields.json */,
+				679C6D2C29282CE100EE168D /* nether_wastes.json */,
+				679C6D2D29282CED00EE168D /* ocean.json */,
+				679C6D2E29282D0200EE168D /* old_growth_birch_forest.json */,
+				679C6D2F29282D1300EE168D /* old_growth_pine_taiga.json */,
+				679C6D3029282D2400EE168D /* old_growth_spruce_taiga.json */,
+				679C6D3129282D3100EE168D /* plains.json */,
+				679C6D3229282D3A00EE168D /* river.json */,
+				679C6D3329282D4900EE168D /* savanna.json */,
+				679C6D3429282D5200EE168D /* savanna_plateau.json */,
+				679C6D3529282D5D00EE168D /* small_end_islands.json */,
+				679C6D3629282D6800EE168D /* snowy_beach.json */,
+				679C6D3729282D7700EE168D /* snowy_plains.json */,
+				679C6D3829282D8900EE168D /* snowy_slopes.json */,
+				679C6D3929282D9400EE168D /* snowy_taiga.json */,
+				679C6D3A29282D9F00EE168D /* soul_sand_valley.json */,
+				679C6D3B29282DA900EE168D /* sparse_jungle.json */,
+				679C6D3C29282DB400EE168D /* stony_peaks.json */,
+				679C6D3D29282DBD00EE168D /* stony_shore.json */,
+				679C6D3E29282DC600EE168D /* sunflower_plains.json */,
+				679C6D3F29282DD000EE168D /* swamp.json */,
+				679C6D4029282DD800EE168D /* taiga.json */,
+				679C6D4129282DE100EE168D /* the_end.json */,
+				679C6D4229282DE900EE168D /* the_void.json */,
+				679C6D4329282DF900EE168D /* warm_ocean.json */,
+				679C6D4429282E0300EE168D /* warped_forest.json */,
+				679C6D4529282E1000EE168D /* windswept_forest.json */,
+				679C6D4629282E2C00EE168D /* windswept_gravelly_hills.json */,
+				679C6D4729282E3800EE168D /* windswept_hills.json */,
+				679C6D4829282E4800EE168D /* windswept_savanna.json */,
+				679C6D4929282E5400EE168D /* wooded_badlands.json */,
 			);
 			path = minecraft;
 			sourceTree = "<group>";
@@ -546,6 +648,7 @@
 				67A66C5B2921ABBD00A144F8 /* generators */,
 				67A66C552921A86800A144F8 /* inventory_types */,
 				67A66C36292199CB00A144F8 /* material_categories */,
+				679C6D1329282AF100EE168D /* material_configurations */,
 				67A66C29292192BC00A144F8 /* materials */,
 				67D4C3912921B25A00A3AC10 /* potion_effect_types */,
 				67A66C522921A76300A144F8 /* recipes */,
@@ -631,11 +734,26 @@
 			path = collision;
 			sourceTree = "<group>";
 		};
+		679C6D1329282AF100EE168D /* material_configurations */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D1529282B7D00EE168D /* minecraft */,
+			);
+			path = material_configurations;
+			sourceTree = "<group>";
+		};
+		679C6D1529282B7D00EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D1429282B0000EE168D /* 1_19_2.json */,
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
 		67A66C29292192BC00A144F8 /* materials */ = {
 			isa = PBXGroup;
 			children = (
 				67A66C2A2921938500A144F8 /* minecraft */,
-				67A66C2E2921955100A144F8 /* defaults.json */,
 			);
 			path = materials;
 			sourceTree = "<group>";

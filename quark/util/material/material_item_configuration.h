@@ -14,7 +14,10 @@ struct MaterialItemConfiguration {
     const unsigned char item_stack_size_maximum;
     
     const _Bool has_durability;
-    const short durability;
+    const unsigned short durability;
+    
+    const float attack_damage;
+    const unsigned short attack_item_damage;
     
     const struct CraftingRecipe *crafting_recipe;
     union { // TODO: free these

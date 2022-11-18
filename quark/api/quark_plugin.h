@@ -13,11 +13,13 @@
 
 struct QuarkPlugin {
     const char *name;
+    const char *bundle_id;
     const char *authors;
     const struct SemanticVersion version;
     //const enum struct struct Material *struct Materials;
 };
 
+struct QuarkPlugin *plugin_create(const char *name, const char *bundle_id, const char *authors, const struct SemanticVersion version);
 void plugin_destroy(struct QuarkPlugin *plugin);
 
 void plugin_enable(struct QuarkPlugin *plugin);

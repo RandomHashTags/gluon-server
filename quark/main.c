@@ -15,6 +15,7 @@
 // TODO: switch tick rate to be managed per world instead of only the server
 
 void init(void) {
+    printf("initializing...\n");
     server_create();
     if (SERVER) {
         server_start();
@@ -31,6 +32,10 @@ void test(void) {
     printf("main.test; long=%ld\n", test_long);
     printf("main.test; float=%f\n", (float) test_long);
     printf("main.test; double=%f\n", (double) test_long);
+    
+    char *test_char = "RandomHashTags";
+    int test_char_size1 = sizeof(test_char), test_char_size2 = sizeof(*test_char);
+    printf("main.test; test_char_size1=%d, test_char_size2=%d\n", test_char_size1, test_char_size2);
 }
 
 int main(int argc, const char * argv[]) {

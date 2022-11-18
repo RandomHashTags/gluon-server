@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "item_meta.h"
+#include "../../utilities.h"
 
 struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant *enchants) {
     struct ItemMeta *meta = malloc(sizeof(struct ItemMeta));
@@ -16,24 +17,20 @@ struct ItemMeta *item_meta_create(char *display_name, char *lore, struct Enchant
         return NULL;
     }
     
-    const int char_size = 36 * sizeof(char);
-    char *target_display_name = malloc(char_size);
+    char *target_display_name = malloc_string(display_name);
     if (!target_display_name) {
         free(meta);
         printf("failed to allocate memory for a ItemMeta display_name\n");
         return NULL;
     }
     
-    char *target_lore = malloc(24 * char_size);
+    char *target_lore = malloc_string(lore);
     if (!target_lore) {
         free(meta);
         free(target_display_name);
         printf("failed to allocate memory for a ItemMeta lore\n");
         return NULL;
     }
-    
-    target_display_name = display_name;
-    target_lore = lore;
     
     meta->display_name = target_display_name;
     meta->lore = target_lore;

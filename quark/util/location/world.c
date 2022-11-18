@@ -44,7 +44,7 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
         return NULL;
     }
     
-    const char *target_world_name = malloc(sizeof(*world_name));
+    const char *target_world_name = malloc_string(world_name);
     if (!target_world_name) {
         free(world);
         free(players);
@@ -53,7 +53,6 @@ struct World *world_create(const long seed, const char *world_name, struct Diffi
         printf("failed to allocate memory for a QuarkServer target_world_name\n");
         return NULL;
     }
-    target_world_name = world_name;
     
     world->name = target_world_name;
     memcpy((long *) &world->seed, &seed, sizeof(seed));

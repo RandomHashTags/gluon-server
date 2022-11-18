@@ -15,6 +15,7 @@ struct Permission {
     const char *identifier;
 };
 
+struct Permission *permission_create(const struct QuarkPlugin *plugin, const char *identifier);
 void permission_destroy(struct Permission *permission);
 
 #endif /* permission_h */

@@ -67,6 +67,8 @@ void server_set_sleeping(_Bool value);
 void server_tick(void);
 void server_change_tick_rate(const unsigned short ticks_per_second);
 
+struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id);
+
 struct World *server_get_world(const char *world_name);
 struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty);
 void server_world_destroy(struct World *world);

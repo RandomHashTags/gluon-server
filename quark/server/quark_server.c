@@ -96,6 +96,18 @@ void server_create(void) {
         return;
     }
     
+    const char *default_world_name = malloc_string("world");
+    if (!default_world_name) {
+        free(server);
+        free(plugins);
+        free(worlds);
+        free(entity_types);
+        free(inventory_types);
+        free(materials);
+        printf("failed to allocate memory for a QuarkServer default_world_name\n");
+        return;
+    }
+    
     server->entity_types_count = entity_types_count;
     server->entity_types = entity_types;
     
@@ -106,7 +118,6 @@ void server_create(void) {
     server->materials = materials;
     
     server->worlds = worlds;
-    const char *default_world_name = "world";
     server->default_world = default_world_name;
     server->world_count = 0;
     
@@ -311,6 +322,19 @@ void server_change_tick_rate(const unsigned short ticks_per_second) {
     printf("server successfully updated tick rate values\n");
 }
 
+
+struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id) {
+    const unsigned short plugins_count = SERVER->plugins_count;
+    struct QuarkPlugin *plugins = SERVER->plugins;
+    for (unsigned short i = 0; i < plugins_count; i++) {
+        struct QuarkPlugin *plugin = &plugins[i];
+        if (plugin->name == name && plugin->bundle_id == bundle_id) {
+            return plugin;
+        }
+    }
+    return NULL;
+}
+
 struct World *server_get_world(const char *world_name) {
     const unsigned short world_count = SERVER->world_count;
     struct World *worlds = SERVER->worlds;
@@ -455,14 +479,14 @@ struct Player *server_parse_player(unsigned int uuid) {
         return NULL;
     }
     
-    char *namePointer = malloc(16 * sizeof(char));
+    char *player_name = uuid == 0 ? "RandomHashTags" : uuid == 1 ? "test2" : uuid == 2 ? "test3" : "test4";
+    char *namePointer = malloc_string(player_name);
     if (!namePointer) {
         living_entity_destroy(entity);
         free(player);
         printf("failed to allocate memory for a Player namePointer\n");
         return NULL;
     }
-    namePointer = uuid == 0 ? "RandomHashTags" : uuid == 1 ? "test2" : uuid == 2 ? "test3" : "test4";
     const unsigned int firstPlayed = 50;
     
     player->living_entity = entity;

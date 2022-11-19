@@ -21,7 +21,11 @@ struct World {
     
     struct Location *spawn_location;
     struct Difficulty *difficulty;
-    struct Biome *biomes;
+    const unsigned short biomes_count;
+    const struct Biome *biomes;
+    
+    long min_y;
+    unsigned long max_y;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;

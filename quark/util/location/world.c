@@ -102,7 +102,7 @@ void world_destroy(struct World *world) {
     location_destroy(world->spawn_location);
     free((char *) world->name);
     free(world->difficulty);
-    free(world->biomes);
+    free((struct Biome *) world->biomes);
     free(world);
 }
 

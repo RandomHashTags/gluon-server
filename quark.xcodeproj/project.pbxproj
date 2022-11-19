@@ -277,6 +277,9 @@
 		679C6D8629288B4F00EE168D /* thorns.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = thorns.json; sourceTree = "<group>"; };
 		679C6D8729288B5F00EE168D /* unbreaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unbreaking.json; sourceTree = "<group>"; };
 		679C6D882928929800EE168D /* infinity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = infinity.json; sourceTree = "<group>"; };
+		679C6D8929289F0B00EE168D /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
+		679C6D8B2928A06300EE168D /* motd.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = motd.txt; sourceTree = "<group>"; };
+		679C6D8C2928ADE900EE168D /* frozen_peaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frozen_peaks.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -481,8 +484,9 @@
 			isa = PBXGroup;
 			children = (
 				679C6CDF292729D000EE168D /* data */,
-				679C6CDE292729CC00EE168D /* settings */,
 				679C6CD32925825B00EE168D /* player_data */,
+				679C6D8929289F0B00EE168D /* settings.json */,
+				679C6D8B2928A06300EE168D /* motd.txt */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -640,6 +644,7 @@
 				679C6D1F29282C4500EE168D /* flower_forest.json */,
 				679C6D2029282C4F00EE168D /* forest.json */,
 				679C6D2129282C5900EE168D /* frozen_ocean.json */,
+				679C6D8C2928ADE900EE168D /* frozen_peaks.json */,
 				679C6D2229282C6500EE168D /* frozen_river.json */,
 				679C6D2329282C6E00EE168D /* grove.json */,
 				679C6D2429282C7800EE168D /* ice_spikes.json */,
@@ -682,13 +687,6 @@
 				679C6D4929282E5400EE168D /* wooded_badlands.json */,
 			);
 			path = minecraft;
-			sourceTree = "<group>";
-		};
-		679C6CDE292729CC00EE168D /* settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = settings;
 			sourceTree = "<group>";
 		};
 		679C6CDF292729D000EE168D /* data */ = {

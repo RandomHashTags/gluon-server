@@ -12,7 +12,6 @@
 
 struct Biome {
     const char *identifier;
-    
     const struct BiomeConfiguration *configuration;
 };
 

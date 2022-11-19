@@ -113,6 +113,20 @@ void server_create(void) {
         return;
     }
     
+    unsigned short biomes_count = 63;
+    struct Biome *biomes = malloc(biomes_count * sizeof(struct Biome));
+    if (!biomes) {
+        free(server);
+        free(plugins);
+        free(worlds);
+        free(entity_types);
+        free(inventory_types);
+        free(materials);
+        free(enchantment_types);
+        printf("failed to allocate memory for %d QuarkServer biomes\n", biomes_count);
+        return;
+    }
+    
     const char *default_world_name = malloc_string("world");
     if (!default_world_name) {
         free(server);
@@ -122,6 +136,7 @@ void server_create(void) {
         free(inventory_types);
         free(materials);
         free(enchantment_types);
+        free(biomes);
         printf("failed to allocate memory for a QuarkServer default_world_name\n");
         return;
     }
@@ -137,6 +152,9 @@ void server_create(void) {
     
     server->enchantment_types_count = enchantment_types_count;
     server->enchantment_types = enchantment_types;
+    
+    server->biomes_count = biomes_count;
+    server->biomes = biomes;
     
     server->worlds = worlds;
     server->default_world = default_world_name;
@@ -161,6 +179,7 @@ void server_create(void) {
         free(inventory_types);
         free(materials);
         free(enchantment_types);
+        free(biomes);
         free((char *) default_world_name);
         free(SERVER);
         return;
@@ -209,6 +228,14 @@ void server_deallocate(void) {
         enchantment_type_destroy(type);
     }
     free(enchantment_types);
+    
+    const unsigned short biomes_count = SERVER->biomes_count;
+    struct Biome *biomes = SERVER->biomes;
+    for (unsigned short i = 0; i < biomes_count; i++) {
+        struct Biome *biome = &biomes[i];
+        biome_destroy(biome);
+    }
+    free(biomes);
     
     const unsigned short entity_types_count = SERVER->entity_types_count;
     struct EntityType *entity_types = SERVER->entity_types;
@@ -369,10 +396,14 @@ struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id) {
     struct QuarkPlugin *plugins = SERVER->plugins;
     for (unsigned short i = 0; i < plugins_count; i++) {
         struct QuarkPlugin *plugin = &plugins[i];
-        if (plugin->name == name && plugin->bundle_id == bundle_id) {
+        if (strcmp(plugin->name, name) == 0 && strcmp(plugin->bundle_id, bundle_id) == 0) {
             return plugin;
         }
     }
+    return NULL;
+}
+struct Material *server_get_material(const char *identifier) {
+    
     return NULL;
 }
 

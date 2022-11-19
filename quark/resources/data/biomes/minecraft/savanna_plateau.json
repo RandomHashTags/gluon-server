@@ -1,3 +1,6 @@
 {
-    
+    "configuration" : {
+        "temperature" : 1.0,
+        "downfall" : 0.0
+    }
 }

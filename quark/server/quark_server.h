@@ -35,8 +35,10 @@ struct QuarkServer {
     unsigned short enchantment_types_count;
     struct EnchantmentType *enchantment_types;
     
+    unsigned short biomes_count;
+    struct Biome *biomes;
+    
     char *motd;
-    unsigned short max_build_height;
     
     float tps;
     
@@ -71,6 +73,7 @@ void server_tick(void);
 void server_change_tick_rate(const unsigned short ticks_per_second);
 
 struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id);
+struct Material *server_get_material(const char *identifier);
 
 struct World *server_get_world(const char *world_name);
 struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty);

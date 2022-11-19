@@ -1,0 +1,11 @@
+{
+    "server_version" : "1_19_2",
+    
+    "hostname" : "localhost",
+    "port" : 25565,
+    
+    "online_mode" : true,
+    "pvp_enabled" : true,
+    
+    "default_world" : "world"
+}

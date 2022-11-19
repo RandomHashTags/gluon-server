@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Piercing"
     },
+    "weight" : 10,
     "max_level" : 4
 }

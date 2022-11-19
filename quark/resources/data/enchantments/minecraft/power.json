@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Power"
     },
+    "weight" : 10,
     "max_level" : 5
 }

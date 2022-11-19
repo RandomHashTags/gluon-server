@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Swift Sneak"
     },
+    "weight" : 1,
     "max_level" : 3
 }

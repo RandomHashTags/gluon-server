@@ -276,6 +276,7 @@
 		679C6D8529288B3700EE168D /* swift_sneak.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift_sneak.json; sourceTree = "<group>"; };
 		679C6D8629288B4F00EE168D /* thorns.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = thorns.json; sourceTree = "<group>"; };
 		679C6D8729288B5F00EE168D /* unbreaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unbreaking.json; sourceTree = "<group>"; };
+		679C6D882928929800EE168D /* infinity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = infinity.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -915,6 +916,7 @@
 				679C6D6F292889A000EE168D /* fortune.json */,
 				679C6D70292889BA00EE168D /* frost_walker.json */,
 				679C6D71292889CC00EE168D /* impaling.json */,
+				679C6D882928929800EE168D /* infinity.json */,
 				679C6D72292889DD00EE168D /* knockback.json */,
 				679C6D73292889ED00EE168D /* looting.json */,
 				679C6D74292889FC00EE168D /* loyalty.json */,

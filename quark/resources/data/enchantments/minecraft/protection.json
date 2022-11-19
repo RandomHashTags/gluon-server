@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Protection"
     },
+    "weight" : 10,
     "max_level" : 4
 }

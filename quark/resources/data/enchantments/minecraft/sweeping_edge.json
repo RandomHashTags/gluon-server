@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Sweeping Edge"
     },
+    "weight" : 2,
     "max_level" : 3
 }

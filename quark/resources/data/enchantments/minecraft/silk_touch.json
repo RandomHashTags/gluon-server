@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Silk Touch"
     },
+    "weight" : 1,
     "max_level" : 1
 }

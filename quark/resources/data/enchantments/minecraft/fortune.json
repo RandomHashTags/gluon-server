@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Fortune"
     },
+    "weight" : 2,
     "max_level" : 3
 }

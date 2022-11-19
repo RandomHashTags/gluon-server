@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Curse of Vanishing"
     },
+    "weight" : 1,
     "max_level" : 1
 }

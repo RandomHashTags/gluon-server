@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Knockback"
     },
+    "weight" : 5,
     "max_level" : 2
 }

@@ -12,12 +12,13 @@
 
 struct EnchantmentType {
     const char *identifier;
+    const unsigned char weight;
     const unsigned short max_level;
     const unsigned short incompatible_with_count;
     const struct EnchantmentType *incompatible_with;
 };
 
-struct EnchantmentType *enchantment_type_create(const char *identifier, const unsigned short max_level, const unsigned short incompatible_with_count, const struct EnchantmentType *incompatible_with);
+struct EnchantmentType *enchantment_type_create(const char *identifier, const unsigned char weight, const unsigned short max_level, const unsigned short incompatible_with_count, const struct EnchantmentType *incompatible_with);
 void enchantment_type_destroy(struct EnchantmentType *type);
 
 struct Enchant {

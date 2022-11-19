@@ -2,5 +2,6 @@
     "names" : {
         "en" : "Riptide"
     },
+    "weight" : 2,
     "max_level" : 3
 }

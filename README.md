@@ -21,12 +21,13 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] BlockState
   - [ ] BlockFace
   - [ ] Command Blocks
+  - [ ] Preferred materials (that break the block)
   - [ ] Pushable blocks (pistons)
   - [ ] Redstone
 - [ ] Crafting
   - [x] Implementation
+  - [x] Crafting Recipes
   - [ ] Crafting logic
-- [x] Difficulties
 - [ ] Enchanting
   - [x] Enchantment Types
   - [ ] Enchantments' logic
@@ -39,39 +40,52 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] Gamemodes
   - [x] Implementation
   - [ ] Gamemodes' logic
+- [ ] Hack detection
+  - [ ] Anti X-ray
 - [ ] Inventories
   - [x] Implementation
   - [ ] Inventories' logic
 - [ ] Items
   - [x] Implementation
+  - [x] Attack Cooldown
   - [x] Durability
   - [x] ItemMeta
   - [x] Stored Enchants
+  - [ ] Eatable
+  - [ ] Throwable
   - [ ] NBT
 - [ ] JSON
 - [ ] Loot / treasure
 - [x] Materials
+- [ ] Plugins / Mods
+  - [x] Implementation
+  - [ ] Enable / disable logic
 - [ ] Potion Effects
   - [x] Potion Effect Types
   - [ ] Potion Effects' logic
 - [ ] Physics
   - [ ] Gravity
 - [ ] Structures
+  - [x] Implementation
   - [ ] Structure Generation
 - [x] Tick handling
   - [x] Dynamic tick rate changing
-  - [ ] x
 - [ ] Worlds
   - [x] Implementation
+  - [x] Difficulties
   - [ ] Seed randomizer
   - [ ] Terrain Generation / Noise
+  - [ ] View distance
+  - [ ] Saves to file
   - [ ] Biomes
     - [x] Implementation
     - [x] Temperature and Rainfall
     - [ ] Biome Generation
+    - [ ] Structures Generation
   - [ ] Chunks
     - [x] Implementation
     - [ ] Chunk Generation
+    - [ ] Saves to file
 - [ ] Communication with Quark Client
   - [ ] Communication with the Minecraft Client
 

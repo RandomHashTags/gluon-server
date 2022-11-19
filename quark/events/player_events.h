@@ -1,26 +1,15 @@
 //
-//  events.h
+//  player_events.h
 //  quark
 //
-//  Created by Evan Anderson on 11/3/22.
+//  Created by Evan Anderson on 11/18/22.
 //
 
-#ifndef events_h
-#define events_h
+#ifndef player_events_h
+#define player_events_h
 
-#include "event_type.h"
-#include "../util/entity/entity.h"
+#include "event.h"
 #include "../util/entity/player/player.h"
-
-struct Event {
-    const _Bool is_async;
-    const enum EventType type;
-};
-
-struct EventCancellable {
-    const struct Event event;
-    _Bool is_cancelled;
-};
 
 struct PlayerEvent {
     const struct Event event;
@@ -31,6 +20,9 @@ struct PlayerEventCancellable {
     struct Player *player;
 };
 
+struct PlayerDeathEvent {
+    const struct PlayerEvent event;
+};
 
 struct PlayerJoinEvent {
     const struct PlayerEvent event;
@@ -69,4 +61,4 @@ struct PlayerBreakBlocksEvent {
     _Bool *drop_items;
 };
 
-#endif /* events_h */
+#endif /* player_events_h */

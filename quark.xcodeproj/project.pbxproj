@@ -12,7 +12,7 @@
 		673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment_type.c */; };
 		673D6B9329156B7200C0BDE7 /* damageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B9229156B7200C0BDE7 /* damageable.c */; };
 		673D6B97291570F200C0BDE7 /* player_connection.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B96291570F200C0BDE7 /* player_connection.c */; };
-		6753CF1A29145495008BD41C /* events.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1929145495008BD41C /* events.c */; };
+		6753CF1A29145495008BD41C /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1929145495008BD41C /* event.c */; };
 		6753CF1E291454CF008BD41C /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF1D291454CF008BD41C /* player.c */; };
 		6753CF22291454E4008BD41C /* world.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF21291454E4008BD41C /* world.c */; };
 		6753CF252914550B008BD41C /* location.c in Sources */ = {isa = PBXBuildFile; fileRef = 6753CF242914550B008BD41C /* location.c */; };
@@ -38,12 +38,13 @@
 		679C6CD0292579C400EE168D /* advancement.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CCF292579C400EE168D /* advancement.c */; };
 		679C6CD8292713D800EE168D /* biome.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CD7292713D800EE168D /* biome.c */; };
 		679C6CE42927568700EE168D /* chunk_generator.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CE32927568700EE168D /* chunk_generator.c */; };
-		679C6CE729275A7D00EE168D /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6CE529275A7D00EE168D /* material_configuration.c */; };
 		679C6D0629276CD500EE168D /* sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D0529276CD500EE168D /* sound.c */; };
 		679C6D0A2927728C00EE168D /* bounding_box.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D092927728C00EE168D /* bounding_box.c */; };
 		679C6D0F2927755700EE168D /* bounding_circle.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D0E2927755700EE168D /* bounding_circle.c */; };
 		679C6D122927765100EE168D /* boundary.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D112927765100EE168D /* boundary.c */; };
 		679C6D4D29282F4600EE168D /* biome_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D4C29282F4600EE168D /* biome_configuration.c */; };
+		679C6D5F2928583000EE168D /* player_events.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D5E2928583000EE168D /* player_events.c */; };
+		679C6D6229286A0700EE168D /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D6129286A0700EE168D /* material_configuration.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
@@ -90,8 +91,8 @@
 		673D6B9229156B7200C0BDE7 /* damageable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = damageable.c; sourceTree = "<group>"; };
 		673D6B95291570F200C0BDE7 /* player_connection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_connection.h; sourceTree = "<group>"; };
 		673D6B96291570F200C0BDE7 /* player_connection.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player_connection.c; sourceTree = "<group>"; };
-		6753CF1829145495008BD41C /* events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = events.h; sourceTree = "<group>"; };
-		6753CF1929145495008BD41C /* events.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = events.c; sourceTree = "<group>"; };
+		6753CF1829145495008BD41C /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		6753CF1929145495008BD41C /* event.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
 		6753CF1C291454CF008BD41C /* player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
 		6753CF1D291454CF008BD41C /* player.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
 		6753CF20291454E4008BD41C /* world.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = world.h; sourceTree = "<group>"; };
@@ -149,8 +150,6 @@
 		679C6CE02927556200EE168D /* minecraft_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = minecraft_version.h; sourceTree = "<group>"; };
 		679C6CE22927568700EE168D /* chunk_generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chunk_generator.h; sourceTree = "<group>"; };
 		679C6CE32927568700EE168D /* chunk_generator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chunk_generator.c; sourceTree = "<group>"; };
-		679C6CE529275A7D00EE168D /* material_configuration.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = material_configuration.c; path = ../../../../../.Trash/material_configuration.c; sourceTree = "<group>"; };
-		679C6CE629275A7D00EE168D /* material_configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material_configuration.h; path = ../../../../../.Trash/material_configuration.h; sourceTree = "<group>"; };
 		679C6CE92927654500EE168D /* badlands.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = badlands.json; sourceTree = "<group>"; };
 		679C6CEA2927655C00EE168D /* bamboo_jungle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bamboo_jungle.json; sourceTree = "<group>"; };
 		679C6CEB2927656D00EE168D /* basalt_deltas.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = basalt_deltas.json; sourceTree = "<group>"; };
@@ -233,6 +232,13 @@
 		679C6D512928470800EE168D /* hoe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hoe.json; sourceTree = "<group>"; };
 		679C6D5229284A5400EE168D /* axe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = axe.json; sourceTree = "<group>"; };
 		679C6D5329284A9300EE168D /* diamond_axe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = diamond_axe.json; sourceTree = "<group>"; };
+		679C6D5A2928545200EE168D /* wooden_pickaxe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wooden_pickaxe.json; sourceTree = "<group>"; };
+		679C6D5B2928549700EE168D /* stone_pickaxe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stone_pickaxe.json; sourceTree = "<group>"; };
+		679C6D5C292854BF00EE168D /* golden_pickaxe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = golden_pickaxe.json; sourceTree = "<group>"; };
+		679C6D5D2928583000EE168D /* player_events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_events.h; sourceTree = "<group>"; };
+		679C6D5E2928583000EE168D /* player_events.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player_events.c; sourceTree = "<group>"; };
+		679C6D6029286A0700EE168D /* material_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material_configuration.h; sourceTree = "<group>"; };
+		679C6D6129286A0700EE168D /* material_configuration.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material_configuration.c; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -492,9 +498,11 @@
 		6799445429143D1E00D8F796 /* events */ = {
 			isa = PBXGroup;
 			children = (
-				6753CF1829145495008BD41C /* events.h */,
-				6753CF1929145495008BD41C /* events.c */,
 				673D6B8A2915659A00C0BDE7 /* event_type.h */,
+				6753CF1829145495008BD41C /* event.h */,
+				6753CF1929145495008BD41C /* event.c */,
+				679C6D5D2928583000EE168D /* player_events.h */,
+				679C6D5E2928583000EE168D /* player_events.c */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -789,8 +797,11 @@
 			children = (
 				679C6D5329284A9300EE168D /* diamond_axe.json */,
 				67A66C3B29219ADC00A144F8 /* diamond_pickaxe.json */,
+				679C6D5C292854BF00EE168D /* golden_pickaxe.json */,
 				67A66C512921A62500A144F8 /* iron_pickaxe.json */,
 				67A66C4B2921A23100A144F8 /* netherite_pickaxe.json */,
+				679C6D5B2928549700EE168D /* stone_pickaxe.json */,
+				679C6D5A2928545200EE168D /* wooden_pickaxe.json */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -888,8 +899,8 @@
 				67C304AE291737C300D89359 /* material.c */,
 				67A66C4729219F0000A144F8 /* material_category.h */,
 				67A66C4829219F0000A144F8 /* material_category.c */,
-				679C6CE629275A7D00EE168D /* material_configuration.h */,
-				679C6CE529275A7D00EE168D /* material_configuration.c */,
+				679C6D6029286A0700EE168D /* material_configuration.h */,
+				679C6D6129286A0700EE168D /* material_configuration.c */,
 				67A66C3D29219D4A00A144F8 /* material_block_configuration.h */,
 				67A66C3E29219D4A00A144F8 /* material_block_configuration.c */,
 				67A66C4029219DDC00A144F8 /* material_item_configuration.h */,
@@ -1062,6 +1073,7 @@
 				67A66C4929219F0000A144F8 /* material_category.c in Sources */,
 				6759E99A291CC2EA00EB161F /* quark_plugin.c in Sources */,
 				67A66C20291F83AC00A144F8 /* tameable.c in Sources */,
+				679C6D6229286A0700EE168D /* material_configuration.c in Sources */,
 				67A66C12291ED90C00A144F8 /* ageable.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
 				67C304AF291737C300D89359 /* material.c in Sources */,
@@ -1074,15 +1086,15 @@
 				679C6CCE2925799A00EE168D /* permission.c in Sources */,
 				673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */,
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
+				679C6D5F2928583000EE168D /* player_events.c in Sources */,
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
 				679C6D0A2927728C00EE168D /* bounding_box.c in Sources */,
 				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */,
-				6753CF1A29145495008BD41C /* events.c in Sources */,
+				6753CF1A29145495008BD41C /* event.c in Sources */,
 				6753CF2F291456F3008BD41C /* item_stack.c in Sources */,
 				6759E9A2291D98CA00EB161F /* block_location.c in Sources */,
-				679C6CE729275A7D00EE168D /* material_configuration.c in Sources */,
 				6759E991291C975B00EB161F /* projectile_source.c in Sources */,
 				67A66C3F29219D4A00A144F8 /* material_block_configuration.c in Sources */,
 				67A66C4529219DFB00A144F8 /* material_names.c in Sources */,

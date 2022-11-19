@@ -31,6 +31,7 @@ void material_destroy(struct Material *material) {
     material_names_destroy((struct MaterialNames *) material->names);
     material_configuration_destroy((struct MaterialConfiguration *) material->configuration);
     free((char *) material->identifier);
+    free((struct MaterialCategory *) material->categories);
     free(material);
 }
 

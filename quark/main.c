@@ -7,10 +7,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "managers/event_manager.h"
-#include "server/quark_server.h"
-#include "util/block/block.h"
 #include "utilities.h"
+#include "server/quark_server.h"
 
 // TODO: switch tick rate to be managed per world instead of only the server
 
@@ -25,8 +23,8 @@ void init(void) {
 }
 
 void test(void) {
-    const unsigned int size = sizeof(struct Material) + sizeof(struct MaterialConfiguration) + sizeof(struct MaterialItemConfiguration) + sizeof(struct MaterialBlockConfiguration) + sizeof(struct MaterialSmeltingConfiguration);
-    printf("main.test; size=%d\n", size);
+    //const unsigned int size = sizeof(struct Material);
+    //printf("main.test; size=%d\n", size);
     
     const long test_long = 999999999999999999;
     printf("main.test; long=%ld\n", test_long);

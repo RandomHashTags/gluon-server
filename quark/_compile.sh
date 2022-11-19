@@ -1,0 +1,1 @@
+gcc main.c utilities.c api/*.c events/*.c generators/*.c managers/*.c network/*.c server/*.c util/*.c util/block/*.c util/collision/*.c util/entity/*.c util/entity/player/*.c util/entity/projectiles/*.c util/inventory/*.c util/item/*.c util/location/*.c util/material/*.c util/potion/*.c util/recipe/*.c util/sound/*.c -o start

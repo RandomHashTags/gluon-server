@@ -21,7 +21,10 @@ struct Player {
     const char *name;
     char *list_name;
     
+    unsigned short permissions_count;
     struct Permission *permissions;
+    
+    unsigned short advancements_count;
     struct Advancement *advancements;
     
     const unsigned int first_played;
@@ -55,6 +58,8 @@ void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);
 
-void player_broke_block(struct Player *player, struct Block *block, _Bool instantly); // TODO: fix circular dependency problem
+//void player_broke_block(struct Player *player, struct Block *block, _Bool instantly); // TODO: fix circular dependency problem
+
+_Bool player_has_permission(struct Player *player, const char *identifier);
 
 #endif /* player_h */

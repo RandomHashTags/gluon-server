@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "quark_server.h"
-#include "utilities.h"
+#include "../utilities.h"
 #include "../managers/event_manager.h"
 
 unsigned short TICKS_PER_SECOND;
@@ -63,7 +63,7 @@ void server_create(void) {
         return;
     }
     
-    unsigned short entity_types_count = 30;
+    unsigned short entity_types_count = 40;
     struct EntityType *entity_types = malloc(entity_types_count * sizeof(struct EntityType));
     if (!entity_types) {
         free(server);
@@ -73,7 +73,7 @@ void server_create(void) {
         return;
     }
     
-    unsigned short inventory_types_count = 20;
+    unsigned short inventory_types_count = 30;
     struct InventoryType *inventory_types = malloc(inventory_types_count * sizeof(struct InventoryType));
     if (!inventory_types) {
         free(server);
@@ -143,7 +143,6 @@ void server_create(void) {
         free(SERVER);
         return;
     }
-    
     printf("created server with address %p, created at %lld\n", server, started);
     server_change_tick_rate(20);
 }
@@ -306,12 +305,24 @@ void server_tick(void) {
 
 
 void server_change_tick_rate(const unsigned short ticks_per_second) {
+    const float previous_ticks_per_second_multiplier = TICKS_PER_SECOND_MULTIPLIER == 0 ? 1 : TICKS_PER_SECOND_MULTIPLIER;
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
     BLOCK_BREAK_DELAY_TICKS = ticks_per_second / 3;
     
     const double interval = 1000 / (float) ticks_per_second;
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
+    
+    const unsigned short entity_types_count = SERVER->entity_types_count;
+    struct EntityType *entity_types = SERVER->entity_types;
+    for (unsigned short i = 0; i < entity_types_count; i++) {
+        struct EntityType *type = &entity_types[i];
+        type->no_damage_ticks_maximum /= previous_ticks_per_second_multiplier;
+        type->no_damage_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
+        
+        type->fire_ticks_maximum /= previous_ticks_per_second_multiplier;
+        type->fire_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
+    }
     
     const unsigned short world_count = SERVER->world_count;
     struct World *worlds = SERVER->worlds;

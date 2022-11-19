@@ -10,7 +10,7 @@
 #include <string.h>
 #include "player.h"
 #include "../../block/block.h"
-#include "../../../events/events.h"
+#include "../../../events/player_events.h"
 #include "../../../managers/event_manager.h"
 #include "../../../utilities.h"
 
@@ -157,4 +157,16 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
         }
     }
     free(drop_items);
+}
+
+_Bool player_has_permission(struct Player *player, const char *identifier) {
+    const unsigned short permissions_count = player->permissions_count;
+    const struct Permission *permissions = player->permissions;
+    for (unsigned short i = 0; i < permissions_count; i++) {
+        const struct Permission *permission = &permissions[i];
+        if (identifier == permission->identifier) {
+            return 1;
+        }
+    }
+    return 0;
 }

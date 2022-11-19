@@ -25,7 +25,7 @@ struct Chunk *chunk_create(struct World *world, const long x, const long z) {
 void chunk_destroy(struct Chunk *chunk) {
     unsigned int living_entities_count;
     struct LivingEntity *living_entities;
-    chunk_get_living_entities(chunk, &living_entities_count, &living_entities);
+    //chunk_get_living_entities(chunk, &living_entities_count, &living_entities);
     for (unsigned int i = 0; i < living_entities_count; i++) {
         struct LivingEntity *living_entity = &living_entities[i];
         living_entity_destroy(living_entity);

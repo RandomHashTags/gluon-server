@@ -8,7 +8,7 @@
 #ifndef event_manager_h
 #define event_manager_h
 
-#include "../events/events.h"
+#include "../events/player_events.h"
 
 struct EventManager {
 };

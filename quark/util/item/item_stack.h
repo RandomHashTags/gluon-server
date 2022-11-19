@@ -8,7 +8,7 @@
 #ifndef item_stack_h
 #define item_stack_h
 
-#include "material.h"
+#include "../material/material.h"
 #include "item_meta.h"
 
 struct ItemStack {

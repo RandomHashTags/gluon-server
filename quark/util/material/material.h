@@ -9,11 +9,13 @@
 #define material_h
 
 #include "material_names.h"
+#include "material_category.h"
 #include "material_configuration.h"
 
 struct Material {
     const char *identifier;
     const struct MaterialNames *names;
+    const struct MaterialCategory *categories;
     const struct MaterialConfiguration *configuration;
 };
 

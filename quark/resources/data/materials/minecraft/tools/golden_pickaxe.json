@@ -1,14 +1,14 @@
 {
     "names" : {
-        "en" : "Netherite Pickaxe"
+        "en" : "Golden Pickaxe"
     },
     "material_categories" : [
         "minecraft.pickaxe"
     ],
     "configuration" : {
         "item" : {
-            "attack_damage" : 6.0,
-            "durability" : 2031
+            "attack_damage" : 2.0,
+            "durability" : 32
         }
     }
 }

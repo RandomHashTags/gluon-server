@@ -14,6 +14,7 @@ struct EntityType {
     unsigned short fire_ticks_maximum;
 };
 
+struct EntityType *entity_type_create(const char *identifier, unsigned short no_damage_ticks_maximum, unsigned short fire_ticks_maximum);
 void entity_type_destroy(struct EntityType *type);
 
 extern struct EntityType ENTITY_TYPE_MINECRAFT_AREA_EFFECT_CLOUD;

@@ -24,22 +24,12 @@ void init(void) {
 }
 
 void test(void) {
-    //const unsigned int size = sizeof(struct Material);
-    //printf("main.test; size=%d\n", size);
-    
-    const long test_long = 999999999999999999;
-    printf("main.test; long=%ld\n", test_long);
-    printf("main.test; float=%f\n", (float) test_long);
-    printf("main.test; double=%f\n", (double) test_long);
-    
-    char *test_char = "RandomHashTags";
-    int test_char_size1 = sizeof(test_char), test_char_size2 = sizeof(*test_char);
-    printf("main.test; test_char_size1=%d, test_char_size2=%d\n", test_char_size1, test_char_size2);
-    
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
         printf("current directory=\"%s\"\n", cwd);
-        //file_manager_iterate_files("/Users/randomhashtags/GitProjects/quark/quark/resources/data/biomes/minecraft");
+        const char *suffix = "/quark/resources/data/biomes/minecraft";
+        strcat(cwd, suffix);
+        file_manager_iterate_files(cwd);
     }
 }
 

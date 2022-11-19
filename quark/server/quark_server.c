@@ -351,7 +351,7 @@ struct World *server_get_world(const char *world_name) {
     struct World *worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
         struct World *world = &worlds[i];
-        if (world_name == world->name) {
+        if (strcmp(world_name, world->name) == 0) {
             return world;
         }
     }

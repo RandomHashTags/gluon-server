@@ -72,7 +72,7 @@ void server_stop(void);
 void server_set_sleeping(_Bool value);
 
 void server_tick(void);
-void server_change_tick_rate(const unsigned short ticks_per_second);
+void server_change_tick_rate(const unsigned char ticks_per_second);
 
 struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id);
 struct Material *server_get_material(const char *identifier);

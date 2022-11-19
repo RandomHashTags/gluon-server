@@ -73,6 +73,7 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] Worlds
   - [x] Implementation
   - [x] Difficulties
+  - [x] Location
   - [ ] Seed randomizer
   - [ ] Terrain Generation / Noise
   - [ ] View distance
@@ -95,11 +96,14 @@ I'm just one dude. PRs are welcome, and need to adhere to the coding style defin
 If this project does become usable, it definitely will need to be continually updated. There isn't a way to financially support this project at this time.
 
 ## Dependencies
-* [cJSON](https://github.com/DaveGamble/cJSON)
+* a C JSON library (still researching a worthy implementation | may need to create a custom one)
+  - Other language contenders
+  - Python - https://github.com/tiangolo/fastapi
+  - C++ - https://github.com/nlohmann/json
+  - C++ - https://github.com/simdjson/simdjson
 
 ## Usage
 1. clone repo
-2. open repo in terminal
-3. edit server files
-4. run `bash _compile.sh`
-5. run `bash _start.sh`
+2. run `cd quark`
+3. run `bash _compile.sh`
+4. run `bash _start.sh`

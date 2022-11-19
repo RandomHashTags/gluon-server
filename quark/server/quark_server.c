@@ -17,7 +17,7 @@
 #include "../utilities.h"
 #include "../managers/event_manager.h"
 
-unsigned short TICKS_PER_SECOND;
+unsigned char TICKS_PER_SECOND;
 float TICKS_PER_SECOND_MULTIPLIER;
 unsigned short BLOCK_BREAK_DELAY_TICKS;
 struct QuarkServer *SERVER;
@@ -366,7 +366,7 @@ void server_tick(void) {
 }
 
 
-void server_change_tick_rate(const unsigned short ticks_per_second) {
+void server_change_tick_rate(const unsigned char ticks_per_second) {
     const float previous_ticks_per_second_multiplier = TICKS_PER_SECOND_MULTIPLIER == 0 ? 1 : TICKS_PER_SECOND_MULTIPLIER;
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;

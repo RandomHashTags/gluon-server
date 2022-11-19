@@ -10,7 +10,7 @@
 
 #include "server/quark_server.h"
 
-extern unsigned short TICKS_PER_SECOND;
+extern unsigned char TICKS_PER_SECOND;
 extern float TICKS_PER_SECOND_MULTIPLIER;
 extern unsigned short BLOCK_BREAK_DELAY_TICKS;
 extern struct QuarkServer *SERVER;

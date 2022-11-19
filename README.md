@@ -12,6 +12,11 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Logging
   - [ ] Authentication / SSL / HTTPS / Secure connection
   - [ ] Encryption
+- [ ] Gameplay features
+  - [ ] Boss Bars
+  - [ ] Game Rules
+  - [x] Permissions
+  - [ ] Scoreboards
 - [ ] Blocks
   - [x] Implementation
   - [ ] Boundaries / Collision
@@ -21,9 +26,11 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] BlockState
   - [ ] BlockFace
   - [ ] Command Blocks
+  - [ ] Portals
   - [ ] Preferred materials (that break the block)
   - [ ] Pushable blocks (pistons)
   - [ ] Redstone
+- [ ] Commands
 - [ ] Crafting
   - [x] Implementation
   - [x] Crafting Recipes
@@ -57,6 +64,7 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] JSON
 - [ ] Loot / treasure
 - [x] Materials
+- [ ] Particles
 - [ ] Plugins / Mods
   - [x] Implementation
   - [ ] Enable / disable logic

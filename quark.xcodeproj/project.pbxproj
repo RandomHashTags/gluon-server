@@ -283,6 +283,125 @@
 		679C6D8C2928ADE900EE168D /* frozen_peaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frozen_peaks.json; sourceTree = "<group>"; };
 		679C6D8D2928B54D00EE168D /* file_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = file_manager.h; sourceTree = "<group>"; };
 		679C6D8E2928B54D00EE168D /* file_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = file_manager.c; sourceTree = "<group>"; };
+		679C6D94292997A100EE168D /* ally.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ally.json; sourceTree = "<group>"; };
+		679C6D95292997BC00EE168D /* axolotl.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = axolotl.json; sourceTree = "<group>"; };
+		679C6D98292997F300EE168D /* bat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bat.json; sourceTree = "<group>"; };
+		679C6D99292997FB00EE168D /* bee.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bee.json; sourceTree = "<group>"; };
+		679C6D9A2929980300EE168D /* blaze.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blaze.json; sourceTree = "<group>"; };
+		679C6D9B2929982300EE168D /* cat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cat.json; sourceTree = "<group>"; };
+		679C6D9E2929988A00EE168D /* armor_stand.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = armor_stand.json; sourceTree = "<group>"; };
+		679C6D9F2929989500EE168D /* arrow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arrow.json; sourceTree = "<group>"; };
+		679C6DA0292998A300EE168D /* area_effect_cloud.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = area_effect_cloud.json; sourceTree = "<group>"; };
+		679C6DA1292998B300EE168D /* boat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = boat.json; sourceTree = "<group>"; };
+		679C6DA2292998C400EE168D /* cave_spider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cave_spider.json; sourceTree = "<group>"; };
+		679C6DA3292998D200EE168D /* chest_boat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chest_boat.json; sourceTree = "<group>"; };
+		679C6DA4292998DD00EE168D /* chicken.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = chicken.json; sourceTree = "<group>"; };
+		679C6DA5292998EB00EE168D /* cod.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cod.json; sourceTree = "<group>"; };
+		679C6DA6292998F300EE168D /* cow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cow.json; sourceTree = "<group>"; };
+		679C6DA7292998FE00EE168D /* creeper.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = creeper.json; sourceTree = "<group>"; };
+		679C6DA82929990A00EE168D /* dolphin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dolphin.json; sourceTree = "<group>"; };
+		679C6DA92929991300EE168D /* donkey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = donkey.json; sourceTree = "<group>"; };
+		679C6DAA2929991E00EE168D /* dragon_fireball.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dragon_fireball.json; sourceTree = "<group>"; };
+		679C6DAB2929992E00EE168D /* dropped_item.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dropped_item.json; sourceTree = "<group>"; };
+		679C6DAC2929993800EE168D /* drowned.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = drowned.json; sourceTree = "<group>"; };
+		679C6DAD2929994600EE168D /* egg.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = egg.json; sourceTree = "<group>"; };
+		679C6DAE2929994F00EE168D /* elder_guardian.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = elder_guardian.json; sourceTree = "<group>"; };
+		679C6DAF2929995800EE168D /* ender_crystal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ender_crystal.json; sourceTree = "<group>"; };
+		679C6DB02929996100EE168D /* ender_dragon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ender_dragon.json; sourceTree = "<group>"; };
+		679C6DB12929997100EE168D /* ender_pearl.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ender_pearl.json; sourceTree = "<group>"; };
+		679C6DB22929997D00EE168D /* ender_signal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ender_signal.json; sourceTree = "<group>"; };
+		679C6DB32929998700EE168D /* enderman.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = enderman.json; sourceTree = "<group>"; };
+		679C6DB42929998F00EE168D /* endermite.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = endermite.json; sourceTree = "<group>"; };
+		679C6DB52929999700EE168D /* evoker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = evoker.json; sourceTree = "<group>"; };
+		679C6DB6292999A000EE168D /* evoker_fangs.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = evoker_fangs.json; sourceTree = "<group>"; };
+		679C6DB7292999B200EE168D /* experience_orb.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = experience_orb.json; sourceTree = "<group>"; };
+		679C6DB8292999BC00EE168D /* falling_block.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = falling_block.json; sourceTree = "<group>"; };
+		679C6DB9292999CF00EE168D /* fireball.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fireball.json; sourceTree = "<group>"; };
+		679C6DBA292999DA00EE168D /* firework.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = firework.json; sourceTree = "<group>"; };
+		679C6DBB292999E300EE168D /* fishing_hook.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fishing_hook.json; sourceTree = "<group>"; };
+		679C6DBC292999EF00EE168D /* fox.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fox.json; sourceTree = "<group>"; };
+		679C6DBD292999FA00EE168D /* frog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frog.json; sourceTree = "<group>"; };
+		679C6DBE29299A0200EE168D /* ghast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ghast.json; sourceTree = "<group>"; };
+		679C6DBF29299A0A00EE168D /* giant.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = giant.json; sourceTree = "<group>"; };
+		679C6DC029299A1500EE168D /* glow_item_frame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glow_item_frame.json; sourceTree = "<group>"; };
+		679C6DC129299A1F00EE168D /* glow_squid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = glow_squid.json; sourceTree = "<group>"; };
+		679C6DC229299A2800EE168D /* goat.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = goat.json; sourceTree = "<group>"; };
+		679C6DC329299A3100EE168D /* guardian.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = guardian.json; sourceTree = "<group>"; };
+		679C6DC429299A3B00EE168D /* hoglin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hoglin.json; sourceTree = "<group>"; };
+		679C6DC529299A4400EE168D /* horse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = horse.json; sourceTree = "<group>"; };
+		679C6DC629299A4C00EE168D /* husk.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = husk.json; sourceTree = "<group>"; };
+		679C6DC729299A6300EE168D /* illusioner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = illusioner.json; sourceTree = "<group>"; };
+		679C6DC829299A6C00EE168D /* iron_golem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = iron_golem.json; sourceTree = "<group>"; };
+		679C6DC929299A7300EE168D /* item_frame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = item_frame.json; sourceTree = "<group>"; };
+		679C6DCA29299A7C00EE168D /* leash_hitch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = leash_hitch.json; sourceTree = "<group>"; };
+		679C6DCB29299A8700EE168D /* lightning.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lightning.json; sourceTree = "<group>"; };
+		679C6DCC29299A9200EE168D /* llama.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = llama.json; sourceTree = "<group>"; };
+		679C6DCD29299A9D00EE168D /* llama_spit.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = llama_spit.json; sourceTree = "<group>"; };
+		679C6DCE29299AA800EE168D /* magma_cube.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = magma_cube.json; sourceTree = "<group>"; };
+		679C6DCF29299AD600EE168D /* marker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = marker.json; sourceTree = "<group>"; };
+		679C6DD029299AE000EE168D /* minecart.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart.json; sourceTree = "<group>"; };
+		679C6DD629299C2D00EE168D /* minecart_chest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_chest.json; sourceTree = "<group>"; };
+		679C6DD729299C3800EE168D /* minecart_command.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_command.json; sourceTree = "<group>"; };
+		679C6DD829299C4200EE168D /* minecart_furnace.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_furnace.json; sourceTree = "<group>"; };
+		679C6DD929299C4B00EE168D /* minecart_hopper.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_hopper.json; sourceTree = "<group>"; };
+		679C6DDA29299C5A00EE168D /* minecart_mob_spawner.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_mob_spawner.json; sourceTree = "<group>"; };
+		679C6DDB29299C7000EE168D /* minecart_tnt.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = minecart_tnt.json; sourceTree = "<group>"; };
+		679C6DDC29299C7800EE168D /* mule.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mule.json; sourceTree = "<group>"; };
+		679C6DDD29299C8100EE168D /* mushroom_cow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mushroom_cow.json; sourceTree = "<group>"; };
+		679C6DDE29299C8900EE168D /* ocelot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ocelot.json; sourceTree = "<group>"; };
+		679C6DDF29299C9400EE168D /* painting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = painting.json; sourceTree = "<group>"; };
+		679C6DE029299C9C00EE168D /* panda.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = panda.json; sourceTree = "<group>"; };
+		679C6DE129299CA500EE168D /* parrot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = parrot.json; sourceTree = "<group>"; };
+		679C6DE229299CAD00EE168D /* phantom.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phantom.json; sourceTree = "<group>"; };
+		679C6DE329299CB500EE168D /* pig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pig.json; sourceTree = "<group>"; };
+		679C6DE429299CBC00EE168D /* piglin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = piglin.json; sourceTree = "<group>"; };
+		679C6DE529299CC600EE168D /* piglin_brute.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = piglin_brute.json; sourceTree = "<group>"; };
+		679C6DE629299CD700EE168D /* pillager.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pillager.json; sourceTree = "<group>"; };
+		679C6DE729299CDF00EE168D /* player.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = player.json; sourceTree = "<group>"; };
+		679C6DE829299CF000EE168D /* polar_bear.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = polar_bear.json; sourceTree = "<group>"; };
+		679C6DE929299D4800EE168D /* primed_tnt.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = primed_tnt.json; sourceTree = "<group>"; };
+		679C6DEA29299D5100EE168D /* pufferfish.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pufferfish.json; sourceTree = "<group>"; };
+		679C6DEB29299D5B00EE168D /* rabbit.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rabbit.json; sourceTree = "<group>"; };
+		679C6DEC29299D6400EE168D /* ravager.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ravager.json; sourceTree = "<group>"; };
+		679C6DED29299D6D00EE168D /* salmon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = salmon.json; sourceTree = "<group>"; };
+		679C6DEE29299D7500EE168D /* sheep.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sheep.json; sourceTree = "<group>"; };
+		679C6DEF29299D7E00EE168D /* shulker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = shulker.json; sourceTree = "<group>"; };
+		679C6DF029299D8B00EE168D /* shulker_bullet.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = shulker_bullet.json; sourceTree = "<group>"; };
+		679C6DF129299D9900EE168D /* silverfish.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = silverfish.json; sourceTree = "<group>"; };
+		679C6DF229299DA300EE168D /* skeleton.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = skeleton.json; sourceTree = "<group>"; };
+		679C6DF329299DB000EE168D /* skeleton_horse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = skeleton_horse.json; sourceTree = "<group>"; };
+		679C6DF429299DB900EE168D /* slime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = slime.json; sourceTree = "<group>"; };
+		679C6DF529299DC800EE168D /* small_fireball.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = small_fireball.json; sourceTree = "<group>"; };
+		679C6DF629299DD500EE168D /* snowball.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snowball.json; sourceTree = "<group>"; };
+		679C6DF729299DDF00EE168D /* snow_golem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = snow_golem.json; sourceTree = "<group>"; };
+		679C6DF829299DED00EE168D /* spectral_arrow.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spectral_arrow.json; sourceTree = "<group>"; };
+		679C6DF929299DF900EE168D /* spider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spider.json; sourceTree = "<group>"; };
+		679C6DFA29299E0300EE168D /* splash_potion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = splash_potion.json; sourceTree = "<group>"; };
+		679C6DFB29299E1100EE168D /* squid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = squid.json; sourceTree = "<group>"; };
+		679C6DFC29299E1B00EE168D /* stray.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stray.json; sourceTree = "<group>"; };
+		679C6DFD29299E2400EE168D /* strider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = strider.json; sourceTree = "<group>"; };
+		679C6DFE29299E2E00EE168D /* tadpole.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tadpole.json; sourceTree = "<group>"; };
+		679C6DFF29299E3900EE168D /* thrown_exp_bottle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = thrown_exp_bottle.json; sourceTree = "<group>"; };
+		679C6E0029299E4300EE168D /* trader_llama.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trader_llama.json; sourceTree = "<group>"; };
+		679C6E0129299E4C00EE168D /* trident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trident.json; sourceTree = "<group>"; };
+		679C6E0229299E5900EE168D /* tropical_fish.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tropical_fish.json; sourceTree = "<group>"; };
+		679C6E0329299E6200EE168D /* turtle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = turtle.json; sourceTree = "<group>"; };
+		679C6E0429299E6D00EE168D /* unknown.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unknown.json; sourceTree = "<group>"; };
+		679C6E0529299E7700EE168D /* vex.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vex.json; sourceTree = "<group>"; };
+		679C6E0629299E8200EE168D /* villager.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = villager.json; sourceTree = "<group>"; };
+		679C6E0729299E8D00EE168D /* vindicator.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vindicator.json; sourceTree = "<group>"; };
+		679C6E0829299E9800EE168D /* wandering_trader.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wandering_trader.json; sourceTree = "<group>"; };
+		679C6E0929299E9F00EE168D /* warden.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = warden.json; sourceTree = "<group>"; };
+		679C6E0A29299EA800EE168D /* witch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = witch.json; sourceTree = "<group>"; };
+		679C6E0B29299EB000EE168D /* wither.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wither.json; sourceTree = "<group>"; };
+		679C6E0C29299EB800EE168D /* wither_skeleton.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wither_skeleton.json; sourceTree = "<group>"; };
+		679C6E0D29299EC600EE168D /* wither_skull.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wither_skull.json; sourceTree = "<group>"; };
+		679C6E0E29299ECF00EE168D /* wolf.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = wolf.json; sourceTree = "<group>"; };
+		679C6E0F29299EDF00EE168D /* zoglin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zoglin.json; sourceTree = "<group>"; };
+		679C6E112929A0FE00EE168D /* zombie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombie.json; sourceTree = "<group>"; };
+		679C6E122929A10600EE168D /* zombie_horse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombie_horse.json; sourceTree = "<group>"; };
+		679C6E132929A10F00EE168D /* zombie_villager.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombie_villager.json; sourceTree = "<group>"; };
+		679C6E142929A11900EE168D /* zombified_piglin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = zombified_piglin.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -702,6 +821,7 @@
 				679C6CD42926EF0D00EE168D /* difficulties */,
 				67A66C332921990E00A144F8 /* enchantments */,
 				67A66C32292198CA00A144F8 /* entities */,
+				679C6D9C2929984400EE168D /* entity_types */,
 				67A66C5B2921ABBD00A144F8 /* generators */,
 				67A66C552921A86800A144F8 /* inventory_types */,
 				67A66C36292199CB00A144F8 /* material_categories */,
@@ -855,6 +975,202 @@
 			path = spawn_eggs;
 			sourceTree = "<group>";
 		};
+		679C6D96292997C200EE168D /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		679C6D97292997CC00EE168D /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		679C6D9C2929984400EE168D /* entity_types */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D9D2929986900EE168D /* minecraft */,
+			);
+			path = entity_types;
+			sourceTree = "<group>";
+		};
+		679C6D9D2929986900EE168D /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+				679C6DD129299AE500EE168D /* animals */,
+				679C6DD329299B4900EE168D /* bosses */,
+				679C6DD229299AEA00EE168D /* hostiles */,
+				679C6DD429299B6700EE168D /* mobs */,
+				679C6DD529299BC900EE168D /* other */,
+				679C6E102929A0DE00EE168D /* passive */,
+				679C6DE729299CDF00EE168D /* player.json */,
+				679C6E0429299E6D00EE168D /* unknown.json */,
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
+		679C6DD129299AE500EE168D /* animals */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D94292997A100EE168D /* ally.json */,
+				679C6D95292997BC00EE168D /* axolotl.json */,
+				679C6D98292997F300EE168D /* bat.json */,
+				679C6D99292997FB00EE168D /* bee.json */,
+				679C6D9B2929982300EE168D /* cat.json */,
+				679C6DA4292998DD00EE168D /* chicken.json */,
+				679C6DA5292998EB00EE168D /* cod.json */,
+				679C6DA6292998F300EE168D /* cow.json */,
+				679C6DA82929990A00EE168D /* dolphin.json */,
+				679C6DA92929991300EE168D /* donkey.json */,
+				679C6DBC292999EF00EE168D /* fox.json */,
+				679C6DBD292999FA00EE168D /* frog.json */,
+				679C6DC129299A1F00EE168D /* glow_squid.json */,
+				679C6DC229299A2800EE168D /* goat.json */,
+				679C6DC529299A4400EE168D /* horse.json */,
+				679C6DCC29299A9200EE168D /* llama.json */,
+				679C6DDC29299C7800EE168D /* mule.json */,
+				679C6DDD29299C8100EE168D /* mushroom_cow.json */,
+				679C6DDE29299C8900EE168D /* ocelot.json */,
+				679C6DE029299C9C00EE168D /* panda.json */,
+				679C6DE129299CA500EE168D /* parrot.json */,
+				679C6DE329299CB500EE168D /* pig.json */,
+				679C6DE829299CF000EE168D /* polar_bear.json */,
+				679C6DEA29299D5100EE168D /* pufferfish.json */,
+				679C6DEB29299D5B00EE168D /* rabbit.json */,
+				679C6DED29299D6D00EE168D /* salmon.json */,
+				679C6DEE29299D7500EE168D /* sheep.json */,
+				679C6DFB29299E1100EE168D /* squid.json */,
+				679C6DFE29299E2E00EE168D /* tadpole.json */,
+				679C6E0029299E4300EE168D /* trader_llama.json */,
+				679C6E0229299E5900EE168D /* tropical_fish.json */,
+				679C6E0329299E6200EE168D /* turtle.json */,
+				679C6E0E29299ECF00EE168D /* wolf.json */,
+			);
+			path = animals;
+			sourceTree = "<group>";
+		};
+		679C6DD229299AEA00EE168D /* hostiles */ = {
+			isa = PBXGroup;
+			children = (
+				679C6D9A2929980300EE168D /* blaze.json */,
+				679C6DA2292998C400EE168D /* cave_spider.json */,
+				679C6DA7292998FE00EE168D /* creeper.json */,
+				679C6DAC2929993800EE168D /* drowned.json */,
+				679C6DB42929998F00EE168D /* endermite.json */,
+				679C6DB52929999700EE168D /* evoker.json */,
+				679C6DBE29299A0200EE168D /* ghast.json */,
+				679C6DBF29299A0A00EE168D /* giant.json */,
+				679C6DC329299A3100EE168D /* guardian.json */,
+				679C6DC429299A3B00EE168D /* hoglin.json */,
+				679C6DC629299A4C00EE168D /* husk.json */,
+				679C6DC729299A6300EE168D /* illusioner.json */,
+				679C6DCE29299AA800EE168D /* magma_cube.json */,
+				679C6DE229299CAD00EE168D /* phantom.json */,
+				679C6DE429299CBC00EE168D /* piglin.json */,
+				679C6DE529299CC600EE168D /* piglin_brute.json */,
+				679C6DE629299CD700EE168D /* pillager.json */,
+				679C6DEC29299D6400EE168D /* ravager.json */,
+				679C6DEF29299D7E00EE168D /* shulker.json */,
+				679C6DF129299D9900EE168D /* silverfish.json */,
+				679C6DF229299DA300EE168D /* skeleton.json */,
+				679C6DF329299DB000EE168D /* skeleton_horse.json */,
+				679C6DF429299DB900EE168D /* slime.json */,
+				679C6DF929299DF900EE168D /* spider.json */,
+				679C6DFC29299E1B00EE168D /* stray.json */,
+				679C6DFD29299E2400EE168D /* strider.json */,
+				679C6E0529299E7700EE168D /* vex.json */,
+				679C6E0729299E8D00EE168D /* vindicator.json */,
+				679C6E0929299E9F00EE168D /* warden.json */,
+				679C6E0A29299EA800EE168D /* witch.json */,
+				679C6E0C29299EB800EE168D /* wither_skeleton.json */,
+				679C6E0F29299EDF00EE168D /* zoglin.json */,
+				679C6E112929A0FE00EE168D /* zombie.json */,
+				679C6E132929A10F00EE168D /* zombie_villager.json */,
+				679C6E142929A11900EE168D /* zombified_piglin.json */,
+			);
+			path = hostiles;
+			sourceTree = "<group>";
+		};
+		679C6DD329299B4900EE168D /* bosses */ = {
+			isa = PBXGroup;
+			children = (
+				679C6DAE2929994F00EE168D /* elder_guardian.json */,
+				679C6DB02929996100EE168D /* ender_dragon.json */,
+				679C6E0B29299EB000EE168D /* wither.json */,
+			);
+			path = bosses;
+			sourceTree = "<group>";
+		};
+		679C6DD429299B6700EE168D /* mobs */ = {
+			isa = PBXGroup;
+			children = (
+				679C6DB32929998700EE168D /* enderman.json */,
+				679C6DC829299A6C00EE168D /* iron_golem.json */,
+				679C6DF729299DDF00EE168D /* snow_golem.json */,
+			);
+			path = mobs;
+			sourceTree = "<group>";
+		};
+		679C6DD529299BC900EE168D /* other */ = {
+			isa = PBXGroup;
+			children = (
+				679C6DA0292998A300EE168D /* area_effect_cloud.json */,
+				679C6D9E2929988A00EE168D /* armor_stand.json */,
+				679C6D9F2929989500EE168D /* arrow.json */,
+				679C6DA1292998B300EE168D /* boat.json */,
+				679C6DA3292998D200EE168D /* chest_boat.json */,
+				679C6DAA2929991E00EE168D /* dragon_fireball.json */,
+				679C6DAB2929992E00EE168D /* dropped_item.json */,
+				679C6DAD2929994600EE168D /* egg.json */,
+				679C6DAF2929995800EE168D /* ender_crystal.json */,
+				679C6DB12929997100EE168D /* ender_pearl.json */,
+				679C6DB22929997D00EE168D /* ender_signal.json */,
+				679C6DB6292999A000EE168D /* evoker_fangs.json */,
+				679C6DB7292999B200EE168D /* experience_orb.json */,
+				679C6DB8292999BC00EE168D /* falling_block.json */,
+				679C6DB9292999CF00EE168D /* fireball.json */,
+				679C6DBA292999DA00EE168D /* firework.json */,
+				679C6DBB292999E300EE168D /* fishing_hook.json */,
+				679C6DC029299A1500EE168D /* glow_item_frame.json */,
+				679C6DC929299A7300EE168D /* item_frame.json */,
+				679C6DCA29299A7C00EE168D /* leash_hitch.json */,
+				679C6DCB29299A8700EE168D /* lightning.json */,
+				679C6DCD29299A9D00EE168D /* llama_spit.json */,
+				679C6DCF29299AD600EE168D /* marker.json */,
+				679C6DD029299AE000EE168D /* minecart.json */,
+				679C6DD629299C2D00EE168D /* minecart_chest.json */,
+				679C6DD729299C3800EE168D /* minecart_command.json */,
+				679C6DD829299C4200EE168D /* minecart_furnace.json */,
+				679C6DD929299C4B00EE168D /* minecart_hopper.json */,
+				679C6DDA29299C5A00EE168D /* minecart_mob_spawner.json */,
+				679C6DDB29299C7000EE168D /* minecart_tnt.json */,
+				679C6DDF29299C9400EE168D /* painting.json */,
+				679C6DE929299D4800EE168D /* primed_tnt.json */,
+				679C6DF029299D8B00EE168D /* shulker_bullet.json */,
+				679C6DF529299DC800EE168D /* small_fireball.json */,
+				679C6DF629299DD500EE168D /* snowball.json */,
+				679C6DF829299DED00EE168D /* spectral_arrow.json */,
+				679C6DFA29299E0300EE168D /* splash_potion.json */,
+				679C6DFF29299E3900EE168D /* thrown_exp_bottle.json */,
+				679C6E0129299E4C00EE168D /* trident.json */,
+				679C6E0D29299EC600EE168D /* wither_skull.json */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		679C6E102929A0DE00EE168D /* passive */ = {
+			isa = PBXGroup;
+			children = (
+				679C6E0629299E8200EE168D /* villager.json */,
+				679C6E0829299E9800EE168D /* wandering_trader.json */,
+				679C6E122929A10600EE168D /* zombie_horse.json */,
+			);
+			path = passive;
+			sourceTree = "<group>";
+		};
 		67A66C29292192BC00A144F8 /* materials */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,6 +1311,8 @@
 		67A66C4A2921A20400A144F8 /* minecraft */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D97292997CC00EE168D /* sounds */,
+				679C6D96292997C200EE168D /* textures */,
 			);
 			path = minecraft;
 			sourceTree = "<group>";

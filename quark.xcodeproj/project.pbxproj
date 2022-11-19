@@ -239,6 +239,43 @@
 		679C6D5E2928583000EE168D /* player_events.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = player_events.c; sourceTree = "<group>"; };
 		679C6D6029286A0700EE168D /* material_configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = material_configuration.h; sourceTree = "<group>"; };
 		679C6D6129286A0700EE168D /* material_configuration.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = material_configuration.c; sourceTree = "<group>"; };
+		679C6D632928888000EE168D /* aqua_affinity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = aqua_affinity.json; sourceTree = "<group>"; };
+		679C6D64292888A400EE168D /* bane_of_arthropods.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bane_of_arthropods.json; sourceTree = "<group>"; };
+		679C6D65292888B600EE168D /* blast_protection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blast_protection.json; sourceTree = "<group>"; };
+		679C6D66292888E700EE168D /* channeling.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = channeling.json; sourceTree = "<group>"; };
+		679C6D67292888FA00EE168D /* curse_of_binding.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = curse_of_binding.json; sourceTree = "<group>"; };
+		679C6D682928890E00EE168D /* curse_of_vanishing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = curse_of_vanishing.json; sourceTree = "<group>"; };
+		679C6D692928891F00EE168D /* depth_strider.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = depth_strider.json; sourceTree = "<group>"; };
+		679C6D6A2928894800EE168D /* efficiency.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = efficiency.json; sourceTree = "<group>"; };
+		679C6D6B2928895A00EE168D /* feather_falling.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = feather_falling.json; sourceTree = "<group>"; };
+		679C6D6C2928896F00EE168D /* fire_aspect.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fire_aspect.json; sourceTree = "<group>"; };
+		679C6D6D2928898000EE168D /* fire_protection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fire_protection.json; sourceTree = "<group>"; };
+		679C6D6E2928899000EE168D /* flame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flame.json; sourceTree = "<group>"; };
+		679C6D6F292889A000EE168D /* fortune.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fortune.json; sourceTree = "<group>"; };
+		679C6D70292889BA00EE168D /* frost_walker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frost_walker.json; sourceTree = "<group>"; };
+		679C6D71292889CC00EE168D /* impaling.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = impaling.json; sourceTree = "<group>"; };
+		679C6D72292889DD00EE168D /* knockback.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = knockback.json; sourceTree = "<group>"; };
+		679C6D73292889ED00EE168D /* looting.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = looting.json; sourceTree = "<group>"; };
+		679C6D74292889FC00EE168D /* loyalty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loyalty.json; sourceTree = "<group>"; };
+		679C6D7529288A0F00EE168D /* luck_of_the_sea.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = luck_of_the_sea.json; sourceTree = "<group>"; };
+		679C6D7629288A2000EE168D /* lure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lure.json; sourceTree = "<group>"; };
+		679C6D7729288A3300EE168D /* mending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mending.json; sourceTree = "<group>"; };
+		679C6D7829288A4E00EE168D /* multishot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = multishot.json; sourceTree = "<group>"; };
+		679C6D7929288A5C00EE168D /* piercing.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = piercing.json; sourceTree = "<group>"; };
+		679C6D7A29288A6B00EE168D /* power.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = power.json; sourceTree = "<group>"; };
+		679C6D7B29288A8700EE168D /* projectile_protection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = projectile_protection.json; sourceTree = "<group>"; };
+		679C6D7C29288A9E00EE168D /* protection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = protection.json; sourceTree = "<group>"; };
+		679C6D7D29288AAD00EE168D /* punch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = punch.json; sourceTree = "<group>"; };
+		679C6D7E29288ABE00EE168D /* quick_charge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quick_charge.json; sourceTree = "<group>"; };
+		679C6D7F29288AD100EE168D /* respiration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = respiration.json; sourceTree = "<group>"; };
+		679C6D8029288AE300EE168D /* riptide.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = riptide.json; sourceTree = "<group>"; };
+		679C6D8129288AF500EE168D /* silk_touch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = silk_touch.json; sourceTree = "<group>"; };
+		679C6D8229288B0C00EE168D /* smite.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = smite.json; sourceTree = "<group>"; };
+		679C6D8329288B1800EE168D /* soul_speed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = soul_speed.json; sourceTree = "<group>"; };
+		679C6D8429288B2700EE168D /* sweeping_edge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sweeping_edge.json; sourceTree = "<group>"; };
+		679C6D8529288B3700EE168D /* swift_sneak.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = swift_sneak.json; sourceTree = "<group>"; };
+		679C6D8629288B4F00EE168D /* thorns.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = thorns.json; sourceTree = "<group>"; };
+		679C6D8729288B5F00EE168D /* unbreaking.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unbreaking.json; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -863,7 +900,44 @@
 		67A66C352921994200A144F8 /* minecraft */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D632928888000EE168D /* aqua_affinity.json */,
+				679C6D64292888A400EE168D /* bane_of_arthropods.json */,
+				679C6D65292888B600EE168D /* blast_protection.json */,
+				679C6D66292888E700EE168D /* channeling.json */,
+				679C6D67292888FA00EE168D /* curse_of_binding.json */,
+				679C6D682928890E00EE168D /* curse_of_vanishing.json */,
+				679C6D692928891F00EE168D /* depth_strider.json */,
+				679C6D6A2928894800EE168D /* efficiency.json */,
+				679C6D6B2928895A00EE168D /* feather_falling.json */,
+				679C6D6C2928896F00EE168D /* fire_aspect.json */,
+				679C6D6D2928898000EE168D /* fire_protection.json */,
+				679C6D6E2928899000EE168D /* flame.json */,
+				679C6D6F292889A000EE168D /* fortune.json */,
+				679C6D70292889BA00EE168D /* frost_walker.json */,
+				679C6D71292889CC00EE168D /* impaling.json */,
+				679C6D72292889DD00EE168D /* knockback.json */,
+				679C6D73292889ED00EE168D /* looting.json */,
+				679C6D74292889FC00EE168D /* loyalty.json */,
+				679C6D7529288A0F00EE168D /* luck_of_the_sea.json */,
+				679C6D7629288A2000EE168D /* lure.json */,
+				679C6D7729288A3300EE168D /* mending.json */,
+				679C6D7829288A4E00EE168D /* multishot.json */,
+				679C6D7929288A5C00EE168D /* piercing.json */,
+				679C6D7A29288A6B00EE168D /* power.json */,
+				679C6D7B29288A8700EE168D /* projectile_protection.json */,
+				679C6D7C29288A9E00EE168D /* protection.json */,
+				679C6D7D29288AAD00EE168D /* punch.json */,
+				679C6D7E29288ABE00EE168D /* quick_charge.json */,
+				679C6D7F29288AD100EE168D /* respiration.json */,
+				679C6D8029288AE300EE168D /* riptide.json */,
 				67A66C342921992400A144F8 /* sharpness.json */,
+				679C6D8129288AF500EE168D /* silk_touch.json */,
+				679C6D8229288B0C00EE168D /* smite.json */,
+				679C6D8329288B1800EE168D /* soul_speed.json */,
+				679C6D8429288B2700EE168D /* sweeping_edge.json */,
+				679C6D8529288B3700EE168D /* swift_sneak.json */,
+				679C6D8629288B4F00EE168D /* thorns.json */,
+				679C6D8729288B5F00EE168D /* unbreaking.json */,
 			);
 			path = minecraft;
 			sourceTree = "<group>";

@@ -32,6 +32,9 @@ struct QuarkServer {
     unsigned short materials_count;
     struct Material *materials;
     
+    unsigned short enchantment_types_count;
+    struct EnchantmentType *enchantment_types;
+    
     char *motd;
     unsigned short max_build_height;
     

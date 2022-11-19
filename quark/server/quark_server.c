@@ -54,6 +54,7 @@ void server_create(void) {
         printf("failed to allocate memory for a QuarkServer plugins\n");
         return;
     }
+    printf("server registered %d QuarkPlugins\n", plugins_count);
     
     struct World *worlds = malloc(4 * sizeof(struct World));
     if (!worlds) {
@@ -72,6 +73,7 @@ void server_create(void) {
         printf("failed to allocate memory for a QuarkServer entity_tyes\n");
         return;
     }
+    printf("server registered %d EntityTypes\n", entity_types_count);
     
     unsigned short inventory_types_count = 30;
     struct InventoryType *inventory_types = malloc(inventory_types_count * sizeof(struct InventoryType));
@@ -80,9 +82,10 @@ void server_create(void) {
         free(plugins);
         free(worlds);
         free(entity_types);
-        printf("failed to allocate memory for a QuarkServer inventory_types\n");
+        printf("failed to allocate memory for %d QuarkServer InventoryTypes\n", inventory_types_count);
         return;
     }
+    printf("server registered %d InventoryTypes\n", inventory_types_count);
     
     unsigned short materials_count = 1700;
     struct Material *materials = malloc(materials_count * sizeof(struct Material));
@@ -92,7 +95,21 @@ void server_create(void) {
         free(worlds);
         free(entity_types);
         free(inventory_types);
-        printf("failed to allocate memory for a QuarkServer materials\n");
+        printf("failed to allocate memory for %d QuarkServer Materials\n", materials_count);
+        return;
+    }
+    printf("server registered %d Materials\n", materials_count);
+    
+    unsigned short enchantment_types_count = 30;
+    struct EnchantmentType *enchantment_types = malloc(enchantment_types_count * sizeof(struct EnchantmentType));
+    if (!enchantment_types) {
+        free(server);
+        free(plugins);
+        free(worlds);
+        free(entity_types);
+        free(inventory_types);
+        free(materials);
+        printf("failed to allocate memory for %d QuarkServer enchantment_types\n", enchantment_types_count);
         return;
     }
     
@@ -104,6 +121,7 @@ void server_create(void) {
         free(entity_types);
         free(inventory_types);
         free(materials);
+        free(enchantment_types);
         printf("failed to allocate memory for a QuarkServer default_world_name\n");
         return;
     }
@@ -116,6 +134,9 @@ void server_create(void) {
     
     server->materials_count = materials_count;
     server->materials = materials;
+    
+    server->enchantment_types_count = enchantment_types_count;
+    server->enchantment_types = enchantment_types;
     
     server->worlds = worlds;
     server->default_world = default_world_name;
@@ -139,6 +160,7 @@ void server_create(void) {
         free(entity_types);
         free(inventory_types);
         free(materials);
+        free(enchantment_types);
         free((char *) default_world_name);
         free(SERVER);
         return;
@@ -179,6 +201,14 @@ void server_deallocate(void) {
         material_destroy(material);
     }
     free(materials);
+    
+    const unsigned short enchantment_types_count = SERVER->enchantment_types_count;
+    struct EnchantmentType *enchantment_types = SERVER->enchantment_types;
+    for (unsigned short i = 0; i < enchantment_types_count; i++) {
+        struct EnchantmentType *type = &enchantment_types[i];
+        enchantment_type_destroy(type);
+    }
+    free(enchantment_types);
     
     const unsigned short entity_types_count = SERVER->entity_types_count;
     struct EntityType *entity_types = SERVER->entity_types;

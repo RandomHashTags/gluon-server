@@ -7,6 +7,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
+#include <string.h>
 #include "utilities.h"
 #include "server/quark_server.h"
 #include "managers/file_manager.h"

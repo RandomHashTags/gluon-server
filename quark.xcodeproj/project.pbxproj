@@ -45,6 +45,7 @@
 		679C6D4D29282F4600EE168D /* biome_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D4C29282F4600EE168D /* biome_configuration.c */; };
 		679C6D5F2928583000EE168D /* player_events.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D5E2928583000EE168D /* player_events.c */; };
 		679C6D6229286A0700EE168D /* material_configuration.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D6129286A0700EE168D /* material_configuration.c */; };
+		679C6D8F2928B54D00EE168D /* file_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 679C6D8E2928B54D00EE168D /* file_manager.c */; };
 		679CC8E02914AD9400D71267 /* quark_server.c in Sources */ = {isa = PBXBuildFile; fileRef = 679CC8DF2914AD9400D71267 /* quark_server.c */; };
 		67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C0F291EC8D800A144F8 /* potion_effect_type.c */; };
 		67A66C12291ED90C00A144F8 /* ageable.c in Sources */ = {isa = PBXBuildFile; fileRef = 67A66C11291ED90C00A144F8 /* ageable.c */; };
@@ -280,6 +281,8 @@
 		679C6D8929289F0B00EE168D /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		679C6D8B2928A06300EE168D /* motd.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = motd.txt; sourceTree = "<group>"; };
 		679C6D8C2928ADE900EE168D /* frozen_peaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frozen_peaks.json; sourceTree = "<group>"; };
+		679C6D8D2928B54D00EE168D /* file_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = file_manager.h; sourceTree = "<group>"; };
+		679C6D8E2928B54D00EE168D /* file_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = file_manager.c; sourceTree = "<group>"; };
 		679CC8DC2914AA0300D71267 /* entity_damage_result.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = entity_damage_result.h; sourceTree = "<group>"; };
 		679CC8DF2914AD9400D71267 /* quark_server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = quark_server.c; sourceTree = "<group>"; };
 		67A66C0F291EC8D800A144F8 /* potion_effect_type.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = potion_effect_type.c; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 			children = (
 				67C304A729172A0D00D89359 /* event_manager.h */,
 				67C304A829172A0D00D89359 /* event_manager.c */,
+				679C6D8D2928B54D00EE168D /* file_manager.h */,
+				679C6D8E2928B54D00EE168D /* file_manager.c */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -1171,6 +1176,7 @@
 				6759E9A2291D98CA00EB161F /* block_location.c in Sources */,
 				6759E991291C975B00EB161F /* projectile_source.c in Sources */,
 				67A66C3F29219D4A00A144F8 /* material_block_configuration.c in Sources */,
+				679C6D8F2928B54D00EE168D /* file_manager.c in Sources */,
 				67A66C4529219DFB00A144F8 /* material_names.c in Sources */,
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
 				67A66C502921A50C00A144F8 /* material_smelting_configuration.c in Sources */,
@@ -1321,6 +1327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATNGFZ7428;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1331,6 +1338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATNGFZ7428;
 				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

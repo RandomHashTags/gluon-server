@@ -28,10 +28,6 @@ struct QuarkServer *SERVER;
 #define QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS 2
 pthread_t *THREADS;
 
-void server_destroy(void) {
-    server_deallocate();
-    free(SERVER);
-}
 int64_t current_time_milliseconds(void) {
     struct timeval now;
     gettimeofday(&now, NULL);
@@ -269,6 +265,15 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
     }
     //close(client);
 }
+void server_destroy(void) {
+    server_deallocate();
+    free(SERVER);
+}
+
+void server_load_biomes(void) {
+    const _Bool reallocate = !SERVER;
+}
+
 void *begin_connecting_players(void *threadID) {
     const int sockID = socket(AF_INET, SOCK_STREAM, 0);
     const struct sockaddr_in servAddr = {

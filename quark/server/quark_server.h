@@ -65,6 +65,8 @@ void server_create(void);
 void server_deallocate(void);
 void server_destroy(void);
 
+void server_load_biomes(void);
+
 void server_start(void);
 void server_stop(void);
 void server_set_sleeping(_Bool value);

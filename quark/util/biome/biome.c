@@ -5,11 +5,18 @@
 //  Created by Evan Anderson on 11/17/22.
 //
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "../biome/biome.h"
 #include "../../utilities.h"
 
+struct Biome *biome_parse_from_json_file(const char *identifier, FILE *file) {
+    struct BiomeConfiguration *configuration = NULL;
+    struct Biome *biome = biome_create(identifier, configuration);
+    if (!biome) {
+        biome_configuration_destroy(configuration);
+    }
+    return biome;
+}
 struct Biome *biome_create(const char *identifier, const struct BiomeConfiguration *configuration) {
     struct Biome *biome = malloc(sizeof(struct Biome));
     if (!biome) {

@@ -24,6 +24,7 @@ void player_destroy(struct Player *player) {
     free(player->list_name);
     free(player->permissions);
     free(player->advancements);
+    free(player->open_inventories);
     free(player->spectator_target);
     free(player);
 }
@@ -176,10 +177,21 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
 
 _Bool player_has_permission(struct Player *player, const char *identifier) {
     const unsigned short permissions_count = player->permissions_count;
-    const struct Permission *permissions = player->permissions;
+    struct Permission **permissions = player->permissions;
     for (unsigned short i = 0; i < permissions_count; i++) {
-        const struct Permission *permission = &permissions[i];
-        if (identifier == permission->identifier) {
+        const struct Permission *permission = permissions[i];
+        if (strcmp(identifier, permission->identifier)) {
+            return 1;
+        }
+    }
+    return 0;
+}
+_Bool player_has_advancement(struct Player *player, const char *identifier) {
+    const unsigned short advancements_count = player->advancements_count;
+    struct Advancement **advancements = player->advancements;
+    for (unsigned short i = 0; i < advancements_count; i++) {
+        const struct Advancement *advancement = advancements[i];
+        if (strcmp(identifier, advancement->identifier)) {
             return 1;
         }
     }

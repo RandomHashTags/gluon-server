@@ -13,6 +13,9 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Authentication / SSL / HTTPS / Secure connection
   - [ ] Encryption
 - [ ] Gameplay features
+  - [ ] Advancements
+    - [x] Implementation
+    - [ ] Advancements' logic
   - [ ] Boss Bars
   - [ ] Commands
   - [ ] Game Rules
@@ -24,8 +27,12 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [x] Implementation
   - [x] Permissions
   - [ ] Scoreboards
+    - [ ] Implementation
+    - [ ] Scoreboard logic
   - [ ] Sounds
     - [x] Implementation
+  - [ ] Statistics
+    - [ ] Implementation
 - [ ] Crafting
   - [ ] Crafting logic
   - [ ] Crafting Recipes
@@ -51,7 +58,7 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [x] Implementation
   - [x] Inventory Types
     - [ ] Inventory Type logic
-  - [x] Inventories' logic
+  - [x] Inventory logic
 - [ ] Items
   - [x] Implementation
   - [x] Attack Cooldown

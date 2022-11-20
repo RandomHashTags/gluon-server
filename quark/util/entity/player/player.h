@@ -22,10 +22,10 @@ struct Player {
     char *list_name;
     
     unsigned short permissions_count;
-    struct Permission *permissions;
+    struct Permission **permissions;
     
     unsigned short advancements_count;
-    struct Advancement *advancements;
+    struct Advancement **advancements;
     
     const unsigned int first_played;
     
@@ -47,6 +47,9 @@ struct Player {
     struct Inventory *inventory;
     struct Inventory *inventory_ender_chest;
     
+    unsigned short open_inventories_count;
+    struct Inventory **open_inventories;
+    
     struct LivingEntity *spectator_target;
 };
 
@@ -62,5 +65,6 @@ void player_set_sprinting(struct Player *player, _Bool value);
 void player_broke_block(struct Player *player, struct Block *block, _Bool instantly);
 
 _Bool player_has_permission(struct Player *player, const char *identifier);
+_Bool player_has_advancement(struct Player *player, const char *identifier);
 
 #endif /* player_h */

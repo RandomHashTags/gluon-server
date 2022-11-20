@@ -62,7 +62,7 @@ void server_create(void) {
         return;
     }
     
-    unsigned short entity_types_count = 1;
+    unsigned short entity_types_count = 40;
     struct EntityType **entity_types = malloc(entity_types_count * sizeof(struct EntityType *));
     if (!entity_types) {
         free(server);
@@ -144,7 +144,7 @@ void server_create(void) {
     const _Bool is_affected_by_gravity = 1;
     memcpy((_Bool *) &entity_type_player->is_affected_by_gravity, &is_affected_by_gravity, sizeof(_Bool));
     memcpy((_Bool *) &entity_type_player->receives_fall_damage, &is_affected_by_gravity, sizeof(_Bool));
-    memcpy(&entity_types[0], entity_type_player, sizeof(struct EntityType));
+    entity_types[0] = entity_type_player;
     server->entity_types = entity_types;
     
     server->inventory_types_count = inventory_types_count;

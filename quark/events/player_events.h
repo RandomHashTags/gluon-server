@@ -33,7 +33,7 @@ struct PlayerQuitEvent {
 
 struct PlayerGamemodeChangeEvent {
     const struct PlayerEventCancellable event;
-    const struct Gamemode gamemode;
+    const struct Gamemode *gamemode;
 };
 struct PlayerToggleBlockingEvent {
     const struct PlayerEventCancellable event;

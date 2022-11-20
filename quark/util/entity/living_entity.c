@@ -16,6 +16,7 @@ void living_entity_destroy(struct LivingEntity *entity) {
     entity_equipment_destroy(entity->equipment);
     potion_effect_destroy(entity->potion_effects);
     free(entity->killer);
+    free(entity->leash_holder);
     free(entity);
 }
 

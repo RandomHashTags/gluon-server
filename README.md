@@ -47,6 +47,8 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [x] Implementation
     - [ ] Collision logic
   - [ ] Passengers / ridable
+    - [x] Implementation
+    - [ ] Passengers' logic
   - [ ] Pathfinding
 - [x] [Events](https://github.com/RandomHashTags/quark/tree/main/quark/events)
 - [ ] Gamemodes
@@ -71,6 +73,7 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] Loot / treasure
 - [x] Materials
 - [ ] Particles
+  - [x] Implementation
 - [ ] Plugins / Mods
   - [x] Implementation
   - [ ] Enable / disable logic
@@ -87,7 +90,7 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [x] Implementation
   - [ ] Structure Generation
 - [x] Tick handling
-  - [x] Dynamic tick rate changing
+  - [x] Dynamic tick rate
 - [ ] Worlds
   - [x] Implementation
   - [x] Difficulties
@@ -115,13 +118,14 @@ If this project does become usable, it definitely will need to be continually up
 
 ## Dependencies
 * a C JSON library (still researching a worthy implementation | may need to create a custom one)
-  - Other language contenders
-  - Python - https://github.com/tiangolo/fastapi
-  - C++ - https://github.com/nlohmann/json
-  - C++ - https://github.com/simdjson/simdjson
+  - **Other language contenders**
+    - Python - https://github.com/tiangolo/fastapi
+    - C++ - https://github.com/nlohmann/json
+    - C++ - https://github.com/simdjson/simdjson
 
 ## Usage
-1. clone repo
-2. run `cd quark`
-3. run `bash _compile.sh`
-4. run `bash _start.sh`
+1. open terminal
+2. clone repo
+3. run `cd quark`
+4. run `bash _compile.sh`
+5. run `bash _start.sh`

@@ -11,7 +11,9 @@
 struct EntityType {
     const char *identifier;
     
-    _Bool receives_fall_damage;
+    const _Bool is_affected_by_gravity;
+    
+    const _Bool receives_fall_damage;
     
     unsigned short no_damage_ticks_maximum;
     unsigned short fire_ticks_maximum;

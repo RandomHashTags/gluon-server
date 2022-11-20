@@ -32,6 +32,7 @@ struct Player {
     struct Gamemode *gamemode;
     _Bool is_blocking;
     _Bool is_flying;
+    _Bool is_op;
     _Bool is_sneaking;
     _Bool is_sprinting;
     
@@ -53,12 +54,12 @@ void player_destroy(struct Player *player);
 
 void player_tick(struct Player *player);
 
-void player_set_gamemode(struct Player *player, struct Gamemode gamemode);
+void player_set_gamemode(struct Player *player, struct Gamemode *gamemode);
 void player_set_blocking(struct Player *player, _Bool value);
 void player_set_sneaking(struct Player *player, _Bool value);
 void player_set_sprinting(struct Player *player, _Bool value);
 
-//void player_broke_block(struct Player *player, struct Block *block, _Bool instantly); // TODO: fix circular dependency problem
+void player_broke_block(struct Player *player, struct Block *block, _Bool instantly); // TODO: fix circular dependency problem
 
 _Bool player_has_permission(struct Player *player, const char *identifier);
 

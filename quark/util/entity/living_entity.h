@@ -16,19 +16,23 @@ struct LivingEntity {
     struct Damageable *damageable;
     struct EntityEquipment *equipment;
     
+    _Bool can_breathe_underwater;
     _Bool can_pickup_items;
     _Bool has_ai;
     
+    _Bool is_climbing;
     _Bool is_collidable;
+    _Bool is_gliding;
     _Bool is_invisible;
     _Bool is_leashed;
-    _Bool is_swimming;
     _Bool is_riptiding;
+    _Bool is_sleeping;
+    _Bool is_swimming;
     
     unsigned short potion_effect_count;
     struct PotionEffect *potion_effects;
     
-    double eye_height;
+    float eye_height;
     
     unsigned short no_damage_ticks;
     unsigned short no_damage_ticks_maximum;
@@ -37,6 +41,7 @@ struct LivingEntity {
     unsigned short air_maximum;
     
     struct LivingEntity *killer;
+    struct Entity *leash_holder;
 };
 
 void living_entity_destroy(struct LivingEntity *entity);

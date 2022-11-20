@@ -49,7 +49,7 @@ void chunk_get_living_entities(const struct Chunk *chunk, unsigned int *count, s
     struct LivingEntity *filtered_living_entities[living_entities_count];
     for (unsigned int i = 0; i < living_entities_count; i++) {
         struct LivingEntity *living_entity = &living_entities[i];
-        struct Chunk *living_entity_chunk = location_get_loaded_chunk(living_entity->damageable->entity->location);
+        struct Chunk *living_entity_chunk = living_entity->damageable->entity->location->chunk;
         if (chunk == living_entity_chunk) {
             filtered_living_entities[amount] = living_entity;
             amount += 1;

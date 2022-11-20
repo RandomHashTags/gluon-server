@@ -34,8 +34,18 @@ struct World *world_create(enum MinecraftVersion version, const long seed, const
         printf("failed to allocate memory for a World chunks_loaded\n");
         return NULL;
     }
+    world->chunks_loaded = chunks_loaded;
+    world->chunks_loaded_count = 0;
     
-    struct Location *spawn_location = location_create(world, 0, 10, 0, 90, 0);
+    const float location_x = 0, location_y = 10, location_z = 0;
+    struct Chunk *chunk = world_get_or_load_chunk(world, (long) location_x / 16, (long) location_z / 16);
+    if (!chunk) {
+        free(world);
+        free(players);
+        free(chunks_loaded);
+        return NULL;
+    }
+    struct Location *spawn_location = location_create(world, chunk, location_x, location_y, location_z, 90, 0);
     if (!spawn_location) {
         free(world);
         free(players);
@@ -58,11 +68,10 @@ struct World *world_create(enum MinecraftVersion version, const long seed, const
     world->name = target_world_name;
     memcpy((long *) &world->seed, &seed, sizeof(seed));
     world->spawn_location = spawn_location;
-    world->chunks_loaded = chunks_loaded;
-    world->chunks_loaded_count = 0;
     world->player_count = 0;
     world->players = players;
     world->difficulty = difficulty;
+    printf("created world at address %p with seed %ld\n", world, seed);
     return world;
 }
 void world_destroy(struct World *world) {
@@ -107,6 +116,7 @@ void world_destroy(struct World *world) {
 }
 
 void world_tick(struct World *world) {
+    printf("world \"%s\" at address %p will be ticked...\n", world->name, world);
     const unsigned int entity_count = world->entity_count;
     struct Entity *entities = world->entities;
     for (unsigned int i = 0; i < entity_count; i++) {
@@ -131,7 +141,7 @@ void world_tick(struct World *world) {
         player_tick(player);
         damageable_damage(player->living_entity->damageable, 1);
     }
-    printf("finished ticking world \"%s\"\n", world->name);
+    printf("finished ticking world \"%s\" at address %p\n", world->name, world);
 }
 
 void world_sync_tick_rate_for_entity(struct World *world, struct Entity *entity, const struct EntityType *entity_type) {
@@ -179,13 +189,32 @@ void world_change_tick_rate(struct World *world, const unsigned short tick_rate)
     }
 }
 
-void world_load_chunk(struct World *world, struct Chunk *chunk) {
-    const unsigned int chunks_loaded = world->chunks_loaded_count;
-    if (chunks_loaded + 1 < world->chunks_loaded_count_maximum) {
-        struct Chunk *chunks = world->chunks_loaded;
-        memmove(&chunks[chunks_loaded], chunk, sizeof(struct Chunk));
-        world->chunks_loaded_count += 1;
+struct Chunk *world_get_loaded_chunk(struct World *world, const long x, const long z) {
+    const unsigned int chunks_loaded_count = world->chunks_loaded_count;
+    struct Chunk *chunks = world->chunks_loaded;
+    for (unsigned int i = 0; i < chunks_loaded_count; i++) {
+        struct Chunk *chunk = &chunks[i];
+        if (x == chunk->x && z == chunk->z) {
+            return chunk;
+        }
     }
+    return NULL;
+}
+struct Chunk *world_get_or_load_chunk(struct World *world, const long x, const long z) {
+    struct Chunk *chunk = world_get_loaded_chunk(world, x, z);
+    const unsigned int chunks_loaded_count = world->chunks_loaded_count;
+    if (!chunk && chunks_loaded_count + 1 < world->chunks_loaded_count_maximum) {
+        // TODO: try parsing from file
+        chunk = chunk_create(world, x, z);
+        if (chunk) {
+            memcpy(&world->chunks_loaded[chunks_loaded_count], chunk, sizeof(struct Chunk));
+            world->chunks_loaded_count += 1;
+        }
+    }
+    if (!chunk) {
+        printf("failed to world_get_or_load_chunk\n");
+    }
+    return chunk;
 }
 void world_unload_chunk(struct World *world, struct Chunk *chunk) {
     const unsigned int chunks_loaded = world->chunks_loaded_count;
@@ -221,11 +250,12 @@ void world_player_quit(struct World *world, struct PlayerConnection *connection)
 }
 void world_player_joined(struct World *world, struct PlayerConnection *connection) {
     struct Player *player = connection->player;
-    memcpy(player->living_entity->damageable->entity->location, world->spawn_location, sizeof(struct Location));
+    memcpy(player->living_entity->damageable->entity->location, world->spawn_location, sizeof(struct Location)); // TODO: set player's location to their last location, else world spawn location
     
     const unsigned int player_count = world->player_count;
     world->players[player_count] = *connection;
     world->player_count += 1;
+    printf("world_player_joined; player connection at address %p joined world at address %p\n", connection, world);
 }
 
 struct LivingEntity *world_get_living_entity_from_uuid(const struct World *world, const unsigned int uuid) {

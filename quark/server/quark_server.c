@@ -140,7 +140,11 @@ void server_create(void) {
     }
     
     server->entity_types_count = entity_types_count;
-    entity_types[0] = *entity_type_create("minecraft.player", 20, 20);
+    struct EntityType *entity_type_player = entity_type_create("minecraft.player", 20, 20);
+    const _Bool is_affected_by_gravity = 1;
+    memcpy((_Bool *) &entity_type_player->is_affected_by_gravity, &is_affected_by_gravity, sizeof(_Bool));
+    memcpy((_Bool *) &entity_type_player->receives_fall_damage, &is_affected_by_gravity, sizeof(_Bool));
+    memcpy(&entity_types[0], entity_type_player, sizeof(struct EntityType));
     server->entity_types = entity_types;
     
     server->inventory_types_count = inventory_types_count;
@@ -258,14 +262,7 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
     printf("Received connection\n");
     
     const unsigned int player_count = SERVER->player_count;
-    if (player_count + 1 == maximum) {
-        printf("player cannot join due to the server being full! (%d maximum players allowed, %d connected)\n", maximum, player_count);
-    } else {
-        struct PlayerConnection *test = server_parse_player_connection(player_count);
-        if (test) {
-            server_player_joined(test);
-        }
-    }
+    server_try_connecting_player(player_count);
     //close(client);
 }
 void server_destroy(void) {
@@ -443,6 +440,7 @@ struct World *server_get_world(const char *world_name) {
     for (unsigned short i = 0; i < world_count; i++) {
         struct World *world = &worlds[i];
         if (strcmp(world_name, world->name) == 0) {
+            printf("server_get_world; returning world at address %p\n", world);
             return world;
         }
     }
@@ -457,7 +455,7 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         const short new_world_count_maximum = world_count_maximum + 4;
         worlds = realloc(worlds, new_world_count_maximum * sizeof(struct World));
         if (!worlds) {
-            printf("failed to reallocate memory to expand QuarkServer worldPointer!\n");
+            printf("failed to reallocate memory to expand QuarkServer worlds!\n");
             return NULL;
         }
         SERVER->world_count_maximum = new_world_count_maximum;
@@ -467,6 +465,7 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         printf("failed to allocate memory for a World\n");
         return NULL;
     }
+    printf("server_world_create; created world \"%s\" at address %p\n", world->name, world);
     memcpy(&worlds[world_count], world, sizeof(struct World));
     SERVER->world_count += 1;
     return world;
@@ -504,7 +503,13 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
         world = default_world;
     }
     
-    struct Location *location = location_create(world, 0, 0, 0, 90, 0);
+    const float location_x = 0, location_y = 10, location_z = 0;
+    struct Chunk *chunk = world_get_or_load_chunk(world, (long) location_x / 16, (long) location_z / 16);
+    if (!chunk) {
+        free(entity);
+        return NULL;
+    }
+    struct Location *location = location_create(world, chunk, location_x, location_y, location_z, 90, 0);
     if (!location) {
         free(entity);
         return NULL;
@@ -513,6 +518,7 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
     memcpy((unsigned int *) &entity->uuid, &uuid, sizeof(uuid));
     entity->display_name = NULL;
     entity->location = location;
+    entity->is_affected_by_gravity = entity_type->is_affected_by_gravity;
     
     struct Vector vector = {
         .x = 0,
@@ -665,7 +671,8 @@ void server_player_joined(struct PlayerConnection *connection) {
         server_set_sleeping(0);
     }
     struct Player *player = connection->player;
-    world_player_joined((struct World *) player->living_entity->damageable->entity->location->world, connection);
+    const struct World *world = player->living_entity->damageable->entity->location->world;
+    world_player_joined(world, connection);
     SERVER->player_count += 1;
     struct PlayerJoinEvent event = {
         .event = {
@@ -675,7 +682,7 @@ void server_player_joined(struct PlayerConnection *connection) {
             .player = player
         },
     };
-    printf("\"%s\" joined with address %p server at address %p with %d ping, %d chat_cooldown, and %d no_damage_ticks_maximum\n", player->name, player, SERVER, connection->ping, connection->chat_cooldown, connection->player->living_entity->no_damage_ticks_maximum);
+    printf("\"%s\" joined with address %p, on server at address %p, in world at address %p\n", player->name, connection, SERVER, world);
     event_manager_call_event((struct Event *) &event);
 }
 void server_player_quit(struct PlayerConnection *connection) {

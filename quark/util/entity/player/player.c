@@ -38,7 +38,7 @@ void player_tick(struct Player *player) {
     }
 }
 
-void player_set_gamemode(struct Player *player, struct Gamemode gamemode) {
+void player_set_gamemode(struct Player *player, struct Gamemode *gamemode) {
     struct PlayerGamemodeChangeEvent event = {
         .event = {
             .player = player
@@ -47,7 +47,22 @@ void player_set_gamemode(struct Player *player, struct Gamemode gamemode) {
     };
     event_manager_call_event((struct Event *) &event);
     if (!event.event.event.is_cancelled) {
-        memcpy(&player->gamemode, &gamemode, sizeof(struct Gamemode));
+        struct Gamemode *previous_gamemode = player->gamemode;
+        
+        const _Bool gamemode_allows_flight = gamemode->allows_flight;
+        if (previous_gamemode->allows_flight != gamemode_allows_flight) {
+            player->is_flying = gamemode_allows_flight;
+        }
+        
+        player->gamemode = gamemode;
+        
+        struct LivingEntity *living_entity = player->living_entity;
+        living_entity->can_breathe_underwater = gamemode->can_breathe_underwater;
+        living_entity->can_pickup_items = gamemode->can_pickup_items;
+        
+        struct Entity *entity = living_entity->damageable->entity;
+        entity->is_affected_by_gravity = gamemode->is_affected_by_gravity;
+        entity->is_damageable = gamemode->is_damageable;
     }
 }
 

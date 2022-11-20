@@ -51,7 +51,8 @@ void world_sync_tick_rate_for_living_entity(struct World *world, struct LivingEn
 void world_sync_tick_rate_for_player(struct World *world, struct PlayerConnection *player, const unsigned short no_damage_ticks_maximum);
 void world_change_tick_rate(struct World *world, const unsigned short tick_rate);
 
-void world_load_chunk(struct World *world, struct Chunk *chunk);
+struct Chunk *world_get_loaded_chunk(struct World *world, const long x, const long z);
+struct Chunk *world_get_or_load_chunk(struct World *world, const long x, const long z);
 void world_unload_chunk(struct World *world, struct Chunk *chunk);
 
 void world_player_joined(struct World *world, struct PlayerConnection *connection);

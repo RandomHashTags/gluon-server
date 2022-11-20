@@ -27,13 +27,16 @@ void init(void) {
 }
 
 void test(void) {
+    const unsigned int test_size = sizeof(struct Gamemode);
+    printf("main.test; test_size=%d\n", test_size);
+    /*
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
         printf("current directory=\"%s\"\n", cwd);
         const char *suffix = "/quark/resources/data/biomes/minecraft";
         strcat(cwd, suffix);
         file_manager_iterate_files(cwd);
-    }
+    }*/
 }
 
 int main(int argc, const char * argv[]) {

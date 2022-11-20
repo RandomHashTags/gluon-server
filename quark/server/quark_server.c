@@ -54,7 +54,7 @@ void server_create(void) {
     }
     printf("server registered %d QuarkPlugins\n", plugins_count);
     
-    struct World *worlds = malloc(4 * sizeof(struct World));
+    struct World **worlds = malloc(4 * sizeof(struct World *));
     if (!worlds) {
         free(server);
         free(plugins);
@@ -62,8 +62,8 @@ void server_create(void) {
         return;
     }
     
-    unsigned short entity_types_count = 40;
-    struct EntityType *entity_types = malloc(entity_types_count * sizeof(struct EntityType));
+    unsigned short entity_types_count = 1;
+    struct EntityType **entity_types = malloc(entity_types_count * sizeof(struct EntityType *));
     if (!entity_types) {
         free(server);
         free(plugins);
@@ -74,7 +74,7 @@ void server_create(void) {
     printf("server registered %d EntityTypes\n", entity_types_count);
     
     unsigned short inventory_types_count = 30;
-    struct InventoryType *inventory_types = malloc(inventory_types_count * sizeof(struct InventoryType));
+    struct InventoryType **inventory_types = malloc(inventory_types_count * sizeof(struct InventoryType *));
     if (!inventory_types) {
         free(server);
         free(plugins);
@@ -86,7 +86,7 @@ void server_create(void) {
     printf("server registered %d InventoryTypes\n", inventory_types_count);
     
     unsigned short materials_count = 1700;
-    struct Material *materials = malloc(materials_count * sizeof(struct Material));
+    struct Material **materials = malloc(materials_count * sizeof(struct Material *));
     if (!materials) {
         free(server);
         free(plugins);
@@ -99,7 +99,7 @@ void server_create(void) {
     printf("server registered %d Materials\n", materials_count);
     
     unsigned short enchantment_types_count = 30;
-    struct EnchantmentType *enchantment_types = malloc(enchantment_types_count * sizeof(struct EnchantmentType));
+    struct EnchantmentType **enchantment_types = malloc(enchantment_types_count * sizeof(struct EnchantmentType *));
     if (!enchantment_types) {
         free(server);
         free(plugins);
@@ -112,7 +112,7 @@ void server_create(void) {
     }
     
     unsigned short biomes_count = 63;
-    struct Biome *biomes = malloc(biomes_count * sizeof(struct Biome));
+    struct Biome **biomes = malloc(biomes_count * sizeof(struct Biome *));
     if (!biomes) {
         free(server);
         free(plugins);
@@ -140,7 +140,7 @@ void server_create(void) {
     }
     
     server->entity_types_count = entity_types_count;
-    struct EntityType *entity_type_player = entity_type_create("minecraft.player", 20, 20);
+    struct EntityType *entity_type_player = entity_type_create("minecraft.player", 1, 1, 20, 20, 20);
     const _Bool is_affected_by_gravity = 1;
     memcpy((_Bool *) &entity_type_player->is_affected_by_gravity, &is_affected_by_gravity, sizeof(_Bool));
     memcpy((_Bool *) &entity_type_player->receives_fall_damage, &is_affected_by_gravity, sizeof(_Bool));
@@ -192,58 +192,58 @@ void server_create(void) {
 }
 void server_deallocate(void) {
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
+        struct World *world = worlds[i];
         world_destroy(world);
     }
     free(worlds);
     
     const unsigned short plugin_count = SERVER->plugins_count;
-    struct QuarkPlugin *plugins = SERVER->plugins;
+    struct QuarkPlugin **plugins = SERVER->plugins;
     for (unsigned short i = 0; i < plugin_count; i++) {
-        struct QuarkPlugin *plugin = &plugins[i];
+        struct QuarkPlugin *plugin = plugins[i];
         plugin_disable(plugin);
         plugin_destroy(plugin);
     }
     free(plugins);
     
     const unsigned short inventory_types_count = SERVER->inventory_types_count;
-    struct InventoryType *inventory_types = SERVER->inventory_types;
+    struct InventoryType **inventory_types = SERVER->inventory_types;
     for (unsigned short i = 0; i < inventory_types_count; i++) {
-        struct InventoryType *type = &inventory_types[i];
+        struct InventoryType *type = inventory_types[i];
         inventory_type_destroy(type);
     }
     free(inventory_types);
     
     const unsigned short materials_count = SERVER->materials_count;
-    struct Material *materials = SERVER->materials;
+    struct Material **materials = SERVER->materials;
     for (unsigned short i = 0; i < materials_count; i++) {
-        struct Material *material = &materials[i];
+        struct Material *material = materials[i];
         material_destroy(material);
     }
     free(materials);
     
     const unsigned short enchantment_types_count = SERVER->enchantment_types_count;
-    struct EnchantmentType *enchantment_types = SERVER->enchantment_types;
+    struct EnchantmentType **enchantment_types = SERVER->enchantment_types;
     for (unsigned short i = 0; i < enchantment_types_count; i++) {
-        struct EnchantmentType *type = &enchantment_types[i];
+        struct EnchantmentType *type = enchantment_types[i];
         enchantment_type_destroy(type);
     }
     free(enchantment_types);
     
     const unsigned short biomes_count = SERVER->biomes_count;
-    struct Biome *biomes = SERVER->biomes;
+    struct Biome **biomes = SERVER->biomes;
     for (unsigned short i = 0; i < biomes_count; i++) {
-        struct Biome *biome = &biomes[i];
+        struct Biome *biome = biomes[i];
         biome_destroy(biome);
     }
     free(biomes);
     
     const unsigned short entity_types_count = SERVER->entity_types_count;
-    struct EntityType *entity_types = SERVER->entity_types;
+    struct EntityType **entity_types = SERVER->entity_types;
     for (unsigned short i = 0; i < entity_types_count; i++) {
-        struct EntityType *entity_type = &entity_types[i];
+        struct EntityType *entity_type = entity_types[i];
         entity_type_destroy(entity_type);
     }
     free(entity_types);
@@ -356,9 +356,9 @@ void server_tick(void) {
     printf("\nserver at address %p will be ticked...\n", SERVER);
     
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
+        struct World *world = worlds[i];
         world_tick(world);
     }
     
@@ -377,9 +377,9 @@ void server_change_tick_rate(const unsigned char ticks_per_second) {
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
     
     const unsigned short entity_types_count = SERVER->entity_types_count;
-    struct EntityType *entity_types = SERVER->entity_types;
+    struct EntityType **entity_types = SERVER->entity_types;
     for (unsigned short i = 0; i < entity_types_count; i++) {
-        struct EntityType *type = &entity_types[i];
+        struct EntityType *type = entity_types[i];
         type->no_damage_ticks_maximum /= previous_ticks_per_second_multiplier;
         type->no_damage_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
         
@@ -390,10 +390,11 @@ void server_change_tick_rate(const unsigned char ticks_per_second) {
         type->freeze_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
     }
     
+    printf("server will change tick rate for worlds...\n");
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
+        struct World *world = worlds[i];
         world_change_tick_rate(world, ticks_per_second);
     }
     printf("server successfully updated tick rate values\n");
@@ -402,9 +403,9 @@ void server_change_tick_rate(const unsigned char ticks_per_second) {
 
 struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id) {
     const unsigned short plugins_count = SERVER->plugins_count;
-    struct QuarkPlugin *plugins = SERVER->plugins;
+    struct QuarkPlugin **plugins = SERVER->plugins;
     for (unsigned short i = 0; i < plugins_count; i++) {
-        struct QuarkPlugin *plugin = &plugins[i];
+        struct QuarkPlugin *plugin = plugins[i];
         if (strcmp(name, plugin->name) == 0 && strcmp(bundle_id, plugin->bundle_id) == 0) {
             return plugin;
         }
@@ -413,9 +414,9 @@ struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id) {
 }
 struct EntityType *server_get_entity_type(const char *identifier) {
     const unsigned short entity_types_count = SERVER->entity_types_count;
-    struct EntityType *entity_types = SERVER->entity_types;
+    struct EntityType **entity_types = SERVER->entity_types;
     for (unsigned short i = 0; i < entity_types_count; i++) {
-        struct EntityType *entity_type = &entity_types[i];
+        struct EntityType *entity_type = entity_types[i];
         if (strcmp(identifier, entity_type->identifier) == 0) {
             return entity_type;
         }
@@ -424,9 +425,9 @@ struct EntityType *server_get_entity_type(const char *identifier) {
 }
 struct Material *server_get_material(const char *identifier) {
     const unsigned short materials_count = SERVER->materials_count;
-    struct Material *materials = SERVER->materials;
+    struct Material **materials = SERVER->materials;
     for (unsigned short i = 0; i < materials_count; i++) {
-        struct Material *material = &materials[i];
+        struct Material *material = materials[i];
         if (strcmp(identifier, material->identifier) == 0) {
             return material;
         }
@@ -436,9 +437,9 @@ struct Material *server_get_material(const char *identifier) {
 
 struct World *server_get_world(const char *world_name) {
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
+        struct World *world = worlds[i];
         if (strcmp(world_name, world->name) == 0) {
             printf("server_get_world; returning world at address %p\n", world);
             return world;
@@ -450,10 +451,10 @@ struct World *server_get_world(const char *world_name) {
 struct World *server_world_create(const long seed, const char *world_name, struct Difficulty *difficulty) {
     const short world_count = SERVER->world_count;
     const short world_count_maximum = SERVER->world_count_maximum;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     if (world_count + 1 > world_count_maximum) {
         const short new_world_count_maximum = world_count_maximum + 4;
-        worlds = realloc(worlds, new_world_count_maximum * sizeof(struct World));
+        worlds = realloc(worlds, new_world_count_maximum * sizeof(struct World *));
         if (!worlds) {
             printf("failed to reallocate memory to expand QuarkServer worlds!\n");
             return NULL;
@@ -465,16 +466,16 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         printf("failed to allocate memory for a World\n");
         return NULL;
     }
-    printf("server_world_create; created world \"%s\" at address %p\n", world->name, world);
-    memcpy(&worlds[world_count], world, sizeof(struct World));
+    worlds[world_count] = world;
+    printf("server_world_create; created world \"%s\" at address %p (server is tracking world at address %p)\n", world->name, world, worlds[world_count]);
     SERVER->world_count += 1;
     return world;
 }
 void server_world_destroy(struct World *world) {
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *targetWorld = &worlds[i];
+        struct World *targetWorld = worlds[i];
         if (targetWorld == world) {
             world_destroy(world);
             SERVER->world_count -= 1;
@@ -653,13 +654,13 @@ void server_update_player_ping_rates(void) {
     printf("\nupdating %d player pings...\n", player_count);
     
     const unsigned short world_count = SERVER->world_count;
-    struct World *worlds = SERVER->worlds;
+    struct World **worlds = SERVER->worlds;
     for (unsigned short i = 0; i < world_count; i++) {
-        struct World *world = &worlds[i];
+        struct World *world = worlds[i];
         const unsigned int player_count = world->player_count;
-        struct PlayerConnection *connections = world->players;
+        struct PlayerConnection **connections = world->players;
         for (int i = 0; i < player_count; i++) {
-            struct PlayerConnection *connection = &connections[i];
+            struct PlayerConnection *connection = connections[i];
             connection->ping = (unsigned short) rand();
         }
     }
@@ -672,7 +673,7 @@ void server_player_joined(struct PlayerConnection *connection) {
     }
     struct Player *player = connection->player;
     const struct World *world = player->living_entity->damageable->entity->location->world;
-    world_player_joined(world, connection);
+    world_player_joined((struct World *) world, connection);
     SERVER->player_count += 1;
     struct PlayerJoinEvent event = {
         .event = {

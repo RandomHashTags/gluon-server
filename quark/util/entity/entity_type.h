@@ -20,7 +20,7 @@ struct EntityType {
     unsigned short freeze_ticks_maximum;
 };
 
-struct EntityType *entity_type_create(const char *identifier, unsigned short no_damage_ticks_maximum, unsigned short fire_ticks_maximum);
+struct EntityType *entity_type_create(const char *identifier, const _Bool is_affected_by_gravity, const _Bool receives_fall_damage, unsigned short no_damage_ticks_maximum, unsigned short fire_ticks_maximum, unsigned short freeze_ticks_maximum);
 void entity_type_destroy(struct EntityType *type);
 
 #endif /* entity_type_h */

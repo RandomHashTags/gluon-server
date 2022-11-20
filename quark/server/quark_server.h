@@ -21,22 +21,22 @@ struct QuarkServer {
     _Bool is_sleeping;
     
     unsigned short plugins_count;
-    struct QuarkPlugin *plugins;
+    struct QuarkPlugin **plugins;
     
     unsigned short entity_types_count;
-    struct EntityType *entity_types;
+    struct EntityType **entity_types;
     
     unsigned short inventory_types_count;
-    struct InventoryType *inventory_types;
+    struct InventoryType **inventory_types;
     
     unsigned short materials_count;
-    struct Material *materials;
+    struct Material **materials;
     
     unsigned short enchantment_types_count;
-    struct EnchantmentType *enchantment_types;
+    struct EnchantmentType **enchantment_types;
     
     unsigned short biomes_count;
-    struct Biome *biomes;
+    struct Biome **biomes;
     
     char *motd;
     
@@ -45,7 +45,7 @@ struct QuarkServer {
     const char *default_world;
     unsigned short world_count;
     unsigned short world_count_maximum;
-    struct World *worlds;
+    struct World **worlds;
     
     unsigned int player_count;
     const unsigned int player_count_maximum;

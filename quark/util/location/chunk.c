@@ -43,12 +43,12 @@ void chunk_get_loaded_block_at_xyz(struct Chunk *chunk, const long x, const long
 void chunk_get_living_entities(const struct Chunk *chunk, unsigned int *count, struct LivingEntity **entities) {
     const struct World *world = chunk->world;
     const unsigned int living_entities_count = world->living_entity_count;
-    struct LivingEntity *living_entities = world->living_entities;
+    struct LivingEntity **living_entities = world->living_entities;
     
     unsigned int amount = 0;
     struct LivingEntity *filtered_living_entities[living_entities_count];
     for (unsigned int i = 0; i < living_entities_count; i++) {
-        struct LivingEntity *living_entity = &living_entities[i];
+        struct LivingEntity *living_entity = living_entities[i];
         struct Chunk *living_entity_chunk = living_entity->damageable->entity->location->chunk;
         if (chunk == living_entity_chunk) {
             filtered_living_entities[amount] = living_entity;

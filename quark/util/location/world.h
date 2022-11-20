@@ -22,23 +22,23 @@ struct World {
     struct Location *spawn_location;
     struct Difficulty *difficulty;
     const unsigned short biomes_count;
-    const struct Biome *biomes;
+    const struct Biome **biomes;
     
     long min_y;
     unsigned long max_y;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;
-    struct Chunk *chunks_loaded;
+    struct Chunk **chunks_loaded;
     
     unsigned int entity_count;
-    struct Entity *entities;
+    struct Entity **entities;
     
     unsigned int player_count;
-    struct PlayerConnection *players;
+    struct PlayerConnection **players;
     
     unsigned int living_entity_count;
-    struct LivingEntity *living_entities;
+    struct LivingEntity **living_entities;
 };
 
 struct World *world_create(enum MinecraftVersion version, const long seed, const char *world_name, struct Difficulty *difficulty);

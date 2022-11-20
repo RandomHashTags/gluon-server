@@ -9,12 +9,12 @@
 #define block_h
 
 #include "block_location.h"
-#include "../collision/boundary.h"
+#include "../collision/bounding_box.h"
 #include "../item/item_stack.h"
 
 struct Block {
     struct Material *material;
-    struct Boundary *boundary;
+    struct BoundingBox *boundary;
     unsigned char light_level;
     
     struct BlockLocation *location;

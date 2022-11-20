@@ -20,6 +20,7 @@ struct PotionEffect {
     unsigned short duration;
 };
 
+struct PotionEffect *potion_effect_create(struct PotionEffectType *type, unsigned short amplifier, unsigned short duration, _Bool has_icon, _Bool has_particles, _Bool is_ambient);
 void potion_effect_destroy(struct PotionEffect *effect);
 
 #endif /* potion_effect_h */

@@ -30,20 +30,3 @@ void location_destroy(struct Location *location) {
     free(location->chunk);
     free(location);
 }
-
-/*
-struct Chunk *location_get_loaded_chunk(struct Location *location) {
-    const struct World *world = location->world;
-    const unsigned short chunk_size = 16;
-    const long chunkX = location->x / chunk_size;
-    const long chunkZ = location->z / chunk_size;
-    const unsigned int chunks_loaded_count = world->chunks_loaded_count;
-    struct Chunk *chunks_loaded = world->chunks_loaded;
-    for (int i = 0; i < chunks_loaded_count; i++) {
-        struct Chunk *chunk = &chunks_loaded[i];
-        if (chunkX == chunk->x && chunkZ == chunk->z) {
-            return chunk;
-        }
-    }
-    return NULL;
-}*/

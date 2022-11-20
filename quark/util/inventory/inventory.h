@@ -14,16 +14,17 @@
 
 struct Inventory {
     struct InventoryType *type;
-    struct ItemStack *items;
+    struct ItemStack **items;
     
     unsigned short viewers_count;
-    struct Player *viewers;
+    struct Player **viewers;
 };
 
-struct Inventory *inventory_create(struct InventoryType *type, struct ItemStack *items);
+struct Inventory *inventory_create(struct InventoryType *type, struct ItemStack **items);
 void inventory_destroy(struct Inventory *inventory);
 
 struct ItemStack *inventory_get_item(struct Inventory *inventory, unsigned short slot);
 void inventory_set_item(struct Inventory *inventory, unsigned short slot, struct ItemStack *item);
+_Bool inventory_add_item(struct Inventory *inventory, struct ItemStack *item);
 
 #endif /* inventory_h */

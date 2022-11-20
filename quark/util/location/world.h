@@ -25,7 +25,7 @@ struct World {
     const struct Biome **biomes;
     
     long min_y;
-    unsigned long max_y;
+    long max_y;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;

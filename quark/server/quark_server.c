@@ -46,7 +46,7 @@ void server_create(void) {
     server->is_sleeping = 1;
     
     unsigned short plugins_count = 0;
-    struct QuarkPlugin *plugins = malloc(plugins_count * sizeof(struct QuarkPlugin));
+    struct QuarkPlugin **plugins = malloc(plugins_count * sizeof(struct QuarkPlugin *));
     if (!plugins) {
         free(server);
         printf("failed to allocate memory for a QuarkServer plugins\n");
@@ -62,7 +62,7 @@ void server_create(void) {
         return;
     }
     
-    unsigned short entity_types_count = 40;
+    unsigned short entity_types_count = 1;
     struct EntityType **entity_types = malloc(entity_types_count * sizeof(struct EntityType *));
     if (!entity_types) {
         free(server);
@@ -163,8 +163,10 @@ void server_create(void) {
     server->default_world = default_world_name;
     server->world_count = 0;
     
+    server->plugins = plugins;
+    
     const unsigned int port = 25565;
-    memcpy((unsigned int *) &server->port, &port, sizeof(port));
+    memcpy((unsigned int *) &server->port, &port, sizeof(unsigned int));
     
     const int64_t started = current_time_milliseconds();
     memcpy((int64_t *) &server->started, &started, sizeof(started));
@@ -559,8 +561,8 @@ struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_
         return NULL;
     }
     
-    struct PotionEffect *potionEffects = malloc(27 * sizeof(struct PotionEffect));
-    if (!potionEffects) {
+    struct PotionEffect **potion_effects = malloc(27 * sizeof(struct PotionEffect *));
+    if (!potion_effects) {
         damageable_destroy(damageable);
         free(entity);
         printf("failed to allocate memory for a LivingEntity potionEffectsPointer\n");
@@ -569,7 +571,7 @@ struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_
     
     entity->damageable = damageable;
     entity->potion_effect_count = 0;
-    entity->potion_effects = potionEffects;
+    entity->potion_effects = potion_effects;
     entity->no_damage_ticks = 0;
     entity->no_damage_ticks_maximum = entity_type->no_damage_ticks_maximum;
     return entity;

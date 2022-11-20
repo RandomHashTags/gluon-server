@@ -66,6 +66,7 @@
 		67C304AD29172F0A00D89359 /* potion_effect.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AC29172F0A00D89359 /* potion_effect.c */; };
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
 		67C304B2291A15A200D89359 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304B1291A15A200D89359 /* utilities.c */; };
+		67D77B6E292ACEC40079D5C2 /* chunk_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B6D292ACEC40079D5C2 /* chunk_data.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -451,6 +452,8 @@
 		67C304B0291A15A200D89359 /* utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
 		67C304B1291A15A200D89359 /* utilities.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utilities.c; sourceTree = "<group>"; };
 		67D4C3932921B2B800A3AC10 /* speed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = speed.json; sourceTree = "<group>"; };
+		67D77B6C292ACEC40079D5C2 /* chunk_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chunk_data.h; sourceTree = "<group>"; };
+		67D77B6D292ACEC40079D5C2 /* chunk_data.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chunk_data.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,6 +505,8 @@
 			children = (
 				6753CF3D29146CC0008BD41C /* chunk.h */,
 				6753CF3E29146CC0008BD41C /* chunk.c */,
+				67D77B6C292ACEC40079D5C2 /* chunk_data.h */,
+				67D77B6D292ACEC40079D5C2 /* chunk_data.c */,
 				6753CF232914550B008BD41C /* location.h */,
 				6753CF242914550B008BD41C /* location.c */,
 				6753CF20291454E4008BD41C /* world.h */,
@@ -1484,6 +1489,7 @@
 				673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */,
 				6759E99C291CCCF000EB161F /* entity_type.c in Sources */,
 				679C6D5F2928583000EE168D /* player_events.c in Sources */,
+				67D77B6E292ACEC40079D5C2 /* chunk_data.c in Sources */,
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
 				679C6D0A2927728C00EE168D /* bounding_box.c in Sources */,

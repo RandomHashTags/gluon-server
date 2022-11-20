@@ -23,7 +23,6 @@ struct Entity {
     struct Location *location;
     struct Vector velocity;
     float fall_distance;
-    float fall_distance_total;
     
     _Bool is_affected_by_gravity;
     _Bool is_damageable;
@@ -40,7 +39,7 @@ struct Entity {
     unsigned short freeze_ticks_maximum;
     
     unsigned char passengers_count;
-    struct Entity *passengers;
+    struct Entity **passengers;
 };
 
 void entity_destroy(struct Entity *entity);

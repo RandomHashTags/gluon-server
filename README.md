@@ -14,30 +14,23 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Encryption
 - [ ] Gameplay features
   - [ ] Boss Bars
+  - [ ] Commands
   - [ ] Game Rules
+  - [ ] Gamemodes
+    - [x] Implementation
+    - [ ] Gamemodes' logic
+  - [x] Materials
+  - [ ] Particles
+    - [x] Implementation
   - [x] Permissions
   - [ ] Scoreboards
-- [ ] Blocks
-  - [x] Implementation
-  - [ ] Boundaries / Collision
+  - [ ] Sounds
     - [x] Implementation
-    - [ ] Collision logic
-  - [ ] Block Entities
-  - [ ] Block Resistance (to explosions)
-  - [ ] Block Spawners
-  - [ ] BlockState
-  - [ ] BlockFace
-  - [ ] Command Blocks
-  - [x] Passthrough-able
-  - [ ] Portals
-  - [ ] Preferred materials (that break the block)
-  - [ ] Pushable blocks (pistons)
-  - [ ] Redstone
-- [ ] Commands
 - [ ] Crafting
-  - [x] Implementation
-  - [x] Crafting Recipes
   - [ ] Crafting logic
+  - [ ] Crafting Recipes
+    - [x] Implementation
+    - [ ] Crafting Recipe logic
 - [ ] Enchanting
   - [x] Enchantment Types
   - [ ] Enchantments' logic
@@ -51,15 +44,14 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [ ] Passengers' logic
   - [ ] Pathfinding
 - [x] [Events](https://github.com/RandomHashTags/quark/tree/main/quark/events)
-- [ ] Gamemodes
-  - [x] Implementation
-  - [ ] Gamemodes' logic
 - [ ] Hack detection
   - [ ] Anti X-ray
   - [ ] Speed / Velocity discrepancies
 - [ ] Inventories
   - [x] Implementation
-  - [ ] Inventories' logic
+  - [x] Inventory Types
+    - [ ] Inventory Type logic
+  - [x] Inventories' logic
 - [ ] Items
   - [x] Implementation
   - [x] Attack Cooldown
@@ -71,20 +63,18 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] NBT
 - [ ] JSON
 - [ ] Loot / treasure
-- [x] Materials
-- [ ] Particles
-  - [x] Implementation
 - [ ] Plugins / Mods
   - [x] Implementation
   - [ ] Enable / disable logic
 - [ ] Potion Effects
+  - [x] Implementation
   - [x] Potion Effect Types
   - [ ] Potion Effects' logic
 - [ ] Physics
   - [ ] Gravity
     - [ ] Block Gravity
     - [x] Entity Gravity
-  - [ ] Fall damage
+  - [x] Fall damage
   - [ ] Liquids
 - [ ] Structures
   - [x] Implementation
@@ -106,10 +96,28 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [ ] Structures Generation
   - [ ] Chunks
     - [x] Implementation
+    - [x] ChunkData
     - [ ] Chunk Generation
     - [ ] Saves to file
-- [ ] Communication with Quark Client
-  - [ ] Communication with the Minecraft Client
+    - [ ] Blocks
+      - [x] Implementation
+      - [ ] Boundaries / Collision
+        - [x] Implementation
+        - [ ] Collision logic
+      - [ ] Block Entities
+      - [ ] Block Resistance (to explosions)
+      - [ ] Block Spawners
+      - [ ] BlockState
+      - [ ] BlockFace
+      - [ ] Command Blocks
+      - [x] Passthrough-able
+      - [ ] Portals
+      - [ ] Preferred materials (that break the block)
+      - [ ] Pushable blocks (pistons)
+      - [ ] Redstone
+- [ ] Communication with Client
+  - [ ] Quark Client
+  - [ ] Minecraft Client
 
 ## Future Development
 I'm just one dude. PRs are welcome, and need to adhere to the coding style defined in `X.txt`.

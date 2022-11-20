@@ -157,10 +157,11 @@ void world_sync_tick_rate_for_living_entity(struct World *world, struct LivingEn
     living_entity->no_damage_ticks *= TICKS_PER_SECOND_MULTIPLIER;
     living_entity->no_damage_ticks_maximum = no_damage_ticks_maximum;
     
-    struct PotionEffect *potion_effects = living_entity->potion_effects;
+    struct PotionEffect **potion_effects = living_entity->potion_effects;
     const unsigned short potion_effect_count = living_entity->potion_effect_count;
     for (unsigned short i = 0; i < potion_effect_count; i++) {
-        potion_effects[i].duration *= TICKS_PER_SECOND_MULTIPLIER;
+        struct PotionEffect *potion_effect = potion_effects[i];
+        potion_effect->duration *= TICKS_PER_SECOND_MULTIPLIER;
     }
     
     world_sync_tick_rate_for_entity(world, entity, entity_type);

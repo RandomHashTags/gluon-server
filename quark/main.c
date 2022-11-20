@@ -37,7 +37,7 @@ void test(void) {
 }
 
 int main(int argc, const char * argv[]) {
-    test();
-    //init();
+    //test();
+    init();
     //server_get_response(25565);
 }

@@ -140,6 +140,7 @@ void server_create(void) {
     }
     
     server->entity_types_count = entity_types_count;
+    entity_types[0] = *entity_type_create("minecraft.player", 20, 20);
     server->entity_types = entity_types;
     
     server->inventory_types_count = inventory_types_count;

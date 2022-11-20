@@ -133,7 +133,7 @@ This is a standalone server. Some features may be limited in functionality, and 
 ## Future Development
 I'm just one dude. PRs are welcome, and need to adhere to the coding style defined in `X.txt`.
 ### Quark Philosophy
-==This server is to mimic the vanilla Minecraft experience in all aspects, supporting all versions and the same world generation==. The only logic added that doesn't adhere to vanilla Minecraft should be performance and memory improvements OR third-party addons.
+This server is to mimic the vanilla Minecraft experience in all aspects, supporting all versions and the same world generation. The only logic added that doesn't adhere to vanilla Minecraft should be performance and memory improvements OR third-party addons.
 ### Financial support
 There isn't a way to financially support this project at this time.
 

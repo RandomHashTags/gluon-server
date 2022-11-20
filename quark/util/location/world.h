@@ -57,4 +57,7 @@ void world_unload_chunk(struct World *world, struct Chunk *chunk);
 void world_player_joined(struct World *world, struct PlayerConnection *connection);
 void world_player_quit(struct World *world, struct PlayerConnection *connection);
 
+struct LivingEntity *world_get_living_entity_from_uuid(const struct World *world, const unsigned int uuid);
+struct PlayerConnection *world_get_player_connection_from_uuid(const struct World *world, const unsigned int uuid);
+
 #endif /* world_h */

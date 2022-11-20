@@ -9,6 +9,7 @@
 #define entity_h
 
 #include "entity_type.h"
+#include "../collision/boundary.h"
 #include "../location/location.h"
 #include "../vector.h"
 
@@ -18,11 +19,22 @@ struct Entity {
     
     char *display_name;
     
+    struct Boundary *boundary;
     struct Location *location;
-    struct Vector vector;
+    struct Vector velocity;
+    float fall_distance;
+    float fall_distance_total;
+    
+    _Bool has_gravity;
+    _Bool is_in_passthroughable;
+    _Bool is_on_fire;
+    _Bool is_on_ground;
     
     unsigned short fire_ticks;
     unsigned short fire_ticks_maximum;
+    
+    unsigned short freeze_ticks;
+    unsigned short freeze_ticks_maximum;
 };
 
 void entity_destroy(struct Entity *entity);

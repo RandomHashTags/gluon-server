@@ -1015,7 +1015,6 @@
 		679C6DD129299AE500EE168D /* animals */ = {
 			isa = PBXGroup;
 			children = (
-				679C6D94292997A100EE168D /* ally.json */,
 				679C6D95292997BC00EE168D /* axolotl.json */,
 				679C6D98292997F300EE168D /* bat.json */,
 				679C6D99292997FB00EE168D /* bee.json */,
@@ -1164,6 +1163,7 @@
 		679C6E102929A0DE00EE168D /* passive */ = {
 			isa = PBXGroup;
 			children = (
+				679C6D94292997A100EE168D /* ally.json */,
 				679C6E0629299E8200EE168D /* villager.json */,
 				679C6E0829299E9800EE168D /* wandering_trader.json */,
 				679C6E122929A10600EE168D /* zombie_horse.json */,

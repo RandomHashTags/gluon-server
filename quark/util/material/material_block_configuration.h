@@ -11,6 +11,15 @@
 #include "../item/item_stack.h"
 
 struct MaterialBlockConfiguration {
+    /// If entities can passthrough (walk/sprint/swim through) this block or not.
+    const _Bool can_passthrough;
+    const float passthrough_velocity_dampen_x;
+    const float passthrough_velocity_dampen_y;
+    const float passthrough_velocity_dampen_z;
+    
+    /// Whether an Entity gets damaged from falling on this block or not.
+    const _Bool breaks_fall;
+    
     /// If this block breaks instantly when attacked.
     const _Bool breaks_instantly;
     const short resistance;

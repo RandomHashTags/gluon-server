@@ -21,6 +21,7 @@ struct Block *block_create(struct Material *material, struct BlockLocation *loca
     return block;
 }
 void block_destroy(struct Block *block) {
+    boundary_destroy(block->boundary);
     block_location_destroy(block->location);
     free(block->material);
     free(block);
@@ -33,10 +34,7 @@ void block_break_naturally(struct Block *block, struct ItemStack *item) {
 }
 
 _Bool block_is_preferred_tool(struct Block *block, struct ItemStack *item) {
-    const struct Material *block_material = block->material;
-    if (item) {
-        const struct Material *item_material = item->material;
-        return 1;
-    }
+    const struct MaterialBlockConfiguration *block_configuration = block->material->configuration->block;
+    const struct Material *item_material = item->material;
     return 0;
 }

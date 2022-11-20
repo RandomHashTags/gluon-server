@@ -35,7 +35,7 @@ struct World *world_create(enum MinecraftVersion version, const long seed, const
         return NULL;
     }
     
-    struct Location *spawn_location = location_create(world, 0, 10, 0, 0, 0, 0, 90, 0);
+    struct Location *spawn_location = location_create(world, 0, 10, 0, 90, 0);
     if (!spawn_location) {
         free(world);
         free(players);
@@ -137,6 +137,9 @@ void world_tick(struct World *world) {
 void world_sync_tick_rate_for_entity(struct World *world, struct Entity *entity, const struct EntityType *entity_type) {
     entity->fire_ticks *= TICKS_PER_SECOND_MULTIPLIER;
     entity->fire_ticks_maximum = entity_type->fire_ticks_maximum;
+    
+    entity->freeze_ticks *= TICKS_PER_SECOND_MULTIPLIER;
+    entity->freeze_ticks_maximum = entity_type->freeze_ticks_maximum;
 }
 void world_sync_tick_rate_for_living_entity(struct World *world, struct LivingEntity *living_entity, const struct EntityType *entity_type, const unsigned short no_damage_ticks_maximum) {
     struct Entity *entity = living_entity->damageable->entity;
@@ -153,13 +156,15 @@ void world_sync_tick_rate_for_living_entity(struct World *world, struct LivingEn
     world_sync_tick_rate_for_entity(world, entity, entity_type);
 }
 void world_sync_tick_rate_for_player(struct World *world, struct PlayerConnection *player, const unsigned short no_damage_ticks_maximum) {
-    world_sync_tick_rate_for_living_entity(world, player->player->living_entity, &ENTITY_TYPE_MINECRAFT_PLAYER, no_damage_ticks_maximum);
+    struct EntityType *entity_type_player = server_get_entity_type("minecraft.player");
+    world_sync_tick_rate_for_living_entity(world, player->player->living_entity, entity_type_player, no_damage_ticks_maximum);
 }
 void world_change_tick_rate(struct World *world, const unsigned short tick_rate) {
     const unsigned int player_count = world->player_count;
     struct PlayerConnection *players = world->players;
     printf("updating tickrate values for %d player(s)...\n", player_count);
-    const unsigned short maximumPlayerNoDamageTicksMaximum = ENTITY_TYPE_MINECRAFT_PLAYER.no_damage_ticks_maximum;
+    struct EntityType *entity_type_player = server_get_entity_type("minecraft.player");
+    const unsigned short maximumPlayerNoDamageTicksMaximum = entity_type_player->no_damage_ticks_maximum;
     for (unsigned int i = 0; i < player_count; i++) {
         struct PlayerConnection *connection = &players[i];
         world_sync_tick_rate_for_player(world, connection, maximumPlayerNoDamageTicksMaximum);
@@ -221,4 +226,28 @@ void world_player_joined(struct World *world, struct PlayerConnection *connectio
     const unsigned int player_count = world->player_count;
     world->players[player_count] = *connection;
     world->player_count += 1;
+}
+
+struct LivingEntity *world_get_living_entity_from_uuid(const struct World *world, const unsigned int uuid) {
+    const unsigned int living_entities_count = world->living_entity_count;
+    struct LivingEntity *living_entities = world->living_entities;
+    for (unsigned int i = 0; i < living_entities_count; i++) {
+        struct LivingEntity *living_entity = &living_entities[i];
+        if (uuid == living_entity->damageable->entity->uuid) {
+            return living_entity;
+        }
+    }
+    struct PlayerConnection *player = world_get_player_connection_from_uuid(world, uuid);
+    return player ? player->player->living_entity : NULL;
+}
+struct PlayerConnection *world_get_player_connection_from_uuid(const struct World *world, const unsigned int uuid) {
+    const unsigned int players_count = world->player_count;
+    struct PlayerConnection *players = world->players;
+    for (unsigned int i = 0; i < players_count; i++) {
+        struct PlayerConnection *player = &players[i];
+        if (uuid == player->player->living_entity->damageable->entity->uuid) {
+            return player;
+        }
+    }
+    return NULL;
 }

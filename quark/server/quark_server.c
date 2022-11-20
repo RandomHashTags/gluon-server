@@ -19,7 +19,9 @@
 
 unsigned char TICKS_PER_SECOND;
 float TICKS_PER_SECOND_MULTIPLIER;
-unsigned short BLOCK_BREAK_DELAY_TICKS;
+unsigned char BLOCK_BREAK_DELAY_TICKS;
+const float GRAVITY = 9.8;
+float GRAVITY_PER_TICK;
 struct QuarkServer *SERVER;
 
 #define QUARK_SERVER_THREAD_COUNT 3
@@ -371,6 +373,7 @@ void server_change_tick_rate(const unsigned char ticks_per_second) {
     TICKS_PER_SECOND = ticks_per_second;
     TICKS_PER_SECOND_MULTIPLIER = (float) ticks_per_second / 20;
     BLOCK_BREAK_DELAY_TICKS = ticks_per_second / 3;
+    GRAVITY_PER_TICK = GRAVITY / (float) ticks_per_second;
     
     const double interval = 1000 / (float) ticks_per_second;
     printf("changing server tickrate to %d ticks per second (1 every %f ms, %f multiplier)...\n", TICKS_PER_SECOND, interval, TICKS_PER_SECOND_MULTIPLIER);
@@ -384,6 +387,9 @@ void server_change_tick_rate(const unsigned char ticks_per_second) {
         
         type->fire_ticks_maximum /= previous_ticks_per_second_multiplier;
         type->fire_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
+        
+        type->freeze_ticks_maximum /= previous_ticks_per_second_multiplier;
+        type->freeze_ticks_maximum *= TICKS_PER_SECOND_MULTIPLIER;
     }
     
     const unsigned short world_count = SERVER->world_count;
@@ -401,14 +407,32 @@ struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id) {
     struct QuarkPlugin *plugins = SERVER->plugins;
     for (unsigned short i = 0; i < plugins_count; i++) {
         struct QuarkPlugin *plugin = &plugins[i];
-        if (strcmp(plugin->name, name) == 0 && strcmp(plugin->bundle_id, bundle_id) == 0) {
+        if (strcmp(name, plugin->name) == 0 && strcmp(bundle_id, plugin->bundle_id) == 0) {
             return plugin;
         }
     }
     return NULL;
 }
+struct EntityType *server_get_entity_type(const char *identifier) {
+    const unsigned short entity_types_count = SERVER->entity_types_count;
+    struct EntityType *entity_types = SERVER->entity_types;
+    for (unsigned short i = 0; i < entity_types_count; i++) {
+        struct EntityType *entity_type = &entity_types[i];
+        if (strcmp(identifier, entity_type->identifier) == 0) {
+            return entity_type;
+        }
+    }
+    return NULL;
+}
 struct Material *server_get_material(const char *identifier) {
-    
+    const unsigned short materials_count = SERVER->materials_count;
+    struct Material *materials = SERVER->materials;
+    for (unsigned short i = 0; i < materials_count; i++) {
+        struct Material *material = &materials[i];
+        if (strcmp(identifier, material->identifier) == 0) {
+            return material;
+        }
+    }
     return NULL;
 }
 
@@ -479,7 +503,7 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
         world = default_world;
     }
     
-    struct Location *location = location_create(world, 0, 0, 0, 0, 0, 0, 90, 0);
+    struct Location *location = location_create(world, 0, 0, 0, 90, 0);
     if (!location) {
         free(entity);
         return NULL;
@@ -494,7 +518,7 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
         .y = 0,
         .z = 0
     };
-    entity->vector = vector;
+    entity->velocity = vector;
     entity->fire_ticks = 0;
     entity->fire_ticks_maximum = entity_type->fire_ticks_maximum;
     return entity;
@@ -545,7 +569,8 @@ struct LivingEntity *server_parse_living_entity(const struct EntityType *entity_
 struct Player *server_parse_player(unsigned int uuid) {
     const double health = 20;
     const double health_maximum = 20;
-    struct LivingEntity *entity = server_parse_living_entity(&ENTITY_TYPE_MINECRAFT_PLAYER, uuid, health, health_maximum);
+    struct EntityType *entity_type_player = server_get_entity_type("minecraft.player");
+    struct LivingEntity *entity = server_parse_living_entity(entity_type_player, uuid, health, health_maximum);
     if (!entity) {
         return NULL;
     }

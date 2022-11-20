@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "location.h"
 
-struct Location *location_create(struct World *world, const long x, const long y, const long z, const unsigned x_float, const unsigned short y_float, const unsigned short z_float, const float yaw, const float pitch) {
+struct Location *location_create(struct World *world, const float x, const float y, const float z, const float yaw, const float pitch) {
     struct Location *location = malloc(sizeof(struct Location));
     if (!location) {
         printf("failed to allocate memory for a Location\n");
@@ -19,9 +19,6 @@ struct Location *location_create(struct World *world, const long x, const long y
     location->x = x;
     location->y = y;
     location->z = z;
-    location->x_float = x_float;
-    location->y_float = y_float;
-    location->z_float = z_float;
     location->yaw = yaw;
     location->pitch = pitch;
     return location;

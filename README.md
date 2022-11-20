@@ -20,12 +20,15 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] Blocks
   - [x] Implementation
   - [ ] Boundaries / Collision
+    - [x] Implementation
+    - [ ] Collision logic
   - [ ] Block Entities
   - [ ] Block Resistance (to explosions)
   - [ ] Block Spawners
   - [ ] BlockState
   - [ ] BlockFace
   - [ ] Command Blocks
+  - [x] Passthrough-able
   - [ ] Portals
   - [ ] Preferred materials (that break the block)
   - [ ] Pushable blocks (pistons)
@@ -41,6 +44,8 @@ This is a standalone server. Some features may be limited in functionality, and 
 - [ ] Entities
   - [x] Implementation
   - [ ] Boundaries / Collision
+    - [x] Implementation
+    - [ ] Collision logic
   - [ ] Passengers / ridable
   - [ ] Pathfinding
 - [x] [Events](https://github.com/RandomHashTags/quark/tree/main/quark/events)
@@ -49,6 +54,7 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Gamemodes' logic
 - [ ] Hack detection
   - [ ] Anti X-ray
+  - [ ] Speed / Velocity discrepancies
 - [ ] Inventories
   - [x] Implementation
   - [ ] Inventories' logic
@@ -73,6 +79,10 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Potion Effects' logic
 - [ ] Physics
   - [ ] Gravity
+    - [ ] Block Gravity
+    - [x] Entity Gravity
+  - [ ] Fall damage
+  - [ ] Liquids
 - [ ] Structures
   - [x] Implementation
   - [ ] Structure Generation

@@ -75,6 +75,7 @@ void server_tick(void);
 void server_change_tick_rate(const unsigned char ticks_per_second);
 
 struct QuarkPlugin *server_get_plugin(const char *name, const char *bundle_id);
+struct EntityType *server_get_entity_type(const char *identifier);
 struct Material *server_get_material(const char *identifier);
 
 struct World *server_get_world(const char *world_name);

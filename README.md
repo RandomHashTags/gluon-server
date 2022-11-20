@@ -40,7 +40,9 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [ ] Crafting Recipe logic
 - [ ] Enchanting
   - [x] Enchantment Types
-  - [ ] Enchantments' logic
+  - [ ] Enchantments
+    - [x] Implementation
+    - [ ] Enchantments' logic
 - [ ] Entities
   - [x] Implementation
   - [ ] Boundaries / Collision
@@ -56,7 +58,8 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Speed / Velocity discrepancies
 - [ ] Inventories
   - [x] Implementation
-  - [x] Inventory Types
+  - [ ] Inventory Types
+    - [x] Implementation
     - [ ] Inventory Type logic
   - [x] Inventory logic
 - [ ] Items
@@ -90,6 +93,7 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [x] Dynamic tick rate
 - [ ] Worlds
   - [x] Implementation
+  - [ ] Boundaries
   - [x] Difficulties
   - [x] Location
   - [ ] Seed randomizer
@@ -128,15 +132,19 @@ This is a standalone server. Some features may be limited in functionality, and 
 
 ## Future Development
 I'm just one dude. PRs are welcome, and need to adhere to the coding style defined in `X.txt`.
+### Quark Philosophy
+==This server is to mimic the vanilla Minecraft experience in all aspects, supporting all versions and the same world generation==. The only logic added that doesn't adhere to vanilla Minecraft should be performance and memory improvements OR third-party addons.
 ### Financial support
-If this project does become usable, it definitely will need to be continually updated. There isn't a way to financially support this project at this time.
+There isn't a way to financially support this project at this time.
 
 ## Dependencies
 * a C JSON library (still researching a worthy implementation | may need to create a custom one)
   - **Other language contenders**
-    - Python - https://github.com/tiangolo/fastapi
-    - C++ - https://github.com/nlohmann/json
-    - C++ - https://github.com/simdjson/simdjson
+    - Python
+      - [FastAPI](https://github.com/tiangolo/fastapi)
+    - C++
+      - [JSON for Modern C++](https://github.com/nlohmann/json)
+      - [simdjson](https://github.com/simdjson/simdjson)
 
 ## Usage
 1. open terminal

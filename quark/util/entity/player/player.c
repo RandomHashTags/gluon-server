@@ -175,6 +175,31 @@ void player_broke_blocks(struct Player *player, struct Block *blocks, _Bool inst
     free(drop_items);
 }
 
+void player_close_open_inventories(struct Player *player, _Bool remove_from_viewers) {
+    const unsigned short open_inventories_count = player->open_inventories_count;
+    struct Inventory **open_inventories = player->open_inventories;
+    for (unsigned short i = 0; i < open_inventories_count; i++) {
+        struct Inventory *open_inventory = open_inventories[i];
+        if (remove_from_viewers) {
+            const unsigned short open_inventory_viewers_count = open_inventory->viewers_count;
+            struct Player **open_inventory_viewers = open_inventory->viewers;
+            for (unsigned short j = 0; j < open_inventory_viewers_count; j++) {
+                struct Player *viewer = open_inventory_viewers[j];
+                if (viewer == player) {
+                    for (unsigned short k = j; k < open_inventory_viewers_count-1; k++) {
+                        open_inventory_viewers[k] = open_inventory_viewers[k + 1];
+                    }
+                    open_inventory_viewers[j] = NULL;
+                    open_inventory->viewers_count -= 1;
+                    break;
+                }
+            }
+        }
+        free(open_inventory);
+    }
+    free(open_inventories);
+}
+
 _Bool player_has_permission(struct Player *player, const char *identifier) {
     const unsigned short permissions_count = player->permissions_count;
     struct Permission **permissions = player->permissions;

@@ -64,6 +64,8 @@ void player_set_sprinting(struct Player *player, _Bool value);
 
 void player_broke_block(struct Player *player, struct Block *block, _Bool instantly);
 
+void player_close_open_inventories(struct Player *player, _Bool remove_from_viewers);
+
 _Bool player_has_permission(struct Player *player, const char *identifier);
 _Bool player_has_advancement(struct Player *player, const char *identifier);
 

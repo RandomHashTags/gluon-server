@@ -7,10 +7,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "statistic.h"
 #include "../../utilities.h"
 
-struct Statistic *statistic_create(const char *identifier) {
+struct Statistic *statistic_create(const char *identifier, const enum ValueType value_type) {
     struct Statistic *statistic = malloc(sizeof(struct Statistic));
     if (!statistic) {
         printf("failed to allocate memory for a Statistic\n");
@@ -23,5 +24,10 @@ struct Statistic *statistic_create(const char *identifier) {
         return NULL;
     }
     statistic->identifier = target_identifier;
+    memcpy((enum ValueType *) &statistic->value_type, &value_type, sizeof(enum ValueType));
     return statistic;
+}
+void statistic_destroy(struct Statistic *statistic) {
+    free((char *) statistic->identifier);
+    free(statistic);
 }

@@ -32,7 +32,8 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Sounds
     - [x] Implementation
   - [ ] Statistics
-    - [ ] Implementation
+    - [x] Implementation
+    - [ ] Statistics' logic
 - [ ] Crafting
   - [ ] Crafting logic
   - [ ] Crafting Recipes

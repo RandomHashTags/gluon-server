@@ -32,7 +32,8 @@ void inventory_destroy(struct Inventory *inventory) {
     struct Player **viewers = inventory->viewers;
     for (unsigned short i = 0; i < viewers_count; i++) {
         struct Player *viewer = viewers[i];
-        // TODO: close viewer's inventory
+        player_close_open_inventories(viewer, 0);
+        free(viewer);
     }
     free(viewers);
     

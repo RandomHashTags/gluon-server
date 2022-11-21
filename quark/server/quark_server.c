@@ -506,7 +506,7 @@ struct Entity *server_parse_entity(const struct EntityType *entity_type, const u
         world = default_world;
     }
     
-    const float location_x = 0, location_y = 10, location_z = 0;
+    const float location_x = 0, location_y = 5, location_z = 0;
     struct Chunk *chunk = world_get_or_load_chunk(world, (long) location_x / 16, (long) location_z / 16);
     if (!chunk) {
         free(entity);

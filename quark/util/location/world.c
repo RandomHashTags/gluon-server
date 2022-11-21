@@ -25,7 +25,8 @@ struct World *world_create(enum MinecraftVersion version, const long seed, const
         return NULL;
     }
     
-    const unsigned int chunks_loaded_count_maximum = 16 * 16;
+    const unsigned int chunk_size = 16;
+    const unsigned int chunks_loaded_count_maximum = chunk_size^2;
     memcpy((unsigned int *) &world->chunks_loaded_count_maximum, &chunks_loaded_count_maximum, sizeof(unsigned int));
     struct Chunk **chunks_loaded = malloc(chunks_loaded_count_maximum * sizeof(struct Chunk *));
     if (!chunks_loaded) {
@@ -37,8 +38,8 @@ struct World *world_create(enum MinecraftVersion version, const long seed, const
     world->chunks_loaded = chunks_loaded;
     world->chunks_loaded_count = 0;
     
-    const float location_x = 0, location_y = 10, location_z = 0;
-    struct Chunk *chunk = world_get_or_load_chunk(world, (long) location_x / 16, (long) location_z / 16);
+    const float location_x = 0, location_y = 5, location_z = 0;
+    struct Chunk *chunk = world_get_or_load_chunk(world, (long) location_x / chunk_size, (long) location_z / chunk_size);
     if (!chunk) {
         free(world);
         free(players);

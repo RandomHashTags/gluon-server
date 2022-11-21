@@ -68,6 +68,7 @@
 		67C304B2291A15A200D89359 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304B1291A15A200D89359 /* utilities.c */; };
 		67D77B6E292ACEC40079D5C2 /* chunk_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B6D292ACEC40079D5C2 /* chunk_data.c */; };
 		67D77B72292B61DA0079D5C2 /* statistic.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B71292B61DA0079D5C2 /* statistic.c */; };
+		67D77B79292B70C80079D5C2 /* statistic_value.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B78292B70C80079D5C2 /* statistic_value.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -459,6 +460,9 @@
 		67D77B71292B61DA0079D5C2 /* statistic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = statistic.c; sourceTree = "<group>"; };
 		67D77B75292B66880079D5C2 /* default_block.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = default_block.json; sourceTree = "<group>"; };
 		67D77B76292B6CCE0079D5C2 /* block_face.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block_face.h; sourceTree = "<group>"; };
+		67D77B77292B70C80079D5C2 /* statistic_value.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statistic_value.h; sourceTree = "<group>"; };
+		67D77B78292B70C80079D5C2 /* statistic_value.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = statistic_value.c; sourceTree = "<group>"; };
+		67D77B7A292B71020079D5C2 /* value_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = value_type.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -714,6 +718,7 @@
 				67A66C19291F804900A144F8 /* gamemode.c */,
 				67A66C1B291F823C00A144F8 /* dye_color.h */,
 				67A66C1C291F823C00A144F8 /* dye_color.c */,
+				67D77B7A292B71020079D5C2 /* value_type.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1426,6 +1431,8 @@
 			children = (
 				67D77B70292B61DA0079D5C2 /* statistic.h */,
 				67D77B71292B61DA0079D5C2 /* statistic.c */,
+				67D77B77292B70C80079D5C2 /* statistic_value.h */,
+				67D77B78292B70C80079D5C2 /* statistic_value.c */,
 			);
 			path = statistics;
 			sourceTree = "<group>";
@@ -1551,6 +1558,7 @@
 				6753CF252914550B008BD41C /* location.c in Sources */,
 				673D6B97291570F200C0BDE7 /* player_connection.c in Sources */,
 				6759E99F291D967300EB161F /* vector.c in Sources */,
+				67D77B79292B70C80079D5C2 /* statistic_value.c in Sources */,
 				672760AC292386B500F26301 /* seed_generator.c in Sources */,
 				6799444329142C4200D8F796 /* main.c in Sources */,
 				679C6D0F2927755700EE168D /* bounding_circle.c in Sources */,

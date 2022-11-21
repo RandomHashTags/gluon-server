@@ -53,7 +53,7 @@ void entity_tick(struct Entity *entity) {
             const long block_x = (long) location->x, block_y = (long) location_y, block_z = (long) location->z;
             block_beneath_entity = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y-1, block_z);
         }
-        const struct MaterialBlockConfiguration *block_configuration = !block_beneath_entity ? block_beneath_entity->material->configuration->block : NULL;
+        const struct MaterialBlockConfiguration *block_configuration = block_beneath_entity ? block_beneath_entity->material->configuration->block : NULL;
         if (!block_configuration || block_configuration->can_passthrough) {
             entity->fall_distance += GRAVITY_PER_TICK;
             velocity.y -= GRAVITY_PER_TICK;

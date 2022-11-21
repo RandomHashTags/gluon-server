@@ -113,6 +113,8 @@ void world_destroy(struct World *world) {
     free((char *) world->name);
     free(world->difficulty);
     free(world->biomes);
+    free(world->border);
+    free(world->game_rules);
     free(world);
 }
 

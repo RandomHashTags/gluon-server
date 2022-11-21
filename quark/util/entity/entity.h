@@ -40,6 +40,7 @@ struct Entity {
     
     unsigned char passengers_count;
     struct Entity **passengers;
+    struct Entity *vehicle;
 };
 
 void entity_destroy(struct Entity *entity);
@@ -48,5 +49,7 @@ void entity_tick(struct Entity *entity);
 
 void entity_teleport(struct Entity *entity, struct Location *location);
 void entity_get_nearby_entities(struct Entity *entity, double x, double y, double z);
+
+void entity_eject_passengers(struct Entity *entity);
 
 #endif /* entity_h */

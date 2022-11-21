@@ -69,6 +69,9 @@
 		67D77B6E292ACEC40079D5C2 /* chunk_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B6D292ACEC40079D5C2 /* chunk_data.c */; };
 		67D77B72292B61DA0079D5C2 /* statistic.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B71292B61DA0079D5C2 /* statistic.c */; };
 		67D77B79292B70C80079D5C2 /* statistic_value.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B78292B70C80079D5C2 /* statistic_value.c */; };
+		67D77B7D292C28440079D5C2 /* packet_manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B7C292C28440079D5C2 /* packet_manager.c */; };
+		67D77B81292C2A9C0079D5C2 /* game_rule.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B80292C2A9C0079D5C2 /* game_rule.c */; };
+		67D77B84292C2CE40079D5C2 /* world_border.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B83292C2CE40079D5C2 /* world_border.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -463,6 +466,12 @@
 		67D77B77292B70C80079D5C2 /* statistic_value.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statistic_value.h; sourceTree = "<group>"; };
 		67D77B78292B70C80079D5C2 /* statistic_value.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = statistic_value.c; sourceTree = "<group>"; };
 		67D77B7A292B71020079D5C2 /* value_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = value_type.h; sourceTree = "<group>"; };
+		67D77B7B292C28440079D5C2 /* packet_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = packet_manager.h; sourceTree = "<group>"; };
+		67D77B7C292C28440079D5C2 /* packet_manager.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = packet_manager.c; sourceTree = "<group>"; };
+		67D77B7F292C2A9C0079D5C2 /* game_rule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = game_rule.h; sourceTree = "<group>"; };
+		67D77B80292C2A9C0079D5C2 /* game_rule.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = game_rule.c; sourceTree = "<group>"; };
+		67D77B82292C2CE40079D5C2 /* world_border.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = world_border.h; sourceTree = "<group>"; };
+		67D77B83292C2CE40079D5C2 /* world_border.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = world_border.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,6 +529,8 @@
 				6753CF242914550B008BD41C /* location.c */,
 				6753CF20291454E4008BD41C /* world.h */,
 				6753CF21291454E4008BD41C /* world.c */,
+				67D77B82292C2CE40079D5C2 /* world_border.h */,
+				67D77B83292C2CE40079D5C2 /* world_border.c */,
 			);
 			path = location;
 			sourceTree = "<group>";
@@ -672,6 +683,8 @@
 				67C304A829172A0D00D89359 /* event_manager.c */,
 				679C6D8D2928B54D00EE168D /* file_manager.h */,
 				679C6D8E2928B54D00EE168D /* file_manager.c */,
+				67D77B7B292C28440079D5C2 /* packet_manager.h */,
+				67D77B7C292C28440079D5C2 /* packet_manager.c */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -693,6 +706,7 @@
 			children = (
 				679C6D4A29282F1700EE168D /* biome */,
 				679C6D072927725500EE168D /* collision */,
+				67D77B7E292C2A8C0079D5C2 /* game_rule */,
 				679C6D0329276CCC00EE168D /* sound */,
 				679C6CD12925820E00EE168D /* structure */,
 				67A66C572921A88100A144F8 /* recipe */,
@@ -1453,6 +1467,15 @@
 			path = minecraft;
 			sourceTree = "<group>";
 		};
+		67D77B7E292C2A8C0079D5C2 /* game_rule */ = {
+			isa = PBXGroup;
+			children = (
+				67D77B7F292C2A9C0079D5C2 /* game_rule.h */,
+				67D77B80292C2A9C0079D5C2 /* game_rule.c */,
+			);
+			path = game_rule;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1518,11 +1541,13 @@
 				679C6D6229286A0700EE168D /* material_configuration.c in Sources */,
 				67A66C12291ED90C00A144F8 /* ageable.c in Sources */,
 				6753CF2A2914556E008BD41C /* entity.c in Sources */,
+				67D77B84292C2CE40079D5C2 /* world_border.c in Sources */,
 				67C304AF291737C300D89359 /* material.c in Sources */,
 				67A66C4229219DDC00A144F8 /* material_item_configuration.c in Sources */,
 				67A66C282920344400A144F8 /* enchantment_target.c in Sources */,
 				679C6D0629276CD500EE168D /* sound.c in Sources */,
 				6753CF22291454E4008BD41C /* world.c in Sources */,
+				67D77B81292C2A9C0079D5C2 /* game_rule.c in Sources */,
 				6753CF35291459A8008BD41C /* item_meta.c in Sources */,
 				67C304A929172A0D00D89359 /* event_manager.c in Sources */,
 				679C6CCE2925799A00EE168D /* permission.c in Sources */,
@@ -1555,6 +1580,7 @@
 				67A66C5A2921A89700A144F8 /* crafting_recipe.c in Sources */,
 				6753CF4B291480F8008BD41C /* inventory.c in Sources */,
 				6753CF3F29146CC0008BD41C /* chunk.c in Sources */,
+				67D77B7D292C28440079D5C2 /* packet_manager.c in Sources */,
 				6753CF252914550B008BD41C /* location.c in Sources */,
 				673D6B97291570F200C0BDE7 /* player_connection.c in Sources */,
 				6759E99F291D967300EB161F /* vector.c in Sources */,

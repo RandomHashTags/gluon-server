@@ -16,7 +16,9 @@ void entity_destroy(struct Entity *entity) {
     location_destroy(entity->location);
     free((struct EntityType *) entity->type);
     free((char *) entity->display_name);
+    entity_eject_passengers(entity);
     free((struct Entity *) entity->passengers);
+    free(entity->vehicle);
     free(entity);
 }
 
@@ -109,4 +111,16 @@ void entity_tick(struct Entity *entity) {
 
 void entity_teleport(struct Entity *entity, struct Location *location) {
     memcpy(entity->location, location, sizeof(struct Location));
+}
+
+void entity_eject_passengers(struct Entity *entity) {
+    const unsigned char passengers_count = entity->passengers_count;
+    struct Entity **passengers = entity->passengers;
+    for (unsigned char i = 0; i < passengers_count; i++) {
+        struct Entity *passenger = passengers[i];
+        entity_eject_passengers(passenger);
+        passenger->vehicle = NULL;
+        passengers[i] = NULL;
+    }
+    entity->passengers_count = 0;
 }

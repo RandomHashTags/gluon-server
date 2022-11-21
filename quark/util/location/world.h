@@ -9,8 +9,10 @@
 #define world_h
 
 #include "chunk.h"
+#include "world_border.h"
 #include "../biome/biome.h"
 #include "../difficulty.h"
+#include "../game_rule/game_rule.h"
 #include "../../minecraft_version.h"
 #include "../../network/player_connection.h"
 
@@ -26,10 +28,20 @@ struct World {
     
     long min_y;
     long max_y;
+    long sea_level_y;
+    
+    struct WorldBorder *border;
     
     unsigned int chunks_loaded_count;
     const unsigned int chunks_loaded_count_maximum;
     struct Chunk **chunks_loaded;
+    
+    _Bool allows_animals;
+    _Bool allows_monsters;
+    _Bool allows_pvp;
+    
+    unsigned short game_rules_count;
+    struct GameRule *game_rules;
     
     unsigned int entity_count;
     struct Entity **entities;

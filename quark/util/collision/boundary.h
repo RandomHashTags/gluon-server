@@ -20,6 +20,7 @@ struct Boundary {
     };
 };
 
+struct Boundary *boundary_create(const enum BoundaryType type, struct BoundingBox *box, struct BoundingCircle *circle);
 void boundary_destroy(struct Boundary *boundary);
 
 #endif /* boundary_h */

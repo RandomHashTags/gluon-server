@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "bounding_circle.h"
 
-struct BoundingCircle *bounding_circle_create(unsigned short radius) {
+struct BoundingCircle *bounding_circle_create(float radius) {
     struct BoundingCircle *circle = malloc(sizeof(struct BoundingCircle));
     if (!circle) {
         printf("failed to allocate memory for a BoundingCircle\n");
@@ -20,4 +20,8 @@ struct BoundingCircle *bounding_circle_create(unsigned short radius) {
 }
 void bounding_circle_destroy(struct BoundingCircle *circle) {
     free(circle);
+}
+
+const float bounding_circle_calculate_height(struct BoundingCircle *circle) {
+    return circle->radius * 2;
 }

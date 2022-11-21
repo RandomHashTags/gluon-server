@@ -26,3 +26,8 @@ struct BoundingBox *bounding_box_create(double x1, double y1, double z1, double 
 void bounding_box_destroy(struct BoundingBox *box) {
     free(box);
 }
+
+float bounding_box_calculate_height(struct BoundingBox *box) {
+    const float boundary_y1 = box->y1, boundary_y2 = box->y2;
+    return boundary_y2 > boundary_y1 ? boundary_y2 - boundary_y1 : boundary_y1 - boundary_y2;
+}

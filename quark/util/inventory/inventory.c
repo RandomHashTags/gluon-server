@@ -63,7 +63,7 @@ _Bool inventory_add_item(struct Inventory *inventory, struct ItemStack *item) {
         struct ItemStack *target_item = items[i];
         if (!target_item) {
             items[i] = item;
-            break;
+            return 1;
         } else if (item_stack_is_similar(target_item, item) && target_item->amount < max_stack_size) {
             const unsigned short target_item_amount = target_item->amount, item_amount = item->amount;
             const unsigned short new_amount = target_item_amount + item_amount;

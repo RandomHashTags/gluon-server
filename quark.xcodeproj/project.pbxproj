@@ -67,6 +67,7 @@
 		67C304AF291737C300D89359 /* material.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304AE291737C300D89359 /* material.c */; };
 		67C304B2291A15A200D89359 /* utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 67C304B1291A15A200D89359 /* utilities.c */; };
 		67D77B6E292ACEC40079D5C2 /* chunk_data.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B6D292ACEC40079D5C2 /* chunk_data.c */; };
+		67D77B72292B61DA0079D5C2 /* statistic.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D77B71292B61DA0079D5C2 /* statistic.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -454,6 +455,10 @@
 		67D4C3932921B2B800A3AC10 /* speed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = speed.json; sourceTree = "<group>"; };
 		67D77B6C292ACEC40079D5C2 /* chunk_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chunk_data.h; sourceTree = "<group>"; };
 		67D77B6D292ACEC40079D5C2 /* chunk_data.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chunk_data.c; sourceTree = "<group>"; };
+		67D77B70292B61DA0079D5C2 /* statistic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statistic.h; sourceTree = "<group>"; };
+		67D77B71292B61DA0079D5C2 /* statistic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = statistic.c; sourceTree = "<group>"; };
+		67D77B75292B66880079D5C2 /* default_block.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = default_block.json; sourceTree = "<group>"; };
+		67D77B76292B6CCE0079D5C2 /* block_face.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block_face.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +579,7 @@
 				6753CF4229146D06008BD41C /* block.c */,
 				6759E9A0291D98CA00EB161F /* block_location.h */,
 				6759E9A1291D98CA00EB161F /* block_location.c */,
+				67D77B76292B6CCE0079D5C2 /* block_face.h */,
 			);
 			path = block;
 			sourceTree = "<group>";
@@ -693,6 +699,7 @@
 				6753CF2C291456DF008BD41C /* item */,
 				6753CF2729145560008BD41C /* entity */,
 				6753CF1F291454D8008BD41C /* location */,
+				67D77B6F292B61C60079D5C2 /* statistics */,
 				6753CF4729147D7F008BD41C /* enchantment_type.h */,
 				673D6B8F29156AA700C0BDE7 /* enchantment_type.c */,
 				67A66C262920344400A144F8 /* enchantment_target.h */,
@@ -823,6 +830,7 @@
 			children = (
 				679C6CF82927684900EE168D /* _versions */,
 				679C6CD9292713FC00EE168D /* biomes */,
+				67D77B73292B666B0079D5C2 /* boundaries */,
 				679C6CD42926EF0D00EE168D /* difficulties */,
 				67A66C332921990E00A144F8 /* enchantments */,
 				67A66C32292198CA00A144F8 /* entities */,
@@ -1413,6 +1421,31 @@
 			path = minecraft;
 			sourceTree = "<group>";
 		};
+		67D77B6F292B61C60079D5C2 /* statistics */ = {
+			isa = PBXGroup;
+			children = (
+				67D77B70292B61DA0079D5C2 /* statistic.h */,
+				67D77B71292B61DA0079D5C2 /* statistic.c */,
+			);
+			path = statistics;
+			sourceTree = "<group>";
+		};
+		67D77B73292B666B0079D5C2 /* boundaries */ = {
+			isa = PBXGroup;
+			children = (
+				67D77B74292B66760079D5C2 /* minecraft */,
+			);
+			path = boundaries;
+			sourceTree = "<group>";
+		};
+		67D77B74292B66760079D5C2 /* minecraft */ = {
+			isa = PBXGroup;
+			children = (
+				67D77B75292B66880079D5C2 /* default_block.json */,
+			);
+			path = minecraft;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1503,6 +1536,7 @@
 				679C6D8F2928B54D00EE168D /* file_manager.c in Sources */,
 				67A66C4529219DFB00A144F8 /* material_names.c in Sources */,
 				67C304AD29172F0A00D89359 /* potion_effect.c in Sources */,
+				67D77B72292B61DA0079D5C2 /* statistic.c in Sources */,
 				67A66C502921A50C00A144F8 /* material_smelting_configuration.c in Sources */,
 				67A66C15291F776E00A144F8 /* difficulty.c in Sources */,
 				6759E998291CC28D00EB161F /* semantic_version.c in Sources */,

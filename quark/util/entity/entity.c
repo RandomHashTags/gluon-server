@@ -37,12 +37,12 @@ void entity_tick(struct Entity *entity) {
     
     struct Chunk *chunk = location->chunk;
     _Bool calculated_block_at_location = 0;
-    struct Block *block_at_location = NULL;
+    struct Block *block_beneath_entity = NULL;
     struct Vector velocity = entity->velocity;
     if (entity->is_in_block_passthroughable) {
         calculated_block_at_location = 1;
-        const long block_x = (long) location->x, block_y = (long) location_y, block_z = (long) location->z;
-        block_at_location = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y, block_z);
+        const long block_x = (long) location->x, block_y = (long) location_y , block_z = (long) location->z;
+        block_beneath_entity = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y-1, block_z);
     }
     
     if (entity->is_affected_by_gravity && !entity->is_on_ground) {
@@ -51,16 +51,20 @@ void entity_tick(struct Entity *entity) {
         if (!calculated_block_at_location) {
             calculated_block_at_location = 1;
             const long block_x = (long) location->x, block_y = (long) location_y, block_z = (long) location->z;
-            block_at_location = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y, block_z);
+            block_beneath_entity = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y-1, block_z);
         }
-        const struct MaterialBlockConfiguration *block_configuration = !block_at_location ? block_at_location->material->configuration->block : NULL;
+        const struct MaterialBlockConfiguration *block_configuration = !block_beneath_entity ? block_beneath_entity->material->configuration->block : NULL;
         if (!block_configuration || block_configuration->can_passthrough) {
             entity->fall_distance += GRAVITY_PER_TICK;
             velocity.y -= GRAVITY_PER_TICK;
         } else {
-            struct BoundingBox *boundary = block_at_location->boundary;
-            entity->is_on_ground = 1;
-            velocity.y = 0;
+            struct BlockLocation *block_location = block_beneath_entity->location;
+            const long block_location_y = block_location->y;
+            const float block_height = block_get_height(block_beneath_entity);
+            if (location_y - GRAVITY_PER_TICK <= block_location_y + block_height) {
+                entity->is_on_ground = 1;
+                velocity.y = 0;
+            }
         }
         if (entity->is_on_ground) {
             _Bool calculate_fall_damage = entity->type->receives_fall_damage;
@@ -69,10 +73,10 @@ void entity_tick(struct Entity *entity) {
                 if (!calculated_block_at_location) {
                     calculated_block_at_location = 1;
                     const long block_x = (long) location->x, block_y = (long) location_y, block_z = (long) location->z;
-                    block_at_location = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y, block_z);
+                    block_beneath_entity = chunk_get_loaded_block_at_xyz(chunk, block_x, block_y-1, block_z);
                 }
-                if (block_at_location) {
-                    const struct MaterialBlockConfiguration *configuration = block_at_location->material->configuration->block;
+                if (block_beneath_entity) {
+                    const struct MaterialBlockConfiguration *configuration = block_beneath_entity->material->configuration->block;
                     calculate_fall_damage = 1;//!configuration->breaks_fall; // TODO: uncomment this | for testing only
                 }
                 if (calculate_fall_damage) {
@@ -81,6 +85,7 @@ void entity_tick(struct Entity *entity) {
                     printf("entity_tick; found living_entity for uuid %d=%d\n", uuid, living_entity != NULL);
                     if (living_entity) {
                         float fall_damage_multiplier = 1.0;
+                        // TODO: manipulate fall_damage_multiplier based on the living entity's equipment, enchants, modifiers, etc
                         struct EntityEquipment *equipment = living_entity->equipment;
                         if (equipment) {
                         }

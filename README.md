@@ -48,6 +48,7 @@ This is a standalone server. Some features may be limited in functionality, and 
   - [ ] Boundaries / Collision
     - [x] Implementation
     - [ ] Collision logic
+  - [ ] Loot Tables
   - [ ] Passengers / ridable
     - [x] Implementation
     - [ ] Passengers' logic
@@ -118,8 +119,7 @@ This is a standalone server. Some features may be limited in functionality, and 
       - [ ] Block Entities
       - [ ] Block Resistance (to explosions)
       - [ ] Block Spawners
-      - [ ] BlockState
-      - [ ] BlockFace
+      - [x] BlockFace
       - [ ] Command Blocks
       - [x] Passthrough-able
       - [ ] Portals

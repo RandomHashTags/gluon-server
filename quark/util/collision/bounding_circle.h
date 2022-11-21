@@ -9,10 +9,12 @@
 #define bounding_circle_h
 
 struct BoundingCircle {
-    unsigned short radius;
+    float radius;
 };
 
-struct BoundingCircle *bounding_circle_create(unsigned short radius);
+struct BoundingCircle *bounding_circle_create(float radius);
 void bounding_circle_destroy(struct BoundingCircle *circle);
+
+const float bounding_circle_calculate_height(struct BoundingCircle *circle);
 
 #endif /* bounding_circle_h */

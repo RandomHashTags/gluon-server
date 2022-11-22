@@ -8,6 +8,7 @@
 #ifndef utilities_h
 #define utilities_h
 
+#include <sys/time.h>
 #include "server/quark_server.h"
 
 extern unsigned char TICKS_PER_SECOND;
@@ -18,5 +19,7 @@ extern float GRAVITY_PER_TICK;
 extern struct QuarkServer *SERVER;
 
 char *malloc_string(const char string[]);
+int64_t current_time_nano(void);
+int64_t current_time_milli(void);
 
 #endif /* utilities_h */

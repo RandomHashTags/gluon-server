@@ -8,7 +8,6 @@
 #ifndef quark_server_h
 #define quark_server_h
 
-#include <sys/time.h>
 #include "../util/difficulty.h"
 #include "../util/location/world.h"
 #include "../network/player_connection.h"

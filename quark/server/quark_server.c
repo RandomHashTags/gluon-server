@@ -30,13 +30,6 @@ struct QuarkServer *SERVER;
 #define QUARK_SERVER_THREAD_ID_UPDATE_PLAYER_PINGS 2
 pthread_t *THREADS;
 
-int64_t current_time_milliseconds(void) {
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    int64_t seconds = (int64_t) now.tv_sec * 1000;
-    int64_t milliseconds = now.tv_usec / 1000;
-    return seconds + milliseconds;
-}
 void server_create(void) {
     struct QuarkServer *server = malloc(sizeof(struct QuarkServer));
     if (!server) {
@@ -168,7 +161,7 @@ void server_create(void) {
     const unsigned int port = 25565;
     memcpy((unsigned int *) &server->port, &port, sizeof(unsigned int));
     
-    const int64_t started = current_time_milliseconds();
+    const int64_t started = current_time_milli();
     memcpy((int64_t *) &server->started, &started, sizeof(started));
     
     const unsigned int players_maximum = 2;
@@ -262,10 +255,26 @@ void acceptClient(const int sockID, const struct sockaddr_in servAddr, const cha
     const int client = accept(sockID, NULL, NULL);
     //send(client, msg, msgSize, 0);
     printf("Received connection\n");
+    int packet_size;
+    char *payload[256];
     
+    packet_size = read(client, payload, 256);
+    printf("test1=%d\n", packet_size);
+    const int packet_id = read(client, payload, packet_size);
+    printf("packet_id=%d\n", packet_id);
+    //send(client, "0", 1, 0);
+    //packet_size = recv(client, payload, 256, 0);
+    //printf("test3=%d \n", packet_size);
+    /*for (int i = 0; i < test; i++) {
+        char *character = payload[i];
+        if (character) {
+            printf("%s", character);
+        }
+    }
+    printf("\n");
     const unsigned int player_count = SERVER->player_count;
-    server_try_connecting_player(player_count);
-    //close(client);
+    server_try_connecting_player(player_count);*/
+    close(client);
 }
 void server_destroy(void) {
     server_deallocate();
@@ -287,8 +296,14 @@ void *begin_connecting_players(void *threadID) {
     const char *msg = "yeah, guess who! (RandomHashTags baby)";
     const int msgSize = sizeof(msg);
     
-    bind(sockID, (struct sockaddr *) &servAddr, sizeof(servAddr));
-    listen(sockID, 1);
+    if (bind(sockID, (struct sockaddr *) &servAddr, sizeof(servAddr)) < 0) {
+        printf("failed to bind to port %d for socket ID %d\n", SERVER->port, sockID);
+        return NULL;
+    }
+    if (listen(sockID, 1) < 0) {
+        printf("failed to listen for socket ID %d\n", sockID);
+        return NULL;
+    }
     
     const short maximum = SERVER->player_count_maximum;
     printf("Waiting for players to connect on port %d...\n", SERVER->port);

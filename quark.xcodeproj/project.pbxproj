@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		670E6859292CA9A7000B0E54 /* json_object.c in Sources */ = {isa = PBXBuildFile; fileRef = 670E6858292CA9A7000B0E54 /* json_object.c */; };
 		672760AC292386B500F26301 /* seed_generator.c in Sources */ = {isa = PBXBuildFile; fileRef = 672760AB292386B500F26301 /* seed_generator.c */; };
 		673D6B8D291567C900C0BDE7 /* creature.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8C291567C900C0BDE7 /* creature.c */; };
 		673D6B9029156AA700C0BDE7 /* enchantment_type.c in Sources */ = {isa = PBXBuildFile; fileRef = 673D6B8F29156AA700C0BDE7 /* enchantment_type.c */; };
@@ -89,6 +90,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		670E6852292CA744000B0E54 /* workbench.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = workbench.json; sourceTree = "<group>"; };
+		670E6857292CA9A7000B0E54 /* json_object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json_object.h; sourceTree = "<group>"; };
+		670E6858292CA9A7000B0E54 /* json_object.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = json_object.c; sourceTree = "<group>"; };
+		670E685A292CAB03000B0E54 /* json_value_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json_value_type.h; sourceTree = "<group>"; };
 		672760AA292386B500F26301 /* seed_generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = seed_generator.h; sourceTree = "<group>"; };
 		672760AB292386B500F26301 /* seed_generator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = seed_generator.c; sourceTree = "<group>"; };
 		673D6B8A2915659A00C0BDE7 /* event_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_type.h; sourceTree = "<group>"; };
@@ -491,6 +496,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		670E6853292CA91A000B0E54 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				670E685A292CAB03000B0E54 /* json_value_type.h */,
+				670E6857292CA9A7000B0E54 /* json_object.h */,
+				670E6858292CA9A7000B0E54 /* json_object.c */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		672760A92923865800F26301 /* generators */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +679,7 @@
 		6799444129142C4200D8F796 /* quark */ = {
 			isa = PBXGroup;
 			children = (
+				670E6853292CA91A000B0E54 /* json */,
 				6759E9A6291DCCDD00EB161F /* resources */,
 				673D6B94291570E200C0BDE7 /* network */,
 				6753CF4E291484EF008BD41C /* api */,
@@ -1387,6 +1403,7 @@
 		67A66C562921A87000A144F8 /* minecraft */ = {
 			isa = PBXGroup;
 			children = (
+				670E6852292CA744000B0E54 /* workbench.json */,
 			);
 			path = minecraft;
 			sourceTree = "<group>";
@@ -1585,6 +1602,7 @@
 				67A66C1A291F804900A144F8 /* gamemode.c in Sources */,
 				6759E9A5291D9E2C00EB161F /* color.c in Sources */,
 				679C6D0A2927728C00EE168D /* bounding_box.c in Sources */,
+				670E6859292CA9A7000B0E54 /* json_object.c in Sources */,
 				67C304B2291A15A200D89359 /* utilities.c in Sources */,
 				67A66C10291EC8D800A144F8 /* potion_effect_type.c in Sources */,
 				6753CF1A29145495008BD41C /* event.c in Sources */,

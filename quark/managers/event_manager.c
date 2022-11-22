@@ -10,6 +10,6 @@
 #include "../utilities.h"
 
 _Bool event_manager_call_event(struct Event *event) {
-    printf("called event %d\n", event->type);
+    printf("called event \"%s\" with key \"%s\"\n", event->identifier, event->key);
     return 1;
 }

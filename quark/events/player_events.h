@@ -11,6 +11,9 @@
 #include "event.h"
 #include "../util/entity/player/player.h"
 
+extern const struct Event EVENT_PLAYER_JOIN;
+extern const struct Event EVENT_PLAYER_DEATH;
+
 struct PlayerEvent {
     const struct Event event;
     struct Player *player;

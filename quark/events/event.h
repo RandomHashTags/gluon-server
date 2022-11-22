@@ -11,6 +11,16 @@
 #include "event_type.h"
 
 struct Event {
+    const char *identifier;
+    const char *key;
+    const _Bool is_async;
+};
+struct EventCancellable {
+    struct Event event;
+    _Bool is_cancelled;
+};
+
+/*struct Event {
     const _Bool is_async;
     const enum EventType type;
 };
@@ -18,6 +28,6 @@ struct Event {
 struct EventCancellable {
     const struct Event event;
     _Bool is_cancelled;
-};
+};*/
 
 #endif /* event_h */

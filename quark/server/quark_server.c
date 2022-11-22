@@ -679,9 +679,7 @@ void server_player_joined(struct PlayerConnection *connection) {
     SERVER->player_count += 1;
     struct PlayerJoinEvent event = {
         .event = {
-            .event = {
-                .type = EVENT_PLAYER_JOIN
-            },
+            .event = EVENT_PLAYER_JOIN,
             .player = player
         },
     };

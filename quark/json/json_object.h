@@ -10,13 +10,16 @@
 
 #include "json_value_type.h"
 
-struct JSONObject {
-    unsigned short keys_count;
-    unsigned short keys_character_count;
-    struct JSONObjectValue *values;
+struct LegacyJSONObject {
+    unsigned long keys_index;
+    unsigned long keys_count;
+    
+    struct LegacyJSONObjectValue *values;
+    
+    unsigned long to_string_length;
 };
 
-struct JSONObjectValue {
+struct LegacyJSONObjectValue {
     const char *key;
     enum JSONValueType type;
     union {
@@ -27,11 +30,12 @@ struct JSONObjectValue {
     };
 };
 
-void json_parse_from_string(char *string, struct JSONObject *json);
+void json_parse_from_string(char *string, struct LegacyJSONObject *json);
 
 void json_get_value(const char *key, const enum JSONValueType type, void *value);
 
-void json_to_string(struct JSONObject json, char *string);
-void json_to_string_append_float(float value, char *string, unsigned short index);
+void json_to_string(struct LegacyJSONObject json, char *string);
+void json_to_string_append_float(float value, char *string, unsigned long index);
+void json_to_string_append_string(char *value, char *string, unsigned long index);
 
 #endif /* json_object_h */

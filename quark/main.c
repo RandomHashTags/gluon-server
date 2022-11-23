@@ -40,35 +40,52 @@ void test(void) {
         file_manager_iterate_files(cwd);
     }*/
 }
-void testJSON(void) {
-    const long long now = current_time_nano();
-    const unsigned short keys_count = 1000;
-    struct JSONObjectValue *values = alloca(keys_count * sizeof(struct JSONObjectValue));
-    for (unsigned short i = 0; i < keys_count; i++) {
-        char *key = alloca(6 * sizeof(char));
-        key = "test2\0";
-        const _Bool is_float = i != 0 && i % 6 == 0;
-        enum JSONValueType type = is_float ? JSON_VALUE_TYPE_FLOAT : JSON_VALUE_TYPE_INTEGER;
-        struct JSONObjectValue value = {
+
+void testJSONLegacy(void) {
+    const unsigned long keys_count = 100000;
+    const unsigned long sizeof_json_value = sizeof(struct LegacyJSONObjectValue);
+    struct LegacyJSONObjectValue *values = alloca(keys_count * sizeof_json_value);
+    unsigned long floats_count = 0, strings_count = 0;
+    for (unsigned long i = 0; i < keys_count; i++) {
+        char *key = "test2";
+        const _Bool is_float = i != 0 && i % 12 == 0;
+        const _Bool is_string = i != 0 && i % 5 == 0;
+        enum JSONValueType type = is_float ? JSON_VALUE_TYPE_FLOAT : is_string ? JSON_VALUE_TYPE_STRING : JSON_VALUE_TYPE_INTEGER;
+        struct LegacyJSONObjectValue value = {
             .key = key,
             .type = type
         };
         if (is_float) {
             value.value_float = 12345.7890;
+            floats_count += 1;
+        } else if (is_string) {
+            value.value_string = "bruh";
+            strings_count += 4 + 2;
         } else {
             value.value_long = 987654321123456789;
         }
         values[i] = value;
     }
-    struct JSONObject json = {
+    const unsigned long keys_character_count = 5 * keys_count;
+    struct LegacyJSONObject json = {
         .keys_count = keys_count,
-        .keys_character_count = 6 * keys_count,
         .values = values
     };
-    char *json_string = alloca(sizeof(char *));
+    
+    const unsigned long float_size = 3;
+    const unsigned long to_string_length = keys_character_count + (floats_count * float_size) + (strings_count * sizeof(char)) + (keys_count * 3) + (keys_count-1) + 1;
+    json.to_string_length = to_string_length;
+    char *json_string = alloca(to_string_length * sizeof(char));
     json_to_string(json, json_string);
-    const long long took = current_time_nano() - now;
-    printf("json_to_string=%s - took %lldns\n", json_string, took);
+    if (!json_string) {
+        printf("json_string == NULL\n");
+    } else {
+        printf("json_string != NULL\n");
+    }
+}
+void testJSON(void) {
+    //testJSONLegacy();
+    
 }
 
 int main(int argc, const char * argv[]) {
@@ -76,5 +93,5 @@ int main(int argc, const char * argv[]) {
     testJSON();
     //init();
     //server_get_response(25565);
-    return 0;
+    return 1;
 }

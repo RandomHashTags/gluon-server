@@ -23,15 +23,15 @@ char *malloc_string(const char string[]) {
     return copy;
 }
 
-int64_t current_time_nano(void) {
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    return now.tv_usec;
+unsigned long current_time_nano(void) {
+    struct timespec now;
+    clock_gettime(CLOCK_REALTIME, &now);
+    return now.tv_nsec;
 }
-int64_t current_time_milli(void) {
-    struct timeval now;
-    gettimeofday(&now, NULL);
-    int64_t seconds = (int64_t) now.tv_sec * 1000;
-    int64_t milliseconds = now.tv_usec / 1000;
+unsigned long current_time_milli(void) {
+    struct timespec now;
+    clock_gettime(CLOCK_REALTIME, &now);
+    unsigned long seconds = (unsigned long) now.tv_sec * 1000;
+    unsigned long milliseconds = (unsigned long) now.tv_nsec / 1000;
     return seconds + milliseconds;
 }

@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "utilities.h"
 #include "server/quark_server.h"
 #include "managers/file_manager.h"
@@ -38,9 +39,9 @@ void test(void) {
 }
 
 void testJSON(void) {
-    const unsigned short keys_strings_count = 20;
+    /*const unsigned short keys_strings_count = 50000;
     //const unsigned char keys_floats_count = 10;
-    const unsigned short keys_jsons_count = 20;
+    const unsigned short keys_jsons_count = 30000;
     
     char *keys_string[keys_strings_count];
     unsigned char keys_string_lengths[keys_strings_count];
@@ -49,7 +50,7 @@ void testJSON(void) {
     
     char *keys_json[keys_jsons_count];
     unsigned char keys_json_lengths[keys_jsons_count];
-    struct JSONObject values_jsons[keys_jsons_count];
+    struct JSONObject *values_jsons[keys_jsons_count];
     
     for (unsigned short i = 0; i < keys_strings_count; i++) {
         keys_string[i] = "test_string";
@@ -70,7 +71,7 @@ void testJSON(void) {
             .values_strings_length = values_strings_length
         };
         json_calculate_string_length(&target_json);
-        values_jsons[i] = target_json;
+        values_jsons[i] = &target_json;
     }
     
     struct JSONObject json = {
@@ -97,7 +98,15 @@ void testJSON(void) {
     const long double took_ms = (long double) took_ns / (long double) 1000000;
     const long double bytes_per_nano = (long double) bytes / (long double) took_ns;
     printf("bytes=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", bytes, took_ns, took_ms, bytes_per_nano);
-    printf("%s\n", json_string);
+    //printf("%s\n", json_string);
+    char *test_string_value = json_get_string(&json, "test_string");
+    struct JSONObject *test_json = json_get_json(&json, "test_json");
+    printf("test_string_value=%s; test_json == NULL = %s\n", test_string_value, test_json == NULL ? "true" : "false");*/
+    
+    char *parsed_json_string = "{\"bro\":\"1\"}\0";
+    struct JSONObject *parsed_json = NULL;
+    const unsigned long length = strlen(parsed_json_string);
+    json_parse_from_fixed_string(parsed_json_string, length, parsed_json);
 }
 
 int main(int argc, const char * argv[]) {

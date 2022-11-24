@@ -25,7 +25,7 @@ unsigned long legacy_json_to_string(struct LegacyJSONObject json, char *string) 
         key_index += 1;
         
         const char *key = value.key;
-        const unsigned long key_count = 5;
+        const unsigned long key_count = value.key_length;
         for (unsigned long j = 0; j < key_count; j++) {
             string[key_index + j] = key[j];
         }
@@ -36,18 +36,30 @@ unsigned long legacy_json_to_string(struct LegacyJSONObject json, char *string) 
         key_index += 2;
         
         switch (value.type) {
-            case JSON_VALUE_TYPE_FLOAT:
+            case JSON_VALUE_TYPE_FLOAT: {
                 json_to_string_append_float(value.value_float, string, key_index);
                 key_index += float_size;
                 break;
-            case JSON_VALUE_TYPE_STRING:
-                json_to_string_append_string(value.value_string, string, key_index);
-                key_index += 6;
+            } case JSON_VALUE_TYPE_STRING: {
+                char *value_string = value.value_string;
+                const unsigned long value_length = strlen(value_string);
+                json_to_string_append_string(value_string, value_length, string, key_index);
+                key_index += value_length + 2;
                 break;
-            default:
+            } case JSON_VALUE_TYPE_JSON_OBJECT: {
+                struct LegacyJSONObject target_json = value.value_json;
+                const unsigned long target_json_string_length = target_json.to_string_length;
+                char *target_json_string = alloca(target_json_string_length);
+                legacy_json_to_string(target_json, target_json_string);
+                for (unsigned long j = 0; j < target_json_string_length; j++) {
+                    string[key_index + j] = target_json_string[j];
+                }
+                key_index += target_json_string_length;
+                break;
+            } default:
                 string[key_index] = '5';
                 key_index += 1;
-                //break;
+                break;
         }
         string[key_index] = ',';
         key_index += 1;
@@ -55,11 +67,18 @@ unsigned long legacy_json_to_string(struct LegacyJSONObject json, char *string) 
     key_index -= 1;
     string[key_index] = '}';
     string[key_index+1] = '\0';
-    return key_index;
+    return key_index+1;
 }
 
-void new_json_to_string(struct LegacyJSONObject json, char *string) {
-    
+void json_append_string(struct LegacyJSONObject *json, char *key, const unsigned long key_length, char *value, const unsigned long value_length) {
+    struct LegacyJSONObjectValue json_value = {
+        .key = key,
+        .key_length = key_length,
+        .type = JSON_VALUE_TYPE_STRING,
+        .value_string = value
+    };
+    json->keys_count += 1;
+    json->to_string_length += key_length + value_length + 6;
 }
 
 void json_to_string(struct LegacyJSONObject json, char *string) {
@@ -80,8 +99,7 @@ void json_to_string_append_float(float value, char *string, unsigned long index)
         string[index + i] = '1';
     }
 }
-void json_to_string_append_string(char *value, char *string, unsigned long index) {
-    const unsigned long value_length = strlen(value);
+void json_to_string_append_string(char *value, unsigned long value_length, char *string, unsigned long index) {
     string[index] = '"';
     index += 1;
     for (unsigned long i = 0; i < value_length; i++) {

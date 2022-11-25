@@ -2,46 +2,39 @@
 //  json_object.h
 //  quark
 //
-//  Created by Evan Anderson on 11/22/22.
+//  Created by Evan Anderson on 11/25/22.
 //
 
 #ifndef json_object_h
 #define json_object_h
 
 struct JSONObject {
-    unsigned short keys_boolean_count;
-    char **keys_boolean;
-    unsigned short *keys_boolean_lengths;
-    _Bool *values_booleans;
+    unsigned long keys_count;
+    char **keys;
     
-    unsigned short keys_string_count;
-    char **keys_string;
-    unsigned short *keys_string_lengths;
-    char **values_strings;
-    unsigned char *values_strings_length;
-    
-    unsigned char keys_float_count;
-    char **keys_float;
-    unsigned char *keys_float_lengths;
-    float *values_floats;
-    
-    unsigned short keys_json_count;
-    char **keys_json;
-    unsigned char *keys_json_lengths;
-    struct JSONObject **values_jsons;
+    unsigned long strings_count;
+    struct JSONObjectValueString *strings;
     
     unsigned long to_string_length;
 };
 
-unsigned long json_calculate_string_length(struct JSONObject *json);
-unsigned long json_to_string(struct JSONObject *json, char *string);
+struct JSONObjectValueString {
+    char *key;
+    unsigned char key_length;
+    char *value;
+    unsigned char value_length;
+    unsigned short to_string_length;
+};
 
-void json_parse_from_fixed_string(char *string, const unsigned long string_length, void *json_function_pointer(struct JSONObject));
+void json_object_destroy(struct JSONObject *json);
+void json_object_calculate_string_length(struct JSONObject *json);
+void json_object_to_string(struct JSONObject *json, char *to_string);
 
-char *json_get_string(struct JSONObject *json, char *key);
-struct JSONObject *json_get_json(struct JSONObject *json, char *key);
+void json_object_value_string_calculate_string_length(struct JSONObjectValueString *value_string);
+void json_object_value_string_to_string(struct JSONObjectValueString *value_string, char *to_string);
 
-void json_parse_json(char *string, unsigned long string_length, unsigned long byte, struct JSONObject *parsed_json);
-void json_parse_string(char *string, unsigned long string_length, unsigned long byte, char *parsed_string);
+void json_object_parse_fixed_size(const char *string, const unsigned long string_length, const unsigned long key_count, const unsigned long string_count, struct JSONObject *parsed_json);
+
+void json_parse_string(const char *string, const unsigned long string_length, unsigned long byte, char *parsed_string);
 
 #endif /* json_object_h */

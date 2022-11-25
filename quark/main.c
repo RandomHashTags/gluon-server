@@ -38,13 +38,20 @@ void test(void) {
     }*/
 }
 
+void *test_json(struct JSONObject json) {
+    char parsed_json_to_string[json.to_string_length];
+    json_to_string(&json, parsed_json_to_string);
+    printf("test_json; parsed_json_to_string length=%lu, string=%s\n", json.to_string_length, parsed_json_to_string);
+    return NULL;
+}
+
 void testJSON(void) {
-    /*const unsigned short keys_strings_count = 50000;
+    const unsigned short keys_strings_count = 2;
     //const unsigned char keys_floats_count = 10;
-    const unsigned short keys_jsons_count = 30000;
+    const unsigned short keys_jsons_count = 0;
     
     char *keys_string[keys_strings_count];
-    unsigned char keys_string_lengths[keys_strings_count];
+    unsigned short keys_string_lengths[keys_strings_count];
     char *values_strings[keys_strings_count];
     unsigned char values_strings_length[keys_strings_count];
     
@@ -53,9 +60,9 @@ void testJSON(void) {
     struct JSONObject *values_jsons[keys_jsons_count];
     
     for (unsigned short i = 0; i < keys_strings_count; i++) {
-        keys_string[i] = "test_string";
+        keys_string[i] = i == 0 ? "test1string" : "test2string";
         keys_string_lengths[i] = 11;
-        values_strings[i] = "string_value";
+        values_strings[i] = i == 0 ? "string1value" : "string2value";
         values_strings_length[i] = 12;
     }
     
@@ -98,15 +105,12 @@ void testJSON(void) {
     const long double took_ms = (long double) took_ns / (long double) 1000000;
     const long double bytes_per_nano = (long double) bytes / (long double) took_ns;
     printf("bytes=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", bytes, took_ns, took_ms, bytes_per_nano);
-    //printf("%s\n", json_string);
+    printf("%s\n", json_string);
     char *test_string_value = json_get_string(&json, "test_string");
-    struct JSONObject *test_json = json_get_json(&json, "test_json");
-    printf("test_string_value=%s; test_json == NULL = %s\n", test_string_value, test_json == NULL ? "true" : "false");*/
+    struct JSONObject *get_test_json = json_get_json(&json, "test_json");
+    printf("test_string_value=%s; get_test_json == NULL = %s\n", test_string_value, get_test_json == NULL ? "true" : "false");
     
-    char *parsed_json_string = "{\"bro\":\"1\"}\0";
-    struct JSONObject *parsed_json = NULL;
-    const unsigned long length = strlen(parsed_json_string);
-    json_parse_from_fixed_string(parsed_json_string, length, parsed_json);
+    json_parse_from_fixed_string(json_string, to_string_length, test_json);
 }
 
 int main(int argc, const char * argv[]) {

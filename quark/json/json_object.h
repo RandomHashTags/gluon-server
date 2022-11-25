@@ -8,12 +8,15 @@
 #ifndef json_object_h
 #define json_object_h
 
-#include "json_value_type.h"
-
 struct JSONObject {
+    unsigned short keys_boolean_count;
+    char **keys_boolean;
+    unsigned short *keys_boolean_lengths;
+    _Bool *values_booleans;
+    
     unsigned short keys_string_count;
     char **keys_string;
-    unsigned char *keys_string_lengths;
+    unsigned short *keys_string_lengths;
     char **values_strings;
     unsigned char *values_strings_length;
     
@@ -33,17 +36,12 @@ struct JSONObject {
 unsigned long json_calculate_string_length(struct JSONObject *json);
 unsigned long json_to_string(struct JSONObject *json, char *string);
 
-void json_parse_from_fixed_string(char *string, unsigned long string_length, struct JSONObject *json);
+void json_parse_from_fixed_string(char *string, const unsigned long string_length, void *json_function_pointer(struct JSONObject));
 
 char *json_get_string(struct JSONObject *json, char *key);
 struct JSONObject *json_get_json(struct JSONObject *json, char *key);
 
+void json_parse_json(char *string, unsigned long string_length, unsigned long byte, struct JSONObject *parsed_json);
 void json_parse_string(char *string, unsigned long string_length, unsigned long byte, char *parsed_string);
-
-enum JSONObjectParsingIdentity {
-    JSON_PARSING_IDENTITY_NULL,
-    JSON_PARSING_IDENTITY_KEY,
-    JSON_PARSING_IDENTITY_VALUE
-};
 
 #endif /* json_object_h */

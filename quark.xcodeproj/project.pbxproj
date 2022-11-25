@@ -93,7 +93,6 @@
 		670E6852292CA744000B0E54 /* workbench.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = workbench.json; sourceTree = "<group>"; };
 		670E6857292CA9A7000B0E54 /* json_object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json_object.h; sourceTree = "<group>"; };
 		670E6858292CA9A7000B0E54 /* json_object.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = json_object.c; sourceTree = "<group>"; };
-		670E685A292CAB03000B0E54 /* json_value_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json_value_type.h; sourceTree = "<group>"; };
 		672760AA292386B500F26301 /* seed_generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = seed_generator.h; sourceTree = "<group>"; };
 		672760AB292386B500F26301 /* seed_generator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = seed_generator.c; sourceTree = "<group>"; };
 		673D6B8A2915659A00C0BDE7 /* event_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event_type.h; sourceTree = "<group>"; };
@@ -499,7 +498,6 @@
 		670E6853292CA91A000B0E54 /* json */ = {
 			isa = PBXGroup;
 			children = (
-				670E685A292CAB03000B0E54 /* json_value_type.h */,
 				670E6857292CA9A7000B0E54 /* json_object.h */,
 				670E6858292CA9A7000B0E54 /* json_object.c */,
 			);

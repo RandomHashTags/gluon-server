@@ -110,14 +110,12 @@ void *test_file_manager(char *characters, unsigned long length) {
     json_object_calculate_string_length(&target_json);
     char to_string[length];
     
-    
     unsigned long took_ns = current_time_nano();
     json_object_to_string(&target_json, to_string);
     took_ns = current_time_nano() - took_ns;
     const long double took_ms = (long double) took_ns / (long double) 1000000;
     const long double bytes_per_nano = (long double) length / (long double) took_ns;
     printf("bytes=%lu, length=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", length, strlen(to_string), took_ns, took_ms, bytes_per_nano);
-    
     
     printf("%s\n", to_string);
     return NULL;

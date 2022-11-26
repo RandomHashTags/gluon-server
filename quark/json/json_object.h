@@ -9,13 +9,19 @@
 #define json_object_h
 
 struct JSONObject {
+    unsigned long booleans_count;
+    struct JSONObjectValueBoolean *booleans;
+    
     unsigned long strings_count;
     struct JSONObjectValueString *strings;
     
-    unsigned long jsons_count;
-    struct JSONObject *jsons;
-    
     unsigned long to_string_length;
+};
+
+struct JSONObjectValueBoolean {
+    char *key;
+    unsigned char key_length;
+    _Bool value;
 };
 
 struct JSONObjectValueString {

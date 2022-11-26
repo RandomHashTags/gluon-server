@@ -6,6 +6,7 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
 #include "file_manager.h"
@@ -20,4 +21,17 @@ void file_manager_iterate_files(char *directory_path) {
         }
         closedir(dir);
     }
+}
+
+void file_manager_read_file(const char *file_name, void *pointer(char *characters, unsigned long length)) {
+    FILE *file = fopen(file_name, "rb");
+    fseek(file, 0, SEEK_END);
+    const unsigned long file_length = ftell(file);
+    rewind(file);
+    
+    char buffer[file_length];
+    fread(buffer, file_length, 1, file);
+    fclose(file);
+    pointer(buffer, file_length);
+    //free(buffer);
 }

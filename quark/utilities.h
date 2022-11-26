@@ -22,4 +22,6 @@ char *malloc_string(const char string[]);
 unsigned long current_time_nano(void);
 unsigned long current_time_milli(void);
 
+void benchmark_function(int count, void *pointer(void));
+
 #endif /* utilities_h */

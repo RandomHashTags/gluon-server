@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "utilities.h"
 #include "server/quark_server.h"
 #include "managers/file_manager.h"
@@ -38,15 +39,14 @@ void test(void) {
     }*/
 }
 
-void testJSON(void) {
-    const unsigned long keys_count = 10;
-    const unsigned long strings_count = keys_count;
+void *testJSON(void) {
+    const unsigned long strings_count = 50000;
     struct JSONObjectValueString strings[strings_count];
     for (unsigned long i = 0; i < strings_count; i++) {
         const _Bool is_bro = i % 3 == 0;
-        char *key = is_bro ? "um" : "really?????????";
+        char *key = is_bro ? "okay, but who actually cares" : "really? do your Japanese learning on Duolingo!!";
         const unsigned short key_length = strlen(key);
-        char *value = is_bro ? "bro!!!!!!!!!!!!!!" : "RandomHashTags!!!!!!!!";
+        char *value = is_bro ? "brooooooooooooooo" : "RandomHashTags12345678";
         unsigned short value_length = strlen(value);
         struct JSONObjectValueString value_string = {
             .key = key,
@@ -59,7 +59,6 @@ void testJSON(void) {
     }
     
     struct JSONObject json = {
-        .keys_count = keys_count,
         .strings_count = strings_count,
         .strings = strings
     };
@@ -73,22 +72,64 @@ void testJSON(void) {
     
     struct JSONObject parsed_json;
     struct JSONObject *parsed_json_pointer = &parsed_json;
-    json_object_parse_fixed_size(to_string, to_string_length, keys_count, strings_count, parsed_json_pointer);
+    json_object_parse_fixed_size(to_string, to_string_length, strings_count, parsed_json_pointer);
     char parsed_json_to_string[to_string_length];
-    const unsigned long now = current_time_nano();
-    json_object_to_string(parsed_json_pointer, parsed_json_to_string);
-    const unsigned long took_ns = current_time_nano() - now;
-    const long double took_ms = (long double) took_ns / (long double) 1000000;
-    const long double bytes_per_nano = (long double) to_string_length / (long double) took_ns;
-    printf("bytes=%lu, length=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", to_string_length, strlen(parsed_json_to_string), took_ns, took_ms, bytes_per_nano);
+    
+    double most_bytes_per_nano = 0;
+    for (int i = 0; i < 10; i++) {
+        /*clock_t now = clock();
+        json_object_to_string(parsed_json_pointer, parsed_json_to_string);
+        now = clock() - now;
+        double took_s = ((double) now) / CLOCKS_PER_SEC;
+        double took_ms = took_s * 1000;
+        double took_ns = took_ms * 1000000;
+        double bytes_per_nano = (double) to_string_length / took_ns;
+        printf("bytes=%lu, length=%lu, took %fns (%fms, gigabytes per second=%f)\n", to_string_length, strlen(parsed_json_to_string), took_ns, took_ms, bytes_per_nano);*/
+        
+        unsigned long took_ns = current_time_nano();
+        json_object_to_string(parsed_json_pointer, parsed_json_to_string);
+        took_ns = current_time_nano() - took_ns;
+        const long double took_ms = (long double) took_ns / (long double) 1000000;
+        const long double bytes_per_nano = (long double) to_string_length / (long double) took_ns;
+        printf("bytes=%lu, length=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", to_string_length, strlen(parsed_json_to_string), took_ns, took_ms, bytes_per_nano);
+        
+        if (bytes_per_nano > most_bytes_per_nano) {
+            most_bytes_per_nano = bytes_per_nano;
+        }
+    }
+    printf("bytes=%lu, length=%lu, most gigabytes per second=%f\n", to_string_length, strlen(parsed_json_to_string), most_bytes_per_nano);
     
     json_object_destroy(parsed_json_pointer);
+    return NULL;
+}
+
+void *test_file_manager(char *characters, unsigned long length) {
+    printf("characters address=%p, length=%lu\n", characters, length);
+    struct JSONObject target_json;
+    json_object_parse_fixed_size(characters, length, 1, &target_json);
+    json_object_calculate_string_length(&target_json);
+    char to_string[length];
+    
+    
+    unsigned long took_ns = current_time_nano();
+    json_object_to_string(&target_json, to_string);
+    took_ns = current_time_nano() - took_ns;
+    const long double took_ms = (long double) took_ns / (long double) 1000000;
+    const long double bytes_per_nano = (long double) length / (long double) took_ns;
+    printf("bytes=%lu, length=%lu, took %luns (%Lfms, gigabytes per second=%Lf)\n", length, strlen(to_string), took_ns, took_ms, bytes_per_nano);
+    
+    
+    printf("%s\n", to_string);
+    return NULL;
 }
 
 int main(int argc, const char * argv[]) {
     //test();
-    testJSON();
+    //testJSON();
     //init();
     //server_get_response(25565);
+    
+    file_manager_read_file("/Users/randomhashtags/Downloads/test_json.json", test_file_manager);
+    
     return 1;
 }

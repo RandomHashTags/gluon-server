@@ -11,12 +11,6 @@
 #include "json_object.h"
 
 void json_object_destroy(struct JSONObject *json) {
-    const unsigned long keys_count = json->keys_count;
-    char **keys = json->keys;
-    for (unsigned long i = 0; i < keys_count; i++) {
-        free(keys[i]);
-    }
-    free(keys);
     const unsigned long strings_count = json->strings_count;
     struct JSONObjectValueString *strings = json->strings;
     for (unsigned long i = 0; i < strings_count; i++) {
@@ -91,19 +85,28 @@ void json_object_value_string_to_string(struct JSONObjectValueString *value_stri
     to_string[byte] = '\0';
 }
 
-void json_object_parse_fixed_size(const char *string, const unsigned long string_length, const unsigned long key_count, const unsigned long string_count, struct JSONObject *parsed_json) {
-    unsigned long keys_count = 0;
-    char **keys = malloc(key_count * sizeof(char *));
+void json_object_parse_fixed_size(const char *string, const unsigned long string_length, const unsigned long string_count, struct JSONObject *parsed_json) {
+    char *key = NULL;
+    unsigned char key_length = 0;
     
     unsigned long strings_count = 0;
     struct JSONObjectValueString *strings = malloc(string_count * sizeof(struct JSONObjectValueString));
     
-    const size_t key_value_size = 32 * sizeof(char);
+    unsigned long jsons_count = 0;
+    struct JSONObject *jsons = malloc(string_count * sizeof(struct JSONObject));
+    
+    const size_t key_value_size = 47 * sizeof(char);
     
     for (unsigned long byte = 1; byte < string_length; byte++) {
         char target_character = string[byte];
         switch (target_character) {
             case '{': {
+                byte += 1;
+                struct JSONObject target_json;
+                json_object_parse_fixed_size(string, string_length, 1, &target_json);
+                jsons[jsons_count] = target_json;
+                jsons_count += 1;
+                byte += target_json.to_string_length;
                 break;
             } case '[': {
                 break;
@@ -111,8 +114,8 @@ void json_object_parse_fixed_size(const char *string, const unsigned long string
                 byte += 1;
                 char *parsed_string = malloc(key_value_size);
                 json_parse_string(string, string_length, byte, parsed_string);
-                const unsigned char key_length = strlen(parsed_string);
-                keys[keys_count] = parsed_string;
+                key_length = strlen(parsed_string);
+                key = parsed_string;
                 byte += key_length;
                 break;
             } case ':': {
@@ -132,10 +135,7 @@ void json_object_parse_fixed_size(const char *string, const unsigned long string
                         char *parsed_value = malloc(key_value_size);
                         json_parse_string(string, string_length, byte, parsed_value);
                         const unsigned char parsed_string_length = strlen(parsed_value);
-                        
-                        char *key = keys[keys_count];
-                        const unsigned char key_length = strlen(key);
-                        
+                                                
                         struct JSONObjectValueString value_string = {
                             .key = key,
                             .key_length = key_length,
@@ -146,7 +146,6 @@ void json_object_parse_fixed_size(const char *string, const unsigned long string
                         
                         strings[strings_count] = value_string;
                         strings_count += 1;
-                        keys_count += 1;
                         byte += parsed_string_length;
                         break;
                     } default: {
@@ -159,7 +158,6 @@ void json_object_parse_fixed_size(const char *string, const unsigned long string
             }
         }
     }
-    parsed_json->keys = keys;
     parsed_json->strings_count = strings_count;
     parsed_json->strings = strings;
     parsed_json->to_string_length = string_length;

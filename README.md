@@ -1,4 +1,4 @@
-# Quark
+# Gluon
 ## Background
 This project was created for multiple reasons:
 - further my knowledge in C programming (this is my first C project)
@@ -56,7 +56,7 @@ This is a standalone server. Some features may be limited in functionality, and 
     - [x] Implementation
     - [ ] Passengers' logic
   - [ ] Pathfinding
-- [x] [Events](https://github.com/RandomHashTags/quark/tree/main/quark/events)
+- [x] [Events](https://github.com/RandomHashTags/gluon-server/tree/main/gluon-server/events)
 - [ ] Hack detection
   - [ ] Anti X-ray
   - [ ] Speed / Velocity discrepancies
@@ -133,12 +133,12 @@ This is a standalone server. Some features may be limited in functionality, and 
       - [ ] Pushable blocks (pistons)
       - [ ] Redstone
 - [ ] Communication with Client
-  - [ ] Quark Client
+  - [ ] Gluon Client
   - [ ] Minecraft Client
 
 ## Future Development
 I'm just one dude. PRs are welcome, and need to adhere to the coding style defined in `X.txt`.
-### Quark Philosophy
+### Gluon Philosophy
 This server is to mimic the vanilla Minecraft experience in all aspects, supporting all versions and the same world generation. The only logic added that doesn't adhere to vanilla Minecraft should be performance and memory improvements OR third-party additions.
 ### Financial support
 There isn't a way to financially support this project at this time.
@@ -155,6 +155,6 @@ There isn't a way to financially support this project at this time.
 ## Usage
 1. open terminal
 2. clone repo
-3. run `cd quark`
+3. run `cd gluon-server`
 4. run `bash _compile.sh`
 5. run `bash _start.sh`

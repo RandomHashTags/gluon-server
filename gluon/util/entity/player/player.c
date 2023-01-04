@@ -26,6 +26,7 @@ void player_destroy(struct Player *player) {
     free(player->advancements);
     free(player->open_inventories);
     free(player->spectator_target);
+    free(player->statistics);
     free(player);
 }
 

@@ -16,11 +16,14 @@ struct GluonServer {
     const char *hostname;
     const unsigned int port;
     const int64_t started;
-    struct Difficulty difficulty;
+    struct Difficulty *difficulty;
     _Bool is_sleeping;
     
     unsigned short plugins_count;
     struct GluonPlugin **plugins;
+    
+    unsigned short difficulties_count;
+    struct Difficulty **difficulties;
     
     unsigned short entity_types_count;
     struct EntityType **entity_types;

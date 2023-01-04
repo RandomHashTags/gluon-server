@@ -9,6 +9,7 @@
 #define minecraft_version_h
 
 enum MinecraftVersion {
+    MINECRAFT_VERSION_1_7_10,
     MINECRAFT_VERSION_1_8_9,
     MINECRAFT_VERSION_1_9_4,
     MINECRAFT_VERSION_1_10_2,
@@ -18,7 +19,7 @@ enum MinecraftVersion {
     MINECRAFT_VERSION_1_16_5,
     MINECRAFT_VERSION_1_17_1,
     MINECRAFT_VERSION_1_18_2,
-    MINECRAFT_VERSION_1_19_2,
+    MINECRAFT_VERSION_1_19_3,
     MINECRAFT_VERSION_1_20_0
 };
 

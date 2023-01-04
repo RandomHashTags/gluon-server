@@ -11,7 +11,7 @@
 #include "enchantment_type.h"
 #include "../utilities.h"
 
-struct EnchantmentType *enchantment_type_create(const char *identifier, const unsigned char weight, const unsigned short max_level, const unsigned short incompatible_with_count, const struct EnchantmentType *incompatible_with) {
+struct EnchantmentType *enchantment_type_create(const char *identifier, const unsigned char weight, unsigned short max_level, unsigned short incompatible_with_count, struct EnchantmentType *incompatible_with) {
     const size_t sizeof_enchantment_type = sizeof(struct EnchantmentType);
     struct EnchantmentType *type = malloc(sizeof_enchantment_type);
     if (!type) {
@@ -26,10 +26,8 @@ struct EnchantmentType *enchantment_type_create(const char *identifier, const un
     }
     type->identifier = identifier;
     memcpy((unsigned char *) &type->weight, &weight, sizeof(unsigned char));
-    const size_t sizeof_unsigned_short = sizeof(unsigned short);
-    memcpy((unsigned short *) &type->max_level, &max_level, sizeof_unsigned_short);
-    memcpy((unsigned short *) &type->incompatible_with_count, &incompatible_with_count, sizeof_unsigned_short);
-    memcpy((struct EnchantmentType *) type->incompatible_with, incompatible_with, incompatible_with_count * sizeof_enchantment_type);
+    type->max_level = max_level;
+    type->incompatible_with_count = incompatible_with_count;
     type->incompatible_with = incompatible_with;
     return type;
 }

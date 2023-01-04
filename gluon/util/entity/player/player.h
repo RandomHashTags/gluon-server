@@ -28,7 +28,7 @@ struct Player {
     unsigned long advancements_count;
     struct Advancement **advancements;
     
-    struct StatisticsActive *statistics;
+    struct StatisticActive *statistics;
     
     const unsigned int first_played;
     

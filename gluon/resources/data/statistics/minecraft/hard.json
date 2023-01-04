@@ -1,0 +1,14 @@
+{
+    "names" : {
+        "en" : "Hard"
+    },
+    "settings" : {
+        "player" : {
+            "hunger_depletes" : true
+        },
+        "mobs" : {
+            "can_damage_player" : true,
+            "damage_multiplier" : 1.5
+        }
+    }
+}

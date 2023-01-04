@@ -13,7 +13,6 @@
 struct StatisticActive {
     const struct Statistic *statistic;
     union {
-        char *value_string;
         char value_character;
         
         int value_integer;

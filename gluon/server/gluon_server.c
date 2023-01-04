@@ -55,13 +55,24 @@ void server_create(void) {
         return;
     }
     
+    unsigned short difficulties_count = 5;
+    struct Difficulty **difficulties = malloc(difficulties_count * sizeof(struct Difficulty *));
+    if (!difficulties) {
+        free(server);
+        free(plugins);
+        free(worlds);
+        printf("failed to allocate memory for %d GluonServer Difficulties\n", difficulties_count);
+        return;
+    }
+    
     unsigned short entity_types_count = 1;
     struct EntityType **entity_types = malloc(entity_types_count * sizeof(struct EntityType *));
     if (!entity_types) {
         free(server);
         free(plugins);
         free(worlds);
-        printf("failed to allocate memory for a GluonServer entity_tyes\n");
+        free(difficulties);
+        printf("failed to allocate memory for %d GluonServer EntityTypes\n", entity_types_count);
         return;
     }
     printf("server registered %d EntityTypes\n", entity_types_count);
@@ -72,6 +83,7 @@ void server_create(void) {
         free(server);
         free(plugins);
         free(worlds);
+        free(difficulties);
         free(entity_types);
         printf("failed to allocate memory for %d GluonServer InventoryTypes\n", inventory_types_count);
         return;
@@ -84,6 +96,7 @@ void server_create(void) {
         free(server);
         free(plugins);
         free(worlds);
+        free(difficulties);
         free(entity_types);
         free(inventory_types);
         printf("failed to allocate memory for %d GluonServer Materials\n", materials_count);
@@ -97,6 +110,7 @@ void server_create(void) {
         free(server);
         free(plugins);
         free(worlds);
+        free(difficulties);
         free(entity_types);
         free(inventory_types);
         free(materials);
@@ -110,6 +124,7 @@ void server_create(void) {
         free(server);
         free(plugins);
         free(worlds);
+        free(difficulties);
         free(entity_types);
         free(inventory_types);
         free(materials);
@@ -123,6 +138,7 @@ void server_create(void) {
         free(server);
         free(plugins);
         free(worlds);
+        free(difficulties);
         free(entity_types);
         free(inventory_types);
         free(materials);
@@ -131,6 +147,10 @@ void server_create(void) {
         printf("failed to allocate memory for a GluonServer default_world_name\n");
         return;
     }
+    
+    server->difficulties_count = difficulties_count;
+    server->difficulties = difficulties;
+    server->difficulty = difficulties[2]; // TODO: parse via json; normal difficulty
     
     server->entity_types_count = entity_types_count;
     struct EntityType *entity_type_player = entity_type_create("minecraft.player", 1, 1, 20, 20, 20);
@@ -168,7 +188,7 @@ void server_create(void) {
     memcpy((unsigned int *) &server->player_count_maximum, &players_maximum, sizeof(unsigned int));
     SERVER = server;
     
-    struct World *world = server_world_create(0, default_world_name, (struct Difficulty *) &DIFFICULTY_MINECRAFT_NORMAL);
+    struct World *world = server_world_create(0, default_world_name, NULL);
     if (!world) {
         free(server);
         free(plugins);
@@ -202,6 +222,15 @@ void server_deallocate(void) {
         plugin_destroy(plugin);
     }
     free(plugins);
+    
+    const unsigned short difficulties_count = SERVER->difficulties_count;
+    struct Difficulty **difficulties = SERVER->difficulties;
+    for (unsigned short i = 0; i < difficulties_count; i++) {
+        struct Difficulty *difficulty = difficulties[i];
+        difficulty_destroy(difficulty);
+    }
+    free(difficulties);
+    free(SERVER->difficulty);
     
     const unsigned short inventory_types_count = SERVER->inventory_types_count;
     struct InventoryType **inventory_types = SERVER->inventory_types;
@@ -478,7 +507,7 @@ struct World *server_world_create(const long seed, const char *world_name, struc
         }
         SERVER->world_count_maximum = new_world_count_maximum;
     }
-    struct World *world = world_create(MINECRAFT_VERSION_1_19_2, seed, world_name, difficulty);
+    struct World *world = world_create(MINECRAFT_VERSION_1_19_3, seed, world_name, difficulty);
     if (!world) {
         printf("failed to allocate memory for a World\n");
         return NULL;

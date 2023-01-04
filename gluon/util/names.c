@@ -7,11 +7,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "material_names.h"
-#include "../../utilities.h"
+#include "names.h"
+#include "../utilities.h"
 
-struct MaterialNames *material_names_create(const char *english) {
-    struct MaterialNames *names = malloc(sizeof(struct MaterialNames));
+struct Names *names_create(const char *english) {
+    struct Names *names = malloc(sizeof(struct Names));
     if (!names) {
         printf("failed to allocate memory for a MaterialNames\n");
         return NULL;
@@ -25,7 +25,7 @@ struct MaterialNames *material_names_create(const char *english) {
     names->english = target_english;
     return names;
 }
-void material_names_destroy(struct MaterialNames *names) {
+void names_destroy(struct Names *names) {
     free((char *) names->english);
     free(names);
 }

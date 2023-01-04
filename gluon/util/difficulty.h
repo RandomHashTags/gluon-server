@@ -8,14 +8,14 @@
 #ifndef difficulty_h
 #define difficulty_h
 
+#include "names.h"
+
 struct Difficulty {
     const char *identifier;
+    const struct Names *names;
 };
 
-extern const struct Difficulty DIFFICULTY_MINECRAFT_WORLD_BASED;
-extern const struct Difficulty DIFFICULTY_MINECRAFT_PEACEFUL;
-extern const struct Difficulty DIFFICULTY_MINECRAFT_EASY;
-extern const struct Difficulty DIFFICULTY_MINECRAFT_NORMAL;
-extern const struct Difficulty DIFFICULTY_MINECRAFT_HARD;
+struct Difficulty *difficulty_create(const char *identifier, const struct Names *names);
+void difficulty_destroy(struct Difficulty *difficulty);
 
 #endif /* difficulty_h */

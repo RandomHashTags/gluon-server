@@ -1,0 +1,14 @@
+{
+    "names" : {
+        "en" : "Peaceful"
+    },
+    "settings" : {
+        "player" : {
+            "hunger_depletes" : false
+        },
+        "mobs" : {
+            "can_damage_player" : false,
+            "damage_multiplier" : 0.0
+        }
+    }
+}

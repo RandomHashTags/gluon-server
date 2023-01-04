@@ -1,1 +1,1 @@
-gcc quark/*.c quark/*/*.c quark/*/*/*.c quark/*/*/*/*.c -o start -O3
+gcc gluon/*.c gluon/*/*.c gluon/*/*/*.c gluon/*/*/*/*.c -o start -O3
